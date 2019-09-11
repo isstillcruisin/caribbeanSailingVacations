@@ -54,5 +54,8 @@ export default {
     } catch (error) {
       console.log("userCreate error (╯°□°)╯︵ ┻━┻ ", error);
     }
-  }
+  },
+  saveWhiteLabel: async function(whiteLabelData) {
+    return axios.post("/api/white-labels", whiteLabelData);
+  },
 };
