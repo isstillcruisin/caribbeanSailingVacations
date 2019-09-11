@@ -63,7 +63,7 @@ exports.signup = function(req, res, next) {
             if (err) { return res.status(500).send({ msg: err.message }); }
  
             // Send the email
-            var url = 'http:\/\/' + req.hostname + ':' + req.port + '\/confirm\/' + token.token,
+            var url = 'http:\/\/' + req.hostname + ':' + keys.clientPort + '\/confirm\/' + token.token,
               subject = 'Charter Assistant Email Verification', 
               mailer = new Mailer(
                 subject,
