@@ -63,7 +63,13 @@ exports.signup = function(req, res, next) {
             if (err) { return res.status(500).send({ msg: err.message }); }
  
             // Send the email
-            var mailer = new Mailer('Charter Assistant Email Verification', [{email: user.email}], 'Hello,\n\n' + 'Please verify your Email Address by clicking the link: \nhttp:\/\/' + req.hostname + ':3000\/confirm\/' + token.token + '.\n');
+            var url = 'http:\/\/' + req.hostname + ':' + req.port + '\/confirm\/' + token.token,
+              subject = 'Charter Assistant Email Verification', 
+              mailer = new Mailer(
+                subject,
+                [{email: user.email}], 
+                'Hello,\n\n' + 'Please verify your Email Address by clicking the link: \n' + url + '.\n'
+              );
             mailer
               .send()
               .then(() => {res.status(200).send({ user: user})})
