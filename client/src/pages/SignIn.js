@@ -29,7 +29,6 @@ class SignIn extends Component {
 
   render() {
     if (this.state.validatedUser !== "" && ls.get("user-token")) {
-      console.log("OK, VALIDATED!");
       return <Redirect to={{ pathname: "/add-white-label" }} />
     } else {
       if (this.props.location && this.props.location.state && this.props.location.state.alert) {
