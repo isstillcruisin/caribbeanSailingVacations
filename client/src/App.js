@@ -13,6 +13,8 @@ const SignOut = React.lazy(() => import("./pages/SignOut"));
 const Confirm = React.lazy(() => import("./pages/Confirm"));
 const AddWhiteLabel = React.lazy(() => import("./pages/AddWhiteLabel"));
 const WhiteLabel = React.lazy(() => import("./pages/WhiteLabel"));
+const WhiteLabelYachtInquiry = React.lazy(() => import("./pages/WhiteLabelYachtInquiry"));
+
 
 const Background = styled.div`
   position: absolute;
@@ -52,6 +54,7 @@ class App extends Component {
                 <Route exact path="/sign-out" component={SignOut} />
                 <Route exact path="/confirm/:id" component={Confirm} />
                 <Route exact path="/add-white-label" component={AddWhiteLabel} />
+                <Route exact path="/charter-a-yacht/:name/inquiry/:boatId" component={WhiteLabelYachtInquiry} />
                 <Route exact path="/charter-a-yacht/:name" component={WhiteLabel} />
                 <Route path="/boat/:id" component={BoatDetail} />
                 <Route path="/" component={Home} />

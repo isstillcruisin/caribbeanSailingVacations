@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import Fade from "react-reveal/Fade";
+import AllBoats from "./AllBoats";
 
 class WhiteLabel extends Component {
   state = {};
@@ -20,6 +21,7 @@ class WhiteLabel extends Component {
         <h3>A WhiteLabel Website For Yacht Charters</h3>
         <div>NAME: {this.state.whiteLabel.name}</div>
         <div>EMAIL: {this.state.whiteLabel._travelAgent.email}</div>
+        <div><AllBoats whiteLabel={this.state.whiteLabel.name}/></div>
       </div>
     ) : (
       <div>loading..</div>

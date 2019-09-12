@@ -94,6 +94,22 @@ class AllBoats extends Component {
 
   showBoats = () => {
     return this.state.boats.map((boat, i) => {
+      let link = 
+        (<Link
+          params={{ id: boat._id }}
+          key={`${boat._id}${i + 5}`}
+          to={`/boat/${boat._id}`}
+          className="boat-detail-link"
+        >See Details</Link>)
+      if (this.props.whiteLabel) {
+        link = 
+          (<Link
+            params={{ id: boat._id }}
+            key={`${boat._id}${i + 5}`}
+            to={`/charter-a-yacht/${this.props.whiteLabel}/inquiry/${boat._id}`}
+            className="book-it-link"
+          >Request Information</Link>)
+      }
       return (
         <Zoom bottom>
           <BoatContainer key={boat._id}>
@@ -102,14 +118,7 @@ class AllBoats extends Component {
             </Carousel>
             <BoatName key={`${boat._id}${i + 1}`}>{boat.boatName}</BoatName>
             <BoatPrice>45 min | $20,000</BoatPrice>
-            <Link
-              params={{ id: boat._id }}
-              key={`${boat._id}${i + 5}`}
-              to={`/boat/${boat._id}`}
-              className="book-it-link"
-            >
-              {"Book It"}
-            </Link>
+            {link}
           </BoatContainer>
         </Zoom>
       );
