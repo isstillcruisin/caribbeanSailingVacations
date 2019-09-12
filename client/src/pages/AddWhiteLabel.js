@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AddWhiteLabelForm from "../components/AddWhiteLabelForm";
 import API from "../utils/API";
+import ls from "local-storage";
 
 class AddWhiteLabel extends Component {
   state = {
@@ -17,9 +18,9 @@ class AddWhiteLabel extends Component {
   };
 
   saveWhiteLabel = () => {
-    console.log("***", this.state.whiteLabelName);
     API.saveWhiteLabel({
-      whiteLabelName: this.state.whiteLabelName
+      whiteLabelName: this.state.whiteLabelName,
+      token: ls.get("user-token"),
     })
       .then(res =>
         this.setState({

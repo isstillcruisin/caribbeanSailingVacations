@@ -9,7 +9,8 @@ const crypto = require('crypto');
 
 function tokenForUser(user) {
   const timestamp = new Date().getTime();
-  return jwt.encode({ sub: user.id, iat: timestamp }, keys.sessionSecret);
+  const obj = { sub: user.id, iat: timestamp, userid: user.id };
+  return jwt.encode(obj, keys.sessionSecret);
 }
 
 exports.signin = function(req, res, next) {
@@ -35,7 +36,7 @@ exports.signin = function(req, res, next) {
             }); 
         }
         res.send({ 
-          token: tokenForUser(email), 
+          token: tokenForUser(user), 
           adminMode: user.isAdmin 
         });
       });

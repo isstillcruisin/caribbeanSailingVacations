@@ -1,5 +1,5 @@
 import axios from "axios";
-import ls from "local-storage";
+import ls from "local-storage"; //MHATODO: MAKE SURE THIS IS NOT STORING THE TOKEN IN LOCAL STORAGE SHOULD BE A HTTP ONLY COOKIE.
 
 export default {
   // Gets boats from the Node server API
@@ -44,6 +44,7 @@ export default {
   },
   userSignOut: async function() {
     ls.clear("user-token");
+    ls.clear("admin");
     return;
   },
   // creates a new user

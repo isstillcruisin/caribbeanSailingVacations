@@ -19,6 +19,7 @@ class WhiteLabel extends Component {
       <div>
         <h3>A WhiteLabel Website For Yacht Charters</h3>
         <div>NAME: {this.state.whiteLabel.name}</div>
+        <div>EMAIL: {this.state.whiteLabel._travelAgent.email}</div>
       </div>
     ) : (
       <div>loading..</div>
