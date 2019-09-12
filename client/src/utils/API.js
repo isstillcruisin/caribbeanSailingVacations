@@ -55,8 +55,18 @@ export default {
       console.log("userCreate error (╯°□°)╯︵ ┻━┻ ", error);
     }
   },
+
   saveWhiteLabel: async function(whiteLabelData) {
     console.log("Posting to api/whitelabels");
     return axios.post("/api/whitelabels", whiteLabelData);
+  },
+
+  getWhiteLabel: async function(name) {
+    try {
+      const whiteLabel = await axios.get("/api/whitelabels/" + name);
+      return whiteLabel;
+    } catch (error) {
+      console.log("error in get white label (╯°□°)╯︵ ┻━┻ ", error);
+    }
   },
 };
