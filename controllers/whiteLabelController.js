@@ -7,10 +7,10 @@ module.exports = {
     console.log("*******", req);
     const whiteLabel = {
       _id: req.body._id,
-      whiteLabelName: req.body.whiteLabelName
+      name: req.body.whiteLabelName
     };
     db.WhiteLabel.create(whiteLabel)
       .then(dbWhiteLabel => res.json(dbWhiteLabel))
       .catch(err => res.status(422).json(err));
-  }//,
+  },
 };

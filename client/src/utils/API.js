@@ -56,6 +56,7 @@ export default {
     }
   },
   saveWhiteLabel: async function(whiteLabelData) {
-    return axios.post("/api/white-labels", whiteLabelData);
+    console.log("Posting to api/whitelabels");
+    return axios.post("/api/whitelabels", whiteLabelData);
   },
 };
