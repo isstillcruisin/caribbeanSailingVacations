@@ -15,10 +15,7 @@ module.exports = {
   findByName: function(req, res) {
     console.log("Loading this one too");
     db.WhiteLabel.findOne({name: req.params.name})
-      .then((dbWhiteLabel) => {
-        console.log('****' + dbWhiteLabel + ' ' + req.params.name);
-        return res.json(dbWhiteLabel);
-      })
+      .then(dbWhiteLabel => res.json(dbWhiteLabel))
       .catch(err => res.status(422).json(err));
   },
 };
