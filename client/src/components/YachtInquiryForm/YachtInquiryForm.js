@@ -16,16 +16,16 @@ class YachtInquiryForm extends Component {
     return (
       <Container>
         <Row>
-          <Col>YACHT NAME:</Col>
-          <Col xs={9}>{this.props.boat.boatName}</Col>
+          <Col>
+            <h2>Yacht Rental: {this.props.boat.boatName}</h2>
+          </Col>
         </Row>
         <p>To inquire about chartering this yacht, please fill out the following form and an email will be sent to the Travel Agent: {this.props.whiteLabel._travelAgent.email}: </p>
-        <i>All fields are required unless otherwise stated.</i>
         <Card style={{color: 'black'}}>
           <Card.Body>
           <Form>
             <Form.Row>
-              <Form.Label column xs={2}>
+              <Form.Label column xs={3}>
                 Name
               </Form.Label>
               <Col>
@@ -36,18 +36,18 @@ class YachtInquiryForm extends Component {
               </Col>
             </Form.Row>
             <Form.Row controlId="formEmail">
-              <Form.Label column xs={2}>
+              <Form.Label column xs={3}>
                 Email
               </Form.Label>
-              <Col xs={10}>
+              <Col xs={9}>
                 <Form.Control type="email" placeholder="Email Address" />
               </Col>
             </Form.Row>
             <Form.Row controlId="formEmail">
-              <Form.Label column xs={2}>
-                Desired Dates (availability TBD)
+              <Form.Label column xs={3}>
+                Desired Dates<br/><i>(availability TBD)</i>
               </Form.Label>
-              <Col xs={10}>
+              <Col xs={9}>
                 <DateRangePicker
                   startDate={this.state.startDate} // momentPropTypes.momentObj or null,
                   startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
@@ -58,6 +58,9 @@ class YachtInquiryForm extends Component {
                   onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
                 />
               </Col>     
+              <Col>
+                <i>All fields are required unless otherwise stated.</i>
+              </Col>
             </Form.Row>
            
             <Button variant="primary" type="submit">
