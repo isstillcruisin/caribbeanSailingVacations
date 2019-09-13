@@ -20,7 +20,7 @@ class WhiteLabelYachtInquiry extends Component {
   }
 
   showWhiteLabelInquiry = () => {
-    return this.state.whiteLabel ? (
+    return this.state.boat ? (
       <YachtInquiryForm whiteLabel={this.state.whiteLabel} boat={this.state.boat}/>
     ) : (
       <Loader />
