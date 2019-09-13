@@ -8,7 +8,9 @@ const userSchema = new Schema({
   isAdmin: Boolean,
   isVerified: { type: Boolean, default: false },
   passwordResetToken: String,
-  passwordResetExpires: Date
+  passwordResetExpires: Date,
+  firstName: String,
+  lastName: String
 });
 
 

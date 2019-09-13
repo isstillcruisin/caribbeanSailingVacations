@@ -9,6 +9,8 @@ class SignUp extends Component {
   state = {
     email: "",
     password: "",
+    firstName: '',
+    lastName: '',
     isAdmin: false,
     done: false
   };
@@ -30,6 +32,8 @@ class SignUp extends Component {
     return API.userCreate({
       email: this.state.email,
       password: this.state.password,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
       isAdmin: false
     });
   };
