@@ -39,7 +39,8 @@ class WhiteLabelYachtInquiry extends Component {
       lastName: this.state.lastName,
       startDate: this.state.startDate,
       endDate: this.state.endDate,
-      whiteLabel: this.state.whiteLabel      
+      whiteLabel: this.state.whiteLabel,
+      yacht: this.state.boat,   
     });
   };
 

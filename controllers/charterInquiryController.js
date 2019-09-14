@@ -13,6 +13,7 @@ module.exports = {
       endDate: req.body.endDate,
       email: req.body.email,
       _whiteLabel: req.body.whiteLabel._id,
+      _yacht: req.body.yacht._id,
     }
     db.CharterInquiry.create(charterInquiry)
       .then(dbCharterInquiry => res.json(dbCharterInquiry))
