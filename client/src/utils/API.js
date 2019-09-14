@@ -70,4 +70,12 @@ export default {
       console.log("error in get white label (╯°□°)╯︵ ┻━┻ ", error);
     }
   },
+  charterInquiryCreate:  async function(charterInquiryData) {
+    try {
+      const newCharterInquiry = await axios.post("/api/charterinquiries", charterInquiryData);
+      return newCharterInquiry;
+    } catch (error) {
+      console.log("charterInquiryCreate error (╯°□°)╯︵ ┻━┻ ", error);
+    }
+  },
 };

@@ -19,12 +19,49 @@ class WhiteLabelYachtInquiry extends Component {
     });
   }
 
+  handleSubmitInquiry = async event => {
+    event.preventDefault();
+    console.log("event (╯°□°)╯︵ ┻━┻ ", event.data);
+    try {
+      let newCharterInquiry = await this.saveCharterInquiry();
+      if (newCharterInquiry) {
+        this.setState({done: true});
+      }
+    } catch (error) {
+      console.log("error (╯°□°)╯︵ ┻━┻ ", error.message);
+    }
+  };
+
+  saveCharterInquiry = () => {
+    return API.charterInquiryCreate({
+      email: this.state.email,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      startDate: this.state.startDate,
+      endDate: this.state.endDate,
+      whiteLabel: this.state.whiteLabel      
+    });
+  };
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleDateRangeChange = ({ startDate, endDate }) => {
+    this.setState({ startDate, endDate });
+  }
+
   showWhiteLabelInquiry = () => {
-    return this.state.boat ? (
-      <YachtInquiryForm whiteLabel={this.state.whiteLabel} boat={this.state.boat}/>
-    ) : (
-      <Loader />
-    );
+    if (this.state.done) {
+      return <p>Your Inquiry has been submitted to {this.state.whiteLabel._travelAgent.firstName} {this.state.whiteLabel._travelAgent.lasttName}.</p>
+    } else if (this.state.boat) {
+      return <YachtInquiryForm whiteLabel={this.state.whiteLabel} boat={this.state.boat} handleInputChange={this.handleInputChange} handleSubmitInquiry={this.handleSubmitInquiry} handleDateRangeChange={this.handleDateRangeChange}/>
+    } else {
+      return <Loader />
+    }
   };
 
   render() {

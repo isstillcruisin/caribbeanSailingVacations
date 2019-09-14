@@ -6,6 +6,6 @@ const whiteLabelSchema = new Schema({
   _travelAgent: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'user' },
 });
 
-const WhiteLabel = mongoose.model("WhiteLabels", whiteLabelSchema);
+const WhiteLabel = mongoose.model("WhiteLabel", whiteLabelSchema);
 
 module.exports = WhiteLabel;
