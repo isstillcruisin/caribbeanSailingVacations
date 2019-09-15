@@ -3,8 +3,7 @@ import API from "../utils/API";
 import Loader from "../components/Loader";
 import Table from "react-bootstrap/Table"
 import Card from "react-bootstrap/Card"
-import ToggleButton from "react-bootstrap/ToggleButton"
-
+import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 
 class AllWhiteLabels extends Component {
   state = {
@@ -21,7 +20,16 @@ class AllWhiteLabels extends Component {
 
   allWhiteLabelRows() {
     return this.state.whiteLabels.map((whiteLabel, i) => {
-      return <tr><td>{whiteLabel.name}</td><td><ToggleButton>{whiteLabel.isConfirmed ? "Confirmed" : "Unconfirmed"}</ToggleButton></td></tr>
+      return <tr><td>{whiteLabel.name}</td><td>
+        <BootstrapSwitchButton
+          checked={whiteLabel.isConfirmed}
+          onlabel='Y'
+          offlabel='N'
+          onChange={(checked: boolean) => {
+              whiteLabel.isConfirmed = checked;
+              API.updateIsConfirmed(whiteLabel, checked);
+          }}
+      /></td></tr>
     });
   }
 
@@ -36,7 +44,7 @@ class AllWhiteLabels extends Component {
             <thead>
               <tr>
                 <th>Name</th>
-                <th>Confirmed?</th>
+                <th>Enabled?</th>
               </tr>
             </thead>
             <tbody>

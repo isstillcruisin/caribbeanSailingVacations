@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
+    "bootstrap-switch-button-react": "^1.1.0",
     "local-storage": "^2.0.0",
     "lodash": "^4.17.11",
     "react": "^16.8.6",
