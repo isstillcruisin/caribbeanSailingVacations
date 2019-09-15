@@ -57,7 +57,7 @@ class WhiteLabelYachtInquiry extends Component {
 
   showWhiteLabelInquiry = () => {
     if (this.state.done) {
-      return <p>Your Inquiry has been submitted to {this.state.whiteLabel._travelAgent.firstName} {this.state.whiteLabel._travelAgent.lasttName}.</p>
+      return <div><p>You're All Set!</p><p>Your Inquiry has been submitted to {this.state.whiteLabel._travelAgent.firstName} {this.state.whiteLabel._travelAgent.lasttName}.</p></div>
     } else if (this.state.boat) {
       return <YachtInquiryForm whiteLabel={this.state.whiteLabel} boat={this.state.boat} handleInputChange={this.handleInputChange} handleSubmitInquiry={this.handleSubmitInquiry} handleDateRangeChange={this.handleDateRangeChange}/>
     } else {
