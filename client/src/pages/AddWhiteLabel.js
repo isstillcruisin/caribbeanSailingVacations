@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AddWhiteLabelForm from "../components/AddWhiteLabelForm";
 import API from "../utils/API";
 import ls from "local-storage";
+import { Redirect } from "react-router-dom";
 
 class AddWhiteLabel extends Component {
   state = {
@@ -39,7 +40,12 @@ class AddWhiteLabel extends Component {
 
   render() {
     return this.state.saved === true ? (
-      <p>You have created your white label: {this.state.whiteLabelName}</p>
+      <Redirect 
+        to={{ 
+          pathname: `/charter-a-yacht/${this.state.whiteLabelName}`,
+          state: { alert: `Your white-label: ${this.state.whiteLabelName} is reserved, but needs approval.` } 
+        }} 
+      />
     ) : (
       <>
         <h1>Setup Your Yacht Charter Site</h1>
