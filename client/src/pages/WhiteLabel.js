@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import Fade from "react-reveal/Fade";
 import AllBoats from "./AllBoats";
+import Alert from '../components/Alert';
 
 class WhiteLabel extends Component {
   state = {};
@@ -29,7 +30,10 @@ class WhiteLabel extends Component {
   };
 
   render() {
-    return <div>{this.showWhiteLabel()}</div>;
+    return <div>
+      <Alert {...this.props}/>
+      {this.showWhiteLabel()}
+    </div>;
   }
 }
 
