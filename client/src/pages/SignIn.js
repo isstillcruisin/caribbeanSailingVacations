@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import SignInForm from "../components/SignInForm";
 import API from "../utils/API";
 import ls from "local-storage";
+import Alert from "../components/Alert"
 
 class SignIn extends Component {
   state = {
@@ -31,28 +32,16 @@ class SignIn extends Component {
     if (this.state.validatedUser !== "" && ls.get("user-token")) {
       return <Redirect to={{ pathname: "/add-white-label" }} />
     } else {
-      if (this.props.location && this.props.location.state && this.props.location.state.alert) {
-        return <>
-          <div className='alert'>{this.props.location ? this.props.location.state.alert : ''}</div>        
-          <h4>Sign In</h4>
-          <SignInForm
-            handleInputChange={this.handleInputChange}
-            handleSignIn={this.handleSignIn}
-            email={this.state.email}
-            password={this.state.password}
-          />
-        </>
-      } else {
-        return <>
-          <h4>Sign In</h4>
-          <SignInForm
-            handleInputChange={this.handleInputChange}
-            handleSignIn={this.handleSignIn}
-            email={this.state.email}
-            password={this.state.password}
-          />
-        </>
-      }
+      return <>
+        <Alert {...this.props}/>
+        <h4>Sign In</h4>
+        <SignInForm
+          handleInputChange={this.handleInputChange}
+          handleSignIn={this.handleSignIn}
+          email={this.state.email}
+          password={this.state.password}
+        />
+      </>
     }
   }
 }
