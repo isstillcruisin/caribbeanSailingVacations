@@ -6,6 +6,6 @@ const tokenSchema = new mongoose.Schema({
     createdAt: { type: Date, required: true, default: Date.now, expires: 43200 }
 });
 
-const Token = mongoose.model("Tokens", tokenSchema);
+const Token = mongoose.model("Token", tokenSchema);
 
 module.exports = Token;

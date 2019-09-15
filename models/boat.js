@@ -10,6 +10,6 @@ const boatSchema = new Schema({
   crewBio: {type: String, required: true}
 });
 
-const Boat = mongoose.model("Boats", boatSchema);
+const Boat = mongoose.model("Boat", boatSchema);
 
 module.exports = Boat;
