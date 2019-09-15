@@ -3,8 +3,8 @@ const whiteLabelController = require("../../controllers/whiteLabelController");
 
 // Matches with "/api/whitelabels"
 router.route("/")
-  .post(whiteLabelController.create);
-
+  .post(whiteLabelController.create)
+  .get(whiteLabelController.findAll)
 
 router.route('/:name')
   .get(whiteLabelController.findByName);
