@@ -4,6 +4,7 @@ import Loader from "../components/Loader";
 import Table from "react-bootstrap/Table"
 import Card from "react-bootstrap/Card"
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
+import { Link } from "react-router-dom";
 
 class AllWhiteLabels extends Component {
   state = {
@@ -20,16 +21,28 @@ class AllWhiteLabels extends Component {
 
   allWhiteLabelRows() {
     return this.state.whiteLabels.map((whiteLabel, i) => {
-      return <tr><td>{whiteLabel.name}</td><td>
-        <BootstrapSwitchButton
-          checked={whiteLabel.isConfirmed}
-          onlabel='Y'
-          offlabel='N'
-          onChange={(checked: boolean) => {
-              whiteLabel.isConfirmed = checked;
-              API.updateIsConfirmed(whiteLabel, checked);
-          }}
-      /></td></tr>
+      return (
+        <tr>
+          <td>{whiteLabel.name}</td>
+          <td>
+            <BootstrapSwitchButton
+              checked={whiteLabel.isConfirmed}
+              onlabel='Y'
+              offlabel='N'
+              onChange={(checked: boolean) => {
+                whiteLabel.isConfirmed = checked;
+                API.updateIsConfirmed(whiteLabel, checked);
+              }}
+            />
+          </td>
+          <td>
+            <Link
+              key={`${whiteLabel.name}`}
+              to={`/charter-inquiries/${whiteLabel.name}`}
+            >Inquiries</Link> 
+          </td> 
+        </tr>
+      )
     });
   }
 
@@ -45,6 +58,7 @@ class AllWhiteLabels extends Component {
               <tr>
                 <th>Name</th>
                 <th>Enabled?</th>
+                <th>Links</th>
               </tr>
             </thead>
             <tbody>
