@@ -30,7 +30,11 @@ class SignIn extends Component {
 
   render() {
     if (this.state.validatedUser !== "" && ls.get("user-token")) {
-      return <Redirect to={{ pathname: "/add-white-label" }} />
+      if (this.state.admin) {
+        return <Redirect to={{ pathname: "/all-white-labels" }} />
+      } else {
+        return <Redirect to={{ pathname: "/add-white-label" }} />
+      }
     } else {
       return <>
         <Alert {...this.props}/>
