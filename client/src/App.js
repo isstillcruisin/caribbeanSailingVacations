@@ -15,6 +15,7 @@ const AddWhiteLabel = React.lazy(() => import("./pages/AddWhiteLabel"));
 const WhiteLabel = React.lazy(() => import("./pages/WhiteLabel"));
 const WhiteLabelCharterInquiry = React.lazy(() => import("./pages/WhiteLabelCharterInquiry"));
 const AllWhiteLabels =  React.lazy(() => import("./pages/AllWhiteLabels"));
+const WhiteLabelCharterInquiries = React.lazy(() => import("./pages/WhiteLabelCharterInquiries"));
 
 const Background = styled.div`
   position: absolute;
@@ -57,6 +58,7 @@ class App extends Component {
                 <Route exact path="/all-white-labels" component={AllWhiteLabels} />
                 <Route exact path="/charter-a-yacht/:name/inquiry/:boatId" component={WhiteLabelCharterInquiry} />
                 <Route exact path="/charter-a-yacht/:name" component={WhiteLabel} />
+                <Route exact path="/charter-inquiries/:whiteLabelName" component={WhiteLabelCharterInquiries} />
                 <Route path="/boat/:id" component={BoatDetail} />
                 <Route path="/" component={Home} />
               </Switch>

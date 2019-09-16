@@ -19,7 +19,7 @@ charterInquirySchema.post('save', function(charterInquiry, next) {
   charterInquiry.populate('_whiteLabel', function (err, _wl) {
     charterInquiry._whiteLabel.populate('_travelAgent', function (err, _ta) {
       charterInquiry.populate('_yacht', function(err, _ya) {
-        if (err) console.log("**** UGH ", err)
+        if (err) console.log("**** ERR", err)
         console.log('The inquiry is', JSON.stringify(charterInquiry));
         //Send the email:
         let subject = 'Yacht Charter Inquiry', 

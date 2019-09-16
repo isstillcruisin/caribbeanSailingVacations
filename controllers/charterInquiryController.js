@@ -19,4 +19,19 @@ module.exports = {
       .then(dbCharterInquiry => res.json(dbCharterInquiry))
       .catch(err => res.status(422).json(err));
   },
+
+  findByWhiteLabel: function(req, res) {
+    db.WhiteLabel.findOne({
+      name: req.params.whiteLabelName
+    })
+    .populate('_travelAgent')
+    .then((dbWhiteLabel) => {    
+      db.CharterInquiry.find({
+        _whiteLabel: dbWhiteLabel._id
+      })
+      .populate('_yacht')
+      .then(dbCharterInquiry => res.json(dbCharterInquiry))
+      .catch(err => res.status(422).json(err));
+    });
+  },
 };

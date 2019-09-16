@@ -93,4 +93,13 @@ export default {
     console.log("Posting to api/whitelabels");
     return axios.post(`/api/whiteLabels/update/${whiteLabel._id}`, Object.assign({}, whiteLabel, {isConfirmed: checked}));
   },
+
+  getWhiteLabelCharterInquiries:  async function(whiteLabelName) {
+    try {
+      const charterInquiries = await axios.get(`/api/charterinquiries/${whiteLabelName}`);
+      return charterInquiries;
+    } catch (error) {
+      console.log("error in get whiteLabels (╯°□°)╯︵ ┻━┻ ", error);
+    }
+  },
 };
