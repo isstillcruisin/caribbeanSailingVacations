@@ -9,7 +9,7 @@ import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import {DateRangePicker} from 'react-dates';
 
-class YachtInquiryForm extends Component {
+class CharterInquiryForm extends Component {
   state = {};  
 
   handleDateRangeChange = ({ startDate, endDate }) => {
@@ -22,7 +22,7 @@ class YachtInquiryForm extends Component {
       <Container>
         <Row>
           <Col>
-            <h2>Yacht Rental: {this.props.boat.boatName}</h2>
+            <h2>Yacht Charter: {this.props.boat.boatName}</h2>
           </Col>
         </Row>
         <p>To inquire about chartering this yacht, please fill out the following form and an email will be sent to the Travel Agent: {this.props.whiteLabel._travelAgent.email}: </p>
@@ -82,4 +82,4 @@ class YachtInquiryForm extends Component {
     );
   }
 }
-export default YachtInquiryForm;
+export default CharterInquiryForm;

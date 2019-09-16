@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import Fade from "react-reveal/Fade";
 import Loader from '../components/Loader';
-import YachtInquiryForm from '../components/YachtInquiryForm';
+import CharterInquiryForm from '../components/CharterInquiryForm';
 
-class WhiteLabelYachtInquiry extends Component {
+class WhiteLabelCharterInquiry extends Component {
   state = {};
 
   componentDidMount() {
@@ -59,7 +59,7 @@ class WhiteLabelYachtInquiry extends Component {
     if (this.state.done) {
       return <div><p>You're All Set!</p><p>Your Inquiry has been submitted to {this.state.whiteLabel._travelAgent.firstName} {this.state.whiteLabel._travelAgent.lasttName}.</p></div>
     } else if (this.state.boat) {
-      return <YachtInquiryForm whiteLabel={this.state.whiteLabel} boat={this.state.boat} handleInputChange={this.handleInputChange} handleSubmitInquiry={this.handleSubmitInquiry} handleDateRangeChange={this.handleDateRangeChange}/>
+      return <CharterInquiryForm whiteLabel={this.state.whiteLabel} boat={this.state.boat} handleInputChange={this.handleInputChange} handleSubmitInquiry={this.handleSubmitInquiry} handleDateRangeChange={this.handleDateRangeChange}/>
     } else {
       return <Loader />
     }
@@ -70,4 +70,4 @@ class WhiteLabelYachtInquiry extends Component {
   }
 }
 
-export default WhiteLabelYachtInquiry;
+export default WhiteLabelCharterInquiry;

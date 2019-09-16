@@ -13,7 +13,7 @@ const SignOut = React.lazy(() => import("./pages/SignOut"));
 const Confirm = React.lazy(() => import("./pages/Confirm"));
 const AddWhiteLabel = React.lazy(() => import("./pages/AddWhiteLabel"));
 const WhiteLabel = React.lazy(() => import("./pages/WhiteLabel"));
-const WhiteLabelYachtInquiry = React.lazy(() => import("./pages/WhiteLabelYachtInquiry"));
+const WhiteLabelCharterInquiry = React.lazy(() => import("./pages/WhiteLabelCharterInquiry"));
 const AllWhiteLabels =  React.lazy(() => import("./pages/AllWhiteLabels"));
 
 const Background = styled.div`
@@ -55,7 +55,7 @@ class App extends Component {
                 <Route exact path="/confirm/:id" component={Confirm} />
                 <Route exact path="/add-white-label" component={AddWhiteLabel} />
                 <Route exact path="/all-white-labels" component={AllWhiteLabels} />
-                <Route exact path="/charter-a-yacht/:name/inquiry/:boatId" component={WhiteLabelYachtInquiry} />
+                <Route exact path="/charter-a-yacht/:name/inquiry/:boatId" component={WhiteLabelCharterInquiry} />
                 <Route exact path="/charter-a-yacht/:name" component={WhiteLabel} />
                 <Route path="/boat/:id" component={BoatDetail} />
                 <Route path="/" component={Home} />

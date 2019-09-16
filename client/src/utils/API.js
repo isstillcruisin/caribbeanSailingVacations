@@ -92,5 +92,5 @@ export default {
   updateIsConfirmed: function(whiteLabel, checked) {
     console.log("Posting to api/whitelabels");
     return axios.post(`/api/whiteLabels/update/${whiteLabel._id}`, Object.assign({}, whiteLabel, {isConfirmed: checked}));
-  }
+  },
 };
