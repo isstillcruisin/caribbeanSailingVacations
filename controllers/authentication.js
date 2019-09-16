@@ -37,7 +37,7 @@ exports.signin = function(req, res, next) {
         }
         res.send({ 
           token: tokenForUser(user), 
-          adminMode: user.isAdmin 
+          adminMode: user.isAdmin, 
         });
       });
     })

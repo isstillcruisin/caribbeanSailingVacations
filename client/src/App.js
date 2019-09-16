@@ -1,6 +1,7 @@
 import React, { Component, Suspense } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import styled from "styled-components";
+import ls from "local-storage";
 
 const Page = React.lazy(() => import("./components/Page"));
 const AddBoat = React.lazy(() => import("./pages/AddBoat"));
@@ -34,6 +35,26 @@ const Background = styled.div`
   background-repeat: no-repeat;
 `;
 
+function AdminRoute({ component: Component, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        ls.get('admin') ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/sign-in",
+              state: { from: props.location }
+            }}
+          />
+        )
+      }
+    />
+  );
+}
+
 class App extends Component {
   render() {
     return (
@@ -48,14 +69,14 @@ class App extends Component {
           <Background>
             <Page>
               <Switch>
-                <Route exact path="/add-boat" component={AddBoat} />
-                <Route exact path="/boats" component={AllBoats} />
+                <AdminRoute exact path="/add-boat" component={AddBoat} />
+                <AdminRoute exact path="/boats" component={AllBoats} />
                 <Route exact path="/sign-in" component={SignIn} />
                 <Route exact path="/sign-up" component={SignUp} />
                 <Route exact path="/sign-out" component={SignOut} />
                 <Route exact path="/confirm/:id" component={Confirm} />
                 <Route exact path="/add-white-label" component={AddWhiteLabel} />
-                <Route exact path="/all-white-labels" component={AllWhiteLabels} />
+                <AdminRoute exact path="/all-white-labels" component={AllWhiteLabels} />
                 <Route exact path="/charter-a-yacht/:name/inquiry/:boatId" component={WhiteLabelCharterInquiry} />
                 <Route exact path="/charter-a-yacht/:name" component={WhiteLabel} />
                 <Route exact path="/charter-inquiries/:whiteLabelName" component={WhiteLabelCharterInquiries} />
