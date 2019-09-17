@@ -25,13 +25,17 @@ module.exports = {
       name: req.params.whiteLabelName
     })
     .populate('_travelAgent')
-    .then((dbWhiteLabel) => {    
-      db.CharterInquiry.find({
-        _whiteLabel: dbWhiteLabel._id
-      })
-      .populate('_yacht')
-      .then(dbCharterInquiry => res.json(dbCharterInquiry))
-      .catch(err => res.status(422).json(err));
+    .then((dbWhiteLabel) => {
+      if (req.user.id === dbWhiteLabel._travelAgent._id.toString() || req.user.isAdmin) {
+        db.CharterInquiry.find({
+          _whiteLabel: dbWhiteLabel._id
+        })
+        .populate('_yacht')
+        .then(dbCharterInquiry => res.json(dbCharterInquiry))
+        .catch(err => res.status(422).json(err));
+      } else {
+        res.status(401).json("Unauthorized");
+      }
     });
   },
 };

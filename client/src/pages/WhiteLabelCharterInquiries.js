@@ -6,18 +6,27 @@ import Card from "react-bootstrap/Card"
 import moment from 'moment';
 
 class WhiteLabelCharterInquiries extends Component {
+  _isMounted = false;
   state = {
     charterInquiries: []
   };
 
   componentDidMount() {
+    this._isMounted = true;
+
     let { whiteLabelName } = this.props.match.params;
     
     API.getWhiteLabelCharterInquiries(whiteLabelName).then(res => {
-      this.setState({
-        charterInquiries: res.data
-      });
+      if (this._isMounted) {
+        this.setState({
+          charterInquiries: res.data
+        });
+      }
     });
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   allCharterInquiryRows() {
@@ -30,9 +39,10 @@ class WhiteLabelCharterInquiries extends Component {
                 <td>{moment(charterInquiry.startDate).format('LL')}</td>
                 <td>{moment(charterInquiry.endDate).format('LL')}</td>
                 <td>LINK TO SEND EMAIL WITH PDFs</td>
-              </tr>)
-      });
-    }
+              </tr>
+      )
+    });
+  }
 
   render() {
     if (this.state.charterInquiries) {

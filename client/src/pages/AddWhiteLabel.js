@@ -20,8 +20,7 @@ class AddWhiteLabel extends Component {
 
   saveWhiteLabel = () => {
     API.saveWhiteLabel({
-      whiteLabelName: this.state.whiteLabelName,
-      token: ls.get("user-token"),
+      whiteLabelName: this.state.whiteLabelName,      
     })
       .then(res =>
         this.setState({

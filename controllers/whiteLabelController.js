@@ -8,7 +8,7 @@ module.exports = {
     const whiteLabel = {
       _id: req.body._id,
       name: req.body.whiteLabelName,
-      _travelAgent: jwt.decode(req.body.token, keys.sessionSecret).userid,
+      _travelAgent: req.user._id,
       isConfirmed: false,
     };
     db.WhiteLabel.create(whiteLabel)

@@ -1,7 +1,26 @@
 import React, { Component, Suspense } from "react";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { Router, Switch, Route, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import ls from "local-storage";
+import axios from "axios";
+import history from './history';
+
+axios.interceptors.request.use(function (config) {
+  const token = ls.get('user-token');
+  config.headers.Authorization =  token ? `Bearer ${token}` : '';
+  return config;
+});
+
+axios.interceptors.response.use(response => {
+   return response;
+}, error => {
+  if (error.response.status === 401) {
+    console.log("Unable to - unauthorized")
+    history.push('/');
+    //place your reentry code
+  }
+  return error;
+});
 
 const Page = React.lazy(() => import("./components/Page"));
 const AddBoat = React.lazy(() => import("./pages/AddBoat"));
@@ -55,10 +74,29 @@ function AdminRoute({ component: Component, ...rest }) {
   );
 }
 
+function AuthenticatedRoute({ component: Component, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        ls.get('user-token') ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/sign-in",
+              state: { from: props.location }
+            }}
+          />
+        )
+      }
+    />
+  );
+}
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <Suspense
           fallback={
             <Background>
@@ -75,18 +113,18 @@ class App extends Component {
                 <Route exact path="/sign-up" component={SignUp} />
                 <Route exact path="/sign-out" component={SignOut} />
                 <Route exact path="/confirm/:id" component={Confirm} />
-                <Route exact path="/add-white-label" component={AddWhiteLabel} />
+                <AuthenticatedRoute exact path="/add-white-label" component={AddWhiteLabel} />
                 <AdminRoute exact path="/all-white-labels" component={AllWhiteLabels} />
                 <Route exact path="/charter-a-yacht/:name/inquiry/:boatId" component={WhiteLabelCharterInquiry} />
                 <Route exact path="/charter-a-yacht/:name" component={WhiteLabel} />
-                <Route exact path="/charter-inquiries/:whiteLabelName" component={WhiteLabelCharterInquiries} />
+                <AuthenticatedRoute exact path="/charter-inquiries/:whiteLabelName" component={WhiteLabelCharterInquiries} />
                 <Route path="/boat/:id" component={BoatDetail} />
                 <Route path="/" component={Home} />
               </Switch>
             </Page>
           </Background>
         </Suspense>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
