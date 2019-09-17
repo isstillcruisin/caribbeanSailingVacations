@@ -5,6 +5,9 @@ const charterInquiryController = require("../../controllers/charterInquiryContro
 router.route("/")
   .post(charterInquiryController.create);
 
+router.route("/orientation/:id")
+  .get(charterInquiryController.sendOrientationPacket)
+
 router.route("/:whiteLabelName/")
   .get(charterInquiryController.findByWhiteLabel)
 

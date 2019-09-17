@@ -3,6 +3,7 @@ import API from "../utils/API";
 import Loader from "../components/Loader";
 import Table from "react-bootstrap/Table"
 import Card from "react-bootstrap/Card"
+import Button from "react-bootstrap/Button"
 import moment from 'moment';
 
 class WhiteLabelCharterInquiries extends Component {
@@ -25,6 +26,12 @@ class WhiteLabelCharterInquiries extends Component {
     });
   }
 
+  handleSendOrientationPacket(event) {
+    event.target.disabled = true;
+    event.target.innerText = 'Sent Orientation Packet';
+    API.sendOrientationPacket(event.target.dataset.id);
+  }
+
   componentWillUnmount() {
     this._isMounted = false;
   }
@@ -38,7 +45,7 @@ class WhiteLabelCharterInquiries extends Component {
                 <td>{charterInquiry._yacht.boatName}</td>
                 <td>{moment(charterInquiry.startDate).format('LL')}</td>
                 <td>{moment(charterInquiry.endDate).format('LL')}</td>
-                <td>LINK TO SEND EMAIL WITH PDFs</td>
+                <td><Button onClick={this.handleSendOrientationPacket} data-id={charterInquiry._id}>Send Orientation Packet</Button></td>
               </tr>
       )
     });

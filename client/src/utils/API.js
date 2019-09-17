@@ -102,4 +102,8 @@ export default {
       console.log("error in get whiteLabels (╯°□°)╯︵ ┻━┻ ", error);
     }
   },
+
+  sendOrientationPacket: async function(charterInquiryId) {
+    await axios.get(`/api/charterinquiries/orientation/${charterInquiryId}`);
+  }
 };
