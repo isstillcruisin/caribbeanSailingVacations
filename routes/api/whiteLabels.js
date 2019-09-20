@@ -11,5 +11,8 @@ router.route("/update/:id")
 
 router.route('/:name')
   .get(whiteLabelController.findByName);
+
+router.route('/:name/boats')
+  .get(whiteLabelController.getBoats);
   
 module.exports = router;

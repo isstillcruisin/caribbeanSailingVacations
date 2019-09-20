@@ -21,6 +21,7 @@ module.exports = {
       name: req.params.name
     })
     .populate('_travelAgent')
+    .populate('yachts')
     .then((dbWhiteLabel) => {
       return res.json(dbWhiteLabel);
     })
@@ -39,6 +40,19 @@ module.exports = {
     db.WhiteLabel.findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbWhiteLabel => res.json(dbWhiteLabel))
       .catch(err => res.status(422).json(err));
+  },
+
+  getBoats: function(req, res) {
+    db.WhiteLabel.findOne({
+      name: req.params.name
+    })
+    .populate('yachts')
+    .then((dbWhiteLabel) => {
+      return res.json(dbWhiteLabel.yachts);
+    })
+    .catch((err) => {
+      return res.status(422).json(err)
+    });
   },
   // remove: function(req, res) {
   //   db.Boat.findById({ _id: req.params.id })

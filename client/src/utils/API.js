@@ -3,10 +3,15 @@ import ls from "local-storage"; //MHATODO: MAKE SURE THIS IS NOT STORING THE TOK
 
 export default {
   // Gets boats from the Node server API
-  getBoats: async function() {
+  getBoats: async function(whiteLabel) {
     try {
-      const boats = await axios.get("/api/boats");
-      return boats;
+      if (whiteLabel) {
+        const boats = await axios.get(`/api/whitelabels/${whiteLabel}/boats`);
+        return boats;
+      } else {
+        const boats = await axios.get("/api/boats");
+        return boats;
+      }
     } catch (error) {
       console.log("error in get boats (╯°□°)╯︵ ┻━┻ ", error);
     }

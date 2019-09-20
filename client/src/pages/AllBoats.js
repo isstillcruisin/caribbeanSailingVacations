@@ -73,7 +73,7 @@ class AllBoats extends Component {
   }
 
   getBoats = () => {
-    API.getBoats().then(response => {
+    API.getBoats(this.props.whiteLabel).then(response => {
       if (response) {
         this.setState({ boats: response.data });
       } else {
