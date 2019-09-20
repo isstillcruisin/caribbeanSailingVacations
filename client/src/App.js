@@ -4,23 +4,7 @@ import styled from "styled-components";
 import ls from "local-storage";
 import axios from "axios";
 import history from './history';
-
-axios.interceptors.request.use(function (config) {
-  const token = ls.get('user-token');
-  config.headers.Authorization =  token ? `Bearer ${token}` : '';
-  return config;
-});
-
-axios.interceptors.response.use(response => {
-   return response;
-}, error => {
-  if (error.response.status === 401) {
-    console.log("Unable to - unauthorized")
-    history.push('/');
-    //place your reentry code
-  }
-  return error;
-});
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 const Page = React.lazy(() => import("./components/Page"));
 const AddBoat = React.lazy(() => import("./pages/AddBoat"));
@@ -53,6 +37,24 @@ const Background = styled.div`
   background-blend-mode: multiply;
   background-repeat: no-repeat;
 `;
+
+axios.interceptors.request.use(function (config) {
+  const token = ls.get('user-token');
+  config.headers.Authorization =  token ? `Bearer ${token}` : '';
+  return config;
+});
+
+axios.interceptors.response.use(response => {
+   return response;
+}, error => {
+  if (error.response.status === 401) {
+    console.log("Unable to - unauthorized")
+    history.push('/');
+    //place your reentry code
+  }
+  return error;
+});
+
 
 function AdminRoute({ component: Component, ...rest }) {
   return (
