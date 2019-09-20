@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { LinkContainer } from 'react-router-bootstrap'
 import Slide from "react-reveal/Slide";
 import Carousel from "../components/Carousel";
 import Zoom from "react-reveal/Zoom";
+import Button from 'react-bootstrap/Button';
 
 const BoatContainer = styled.div`
   display: grid;
@@ -95,20 +96,20 @@ class AllBoats extends Component {
   showBoats = () => {
     return this.state.boats.map((boat, i) => {
       let link = 
-        (<Link
+        (<LinkContainer
           params={{ id: boat._id }}
           key={`${boat._id}${i + 5}`}
           to={`/boat/${boat._id}`}
           className="boat-detail-link"
-        >See Details</Link>)
+        ><Button>See Details</Button></LinkContainer>)
       if (this.props.whiteLabel) {
         link = 
-          (<Link
+          (<LinkContainer
             params={{ id: boat._id }}
             key={`${boat._id}${i + 5}`}
             to={`/charter-a-yacht/${this.props.whiteLabel}/inquiry/${boat._id}`}
             className="book-it-link"
-          >Request Information</Link>)
+          ><Button>Request Information</Button></LinkContainer>)
       }
       return (
         <Zoom bottom>

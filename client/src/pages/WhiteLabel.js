@@ -4,6 +4,10 @@ import Fade from "react-reveal/Fade";
 import AllBoats from "./AllBoats";
 import Alert from '../components/Alert';
 import Loader from '../components/Loader';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 
 class WhiteLabel extends Component {
   state = {};
@@ -21,12 +25,18 @@ class WhiteLabel extends Component {
     if (this.state.whiteLabel) {
       if (this.state.whiteLabel.isConfirmed) {
         return (
-          <div>
-            <h3>A WhiteLabel Website For Yacht Charters</h3>
-            <div>NAME: {this.state.whiteLabel.name}</div>
-            <div>EMAIL: {this.state.whiteLabel._travelAgent.email}</div>
-            <div><AllBoats whiteLabel={this.state.whiteLabel.name}/></div>
-          </div>
+          <Container>
+            <Row>
+              <h2 style={{width: '100%', 'text-align': 'center'}}>CHARTER ASSISTANT - {this.state.whiteLabel.name.toUpperCase()}</h2>
+            </Row>
+            <Row>
+              <h5>Welcome. Please choose a yacht to Charter:</h5>
+            </Row>
+            <AllBoats whiteLabel={this.state.whiteLabel.name}/>
+            <Row>
+              <i>These yachts were specifically chosen for you by your Travel Agent: {this.state.whiteLabel._travelAgent.firstName} {this.state.whiteLabel._travelAgent.lastName}, and all communication will be with them, on your behalf.</i>
+            </Row>
+          </Container>
         )
       } else {
         return (
