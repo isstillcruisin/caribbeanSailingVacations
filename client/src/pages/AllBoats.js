@@ -3,7 +3,7 @@ import API from "../utils/API";
 import styled from "styled-components";
 import { LinkContainer } from 'react-router-bootstrap'
 import Slide from "react-reveal/Slide";
-import Carousel from "../components/Carousel";
+import Carousel from 'react-bootstrap/Carousel';
 import Zoom from "react-reveal/Zoom";
 import Button from 'react-bootstrap/Button';
 
@@ -47,7 +47,7 @@ const BoatPrice = styled.div`
 
 const BoatsDisplay = styled.div`
   display: grid;
-  grid-template: 33% 33% 33% / 33% 33% 33%;
+  grid-template: 50% 50% / 50% 50%;
   grid-gap: 3rem;
   background: ${props => props.theme.transparentGrey};
   @media (max-width: 800px) {
@@ -86,9 +86,9 @@ class AllBoats extends Component {
   renderImages = images => {
     return images.map((image, i) => {
       return (
-        <Slide key={i} right>
+        <Carousel.Item>
           <BoatImage src={image} alt=""></BoatImage>
-        </Slide>
+        </Carousel.Item>
       );
     });
   };
@@ -114,7 +114,7 @@ class AllBoats extends Component {
       return (
         <Zoom bottom>
           <BoatContainer key={boat._id}>
-            <Carousel key={`${boat._id}${i + 6}`}>
+            <Carousel key={`${boat._id}${i + 6}`} style={{width: "470px"}}>
               {this.renderImages(boat.imgs)}
             </Carousel>
             <BoatName key={`${boat._id}${i + 1}`}>{boat.boatName}</BoatName>
