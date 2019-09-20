@@ -99,3 +99,11 @@ exports.confirm = function (req, res, next) {
     });
   });
 };
+
+exports.currentId = function(req, res, next) {
+  if (req.user) {
+    res.status(200).send({ id: req.user._id });
+  } else {
+    res.status(404).send({ msg: 'there is no logged in user' });
+  }
+}

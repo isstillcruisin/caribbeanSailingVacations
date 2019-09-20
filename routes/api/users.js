@@ -7,4 +7,6 @@ router.route("/signup").post(userController.signup);
 
 router.route("/confirmation/:id").get(userController.confirm);
 
+router.route("/currentid").get(userController.currentId);
+
 module.exports = router;

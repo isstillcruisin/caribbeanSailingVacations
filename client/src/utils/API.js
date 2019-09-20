@@ -110,5 +110,16 @@ export default {
 
   sendOrientationPacket: async function(charterInquiryId) {
     await axios.get(`/api/charterinquiries/orientation/${charterInquiryId}`);
+  },
+
+  getCurrentUserId: async function() {
+    try {
+      const currentId = await await axios.get('/api/users/currentid');
+      return currentId;
+    } catch (error) {
+      console.log("error in get Current User ID (╯°□°)╯︵ ┻━┻ ", error);
+    }
+    
   }
+
 };
