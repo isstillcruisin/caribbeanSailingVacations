@@ -30,7 +30,7 @@ class WhiteLabel extends Component {
               <h2 style={{width: '100%', 'text-align': 'center'}}>CHARTER ASSISTANT - {this.state.whiteLabel.name.toUpperCase()}</h2>
             </Row>
             <Row>
-              <h5>Welcome. Please choose a yacht to Charter:</h5>
+              <h5 style={{'margin-left': '15px'}}>Welcome. Please choose a yacht to request further information about chartering:</h5>
             </Row>
             <AllBoats whiteLabel={this.state.whiteLabel.name}/>
             <Row>

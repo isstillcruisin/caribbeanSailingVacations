@@ -25,7 +25,8 @@ class CharterInquiryForm extends Component {
             <h2>Yacht Charter: {this.props.boat.boatName}</h2>
           </Col>
         </Row>
-        <p>To inquire about chartering this yacht, please fill out the following form and an email will be sent to the Travel Agent: {this.props.whiteLabel._travelAgent.email}: </p>
+        <p>To inquire about chartering this yacht, please fill out the following form and an email will be sent to your Travel Agent, 
+        &nbsp; {this.props.whiteLabel._travelAgent.firstName} {this.props.whiteLabel._travelAgent.lastName}: </p>
         <Card style={{color: 'black'}}>
           <Card.Body>
             <Form>
