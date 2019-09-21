@@ -21,21 +21,13 @@ class ConfigureWhiteLabelForm extends Component {
           required
         />
       </div>
-      <div className="pull-right">
-        <button
-          type="submit"
-          className="btn btn-lg btn-danger"
-        >
-          Submit
-        </button>
-      </div>
     </form>
     <Table striped bordered hover>
       <thead>
         <tr>
           <th>Name</th>
           <th>Enabled?</th>
-          <th>Links</th>
+          <th>Yacht Details</th>
         </tr>
       </thead>
       <tbody>
