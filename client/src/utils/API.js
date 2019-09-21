@@ -119,7 +119,9 @@ export default {
     } catch (error) {
       console.log("error in get Current User ID (╯°□°)╯︵ ┻━┻ ", error);
     }
-    
-  }
+  },
 
+  updateWhiteLabel: async function(whiteLabel) {
+    return axios.post(`/api/whiteLabels/update/${whiteLabel._id}`, whiteLabel);
+  }
 };
