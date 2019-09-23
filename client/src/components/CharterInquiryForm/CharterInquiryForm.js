@@ -37,7 +37,7 @@ class CharterInquiryForm extends Component {
                   <Form.Control placeholder='Last name' name='lastName' onChange={this.props.handleInputChange} />
                 </Col>
               </Form.Row>
-              <Form.Row controlId='formEmail'>
+              <Form.Row controlid='formEmail'>
                 <Form.Label column xs={3}>
                   Email
                 </Form.Label>
@@ -45,7 +45,7 @@ class CharterInquiryForm extends Component {
                   <Form.Control type='email' placeholder='Email Address' name='email' onChange={this.props.handleInputChange}  />
                 </Col>
               </Form.Row>
-              <Form.Row controlId='formEmail'>
+              <Form.Row controlid='formEmail'>
                 <Form.Label column xs={3}>
                   Desired Dates<br/><i>(availability TBD)</i>
                 </Form.Label>

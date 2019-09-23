@@ -18,7 +18,7 @@ const SignUpForm = props => (
           <Form.Control placeholder="Last name" name='lastName' onChange={props.handleInputChange} />
         </Col>
       </Form.Row>
-      <Form.Row controlId="formEmail">
+      <Form.Row controlid="formEmail">
         <Form.Label column xs={3}>
           Email
         </Form.Label>
@@ -26,7 +26,7 @@ const SignUpForm = props => (
           <Form.Control type="email" name='email' placeholder="Email Address" value={props.email} onChange={props.handleInputChange} />
         </Col>
       </Form.Row>
-      <Form.Row controlId="formPassword">
+      <Form.Row controlid="formPassword">
         <Form.Label column xs={3}>
           Password
         </Form.Label>
@@ -34,7 +34,7 @@ const SignUpForm = props => (
           <Form.Control type="password" name='password' placeholder="Choose a password" value={props.password} onChange={props.handleInputChange} />
         </Col>
       </Form.Row>
-      <Form.Row controlId="formSubmit">
+      <Form.Row controlid="formSubmit">
         <Col>
           <Button
             onClick={props.handleSignUp}
