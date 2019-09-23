@@ -51,8 +51,8 @@ class WhiteLabelCharterInquiry extends Component {
     });
   };
 
-  handleDateRangeChange = ({ startDate, endDate }) => {
-    this.setState({ startDate, endDate });
+  handleDateRangeChange = ({ from, to }) => {
+    this.setState({ startDate: from, endDate: to });
   }
 
   showWhiteLabelInquiry = () => {

@@ -5,16 +5,12 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
-import 'react-dates/initialize';
-import 'react-dates/lib/css/_datepicker.css';
-import {DateRangePicker} from 'react-dates';
-
+import DatePickerWithBlackoutDates from '../DatePickerWithBlackoutDates';
 class CharterInquiryForm extends Component {
   state = {};  
 
-  handleDateRangeChange = ({ startDate, endDate }) => {
-    this.setState({ startDate, endDate });
-    this.props.handleDateRangeChange({startDate, endDate}); 
+  handleDateRangeChange = ({ from, to }) => {
+    this.props.handleDateRangeChange({from, to}); 
   };
 
   render() {
@@ -54,15 +50,10 @@ class CharterInquiryForm extends Component {
                   Desired Dates<br/><i>(availability TBD)</i>
                 </Form.Label>
                 <Col xs={9}>
-                  <DateRangePicker
-                    startDate={this.state.startDate} // momentPropTypes.momentObj or null,
-                    startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
-                    endDate={this.state.endDate} // momentPropTypes.momentObj or null,
-                    endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-                    onDatesChange={this.handleDateRangeChange} // PropTypes.func.isRequired,
-                    focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-                    onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
-                  />
+                  <DatePickerWithBlackoutDates blackoutDates={[
+                    { from: new Date("October 12, 2019"), to: new Date("October 25, 2019")},
+                    { from: new Date("December 24, 2019"), to: new Date("January 2, 2020")},
+                  ]} handleSelectedRange={this.handleDateRangeChange} />
                 </Col>     
                 <Col>
                   <i>All fields are required unless otherwise stated.</i>
