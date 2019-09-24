@@ -57,7 +57,7 @@ class AddEBrochure extends Component {
     if (this.state.saved === true) {
       return <Redirect 
         to={{ 
-          pathname: `/configure-white-label/${this.state.whiteLabel.name}`
+          pathname: `/white-label/${this.state.whiteLabel.name}/edit`
         }} 
       />
     }

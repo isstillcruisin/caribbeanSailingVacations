@@ -26,6 +26,7 @@ class ConfigureWhiteLabelForm extends Component {
         <thead>
           <tr>
             <th>Name</th>
+            <th>Link</th>
           </tr>
         </thead>
         <tbody>
@@ -59,6 +60,23 @@ class ConfigureWhiteLabelForm extends Component {
     return whiteLabel.ebrochures.map((eBrochure, i) => {
       return <tr key={`ebrochure-${i}`}>
         <td>{eBrochure.name}</td>
+        <td>
+          <LinkContainer
+            to={`/e-brochure/${eBrochure._id}`}
+            className="e-brochure-link"
+          >
+            <Button>View E-Brochure</Button>
+          </LinkContainer>
+        </td> 
+        <td>
+          <LinkContainer
+            to={`/e-brochure/${eBrochure._id}/edit`}
+            className="edit-e-brochure-link"
+          >
+            <Button>Edit E-Brochure</Button>
+          </LinkContainer>
+        </td> 
+        
       </tr>
     });
   }
@@ -88,7 +106,6 @@ class ConfigureWhiteLabelForm extends Component {
           <td>
             <LinkContainer
               params={{ id: yacht._id }}
-              key={`${yacht._id}${i + 5}`}
               to={`/boat/${yacht._id}`}
               className="boat-detail-link"
             >
