@@ -22,6 +22,7 @@ const WhiteLabelCharterInquiry = React.lazy(() => import("./pages/WhiteLabelChar
 const AllWhiteLabels =  React.lazy(() => import("./pages/AllWhiteLabels"));
 const WhiteLabelCharterInquiries = React.lazy(() => import("./pages/WhiteLabelCharterInquiries"));
 const AddEBrochure = React.lazy(() => import("./pages/AddEBrochure"));
+const EBrochure = React.lazy(() => import("./pages/EBrochure"));
 
 const Background = styled.div`
   position: absolute;
@@ -131,6 +132,7 @@ class App extends Component {
                 <AuthenticatedRoute exact path="/charter-inquiries/:whiteLabelName" component={WhiteLabelCharterInquiries} />
                 <AuthenticatedRoute exact path="/configure-white-label/:name" component={ConfigureWhiteLabel} />
                 <AuthenticatedRoute exact path="/white-label/:name/new-e-brochure" component={AddEBrochure} />
+                <Route path="/e-brochure/:id" component={EBrochure} />
                 <Route path="/boat/:id" component={BoatDetail} />
                 <Route path="/" component={Home} />
               </Switch>

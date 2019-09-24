@@ -32,7 +32,7 @@ class WhiteLabel extends Component {
             <Row>
               <h5 style={{'margin-left': '15px'}}>Welcome. Please choose a yacht to request further information about chartering:</h5>
             </Row>
-            <AllBoats whiteLabel={this.state.whiteLabel.name}/>
+            <AllBoats whiteLabel={this.state.whiteLabel}/>
             <Row>
               <i>These yachts were specifically chosen for you by your Travel Agent: {this.state.whiteLabel._travelAgent.firstName} {this.state.whiteLabel._travelAgent.lastName}, and all communication will be with them, on your behalf.</i>
             </Row>

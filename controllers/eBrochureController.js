@@ -16,4 +16,32 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
 
+  findById: function(req, res) {
+    db.EBrochure.findOne({
+      _id: req.params.id
+    })
+    .populate({
+      path: '_whiteLabel',
+      populate: { path: '_travelAgent' }
+    })
+    .populate('yachts')
+    .then((dbEBrochure) => {
+      return res.json(dbEBrochure)
+    }).catch((err) => {
+      return res.status(422).json(err)
+    });
+  },
+
+  getBoats: function(req, res) {
+    db.EBrochure.findOne({
+      _id: req.params.id
+    })
+    .populate('yachts')
+    .then((dbEBrochure) => {
+      return res.json(dbEBrochure.yachts);
+    })
+    .catch((err) => {
+      return res.status(422).json(err)
+    });
+  },
 };

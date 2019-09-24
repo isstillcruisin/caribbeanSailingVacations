@@ -3,12 +3,15 @@ import ls from "local-storage"; //MHATODO: MAKE SURE THIS IS NOT STORING THE TOK
 
 export default {
   // Gets boats from the Node server API
-  getBoats: async function(whiteLabel) {
+  getBoats: async function({eBrochure, whiteLabel}) {
     try {
       if (whiteLabel) {
-        const boats = await axios.get(`/api/whitelabels/${whiteLabel}/boats`);
+        const boats = await axios.get(`/api/whitelabels/${whiteLabel.name}/boats`);
         return boats;
-      } else {
+      } else if (eBrochure) {
+        const boats = await axios.get(`/api/ebrochures/${eBrochure._id}/boats`);
+        return boats;   
+      } {
         const boats = await axios.get("/api/boats");
         return boats;
       }
@@ -114,7 +117,7 @@ export default {
 
   getCurrentUserId: async function() {
     try {
-      const currentId = await await axios.get('/api/users/currentid');
+      const currentId = await axios.get('/api/users/currentid');
       return currentId;
     } catch (error) {
       console.log("error in get Current User ID (╯°□°)╯︵ ┻━┻ ", error);
@@ -127,7 +130,16 @@ export default {
 
   saveEBrochure: async function(whiteLabel, eBrochureData) {
     console.log("Posting to api/ebrochures with", whiteLabel, eBrochureData);
-    return axios.post(`/api/whiteLabels/${whiteLabel._id}/eBrochures/`, eBrochureData);
+    return axios.post(`/api/whiteLabels/${whiteLabel._id}/ebrochures/`, eBrochureData);
+  },
+
+  getEBrochure: async function(eBrochureId) {
+    try {
+      const ebrochure = await axios.get(`/api/ebrochures/${eBrochureId}`);
+      return ebrochure;
+    } catch (error) {
+      console.log("error in get EBrochure (╯°□°)╯︵ ┻━┻ ", error);
+    }
   },
 
 };

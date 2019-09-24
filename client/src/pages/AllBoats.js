@@ -6,6 +6,7 @@ import Slide from "react-reveal/Slide";
 import Carousel from 'react-bootstrap/Carousel';
 import Zoom from "react-reveal/Zoom";
 import Button from 'react-bootstrap/Button';
+import Loader from '../components/Loader';
 
 const BoatContainer = styled.div`
   display: grid;
@@ -74,7 +75,7 @@ class AllBoats extends Component {
   }
 
   getBoats = () => {
-    API.getBoats(this.props.whiteLabel).then(response => {
+    API.getBoats(this.props).then(response => {
       if (response) {
         this.setState({ boats: response.data });
       } else {
@@ -94,36 +95,49 @@ class AllBoats extends Component {
   };
 
   showBoats = () => {
-    return this.state.boats.map((boat, i) => {
-      let link = 
-        (<LinkContainer
-          params={{ id: boat._id }}
-          key={`${boat._id}${i + 5}`}
-          to={`/boat/${boat._id}`}
-          className="boat-detail-link"
-        ><Button>See Details</Button></LinkContainer>)
-      if (this.props.whiteLabel) {
-        link = 
+    if (this.state.boats) {
+      return this.state.boats.map((boat, i) => {
+        let link = 
           (<LinkContainer
             params={{ id: boat._id }}
             key={`${boat._id}${i + 5}`}
-            to={`/charter-a-yacht/${this.props.whiteLabel}/inquiry/${boat._id}`}
-            className="book-it-link"
-          ><Button>Request Information</Button></LinkContainer>)
-      }
-      return (
-        <Zoom bottom>
-          <BoatContainer key={boat._id}>
-            <Carousel key={`${boat._id}${i + 6}`} style={{width: "470px"}}>
-              {this.renderImages(boat.imgs)}
-            </Carousel>
-            <BoatName key={`${boat._id}${i + 1}`}>{boat.boatName}</BoatName>
-            <BoatPrice>45 min | $20,000</BoatPrice>
-            {link}
-          </BoatContainer>
-        </Zoom>
-      );
-    });
+            to={`/boat/${boat._id}`}
+            className="boat-detail-link"
+          ><Button>See Details</Button></LinkContainer>)
+        if (this.props.whiteLabel) {
+          link = 
+            (<LinkContainer
+              params={{ id: boat._id }}
+              key={`${boat._id}${i + 5}`}
+              to={`/charter-a-yacht/${this.props.whiteLabel.name}/inquiry/${boat._id}`}
+              className="book-it-link"
+            ><Button>Request Information</Button></LinkContainer>)
+        }
+        if (this.props.eBrochure) {
+          link = 
+            (<LinkContainer
+              params={{ id: boat._id }}
+              key={`${boat._id}${i + 5}`}
+              to={`/charter-a-yacht/${this.props.eBrochure._whiteLabel.name}/inquiry/${boat._id}`}
+              className="book-it-link"
+            ><Button>Request Information</Button></LinkContainer>)          
+        }
+        return (
+          <Zoom bottom>
+            <BoatContainer key={boat._id}>
+              <Carousel key={`${boat._id}${i + 6}`} style={{width: "470px"}}>
+                {this.renderImages(boat.imgs)}
+              </Carousel>
+              <BoatName key={`${boat._id}${i + 1}`}>{boat.boatName}</BoatName>
+              <BoatPrice>45 min | $20,000</BoatPrice>
+              {link}
+            </BoatContainer>
+          </Zoom>
+        );
+      });
+    } else {
+      return <Loader />;
+    }
   };
 
   render() {

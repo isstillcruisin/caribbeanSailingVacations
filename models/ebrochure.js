@@ -3,8 +3,7 @@ const Schema = mongoose.Schema;
 
 const eBrochureSchema = new Schema({
   name: { type: String, required: true },
-  _whiteLabel: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'whiteLabel'},
-  _travelAgent: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'user' },
+  _whiteLabel: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'WhiteLabel'},
   isConfirmed: { type: Boolean, default: false },
   yachts: [{ type: Schema.Types.ObjectId, ref: 'Boat' }],
 });

@@ -3,10 +3,12 @@ const boatRoutes = require("./boats");
 const userRoutes = require("./users");
 const whiteLabelRoutes = require('./whiteLabels');
 const charterInquiryRoutes = require('./charterInquiries');
+const eBrochureRoutes = require('./eBrochures');
 
 router.use("/boats", boatRoutes);
 router.use("/users", userRoutes);
 router.use("/whitelabels", whiteLabelRoutes)
 router.use("/charterinquiries", charterInquiryRoutes);
+router.use("/ebrochures", eBrochureRoutes)
 
 module.exports = router;

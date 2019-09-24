@@ -13,7 +13,7 @@ class AddEBrochure extends Component {
         if (res2 && res2.data.id !== res.data._travelAgent._id) {
           this.setState({ unauthorized: true});
         } else {
-          API.getBoats().then(res3 => {
+          API.getBoats({}).then(res3 => {
             this.setState({
               whiteLabel: res.data,
               boats: res3.data,
