@@ -23,7 +23,14 @@ module.exports = {
     .populate('_travelAgent')
     .populate('yachts')
     .then((dbWhiteLabel) => {
-      return res.json(dbWhiteLabel);
+      db.EBrochure.find({
+        _whiteLabel: dbWhiteLabel._id
+      })
+      .then(dbEBrochures => {
+        dbWhiteLabel.ebrochures = dbEBrochures;
+        return res.json(dbWhiteLabel);
+      })
+      .catch(err => res.status(422).json(err));
     })
     .catch((err) => {
       return res.status(422).json(err)

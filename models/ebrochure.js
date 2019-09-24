@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const whiteLabelSchema = new Schema({
+const eBrochureSchema = new Schema({
   name: { type: String, required: true },
+  _whiteLabel: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'whiteLabel'},
   _travelAgent: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'user' },
   isConfirmed: { type: Boolean, default: false },
   yachts: [{ type: Schema.Types.ObjectId, ref: 'Boat' }],
-  ebrochures: [{ type: Schema.Types.ObjectId, ref: 'EBrochure' }],
 });
 
-const WhiteLabel = mongoose.model("WhiteLabel", whiteLabelSchema);
+const EBrochure = mongoose.model("EBrochure", eBrochureSchema);
 
-module.exports = WhiteLabel;
+module.exports = EBrochure;

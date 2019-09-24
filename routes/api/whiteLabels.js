@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const whiteLabelController = require("../../controllers/whiteLabelController");
+const eBrochureController = require('../../controllers/eBrochureController');
 
 // Matches with "/api/whitelabels"
 router.route("/")
@@ -15,4 +16,7 @@ router.route('/:name')
 router.route('/:name/boats')
   .get(whiteLabelController.getBoats);
   
+router.route('/:id/ebrochures/')
+  .post(eBrochureController.create)
+
 module.exports = router;

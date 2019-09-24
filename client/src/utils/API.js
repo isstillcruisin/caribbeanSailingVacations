@@ -123,5 +123,11 @@ export default {
 
   updateWhiteLabel: async function(whiteLabel) {
     return axios.post(`/api/whiteLabels/update/${whiteLabel._id}`, whiteLabel);
-  }
+  },
+
+  saveEBrochure: async function(whiteLabel, eBrochureData) {
+    console.log("Posting to api/ebrochures with", whiteLabel, eBrochureData);
+    return axios.post(`/api/whiteLabels/${whiteLabel._id}/eBrochures/`, eBrochureData);
+  },
+
 };
