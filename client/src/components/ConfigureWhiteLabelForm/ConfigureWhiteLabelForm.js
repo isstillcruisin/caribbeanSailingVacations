@@ -41,19 +41,6 @@ class ConfigureWhiteLabelForm extends Component {
       >
         <Button>Add New E-Brochure</Button>
       </LinkContainer>
-
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Enabled?</th>
-            <th>Yacht Details</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.renderAllYachtRows(this.props.allYachts, this.props.whiteLabel)}
-        </tbody>
-      </Table>
     </div>
   }
 
@@ -79,41 +66,6 @@ class ConfigureWhiteLabelForm extends Component {
         </td> 
         
       </tr>
-    });
-  }
-
-  whiteLabelIncludesYacht = (whiteLabel, yacht) => {
-    return whiteLabel.yachts.map(wl => wl._id).includes(yacht._id);
-  }
-
-  renderAllYachtRows = (allYachts, whiteLabel) => {
-    return allYachts.map((yacht, i) => {
-      return <tr key={`yacht-${i}`}>
-          <td>{yacht.boatName}</td>
-          <td>
-            <BootstrapSwitchButton
-              checked={this.whiteLabelIncludesYacht(whiteLabel, yacht)}
-              onlabel='Y'
-              offlabel='N'
-              onChange={(checked: boolean) => {
-                if (checked) {
-                  this.props.handleEnableYacht(yacht)
-                } else {
-                  this.props.handleDisableYacht(yacht) 
-                }
-              }}
-            />
-          </td>
-          <td>
-            <LinkContainer
-              params={{ id: yacht._id }}
-              to={`/boat/${yacht._id}`}
-              className="boat-detail-link"
-            >
-              <Button>See Details</Button>
-            </LinkContainer>
-          </td> 
-        </tr>
     });
   }
 }

@@ -16,12 +16,7 @@ class ConfigureWhiteLabel extends Component {
         if (res2 && res2.data.id !== res.data._travelAgent._id) {
           this.setState({ unauthorized: true});
         } else {
-          API.getBoats({}).then(res3 => {
-            this.setState({
-              whiteLabel: res.data,
-              boats: res3.data,
-            });
-          });
+          this.setState({ whiteLabel: res.data});
         }
       });
     });
@@ -55,24 +50,6 @@ class ConfigureWhiteLabel extends Component {
   //   });
   // };
 
-  handleEnableYacht = (yacht) => {
-    let yachts = this.state.whiteLabel.yachts
-    let whiteLabel = Object.assign({}, this.state.whiteLabel)
-    whiteLabel.yachts.push(yacht)
-    API.updateWhiteLabel(whiteLabel)
-    this.setState(Object.assign({}, this.state, { whiteLabel }));
-  }
-
-  handleDisableYacht = (yacht) => {
-    let yachts = this.state.whiteLabel.yachts
-    let whiteLabel = Object.assign({}, this.state.whiteLabel)
-    whiteLabel.yachts = whiteLabel.yachts.filter(function(y, index, arr){
-      return y._id !== yacht._id
-    });
-    API.updateWhiteLabel(whiteLabel)
-    this.setState(Object.assign({}, this.state, { whiteLabel }));
-  }
-
   render() {
     if (this.state.unauthorized) {
       return (<Redirect 
@@ -81,15 +58,12 @@ class ConfigureWhiteLabel extends Component {
           state: { alert: `You are not authorized to perform this action.` } 
         }} 
       />)
-    } else if (this.state.whiteLabel && this.state.boats) {
+    } else if (this.state.whiteLabel) {
       return (<> 
         <h1>Configure Charter Assistant {this.state.whiteLabel.name}</h1>
         <Card>
           <ConfigureWhiteLabelForm
             whiteLabel = {this.state.whiteLabel}
-            allYachts = {this.state.boats}
-            handleEnableYacht = {this.handleEnableYacht}
-            handleDisableYacht = {this.handleDisableYacht}
           />
         </Card>
       </>)

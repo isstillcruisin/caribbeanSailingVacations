@@ -17,7 +17,6 @@ const SignOut = React.lazy(() => import("./pages/SignOut"));
 const Confirm = React.lazy(() => import("./pages/Confirm"));
 const AddWhiteLabel = React.lazy(() => import("./pages/AddWhiteLabel"));
 const ConfigureWhiteLabel = React.lazy(() => import("./pages/ConfigureWhiteLabel"));
-const WhiteLabel = React.lazy(() => import("./pages/WhiteLabel"));
 const WhiteLabelCharterInquiry = React.lazy(() => import("./pages/WhiteLabelCharterInquiry"));
 const AllWhiteLabels =  React.lazy(() => import("./pages/AllWhiteLabels"));
 const WhiteLabelCharterInquiries = React.lazy(() => import("./pages/WhiteLabelCharterInquiries"));
@@ -130,7 +129,6 @@ class App extends Component {
                 <AuthenticatedRoute exact path="/add-white-label" component={AddWhiteLabel} />
                 <AdminRoute exact path="/all-white-labels" component={AllWhiteLabels} />
                 <Route exact path="/charter-a-yacht/:name/inquiry/:boatId" component={WhiteLabelCharterInquiry} />
-                <Route exact path="/charter-a-yacht/:name" component={WhiteLabel} />
                 <AuthenticatedRoute exact path="/charter-inquiries/:whiteLabelName" component={WhiteLabelCharterInquiries} />
                 <AuthenticatedRoute exact path="/white-label/:name/edit" component={ConfigureWhiteLabel} />
                 <AuthenticatedRoute exact path="/white-label/:name/new-e-brochure" component={AddEBrochure} />
