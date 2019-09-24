@@ -1,7 +1,6 @@
-import React, {Component} from "react";
+import React from "react";
 import DayPicker, { DateUtils } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
-
 
 class DatePickerWithBlackoutDates extends React.Component {
   static defaultProps = {

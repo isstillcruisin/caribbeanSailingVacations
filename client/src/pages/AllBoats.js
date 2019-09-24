@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import styled from "styled-components";
 import { LinkContainer } from 'react-router-bootstrap'
-import Slide from "react-reveal/Slide";
 import Carousel from 'react-bootstrap/Carousel';
 import Zoom from "react-reveal/Zoom";
 import Button from 'react-bootstrap/Button';
@@ -18,25 +17,12 @@ const BoatContainer = styled.div`
   height: 40rem;
   background-color: rgba(200, 200, 200, 0.6);
 `;
-const BoatInfoRow = styled.div`
-  display: grid;
-  grid-template-columns: 20% 20% 20% 20%;
-  grid-gap: 2rem;
-  height: 10rem;
-  position: relative;
-`;
 
 const BoatName = styled.div`
   position: relative;
   height: 100%;
   width: 100%;
   text-align: center;  
-`
-
-const BoatInfo = styled.div`
-  position: relative;
-  height: 100%;
-  width: 100%;
 `;
 
 const BoatPrice = styled.div`
@@ -44,7 +30,7 @@ const BoatPrice = styled.div`
   height: 100%;
   width: 100%;
   text-align: center;  
-`
+`;
 
 const BoatsDisplay = styled.div`
   display: grid;

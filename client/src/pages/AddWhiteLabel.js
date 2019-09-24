@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import AddWhiteLabelForm from "../components/AddWhiteLabelForm";
 import API from "../utils/API";
-import ls from "local-storage";
 import { Redirect } from "react-router-dom";
 
 class AddWhiteLabel extends Component {

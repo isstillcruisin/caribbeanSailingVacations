@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Table, Row, Col, Button } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import { LinkContainer } from 'react-router-bootstrap'
 

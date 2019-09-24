@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-import Fade from "react-reveal/Fade";
 import AllBoats from "./AllBoats";
 import Alert from '../components/Alert';
 import Loader from '../components/Loader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-
 
 class EBrochure extends Component {
   state = {};

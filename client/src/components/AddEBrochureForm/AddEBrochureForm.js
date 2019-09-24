@@ -1,5 +1,4 @@
 import React from "react";
-import ImageUploader from '../ImageUploader'
 
 const AddEBrochureForm = props => (
   <form>

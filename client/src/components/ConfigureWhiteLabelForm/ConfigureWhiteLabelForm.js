@@ -1,6 +1,5 @@
 import React, {Component} from "react";
-import { Table, Row, Col, Button } from 'react-bootstrap';
-import BootstrapSwitchButton from 'bootstrap-switch-button-react'
+import { Table, Button, Form } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap'
 
 class ConfigureWhiteLabelForm extends Component {

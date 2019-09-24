@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ConfigureWhiteLabelForm from "../components/ConfigureWhiteLabelForm";
 import API from "../utils/API";
-import ls from "local-storage";
 import { Redirect } from "react-router-dom";
 import Loader from '../components/Loader'
 import Card from 'react-bootstrap/Card';

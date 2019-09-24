@@ -3,11 +3,7 @@ import API from "../utils/API";
 import Fade from "react-reveal/Fade";
 import Loader from '../components/Loader';
 import styled from "styled-components";
-import { LinkContainer } from 'react-router-bootstrap'
-import Slide from "react-reveal/Slide";
 import Carousel from 'react-bootstrap/Carousel';
-import Zoom from "react-reveal/Zoom";
-import Button from 'react-bootstrap/Button';
 
 const BoatContainer = styled.div`
   display: grid;

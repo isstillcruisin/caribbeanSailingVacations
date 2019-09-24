@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ConfigureEBrochureForm from "../components/ConfigureEBrochureForm";
 import API from "../utils/API";
-import ls from "local-storage";
 import { Redirect } from "react-router-dom";
 import Loader from '../components/Loader'
 import Card from 'react-bootstrap/Card';
@@ -57,7 +56,6 @@ class ConfigureEBrochure extends Component {
   // };
 
   handleEnableYacht = (yacht) => {
-    let yachts = this.state.eBrochure.yachts
     let eBrochure = Object.assign({}, this.state.eBrochure)
     eBrochure.yachts.push(yacht)
     API.updateEBrochure(eBrochure)
@@ -65,7 +63,6 @@ class ConfigureEBrochure extends Component {
   }
 
   handleDisableYacht = (yacht) => {
-    let yachts = this.state.eBrochure.yachts
     let eBrochure = Object.assign({}, this.state.eBrochure)
     eBrochure.yachts = eBrochure.yachts.filter(function(y, index, arr){
       return y._id !== yacht._id
