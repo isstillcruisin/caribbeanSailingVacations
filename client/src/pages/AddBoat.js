@@ -15,13 +15,13 @@ class AddBoat extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     try {
-      this.saveBoats();
+      this.saveBoat();
     } catch (err) {
       console.log("error in save boats (╯°□°)╯︵ ┻━┻ ", err);
     }
   };
 
-  saveBoats = () => {
+  saveBoat = () => {
     API.saveBoat({
       boatName: this.state.boatName,
       imgs: this.state.imgUrls,

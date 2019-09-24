@@ -69,7 +69,7 @@ class ConfigureWhiteLabelForm extends Component {
 
   renderAllYachtRows = (allYachts, whiteLabel) => {
     return allYachts.map((yacht, i) => {
-      return <tr>
+      return <tr key={`yacht-${i}`}>
           <td>{yacht.boatName}</td>
           <td>
             <BootstrapSwitchButton

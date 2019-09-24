@@ -32,14 +32,12 @@ module.exports = {
       })
       .catch(err => res.status(422).json(err));
     })
-    .catch((err) => {
-      return res.status(422).json(err)
-    });
+    .catch(err => res.status(422).json(err));
   },
 
   findAll: function(req, res) {
     db.WhiteLabel.find(req.query)
-      .then(dbWhiteLabel => res.json(dbWhiteLabel))
+      .then(dbWhiteLabels => res.json(dbWhiteLabels))
       .catch(err => res.status(422).json(err));
   },
   
