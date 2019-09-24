@@ -142,4 +142,8 @@ export default {
     }
   },
 
+  updateEBrochure: async function(ebrochure) {
+    return axios.post(`/api/ebrochures/update/${ebrochure._id}`, ebrochure);
+  },
+
 };

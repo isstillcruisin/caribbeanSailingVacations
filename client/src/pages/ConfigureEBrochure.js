@@ -1,55 +1,102 @@
 import React, { Component } from "react";
+import ConfigureEBrochureForm from "../components/ConfigureEBrochureForm";
 import API from "../utils/API";
-import Fade from "react-reveal/Fade";
-import AllBoats from "./AllBoats";
-import Alert from '../components/Alert';
-import Loader from '../components/Loader';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-
+import ls from "local-storage";
+import { Redirect } from "react-router-dom";
+import Loader from '../components/Loader'
+import Card from 'react-bootstrap/Card';
 
 class ConfigureEBrochure extends Component {
   state = {};
 
   componentDidMount() {
     let { id } = this.props.match.params;
+
     API.getEBrochure(id).then(res => {
-      this.setState({
-        eBrochure: res.data
+      API.getCurrentUserId().then(res2 => {
+        if (res2 && res2.data.id !== res.data._whiteLabel._travelAgent._id) {
+          this.setState({ unauthorized: true});
+        } else {
+          API.getBoats({}).then(res3 => {
+            this.setState({
+              eBrochure: res.data,
+              boats: res3.data,
+            });
+          });
+        }
       });
     });
   }
 
-  travelAgentName = () => `${this.state.eBrochure._whiteLabel._travelAgent.firstName} ${this.state.eBrochure._whiteLabel._travelAgent.lastName}`
+  // handleFormSubmit = event => {
+  //   event.preventDefault();
+  //   try {
+  //     this.saveWhiteLabel();
+  //   } catch (err) {
+  //     console.log("error in save White Label (╯°□°)╯︵ ┻━┻ ", err);
+  //   }
+  // };
 
-  showEBrochure = () => {
-    console.log("****", this.state.eBrochure);
-    if (this.state.eBrochure) {
-      return (
-        <Container>
-          <Row>
-            <h2 style={{width: '100%', 'text-align': 'center'}}>CHARTER ASSISTANT - {this.state.eBrochure.name.toUpperCase()}</h2>
-          </Row>
-          <Row>
-            <h5 style={{'margin-left': '15px'}}>Welcome. Please choose a yacht to request further information about chartering:</h5>
-          </Row>
-          <AllBoats eBrochure={this.state.eBrochure}/>
-          <Row>
-            <i>These yachts were specifically chosen for you by your Travel Agent: {this.travelAgentName()}, and all communication will be with them, on your behalf.</i>
-          </Row>
-        </Container>
-      )
+  // saveWhiteLabel = () => {
+  //   API.saveWhiteLabel({
+  //     whiteLabelName: this.state.whiteLabelName,      
+  //   })
+  //     .then(res =>
+  //       this.setState({
+  //         saved: true
+  //       })
+  //     )
+  //     .catch(err => console.log("saving white label error", err));
+  // };
+
+  // handleInputChange = event => {
+  //   const { name, value } = event.target;
+  //   this.setState({
+  //     [name]: value
+  //   });
+  // };
+
+  handleEnableYacht = (yacht) => {
+    let yachts = this.state.eBrochure.yachts
+    let eBrochure = Object.assign({}, this.state.eBrochure)
+    eBrochure.yachts.push(yacht)
+    API.updateEBrochure(eBrochure)
+    this.setState(Object.assign({}, this.state, { eBrochure }));
+  }
+
+  handleDisableYacht = (yacht) => {
+    let yachts = this.state.eBrochure.yachts
+    let eBrochure = Object.assign({}, this.state.eBrochure)
+    eBrochure.yachts = eBrochure.yachts.filter(function(y, index, arr){
+      return y._id !== yacht._id
+    });
+    API.updateWhiteLabel(eBrochure)
+    this.setState(Object.assign({}, this.state, { eBrochure }));
+  }
+
+  render() {
+    if (this.state.unauthorized) {
+      return (<Redirect 
+        to={{ 
+          pathname: `/`,
+          state: { alert: `You are not authorized to perform this action.` } 
+        }} 
+      />)
+    } else if (this.state.eBrochure && this.state.boats) {
+      return (<> 
+        <h1>Configure Charter Assistant EBrochure {this.state.eBrochure.name}</h1>
+        <Card>
+          <ConfigureEBrochureForm
+            eBrochure = {this.state.eBrochure}
+            allYachts = {this.state.boats}
+            handleEnableYacht = {this.handleEnableYacht}
+            handleDisableYacht = {this.handleDisableYacht}
+          />
+        </Card>
+      </>)
     } else {
       return <Loader />;
     }
-  };
-
-  render() {
-    return <div>
-      <Alert {...this.props}/>
-      {this.showEBrochure()}
-    </div>;
   }
 }
 

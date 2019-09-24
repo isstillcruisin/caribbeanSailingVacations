@@ -26,7 +26,8 @@ class ConfigureWhiteLabelForm extends Component {
         <thead>
           <tr>
             <th>Name</th>
-            <th>Link</th>
+            <th>View</th>
+            <th>Edit</th>
           </tr>
         </thead>
         <tbody>

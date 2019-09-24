@@ -44,4 +44,11 @@ module.exports = {
       return res.status(422).json(err)
     });
   },
+
+  update: function(req, res) {
+    db.EBrochure.findOneAndUpdate({ _id: req.params.id }, req.body)
+      .then(dbEBrochure => res.json(dbEBrochure))
+      .catch(err => res.status(422).json(err));
+  },
+
 };

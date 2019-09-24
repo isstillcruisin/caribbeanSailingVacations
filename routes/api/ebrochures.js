@@ -7,4 +7,8 @@ router.route("/:id")
 router.route("/:id/boats")
   .get(eBrochureController.getBoats);
 
+router.route("/update/:id")
+  .post(eBrochureController.update)
+
+
 module.exports = router;
