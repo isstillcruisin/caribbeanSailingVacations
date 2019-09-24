@@ -51,3 +51,8 @@ code {
   color: red;
   font-style: italic;
 }
+
+.footer-address i {
+  width: 100%;
+  text-align: center;
+}

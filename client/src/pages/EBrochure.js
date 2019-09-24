@@ -5,6 +5,7 @@ import Alert from '../components/Alert';
 import Loader from '../components/Loader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import StreetAddress from '../components/StreetAddress';
 
 class EBrochure extends Component {
   state = {};
@@ -21,7 +22,6 @@ class EBrochure extends Component {
   travelAgentName = () => `${this.state.eBrochure._whiteLabel._travelAgent.firstName} ${this.state.eBrochure._whiteLabel._travelAgent.lastName}`
 
   showEBrochure = () => {
-    console.log("****", this.state.eBrochure);
     if (this.state.eBrochure) {
       return (
         <Container>
@@ -31,10 +31,13 @@ class EBrochure extends Component {
           <Row>
             <h5 style={{'margin-left': '15px'}}>Welcome. Please choose a yacht to request further information about chartering:</h5>
           </Row>
-          <AllBoats eBrochure={this.state.eBrochure}/>
-          <Row>
-            <i>These yachts were specifically chosen for you by your Travel Agent: {this.travelAgentName()}, and all communication will be with them, on your behalf.</i>
+          <Row style={{'margin-bottom': '20px'}}>
+            <AllBoats eBrochure={this.state.eBrochure}/>
           </Row>
+          <Row className='footer-address'>
+            <i>These yachts were specifically chosen for you by your Travel Agent, and all communication will be with them, on your behalf.</i>
+          </Row>
+          <StreetAddress address={Object.assign({}, this.state.eBrochure._whiteLabel, {name: this.travelAgentName()})}/>
         </Container>
       )
     } else {

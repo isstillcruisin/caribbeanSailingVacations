@@ -65,9 +65,22 @@ export default {
     }
   },
 
+  createWhiteLabel: async function(whiteLabelData) {
+    try {
+      const whiteLabel = await axios.post("/api/whitelabels", whiteLabelData);
+      return whiteLabel;
+    } catch (error) {
+      console.log("saveWhiteLabel error (╯°□°)╯︵ ┻━┻ ", error);
+    }
+  },
+
   saveWhiteLabel: async function(whiteLabelData) {
-    console.log("Posting to api/whitelabels");
-    return axios.post("/api/whitelabels", whiteLabelData);
+    try {
+      const whiteLabel = await axios.post(`/api/whiteLabels/update/${whiteLabelData._id}`, whiteLabelData);
+      return whiteLabel;
+    } catch (error) {
+      console.log("saveWhiteLabel error (╯°□°)╯︵ ┻━┻ ", error);
+    }
   },
 
   getWhiteLabel: async function(name) {

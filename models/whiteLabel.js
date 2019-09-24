@@ -7,6 +7,7 @@ const whiteLabelSchema = new Schema({
   isConfirmed: { type: Boolean, default: false },
   yachts: [{ type: Schema.Types.ObjectId, ref: 'Boat' }],
   ebrochures: [{ type: Schema.Types.ObjectId, ref: 'EBrochure' }],
+  streetAddress: { type: String },
 });
 
 const WhiteLabel = mongoose.model("WhiteLabel", whiteLabelSchema);

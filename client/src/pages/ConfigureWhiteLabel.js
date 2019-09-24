@@ -21,33 +21,37 @@ class ConfigureWhiteLabel extends Component {
     });
   }
 
-  // handleFormSubmit = event => {
-  //   event.preventDefault();
-  //   try {
-  //     this.saveWhiteLabel();
-  //   } catch (err) {
-  //     console.log("error in save White Label (╯°□°)╯︵ ┻━┻ ", err);
-  //   }
-  // };
+  handleFormSubmit = event => {
+    event.preventDefault();
+    try {
+      this.saveWhiteLabel();
+    } catch (err) {
+      console.log("error in save White Label (╯°□°)╯︵ ┻━┻ ", err);
+    }
+  };
 
-  // saveWhiteLabel = () => {
-  //   API.saveWhiteLabel({
-  //     whiteLabelName: this.state.whiteLabelName,      
-  //   })
-  //     .then(res =>
-  //       this.setState({
-  //         saved: true
-  //       })
-  //     )
-  //     .catch(err => console.log("saving white label error", err));
-  // };
+  saveWhiteLabel = () => {
+    console.log("******", this.state.whiteLabel);
+    API.saveWhiteLabel(this.state.whiteLabel)
+      .then(res =>
+        this.setState({
+          whiteLabel: this.state.whiteLabel,
+          saved: true
+        })
+      )
+      .catch(err => console.log("saving white label error", err));
+  };
 
-  // handleInputChange = event => {
-  //   const { name, value } = event.target;
-  //   this.setState({
-  //     [name]: value
-  //   });
-  // };
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    console.log("******", name, value);
+    var newWhiteLabel = Object.assign({}, this.state.whiteLabel)
+    newWhiteLabel[name] = value;
+    this.setState({
+      whiteLabel: newWhiteLabel,
+      saved: false
+    });
+  };
 
   render() {
     if (this.state.unauthorized) {
@@ -63,6 +67,9 @@ class ConfigureWhiteLabel extends Component {
         <Card>
           <ConfigureWhiteLabelForm
             whiteLabel = {this.state.whiteLabel}
+            handleInputChange = {this.handleInputChange}
+            handleSaveWhiteLabel = {this.saveWhiteLabel}
+            saved = {this.state.saved}
           />
         </Card>
       </>)

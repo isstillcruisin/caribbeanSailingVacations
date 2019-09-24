@@ -20,6 +20,20 @@ class ConfigureWhiteLabelForm extends Component {
             required
           />
         </div>
+        <div> 
+          <Form.Control 
+            placeholder='Street Address' 
+            name='streetAddress' 
+            onChange={this.props.handleInputChange}
+            value={this.props.whiteLabel.streetAddress} />
+        </div>
+        <Button
+          onClick={this.props.handleSaveWhiteLabel}
+          type="submit"
+          className="btn btn-lg"
+        > 
+          Save White Label
+        </Button>
       </form>
       <Table striped bordered hover>
         <thead>

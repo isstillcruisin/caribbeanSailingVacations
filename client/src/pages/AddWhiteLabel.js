@@ -18,8 +18,8 @@ class AddWhiteLabel extends Component {
   };
 
   saveWhiteLabel = () => {
-    API.saveWhiteLabel({
-      whiteLabelName: this.state.whiteLabelName,      
+    API.createWhiteLabel({
+      name: this.state.whiteLabelName,      
     })
       .then(res =>
         this.setState({
