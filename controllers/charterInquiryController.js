@@ -13,7 +13,7 @@ module.exports = {
       startDate: req.body.startDate,
       endDate: req.body.endDate,
       email: req.body.email,
-      _whiteLabel: req.body.whiteLabel._id,
+      _whiteLabel: req.body.eBrochure._whiteLabel._id,
       _eBrochure: req.body.eBrochure._id,
       _yacht: req.body.yacht._id,
     }
