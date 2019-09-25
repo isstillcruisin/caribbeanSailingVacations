@@ -21,12 +21,13 @@ exports[`StreetAddress component Matches the snapshot 1`] = `
     </i>
     <i>
       Test
-       
+      , 
       Tt
+    </i>
+    <i>
+      00000-0000
        
       Test USA
-       
-      00000-0000
     </i>
   </div>
 </div>

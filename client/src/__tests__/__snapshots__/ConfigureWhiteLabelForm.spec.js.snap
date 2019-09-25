@@ -8,19 +8,19 @@ exports[`ConfigureWhiteLabelForm component Matches the snapshot 1`] = `
     }
   }
 >
-  <form>
+  <form
+    className=""
+  >
     <div
-      className="form-group add-white-label-form"
+      className="add-white-label-form form-group"
     >
       <label
-        htmlFor="white-label-name"
+        className="form-label"
       >
-        <strong>
-          White-Label Name
-        </strong>
+        White-Label Name
       </label>
       <input
-        className="form-control"
+        className="form-control form-control"
         disabled={true}
         id="white-label-name"
         name="whiteLabelName"
@@ -29,21 +29,120 @@ exports[`ConfigureWhiteLabelForm component Matches the snapshot 1`] = `
         value="test"
       />
     </div>
-    <div>
+    <div
+      className="form-group"
+    >
+      <label
+        className="form-label"
+      >
+        Phone number
+      </label>
+      <input
+        className="form-control"
+        name="phoneNumber"
+        placeholder="Phone number"
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        className="form-label"
+      >
+        Street address
+      </label>
       <input
         className="form-control"
         name="streetAddress"
-        placeholder="Street Address"
+        placeholder="Business street address"
         value="1 Test Lane"
       />
     </div>
-    <button
-      className="btn btn-lg btn btn-primary"
-      disabled={false}
-      type="submit"
+    <div
+      className="form-row"
     >
-      Save White Label
-    </button>
+      <div
+        className="form-group col"
+      >
+        <label
+          className="form-label"
+          htmlFor="formGridCity"
+        >
+          City
+        </label>
+        <input
+          className="form-control"
+          id="formGridCity"
+          name="city"
+          placeholder="City"
+        />
+      </div>
+      <div
+        className="form-group col"
+      >
+        <label
+          className="form-label"
+          htmlFor="formGridState"
+        >
+          State
+        </label>
+        <input
+          className="form-control"
+          id="formGridState"
+          name="state"
+          placeholder="State"
+        />
+      </div>
+      <div
+        className="form-group col"
+      >
+        <label
+          className="form-label"
+          htmlFor="formGridZip"
+        >
+          Zip Code
+        </label>
+        <input
+          className="form-control"
+          id="formGridZip"
+          name="zipCode"
+          placeholder="Zip Code"
+        />
+      </div>
+    </div>
+    <div
+      className="row"
+    >
+      <div
+        className="col"
+      >
+        <label
+          className="form-label"
+        >
+          Country
+        </label>
+        <input
+          className="form-control"
+          name="country"
+          placeholder="Country"
+        />
+      </div>
+    </div>
+    <div
+      className="row"
+    >
+      <div
+        className="col"
+      >
+        <button
+          className="btn btn-lg btn btn-primary"
+          disabled={false}
+          type="submit"
+        >
+          Save Address And Phone Number
+        </button>
+      </div>
+    </div>
   </form>
   <table
     className="table table-striped table-bordered table-hover"

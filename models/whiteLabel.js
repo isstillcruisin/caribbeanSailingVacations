@@ -8,6 +8,11 @@ const whiteLabelSchema = new Schema({
   yachts: [{ type: Schema.Types.ObjectId, ref: 'Boat' }],
   ebrochures: [{ type: Schema.Types.ObjectId, ref: 'EBrochure' }],
   streetAddress: { type: String },
+  city: { type: String },
+  state: { type: String },
+  country: { type: String },
+  zipCode: { type: String },
+  phoneNumber: { type: String },
 });
 
 const WhiteLabel = mongoose.model("WhiteLabel", whiteLabelSchema);
