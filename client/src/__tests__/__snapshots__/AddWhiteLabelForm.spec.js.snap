@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddWhiteLabelForm component Matches the snapshot 1`] = `
+<form>
+  <div
+    className="form-group add-white-label-form"
+  >
+    <label
+      htmlFor="white-label-name"
+    >
+      <strong>
+        White-Label Name
+      </strong>
+    </label>
+    <input
+      className="form-control"
+      id="white-label-name"
+      name="whiteLabelName"
+      placeholder="name of the white-label website..."
+      required={true}
+      type="text"
+      value="test"
+    />
+  </div>
+  <div
+    className="pull-right"
+  >
+    <button
+      className="btn btn-lg btn-danger"
+      type="submit"
+    >
+      Submit
+    </button>
+  </div>
+</form>
+`;

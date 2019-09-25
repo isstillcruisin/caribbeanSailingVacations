@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddEBrochureForm component Matches the snapshot 1`] = `
+<form>
+  <div
+    className="form-group add-boat-form"
+  >
+    <label
+      htmlFor="boat-name"
+    >
+      <strong>
+        EBrochure Name
+      </strong>
+    </label>
+    <input
+      className="form-control"
+      id="boat-name"
+      name="name"
+      placeholder="name of the eBrochure..."
+      required={true}
+      type="text"
+      value="test"
+    />
+  </div>
+  <div
+    className="pull-right"
+  >
+    <button
+      className="btn btn-lg btn-danger"
+      type="submit"
+    >
+      Submit
+    </button>
+  </div>
+</form>
+`;
