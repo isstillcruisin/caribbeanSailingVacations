@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styled, { ThemeProvider, injectGlobal } from "styled-components";
+import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import ls from "local-storage";
 import { withRouter } from "react-router-dom";
 import Fade from "react-reveal/Fade";
@@ -25,7 +25,7 @@ const StyledPage = styled.div`
   height: 100%;
 `;
 
-injectGlobal`
+const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
     font-size: 10px;
@@ -101,6 +101,7 @@ class Page extends Component {
     );
     return (
       <ThemeProvider theme={theme}>
+        <GlobalStyle />
         <StyledPage>
           <Meta />
           <Header display={this.displayAuthOptions} loggedIn={token} />
