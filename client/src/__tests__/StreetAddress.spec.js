@@ -12,7 +12,8 @@ describe("StreetAddress component", () => {
         city: 'Test',
         state: 'Tt',
         country: 'Test USA',
-        zipCode: '00000-0000'
+        zipCode: '00000-0000',
+        phoneNumber: '(000)000-0000'
       }}
     />);
     expect(address.toJSON()).toMatchSnapshot();

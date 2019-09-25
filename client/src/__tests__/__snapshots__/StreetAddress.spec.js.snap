@@ -14,6 +14,9 @@ exports[`StreetAddress component Matches the snapshot 1`] = `
       test company
     </i>
     <i>
+      (000)000-0000
+    </i>
+    <i>
       1 Tester Lane
     </i>
     <i>
