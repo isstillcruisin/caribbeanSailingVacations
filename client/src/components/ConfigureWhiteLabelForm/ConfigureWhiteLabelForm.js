@@ -4,7 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 
 class ConfigureWhiteLabelForm extends Component {
   render() {
-    return <div style={{color: 'black'}}>
+    return <div style={{color: 'black', padding: '10px'}}>
       <Form>
         <Form.Group className="add-white-label-form">
           <Form.Label>White-Label Name</Form.Label>

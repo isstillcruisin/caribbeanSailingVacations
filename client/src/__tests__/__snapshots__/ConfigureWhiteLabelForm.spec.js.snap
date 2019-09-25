@@ -5,6 +5,7 @@ exports[`ConfigureWhiteLabelForm component Matches the snapshot 1`] = `
   style={
     Object {
       "color": "black",
+      "padding": "10px",
     }
   }
 >
