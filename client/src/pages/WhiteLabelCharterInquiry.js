@@ -7,8 +7,8 @@ class WhiteLabelCharterInquiry extends Component {
   state = {};
 
   componentDidMount() {
-    let { ebrochureId, boatId } = this.props.match.params;
-    API.getEBrochure(ebrochureId).then(res => {
+    let { eBrochureId, boatId } = this.props.match.params;
+    API.getEBrochure(eBrochureId).then(res => {
       API.getBoat(boatId).then(res2 => {
         this.setState({
           eBrochure: res.data,
@@ -56,8 +56,8 @@ class WhiteLabelCharterInquiry extends Component {
   showWhiteLabelInquiry = () => {
     if (this.state.done) {
       return <div><p>You're All Set!</p><p>Your Inquiry has been submitted to {this.state.whiteLabel._travelAgent.firstName} {this.state.whiteLabel._travelAgent.lasttName}.</p></div>
-    } else if (this.state.boat) {
-      return <CharterInquiryForm whiteLabel={this.state.whiteLabel} boat={this.state.boat} handleInputChange={this.handleInputChange} handleSubmitInquiry={this.handleSubmitInquiry} handleDateRangeChange={this.handleDateRangeChange}/>
+    } else if (this.state.boat && this.state.eBrochure) {
+      return <CharterInquiryForm whiteLabel={this.state.eBrochure._whiteLabel} boat={this.state.boat} handleInputChange={this.handleInputChange} handleSubmitInquiry={this.handleSubmitInquiry} handleDateRangeChange={this.handleDateRangeChange}/>
     } else {
       return <Loader />
     }
