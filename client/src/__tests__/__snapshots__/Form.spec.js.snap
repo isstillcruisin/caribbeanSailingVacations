@@ -1,0 +1,138 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form component Matches the snapshot 1`] = `
+<form>
+  <div
+    className="form-group"
+  >
+    <label
+      htmlFor="boat-name"
+    >
+      <strong>
+        Boat Name
+      </strong>
+    </label>
+    <input
+      className="form-control"
+      id="boat-name"
+      name="boatName"
+      placeholder="name of the boat..."
+      required={true}
+      type="text"
+      value="test boat"
+    />
+    <label
+      htmlFor="description"
+    >
+      <strong>
+        Crew Bio
+      </strong>
+    </label>
+    <input
+      className="form-control"
+      id="crewBio"
+      name="crewBio"
+      placeholder="about the crew.."
+      required={true}
+      type="textArea"
+      value="test bio"
+    />
+    <label
+      htmlFor="maxPassengers"
+    >
+      <strong>
+        Passenger Capacity
+      </strong>
+    </label>
+    <input
+      className="form-control"
+      id="maxPassengers"
+      name="maxPassengers"
+      placeholder="4-30"
+      required={true}
+      type="number"
+      value="10"
+    />
+    <label
+      htmlFor="year"
+    >
+      <strong>
+        Year made
+      </strong>
+    </label>
+    <input
+      className="form-control"
+      id="year"
+      name="year"
+      placeholder="2009"
+      required={true}
+      type="number"
+      value="1999"
+    />
+    <label
+      htmlFor="manufacture"
+    >
+      <strong>
+        Manufacturer of Boat
+      </strong>
+    </label>
+    <input
+      className="form-control"
+      id="manufacture"
+      name="manufacture"
+      placeholder="Boat size etc..."
+      required={true}
+      type="text"
+      value="2000 feet test manufacture"
+    />
+    <label
+      htmlFor="image-url"
+    >
+      <strong>
+        Boat Images
+      </strong>
+    </label>
+    <div
+      className="boat-image-dropzone"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragEnter={[Function]}
+      onDragLeave={[Function]}
+      onDragOver={[Function]}
+      onDrop={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      tabIndex={0}
+    >
+      <input
+        accept="image/*"
+        autoComplete="off"
+        multiple={true}
+        onChange={[Function]}
+        onClick={[Function]}
+        style={
+          Object {
+            "display": "none",
+          }
+        }
+        tabIndex={-1}
+        type="file"
+      />
+      <p>
+        Try dropping some files here, or click to select files to upload.
+      </p>
+    </div>
+    <div />
+  </div>
+  <div
+    className="pull-right"
+  >
+    <button
+      className="btn btn-lg btn-danger"
+      type="submit"
+    >
+      Submit
+    </button>
+  </div>
+</form>
+`;
