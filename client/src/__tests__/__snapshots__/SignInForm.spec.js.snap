@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignInForm component Matches the snapshot 1`] = `
+<form>
+  <div
+    className="form-group"
+  >
+    <input
+      className="form-control"
+      id="email"
+      name="email"
+      placeholder="Email"
+      required={true}
+      type="text"
+      value="test@testerson.com"
+    />
+    <input
+      className="form-control"
+      id="password"
+      name="password"
+      placeholder="Password"
+      required={true}
+      style={
+        Object {
+          "marginLeft": ".5rem",
+        }
+      }
+      type="password"
+      value="aPassword"
+    />
+  </div>
+  <div
+    className="pull-right"
+  >
+    <button
+      className="btn btn-lg btn-danger"
+      type="submit"
+    >
+      Submit
+    </button>
+  </div>
+</form>
+`;

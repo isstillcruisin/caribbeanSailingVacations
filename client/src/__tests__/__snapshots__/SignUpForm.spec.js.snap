@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignUpForm component Matches the snapshot 1`] = `
+<div
+  className="card"
+  style={
+    Object {
+      "color": "black",
+    }
+  }
+>
+  <form
+    className=""
+  >
+    <div
+      className="form-row"
+    >
+      <label
+        className="form-label col-form-label col-3"
+      >
+        Name
+      </label>
+      <div
+        className="col"
+      >
+        <input
+          className="form-control"
+          name="firstName"
+          placeholder="First name"
+        />
+      </div>
+      <div
+        className="col"
+      >
+        <input
+          className="form-control"
+          name="lastName"
+          placeholder="Last name"
+        />
+      </div>
+    </div>
+    <div
+      className="form-row"
+      controlid="formEmail"
+    >
+      <label
+        className="form-label col-form-label col-3"
+      >
+        Email
+      </label>
+      <div
+        className="col-9"
+      >
+        <input
+          className="form-control"
+          name="email"
+          placeholder="Email Address"
+          type="email"
+          value="test@testerson.com"
+        />
+      </div>
+    </div>
+    <div
+      className="form-row"
+      controlid="formPassword"
+    >
+      <label
+        className="form-label col-form-label col-3"
+      >
+        Password
+      </label>
+      <div
+        className="col-9"
+      >
+        <input
+          className="form-control"
+          name="password"
+          placeholder="Choose a password"
+          type="password"
+          value="aPassword"
+        />
+      </div>
+    </div>
+    <div
+      className="form-row"
+      controlid="formSubmit"
+    >
+      <div
+        className="col"
+      >
+        <button
+          className="btn btn-lg btn btn-primary"
+          disabled={false}
+          type="submit"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+`;
