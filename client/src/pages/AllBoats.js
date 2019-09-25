@@ -90,21 +90,12 @@ class AllBoats extends Component {
             to={`/boat/${boat._id}`}
             className="boat-detail-link"
           ><Button>See Details</Button></LinkContainer>)
-        if (this.props.whiteLabel) {
-          link = 
-            (<LinkContainer
-              params={{ id: boat._id }}
-              key={`${boat._id}${i + 5}`}
-              to={`/charter-a-yacht/${this.props.whiteLabel.name}/inquiry/${boat._id}`}
-              className="book-it-link"
-            ><Button>Request Information</Button></LinkContainer>)
-        }
         if (this.props.eBrochure) {
           link = 
             (<LinkContainer
               params={{ id: boat._id }}
               key={`${boat._id}${i + 5}`}
-              to={`/charter-a-yacht/${this.props.eBrochure._whiteLabel.name}/inquiry/${boat._id}`}
+              to={`/charter-a-yacht/${this.props.eBrochure._id}/inquiry/${boat._id}`}
               className="book-it-link"
             ><Button>Request Information</Button></LinkContainer>)          
         }
@@ -115,7 +106,7 @@ class AllBoats extends Component {
                 {this.renderImages(boat.imgs)}
               </Carousel>
               <BoatName key={`${boat._id}${i + 1}`}>{boat.boatName}</BoatName>
-              <BoatPrice>45 min | $20,000</BoatPrice>
+              <BoatPrice>Week | $20,000</BoatPrice>
               {link}
             </BoatContainer>
           </Zoom>

@@ -128,7 +128,7 @@ class App extends Component {
                 <Route exact path="/confirm/:id" component={Confirm} />
                 <AuthenticatedRoute exact path="/add-white-label" component={AddWhiteLabel} />
                 <AdminRoute exact path="/all-white-labels" component={AllWhiteLabels} />
-                <Route exact path="/charter-a-yacht/:name/inquiry/:boatId" component={WhiteLabelCharterInquiry} />
+                <Route exact path="/charter-a-yacht/:eBrochureId/inquiry/:boatId" component={WhiteLabelCharterInquiry} />
                 <AuthenticatedRoute exact path="/charter-inquiries/:whiteLabelName" component={WhiteLabelCharterInquiries} />
                 <AuthenticatedRoute exact path="/white-label/:name/edit" component={ConfigureWhiteLabel} />
                 <AuthenticatedRoute exact path="/white-label/:name/new-e-brochure" component={AddEBrochure} />

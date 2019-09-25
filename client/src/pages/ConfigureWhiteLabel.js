@@ -31,7 +31,6 @@ class ConfigureWhiteLabel extends Component {
   };
 
   saveWhiteLabel = () => {
-    console.log("******", this.state.whiteLabel);
     API.saveWhiteLabel(this.state.whiteLabel)
       .then(res =>
         this.setState({

@@ -7,11 +7,11 @@ class WhiteLabelCharterInquiry extends Component {
   state = {};
 
   componentDidMount() {
-    let { name, boatId } = this.props.match.params;
-    API.getWhiteLabel(name).then(res => {
+    let { ebrochureId, boatId } = this.props.match.params;
+    API.getEBrochure(ebrochureId).then(res => {
       API.getBoat(boatId).then(res2 => {
         this.setState({
-          whiteLabel: res.data,
+          eBrochure: res.data,
           boat: res2.data,
         });
       });
@@ -20,7 +20,6 @@ class WhiteLabelCharterInquiry extends Component {
 
   handleSubmitInquiry = async event => {
     event.preventDefault();
-    console.log("event (╯°□°)╯︵ ┻━┻ ", event.data);
     try {
       let newCharterInquiry = await this.saveCharterInquiry();
       if (newCharterInquiry) {
@@ -38,7 +37,7 @@ class WhiteLabelCharterInquiry extends Component {
       lastName: this.state.lastName,
       startDate: this.state.startDate,
       endDate: this.state.endDate,
-      whiteLabel: this.state.whiteLabel,
+      eBrochure: this.state.eBrochure,
       yacht: this.state.boat,   
     });
   };

@@ -81,7 +81,7 @@ class ConfigureEBrochure extends Component {
       />)
     } else if (this.state.eBrochure && this.state.boats) {
       return (<> 
-        <h1>Configure Charter Assistant EBrochure {this.state.eBrochure.name}</h1>
+        <h1>Configure e-Brochure: {this.state.eBrochure.name}</h1>
         <Card>
           <ConfigureEBrochureForm
             eBrochure = {this.state.eBrochure}

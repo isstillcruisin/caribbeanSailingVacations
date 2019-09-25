@@ -30,9 +30,12 @@ module.exports = {
       if (req.user.id === dbWhiteLabel._travelAgent._id.toString() || req.user.isAdmin) {
         db.CharterInquiry.find({
           _whiteLabel: dbWhiteLabel._id
-        })
+        })    
+        .populate('_eBrochure')
         .populate('_yacht')
-        .then(dbCharterInquiry => res.json(dbCharterInquiry))
+        .then((dbCharterInquiries) => {
+          res.json(dbCharterInquiries)
+        })
         .catch(err => res.status(422).json(err));
       } else {
         res.status(401).json("Unauthorized");

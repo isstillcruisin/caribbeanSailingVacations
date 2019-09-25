@@ -13,6 +13,7 @@ const charterInquirySchema = new Schema({
   endDate: { type: String },
   _whiteLabel: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'WhiteLabel' },
   _yacht: { type:  mongoose.Schema.Types.ObjectId, required: true, ref: 'Boat' },
+  _eBrochure: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'EBrochure' },
 });
 
 charterInquirySchema.post('save', function(charterInquiry, next) {
