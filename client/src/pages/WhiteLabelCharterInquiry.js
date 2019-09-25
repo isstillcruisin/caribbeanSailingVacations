@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import Loader from '../components/Loader';
 import CharterInquiryForm from '../components/CharterInquiryForm';
+import TravelAgentInfo from '../utils/travelAgentInfo'
 
 class WhiteLabelCharterInquiry extends Component {
   state = {};
@@ -55,7 +56,7 @@ class WhiteLabelCharterInquiry extends Component {
 
   showWhiteLabelInquiry = () => {
     if (this.state.done) {
-      return <div><p>You're All Set!</p><p>Your Inquiry has been submitted to {this.state.whiteLabel._travelAgent.firstName} {this.state.whiteLabel._travelAgent.lasttName}.</p></div>
+      return <div><p>You're All Set!</p><p>Your Inquiry has been submitted to {TravelAgentInfo(this.state.eBrochure._whiteLabel._travelAgent).fullName}.</p></div>
     } else if (this.state.boat && this.state.eBrochure) {
       return <CharterInquiryForm whiteLabel={this.state.eBrochure._whiteLabel} boat={this.state.boat} handleInputChange={this.handleInputChange} handleSubmitInquiry={this.handleSubmitInquiry} handleDateRangeChange={this.handleDateRangeChange}/>
     } else {
