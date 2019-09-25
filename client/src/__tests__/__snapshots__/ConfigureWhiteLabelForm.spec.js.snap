@@ -9,193 +9,203 @@ exports[`ConfigureWhiteLabelForm component Matches the snapshot 1`] = `
     }
   }
 >
-  <form
-    className=""
+  <div
+    className="card"
   >
     <div
-      className="add-white-label-form form-group"
+      className="card-header"
     >
-      <label
-        className="form-label"
-      >
-        White-Label Name
-      </label>
-      <input
-        className="form-control form-control"
-        disabled={true}
-        id="white-label-name"
-        name="whiteLabelName"
-        required={true}
-        type="text"
-        value="test"
-      />
+      Contact Information
     </div>
     <div
-      className="form-group"
+      className="card-body"
     >
-      <label
-        className="form-label"
+      <form
+        className=""
       >
-        Phone number
-      </label>
-      <input
-        className="form-control"
-        name="phoneNumber"
-        placeholder="Phone number"
-      />
-    </div>
-    <div
-      className="form-group"
-    >
-      <label
-        className="form-label"
-      >
-        Street address
-      </label>
-      <input
-        className="form-control"
-        name="streetAddress"
-        placeholder="Business street address"
-        value="1 Test Lane"
-      />
-    </div>
-    <div
-      className="form-row"
-    >
-      <div
-        className="form-group col"
-      >
-        <label
-          className="form-label"
-          htmlFor="formGridCity"
+        <div
+          className="form-group"
         >
-          City
-        </label>
-        <input
-          className="form-control"
-          id="formGridCity"
-          name="city"
-          placeholder="City"
-        />
-      </div>
-      <div
-        className="form-group col"
-      >
-        <label
-          className="form-label"
-          htmlFor="formGridState"
-        >
-          State
-        </label>
-        <input
-          className="form-control"
-          id="formGridState"
-          name="state"
-          placeholder="State"
-        />
-      </div>
-      <div
-        className="form-group col"
-      >
-        <label
-          className="form-label"
-          htmlFor="formGridZip"
-        >
-          Zip Code
-        </label>
-        <input
-          className="form-control"
-          id="formGridZip"
-          name="zipCode"
-          placeholder="Zip Code"
-        />
-      </div>
-    </div>
-    <div
-      className="row"
-    >
-      <div
-        className="col"
-      >
-        <label
-          className="form-label"
-        >
-          Country
-        </label>
-        <input
-          className="form-control"
-          name="country"
-          placeholder="Country"
-        />
-      </div>
-    </div>
-    <div
-      className="row"
-    >
-      <div
-        className="col"
-      >
-        <button
-          className="btn btn-lg btn btn-primary"
-          disabled={false}
-          type="submit"
-        >
-          Save Address And Phone Number
-        </button>
-      </div>
-    </div>
-  </form>
-  <table
-    className="table table-striped table-bordered table-hover"
-  >
-    <thead>
-      <tr>
-        <th>
-          Name
-        </th>
-        <th>
-          View
-        </th>
-        <th>
-          Edit
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          test brochure
-        </td>
-        <td>
-          <a
-            className="e-brochure-link btn btn-primary"
-            href="/e-brochure/1"
-            onClick={[Function]}
-            onKeyDown={[Function]}
+          <label
+            className="form-label"
           >
-            View E-Brochure
-          </a>
-        </td>
-        <td>
-          <a
-            className="edit-e-brochure-link btn btn-primary"
-            href="/e-brochure/1/edit"
-            onClick={[Function]}
-            onKeyDown={[Function]}
+            Phone number
+          </label>
+          <input
+            className="form-control"
+            name="phoneNumber"
+            placeholder="Phone number"
+          />
+        </div>
+        <div
+          className="form-group"
+        >
+          <label
+            className="form-label"
           >
-            Edit E-Brochure
-          </a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <a
-    className="add-e-brochure-link btn btn-primary"
-    href="/white-label/test/new-e-brochure"
-    onClick={[Function]}
-    onKeyDown={[Function]}
+            Street address
+          </label>
+          <input
+            className="form-control"
+            name="streetAddress"
+            placeholder="Business street address"
+            value="1 Test Lane"
+          />
+        </div>
+        <div
+          className="form-row"
+        >
+          <div
+            className="form-group col"
+          >
+            <label
+              className="form-label"
+              htmlFor="formGridCity"
+            >
+              City
+            </label>
+            <input
+              className="form-control"
+              id="formGridCity"
+              name="city"
+              placeholder="City"
+            />
+          </div>
+          <div
+            className="form-group col"
+          >
+            <label
+              className="form-label"
+              htmlFor="formGridState"
+            >
+              State
+            </label>
+            <input
+              className="form-control"
+              id="formGridState"
+              name="state"
+              placeholder="State"
+            />
+          </div>
+          <div
+            className="form-group col"
+          >
+            <label
+              className="form-label"
+              htmlFor="formGridZip"
+            >
+              Zip Code
+            </label>
+            <input
+              className="form-control"
+              id="formGridZip"
+              name="zipCode"
+              placeholder="Zip Code"
+            />
+          </div>
+        </div>
+        <div
+          className="row"
+        >
+          <div
+            className="form-group col"
+          >
+            <label
+              className="form-label"
+              htmlFor="formGridCountry"
+            >
+              Country
+            </label>
+            <input
+              className="form-control"
+              id="formGridCountry"
+              name="country"
+              placeholder="Country"
+            />
+          </div>
+        </div>
+        <div
+          className="row"
+        >
+          <div
+            className="form-group col"
+          >
+            <button
+              className="btn btn-lg btn btn-primary"
+              disabled={false}
+              type="submit"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div
+    className="card"
   >
-    Add New E-Brochure
-  </a>
+    <div
+      className="card-header"
+    >
+      E-Brochures
+    </div>
+    <div
+      className="card-body"
+    >
+      <table
+        className="table table-striped table-bordered table-hover"
+      >
+        <thead>
+          <tr>
+            <th>
+              Name
+            </th>
+            <th>
+              View
+            </th>
+            <th>
+              Edit
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              test brochure
+            </td>
+            <td>
+              <a
+                className="e-brochure-link btn btn-primary"
+                href="/e-brochure/1"
+                onClick={[Function]}
+                onKeyDown={[Function]}
+              >
+                View E-Brochure
+              </a>
+            </td>
+            <td>
+              <a
+                className="edit-e-brochure-link btn btn-primary"
+                href="/e-brochure/1/edit"
+                onClick={[Function]}
+                onKeyDown={[Function]}
+              >
+                Edit E-Brochure
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <a
+        className="add-e-brochure-link btn btn-primary"
+        href="/white-label/test/new-e-brochure"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+      >
+        Add New E-Brochure
+      </a>
+    </div>
+  </div>
 </div>
 `;
