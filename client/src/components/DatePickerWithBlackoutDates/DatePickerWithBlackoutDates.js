@@ -1,12 +1,7 @@
 import React from "react";
 import DayPicker, { DateUtils } from 'react-day-picker';
-import 'react-day-picker/lib/style.css';
 
 class DatePickerWithBlackoutDates extends React.Component {
-  static defaultProps = {
-    numberOfMonths: 1,
-  };
-
   constructor(props) {
     super(props);
     this.handleDayClick = this.handleDayClick.bind(this);
@@ -64,7 +59,7 @@ class DatePickerWithBlackoutDates extends React.Component {
         </p>
         <DayPicker
           className="Selectable"
-          numberOfMonths={this.props.numberOfMonths}
+          numberOfMonths={this.props.numberOfMonths || 2}
           selectedDays={[from, { from, to }]}
           modifiers={modifiers}
           onDayClick={this.handleDayClick}

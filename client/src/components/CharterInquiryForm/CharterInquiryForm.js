@@ -6,13 +6,8 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import DatePickerWithBlackoutDates from '../DatePickerWithBlackoutDates';
+
 class CharterInquiryForm extends Component {
-  state = {};  
-
-  handleDateRangeChange = ({ from, to }) => {
-    this.props.handleDateRangeChange({from, to}); 
-  };
-
   render() {
     return (
       <Container>
@@ -53,7 +48,7 @@ class CharterInquiryForm extends Component {
                   <DatePickerWithBlackoutDates blackoutDates={[
                     { from: new Date("October 12, 2019"), to: new Date("October 25, 2019")},
                     { from: new Date("December 24, 2019"), to: new Date("January 2, 2020")},
-                  ]} handleSelectedRange={this.handleDateRangeChange} />
+                  ]} handleSelectedRange={this.props.handleDateRangeChange} />
                 </Col>     
                 <Col>
                   <i>All fields are required unless otherwise stated.</i>
