@@ -43,7 +43,6 @@ class ConfigureWhiteLabel extends Component {
 
   handleInputChange = event => {
     const { name, value } = event.target;
-    console.log("******", name, value);
     var newWhiteLabel = Object.assign({}, this.state.whiteLabel)
     newWhiteLabel[name] = value;
     this.setState({

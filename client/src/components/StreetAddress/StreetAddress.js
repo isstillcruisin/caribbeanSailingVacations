@@ -3,7 +3,6 @@ import React from "react";
 import {Row, Container} from 'react-bootstrap';
 
 const StreetAddress = props => {
-  console.log("****", props);
   return (
     <Container>
       <Row className='footer-address'>
