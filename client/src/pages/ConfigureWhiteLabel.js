@@ -6,7 +6,7 @@ import Loader from '../components/Loader'
 import Card from 'react-bootstrap/Card';
 
 class ConfigureWhiteLabel extends Component {
-  state = {};
+  state = {saved: true};
 
   componentDidMount() {
     let { name } = this.props.match.params;
@@ -30,7 +30,8 @@ class ConfigureWhiteLabel extends Component {
     }
   };
 
-  saveWhiteLabel = () => {
+  saveWhiteLabel = event => {
+    event.preventDefault();
     API.saveWhiteLabel(this.state.whiteLabel)
       .then(res =>
         this.setState({

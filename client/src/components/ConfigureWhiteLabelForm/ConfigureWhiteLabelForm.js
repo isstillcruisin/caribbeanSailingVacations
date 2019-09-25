@@ -1,114 +1,113 @@
 import React, {Component} from "react";
-import { Table, Button, Form, Row, Col } from 'react-bootstrap';
+import { Table, Button, Form, Row, Col, Card } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap'
 
 class ConfigureWhiteLabelForm extends Component {
   render() {
     return <div style={{color: 'black', padding: '10px'}}>
-      <Form>
-        <Form.Group className="add-white-label-form">
-          <Form.Label>White-Label Name</Form.Label>
-          <Form.Control
-            className="form-control"
-            id="white-label-name"
-            type="text"
-            disabled={true}
-            value={this.props.whiteLabel.name}
-            name="whiteLabelName"
-            required
-          />
-        </Form.Group>
-         <Form.Group>
-          <Form.Label>Phone number</Form.Label>
-          <Form.Control 
-            placeholder="Phone number"
-            name='phoneNumber' 
-            onChange={this.props.handleInputChange}
-            value={this.props.whiteLabel.phoneNumber} 
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Street address</Form.Label>
-          <Form.Control 
-            placeholder="Business street address"
-            name='streetAddress' 
-            onChange={this.props.handleInputChange}
-            value={this.props.whiteLabel.streetAddress} 
-          />
-        </Form.Group>
-        <Form.Row>
-          <Form.Group as={Col} controlId="formGridCity">
-            <Form.Label>City</Form.Label>
-            <Form.Control 
-              placeholder="City" 
-              name='city'
-              onChange={this.props.handleInputChange}
-              value={this.props.whiteLabel.city}
-            />
-          </Form.Group>
+      <Card>
+        <Card.Header>Contact Information</Card.Header>
+        <Card.Body>
+          <Form>
+            <Form.Group>
+              <Form.Label>Phone number</Form.Label>
+              <Form.Control 
+                placeholder="Phone number"
+                name='phoneNumber' 
+                onChange={this.props.handleInputChange}
+                value={this.props.whiteLabel.phoneNumber} 
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Street address</Form.Label>
+              <Form.Control 
+                placeholder="Business street address"
+                name='streetAddress' 
+                onChange={this.props.handleInputChange}
+                value={this.props.whiteLabel.streetAddress} 
+              />
+            </Form.Group>
+            <Form.Row>
+              <Form.Group as={Col} controlId="formGridCity">
+                <Form.Label>City</Form.Label>
+                <Form.Control 
+                  placeholder="City" 
+                  name='city'
+                  onChange={this.props.handleInputChange}
+                  value={this.props.whiteLabel.city}
+                />
+              </Form.Group>
 
-          <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>State</Form.Label>
-            <Form.Control
-              placeholder="State" 
-              name='state'
-              onChange={this.props.handleInputChange}
-              value={this.props.whiteLabel.state}
-            />
-          </Form.Group>
+              <Form.Group as={Col} controlId="formGridState">
+                <Form.Label>State</Form.Label>
+                <Form.Control
+                  placeholder="State" 
+                  name='state'
+                  onChange={this.props.handleInputChange}
+                  value={this.props.whiteLabel.state}
+                />
+              </Form.Group>
 
-          <Form.Group as={Col} controlId="formGridZip">
-            <Form.Label>Zip Code</Form.Label>
-            <Form.Control
-              placeholder="Zip Code" 
-              name='zipCode'
-              onChange={this.props.handleInputChange}
-              value={this.props.whiteLabel.zipCode}
-            />
-          </Form.Group>
-        </Form.Row>
-        <Row>
-          <Col>
-            <Form.Label>Country</Form.Label>
-            <Form.Control 
-              placeholder="Country" 
-              name='country'
-              onChange={this.props.handleInputChange}
-              value={this.props.whiteLabel.country}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Button
-              onClick={this.props.handleSaveWhiteLabel}
-              type="submit"
-              className="btn btn-lg"
-            > 
-              Save Address And Phone Number
-            </Button>
-          </Col>
-        </Row>
-      </Form>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>View</th>
-            <th>Edit</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.renderAllEBrochureRows(this.props.whiteLabel)}   
-        </tbody>
-      </Table>
+              <Form.Group as={Col} controlId="formGridZip">
+                <Form.Label>Zip Code</Form.Label>
+                <Form.Control
+                  placeholder="Zip Code" 
+                  name='zipCode'
+                  onChange={this.props.handleInputChange}
+                  value={this.props.whiteLabel.zipCode}
+                />
+              </Form.Group>
+            </Form.Row>
+            <Row>
+              <Form.Group as={Col} controlId="formGridCountry">
+                <Form.Label>Country</Form.Label>
+                <Form.Control 
+                  placeholder="Country" 
+                  name='country'
+                  onChange={this.props.handleInputChange}
+                  value={this.props.whiteLabel.country}
+                />
+              </Form.Group>
+            </Row>
+            <Row>
+              <Form.Group as={Col} controlId="formGridSubmitAddress">
+                <Button
+                  onClick={this.props.handleSaveWhiteLabel}
+                  type="submit"
+                  className="btn btn-lg"
+                  disabled={this.props.saved}
+                > 
+                  {this.props.saved ? 'Saved' : 'Save'}
+                </Button>
+              </Form.Group>
+            </Row>
+          </Form>
+        </Card.Body>
+      </Card>
+      <Card>
+        <Card.Header>E-Brochures</Card.Header>
+        <Card.Body>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>View</th>
+                <th>Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.renderAllEBrochureRows(this.props.whiteLabel)}   
+            </tbody>
+          </Table>
 
-      <LinkContainer
-        to={`/white-label/${this.props.whiteLabel.name}/new-e-brochure`}
-        className="add-e-brochure-link"
-      >
-        <Button>Add New E-Brochure</Button>
-      </LinkContainer>
+          <LinkContainer
+            to={`/white-label/${this.props.whiteLabel.name}/new-e-brochure`}
+            className="add-e-brochure-link"
+          >
+            <Button>Add New E-Brochure</Button>
+          </LinkContainer>
+        </Card.Body>
+      </Card>
     </div>
   }
 
