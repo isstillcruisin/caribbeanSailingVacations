@@ -4,7 +4,6 @@ import styled from "styled-components";
 import ls from "local-storage";
 import axios from "axios";
 import history from './history';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 const Page = React.lazy(() => import("./components/Page"));
 const AddBoat = React.lazy(() => import("./pages/AddBoat"));

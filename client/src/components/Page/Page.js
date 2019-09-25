@@ -59,9 +59,13 @@ class Page extends Component {
 
     return loggedIn
       ? this.setState({
+          mounted: true,
           userToken: true
         })
-      : this.setState({ userToken: false });
+      : this.setState({ 
+        mounted: true,
+        userToken: false 
+      });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -77,11 +81,6 @@ class Page extends Component {
     }
   }
 
-  componentWillMount() {
-    this.setState({
-      mounted: true
-    });
-  }
   displayAuthOptions = () => {
     return this.state.userToken ? true : false;
   };
