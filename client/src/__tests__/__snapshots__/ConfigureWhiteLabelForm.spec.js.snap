@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConfigureWhiteLabelForm component Matches the snapshot 1`] = `
+<div
+  style={
+    Object {
+      "color": "black",
+    }
+  }
+>
+  <form>
+    <div
+      className="form-group add-white-label-form"
+    >
+      <label
+        htmlFor="white-label-name"
+      >
+        <strong>
+          White-Label Name
+        </strong>
+      </label>
+      <input
+        className="form-control"
+        disabled={true}
+        id="white-label-name"
+        name="whiteLabelName"
+        required={true}
+        type="text"
+        value="test"
+      />
+    </div>
+    <div>
+      <input
+        className="form-control"
+        name="streetAddress"
+        placeholder="Street Address"
+        value="1 Test Lane"
+      />
+    </div>
+    <button
+      className="btn btn-lg btn btn-primary"
+      disabled={false}
+      type="submit"
+    >
+      Save White Label
+    </button>
+  </form>
+  <table
+    className="table table-striped table-bordered table-hover"
+  >
+    <thead>
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          View
+        </th>
+        <th>
+          Edit
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          test brochure
+        </td>
+        <td>
+          <a
+            className="e-brochure-link btn btn-primary"
+            href="/e-brochure/1"
+            onClick={[Function]}
+            onKeyDown={[Function]}
+          >
+            View E-Brochure
+          </a>
+        </td>
+        <td>
+          <a
+            className="edit-e-brochure-link btn btn-primary"
+            href="/e-brochure/1/edit"
+            onClick={[Function]}
+            onKeyDown={[Function]}
+          >
+            Edit E-Brochure
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <a
+    className="add-e-brochure-link btn btn-primary"
+    href="/white-label/test/new-e-brochure"
+    onClick={[Function]}
+    onKeyDown={[Function]}
+  >
+    Add New E-Brochure
+  </a>
+</div>
+`;
