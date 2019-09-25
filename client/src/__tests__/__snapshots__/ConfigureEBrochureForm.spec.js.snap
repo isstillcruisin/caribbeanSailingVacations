@@ -1,0 +1,146 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConfigureEBrochureForm component Matches the snapshot 1`] = `
+<div
+  style={
+    Object {
+      "color": "black",
+    }
+  }
+>
+  <form>
+    <div
+      className="form-group edit-e-brochure-form"
+    >
+      <label
+        htmlFor="e-brochure-name"
+      >
+        <strong>
+          EBrochure Name
+        </strong>
+      </label>
+      <input
+        className="form-control"
+        id="e-brochure-name"
+        name="eBrochureName"
+        required={true}
+        type="text"
+        value="test"
+      />
+    </div>
+  </form>
+  <table
+    className="table table-striped table-bordered table-hover"
+  >
+    <thead>
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          Enabled?
+        </th>
+        <th>
+          Yacht Details
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          boat1
+        </td>
+        <td>
+          <div
+            className="switch btn off btn-light"
+            onClick={[Function]}
+            style={Object {}}
+          >
+            <div
+              className="switch-group"
+            >
+              <label
+                className="switch-on btn btn-primary"
+                style={Object {}}
+              >
+                Y
+              </label>
+              <label
+                className="switch-off btn btn-light"
+                style={Object {}}
+              >
+                N
+              </label>
+              <span
+                className="switch-handle btn btn-light"
+              />
+            </div>
+          </div>
+        </td>
+        <td>
+          <a
+            className="boat-detail-link btn btn-primary"
+            href="/boat/1"
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            params={
+              Object {
+                "id": 1,
+              }
+            }
+          >
+            See Details
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          boat2
+        </td>
+        <td>
+          <div
+            className="switch btn on btn-primary"
+            onClick={[Function]}
+            style={Object {}}
+          >
+            <div
+              className="switch-group"
+            >
+              <label
+                className="switch-on btn btn-primary"
+                style={Object {}}
+              >
+                Y
+              </label>
+              <label
+                className="switch-off btn btn-light"
+                style={Object {}}
+              >
+                N
+              </label>
+              <span
+                className="switch-handle btn btn-light"
+              />
+            </div>
+          </div>
+        </td>
+        <td>
+          <a
+            className="boat-detail-link btn btn-primary"
+            href="/boat/2"
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            params={
+              Object {
+                "id": 2,
+              }
+            }
+          >
+            See Details
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;

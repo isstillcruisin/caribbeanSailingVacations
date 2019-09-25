@@ -37,20 +37,16 @@ class ConfigureEBrochureForm extends Component {
     </div>
   }
 
-  eBrochureIncludesYacht = (eBrochure, yacht) => {
-    return eBrochure.yachts.map(y => y._id).includes(yacht._id);
-  }
-
   renderAllYachtRows = (allYachts, eBrochure) => {
     return allYachts.map((yacht, i) => {
       return <tr key={`yacht-${i}`}>
           <td>{yacht.boatName}</td>
           <td>
             <BootstrapSwitchButton
-              checked={this.eBrochureIncludesYacht(eBrochure, yacht)}
+              checked={ eBrochure.yachts.map(y => y._id).includes(yacht._id) }
               onlabel='Y'
               offlabel='N'
-              onChange={(checked: boolean) => {
+              onChange={(checked) => {
                 if (checked) {
                   this.props.handleEnableYacht(yacht)
                 } else {
