@@ -3,7 +3,7 @@ const boatRoutes = require("./boats");
 const userRoutes = require("./users");
 const whiteLabelRoutes = require('./whiteLabels');
 const charterInquiryRoutes = require('./charterInquiries');
-const eBrochureRoutes = require('./eBrochures');
+const eBrochureRoutes = require('./ebrochures');
 
 router.use("/boats", boatRoutes);
 router.use("/users", userRoutes);
