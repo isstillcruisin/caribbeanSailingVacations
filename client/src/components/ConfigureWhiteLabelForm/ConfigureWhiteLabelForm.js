@@ -9,15 +9,26 @@ class ConfigureWhiteLabelForm extends Component {
         <Card.Header>Contact Information</Card.Header>
         <Card.Body>
           <Form>
-            <Form.Group>
-              <Form.Label>Phone number</Form.Label>
-              <Form.Control 
-                placeholder="Phone number"
-                name='phoneNumber' 
-                onChange={this.props.handleInputChange}
-                value={this.props.whiteLabel.phoneNumber} 
-              />
-            </Form.Group>
+            <Form.Row>
+              <Form.Group as={Col} controlId="formGridCompanyName">
+                <Form.Label>Company Name</Form.Label>
+                <Form.Control 
+                  placeholder="Company Name" 
+                  name='companyName'
+                  onChange={this.props.handleInputChange}
+                  value={this.props.whiteLabel.companyName}
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Phone number</Form.Label>
+                <Form.Control 
+                  placeholder="Phone number"
+                  name='phoneNumber' 
+                  onChange={this.props.handleInputChange}
+                  value={this.props.whiteLabel.phoneNumber} 
+                />
+              </Form.Group>
+            </Form.Row>
             <Form.Group>
               <Form.Label>Street address</Form.Label>
               <Form.Control 

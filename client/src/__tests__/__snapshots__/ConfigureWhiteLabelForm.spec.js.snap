@@ -24,18 +24,38 @@ exports[`ConfigureWhiteLabelForm component Matches the snapshot 1`] = `
         className=""
       >
         <div
-          className="form-group"
+          className="form-row"
         >
-          <label
-            className="form-label"
+          <div
+            className="form-group col"
           >
-            Phone number
-          </label>
-          <input
-            className="form-control"
-            name="phoneNumber"
-            placeholder="Phone number"
-          />
+            <label
+              className="form-label"
+              htmlFor="formGridCompanyName"
+            >
+              Company Name
+            </label>
+            <input
+              className="form-control"
+              id="formGridCompanyName"
+              name="companyName"
+              placeholder="Company Name"
+            />
+          </div>
+          <div
+            className="form-group"
+          >
+            <label
+              className="form-label"
+            >
+              Phone number
+            </label>
+            <input
+              className="form-control"
+              name="phoneNumber"
+              placeholder="Phone number"
+            />
+          </div>
         </div>
         <div
           className="form-group"

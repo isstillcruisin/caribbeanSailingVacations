@@ -7,6 +7,7 @@ const whiteLabelSchema = new Schema({
   isConfirmed: { type: Boolean, default: false },
   yachts: [{ type: Schema.Types.ObjectId, ref: 'Boat' }],
   ebrochures: [{ type: Schema.Types.ObjectId, ref: 'EBrochure' }],
+  companyName: { type: String },
   streetAddress: { type: String },
   city: { type: String },
   state: { type: String },

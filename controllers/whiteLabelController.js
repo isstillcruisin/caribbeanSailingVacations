@@ -7,9 +7,9 @@ module.exports = {
   create: function(req, res) {
     const whiteLabel = {
       _id: req.body._id,
-      name: req.body.whiteLabelName,
+      name: req.body.name,
       _travelAgent: req.user._id,
-      isConfirmed: false,
+      isConfirmed: true,
     };
     db.WhiteLabel.create(whiteLabel)
       .then(dbWhiteLabel => res.json(dbWhiteLabel))
