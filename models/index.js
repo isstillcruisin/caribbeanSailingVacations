@@ -3,5 +3,5 @@ module.exports = {
   User: require("./user"),
   WhiteLabel: require("./whiteLabel"),
   CharterInquiry: require("./charterInquiry"),
-  EBrochure: require("./eBrochure"),
+  EBrochure: require("./ebrochure"),
 };
