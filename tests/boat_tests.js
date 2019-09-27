@@ -50,6 +50,36 @@ describe('Boats', () => {
   });
 
   describe('POST /api/boats', () => {
+    const makeCreateRequest = (token) => {
+      let promise = chai.request(app)
+            .post('/api/boats/')
+            .type('form');
+      if (token) {
+        promise = promise.set({'Authorization': `Bearer ${token}`});
+      }
+      return promise.send({
+        'boatName': 'FakeBoat',
+        'year': 1999,
+        maxPassengers: 5,
+        manufacture: 'Anything',
+        crewBio: 'No Bio Needed'
+      });
+    }
+
+    const getToken = (email, password) => {
+      const userCredentials = {
+        email: email, 
+        password: password
+      }
+      return chai.request(app)
+          .post('/api/users/signin')
+          .type('form')
+          .send(userCredentials)
+          .then(function(res){
+            return res.body.token;
+          });
+    }
+
     after(function(done) {
       db.Boat.deleteMany({boatName: 'FakeBoat'})
         .then(() => done());
@@ -57,16 +87,7 @@ describe('Boats', () => {
 
     describe('When not authenticated', () => {
       it('should return a 401', (done) => {
-        chai.request(app)
-          .post('/api/boats/')
-          .type('form')
-          .send({
-            'boatName': 'FakeBoat',
-            'year': 1999,
-            maxPassengers: 5,
-            manufacture: 'Anything',
-            crewBio: 'No Bio Needed',
-          })
+        makeCreateRequest(null)
           .end(function (err, res) {
             res.should.have.status(401);
             done();          
@@ -75,87 +96,30 @@ describe('Boats', () => {
     })
 
     describe('When authenticated as a travel agent user', () => {
-      const userCredentials = {
-        email: 'michaelarick+travelagent@gmail.com', 
-        password: 'Testing123'
-      }
-      let token = null
-
-      before(function(done){
-        chai.request(app)
-          .post('/api/users/signin')
-          .set({
-            'Authorization': `Bearer ${token}`
-          })
-          .type('form')
-          .send(userCredentials)
-          .end(function(err, res){
-            res.should.have.status(200);
-            token = res.body.token;
-            done();
-          });
-      });
-
       it('should return a 401', (done) => {
-        chai.request(app)
-          .post('/api/boats/')
-          .type('form')
-          .set({
-            'Authorization': `Bearer ${token}`
+        getToken('michaelarick+travelagent@gmail.com', 'Testing123')
+          .then(token => {
+            makeCreateRequest(token)
+            .end(function (err, res) {
+              res.should.have.status(401);
+              done();          
+            });
           })
-          .send({
-            'boatName': 'FakeBoat',
-            'year': 1999,
-            maxPassengers: 5,
-            manufacture: 'Anything',
-            crewBio: 'No Bio Needed',
-          })
-          .end(function (err, res) {
-            res.should.have.status(401);
-            done();          
-          });
       });
     })
 
     describe('When authenticated as an admin user', () => {
-      const userCredentials = {
-        email: 'michaelarick@gmail.com', 
-        password: 'Testing123'
-      }
-      let token = null
-
-      before(function(done){
-        chai.request(app)
-          .post('/api/users/signin')
-          .type('form')
-          .send(userCredentials)
-          .end(function(err, res){
-            res.should.have.status(200);
-            token = res.body.token;
-            done();
-          });
-      });
-
       it('should add a yacht to the list of yachts', (done) => {
-        chai.request(app)
-          .post('/api/boats/')
-          .set({
-            'Authorization': `Bearer ${token}`
-          })
-          .type('form')
-          .send({
-            'boatName': 'FakeBoat',
-            'year': 1999,
-            maxPassengers: 5,
-            manufacture: 'Anything',
-            crewBio: 'No Bio Needed',
-          })
-          .end(function (err, res) {
-            res.should.have.status(200);
-            res.body.should.be.a('object');
-            res.body.boatName.should.equal('FakeBoat');
-            done();          
-          });
+        getToken('michaelarick@gmail.com', 'Testing123')
+          .then((token) => {
+            makeCreateRequest(token)
+              .end(function (err, res) {
+                res.should.have.status(200);
+                res.body.should.be.a('object');
+                res.body.boatName.should.equal('FakeBoat');
+                done();          
+              });
+          });  
       });
     });
   });
