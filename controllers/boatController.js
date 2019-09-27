@@ -11,7 +11,7 @@ module.exports = {
   findById: function(req, res) {
     db.Boat.findById(req.params.id)
       .then(dbBoat => res.json(dbBoat))
-      .catch(err => res.status(422).json(err));
+      .catch(err => res.status(404).json(err));
   },
   create: function(req, res) {
     const boat = {
