@@ -23,6 +23,10 @@ module.exports = {
       manufacture: req.body.manufacture,
       crewBio: req.body.crewBio
     };
+    if (!(req.user && req.user.isAdmin)) {
+      return res.status(401).json("Unauthorized");
+    } 
+
     db.Boat.create(boat)
       .then(dbBoat => res.json(dbBoat))
       .catch(err => res.status(422).json(err));

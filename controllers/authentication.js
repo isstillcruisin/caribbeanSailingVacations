@@ -35,8 +35,9 @@ exports.signin = function(req, res, next) {
               message: "Wrong Username or password" 
             }); 
         }
+        let token = tokenForUser(user)
         res.send({ 
-          token: tokenForUser(user), 
+          token: token, 
           adminMode: user.isAdmin, 
         });
       });
