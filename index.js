@@ -42,3 +42,5 @@ app.listen(PORT, () =>
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`)
 );
 
+module.exports = app;
+
