@@ -74,7 +74,6 @@ const AddBoatForm = props => (
       </label>
       <ImageUploader
         imgs={props.imgs}
-        onChange={props.handleInputChange}
         setUrls={props.handleSetUrls}
       />
     </div>
