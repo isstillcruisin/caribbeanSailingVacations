@@ -125,7 +125,7 @@ exports[`ConfigureWhiteLabelForm component Matches the snapshot 1`] = `
           </div>
         </div>
         <div
-          className="row"
+          className="form-row"
         >
           <div
             className="form-group col"
@@ -145,7 +145,46 @@ exports[`ConfigureWhiteLabelForm component Matches the snapshot 1`] = `
           </div>
         </div>
         <div
-          className="row"
+          className="form-row"
+        >
+          <div
+            className="form-group"
+          >
+            <div
+              className="boat-image-dropzone"
+              onBlur={[Function]}
+              onClick={[Function]}
+              onDragEnter={[Function]}
+              onDragLeave={[Function]}
+              onDragOver={[Function]}
+              onDrop={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              tabIndex={0}
+            >
+              <input
+                accept="image/*"
+                autoComplete="off"
+                multiple={false}
+                onChange={[Function]}
+                onClick={[Function]}
+                style={
+                  Object {
+                    "display": "none",
+                  }
+                }
+                tabIndex={-1}
+                type="file"
+              />
+              <p>
+                Dropping a logo image here, or click to select a file to upload. The image will be scaled to fit in a rectangle of 200px wide, 100px tall.
+              </p>
+            </div>
+            <div />
+          </div>
+        </div>
+        <div
+          className="form-row"
         >
           <div
             className="form-group col"
