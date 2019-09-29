@@ -1,6 +1,8 @@
 import React, {Component} from "react";
-import { Table, Button, Form, Row, Col, Card } from 'react-bootstrap';
+import { Table, Button, Form, Col, Card } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap'
+import ImageUploader from '../ImageUploader'
+
 
 class ConfigureWhiteLabelForm extends Component {
   render() {
@@ -69,7 +71,7 @@ class ConfigureWhiteLabelForm extends Component {
                 />
               </Form.Group>
             </Form.Row>
-            <Row>
+            <Form.Row>
               <Form.Group as={Col} controlId="formGridCountry">
                 <Form.Label>Country</Form.Label>
                 <Form.Control 
@@ -79,17 +81,21 @@ class ConfigureWhiteLabelForm extends Component {
                   value={this.props.whiteLabel.country}
                 />
               </Form.Group>
-            </Row>
-            <Row>
-            <ImageUploader
-              imgs={this.props.whiteLabel.logo}
-              onChange={this.props.handleInputChange}
-              setUrls={this.handleSetUrls}
-              placeholder='Try dropping a logo image here, or click to select a file to upload.'
-              multiple={false}
-            />
-
-            <Row>
+            </Form.Row>
+            <Form.Row>
+              <Form.Group>
+                <ImageUploader
+                  imgs={this.props.whiteLabel.logo}
+                  onChange={this.props.handleInputChange}
+                  setUrls={this.handleSetUrls}
+                  placeholder='Dropping a logo image here, or click to select a file to upload. The image will be scaled to fit in a rectangle of 200px wide, 100px tall.'
+                  multiple={false}
+                  width={200}
+                  height={100}
+                />
+              </Form.Group>
+            </Form.Row>
+            <Form.Row>
               <Form.Group as={Col} controlId="formGridSubmitAddress">
                 <Button
                   onClick={this.props.handleSaveWhiteLabel}
@@ -100,7 +106,7 @@ class ConfigureWhiteLabelForm extends Component {
                   {this.props.saved ? 'Saved' : 'Save'}
                 </Button>
               </Form.Group>
-            </Row>
+            </Form.Row>
           </Form>
         </Card.Body>
       </Card>
@@ -132,7 +138,7 @@ class ConfigureWhiteLabelForm extends Component {
   }
 
   handleSetUrls = urlArray => {
-    this.props.handleInputChange({ target: { name: const { 'logo', urlArray[0] }}})
+    this.props.handleInputChange({ target: { name: 'logoUrl', value: urlArray }})
   };
 
 

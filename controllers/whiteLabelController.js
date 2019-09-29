@@ -59,10 +59,4 @@ module.exports = {
       return res.status(422).json(err)
     });
   },
-  // remove: function(req, res) {
-  //   db.Boat.findById({ _id: req.params.id })
-  //     .then(dbBoat => dbBoat.remove())
-  //     .then(dbBoat => res.json(dbBoat))
-  //     .catch(err => res.status(422).json(err));
-  // }
 };

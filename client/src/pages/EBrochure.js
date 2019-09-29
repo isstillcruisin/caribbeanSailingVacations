@@ -26,7 +26,8 @@ class EBrochure extends Component {
       return (
         <Container>
           <Row>
-            <h2 style={{width: '100%', 'text-align': 'center'}}>CHARTER ASSISTANT - {this.state.eBrochure.name.toUpperCase()}</h2>
+            <h2 style={{width: '100%', 'text-align': 'center'}}>CHARTER ASSISTANT</h2>
+            <img src={this.state.eBrochure._whiteLabel.logoUrl} />
           </Row>
           <Row>
             <h5 style={{'margin-left': '15px'}}>Welcome. Please choose a yacht to request further information about chartering:</h5>
