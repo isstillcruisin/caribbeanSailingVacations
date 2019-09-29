@@ -85,7 +85,7 @@ class ConfigureWhiteLabelForm extends Component {
             <Form.Row>
               <Form.Group>
                 <ImageUploader
-                  imgs={this.props.whiteLabel.logo}
+                  images={[this.props.whiteLabel.logoUrl]}
                   onChange={this.props.handleInputChange}
                   setUrls={this.handleSetUrls}
                   placeholder='Dropping a logo image here, or click to select a file to upload. The image will be scaled to fit in a rectangle of 200px wide, 100px tall.'

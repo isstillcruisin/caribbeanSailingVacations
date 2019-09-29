@@ -46,6 +46,19 @@ class ImageUploader extends Component {
     });
   }
 
+  renderImages = () => {
+    if (this.state.uploadedFileCloudinaryUrl === '') {
+      return <div>
+        {this.props.images.map(image => <img src={image} alt=""/>)}
+      </div>
+    } else {
+      return <div>
+        <p>{this.state.uploadedFile.name}</p>
+        <img src={this.state.uploadedFileCloudinaryUrl} alt="" />
+      </div>  
+    } 
+  }
+
   render() {
     return (
       <>
@@ -69,11 +82,9 @@ class ImageUploader extends Component {
         </Dropzone>
 
         <div>
-          {this.state.uploadedFileCloudinaryUrl === '' ? null :
-            <div>
-              <p>{this.state.uploadedFile.name}</p>
-              <img src={this.state.uploadedFileCloudinaryUrl} alt="" />
-            </div>}
+          <div>
+            {this.renderImages()}
+          </div>
         </div>
       </>
     );
