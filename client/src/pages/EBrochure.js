@@ -27,7 +27,7 @@ class EBrochure extends Component {
         <Container>
           <Row>
             <h2 style={{width: '100%', 'text-align': 'center'}}>CHARTER ASSISTANT</h2>
-            <img src={this.state.eBrochure._whiteLabel.logoUrl} />
+            <img src={this.state.eBrochure._whiteLabel.logoUrl} alt='White Label Logo' />
           </Row>
           <Row>
             <h5 style={{'margin-left': '15px'}}>Welcome. Please choose a yacht to request further information about chartering:</h5>
