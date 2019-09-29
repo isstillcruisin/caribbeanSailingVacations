@@ -47,7 +47,7 @@ class ImageUploader extends Component {
         <Dropzone
           onDrop={this.onImageDrop.bind(this)}
           accept="image/*"
-          multiple={true}
+          multiple={this.props.multiple}
         >
           {({ getRootProps, getInputProps }) => {
             return (
@@ -55,8 +55,7 @@ class ImageUploader extends Component {
                 <input {...getInputProps()} />
                 {
                   <p>
-                    Try dropping some files here, or click to select files to
-                    upload.
+                    {this.props.placeholder}
                   </p>
                 }
               </div>

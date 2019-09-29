@@ -75,6 +75,8 @@ const AddBoatForm = props => (
       <ImageUploader
         imgs={props.imgs}
         setUrls={props.handleSetUrls}
+        placeholder='Try dropping some files here, or click to select files to upload.'
+        multiple={true}
       />
     </div>
     <div className="pull-right">
