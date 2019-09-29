@@ -76,6 +76,8 @@ const Form = props => (
         imgs={props.imgs}
         onChange={props.handleInputChange}
         setUrls={props.handleSetUrls}
+        placeholder='Try dropping some files here, or click to select files to upload.'
+        multiple={true}
       />
     </div>
     <div className="pull-right">
