@@ -19,6 +19,7 @@ exports[`AddBoatForm component Matches the snapshot 1`] = `
       placeholder="name of the boat..."
       required={true}
       type="text"
+      value="test boat"
     />
     <label
       htmlFor="description"
@@ -34,6 +35,7 @@ exports[`AddBoatForm component Matches the snapshot 1`] = `
       placeholder="about the crew.."
       required={true}
       type="textArea"
+      value="test bio"
     />
     <label
       htmlFor="maxPassengers"
@@ -49,6 +51,7 @@ exports[`AddBoatForm component Matches the snapshot 1`] = `
       placeholder="4-30"
       required={true}
       type="number"
+      value="10"
     />
     <label
       htmlFor="year"
@@ -64,6 +67,7 @@ exports[`AddBoatForm component Matches the snapshot 1`] = `
       placeholder="2009"
       required={true}
       type="number"
+      value="1999"
     />
     <label
       htmlFor="manufacture"
@@ -79,6 +83,7 @@ exports[`AddBoatForm component Matches the snapshot 1`] = `
       placeholder="Boat size etc..."
       required={true}
       type="text"
+      value="2000 feet test manufacture"
     />
     <label
       htmlFor="image-url"
