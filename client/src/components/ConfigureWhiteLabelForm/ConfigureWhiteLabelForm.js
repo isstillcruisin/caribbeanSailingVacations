@@ -81,6 +81,15 @@ class ConfigureWhiteLabelForm extends Component {
               </Form.Group>
             </Row>
             <Row>
+            <ImageUploader
+              imgs={this.props.whiteLabel.logo}
+              onChange={this.props.handleInputChange}
+              setUrls={this.handleSetUrls}
+              placeholder='Try dropping a logo image here, or click to select a file to upload.'
+              multiple={false}
+            />
+
+            <Row>
               <Form.Group as={Col} controlId="formGridSubmitAddress">
                 <Button
                   onClick={this.props.handleSaveWhiteLabel}
@@ -121,6 +130,11 @@ class ConfigureWhiteLabelForm extends Component {
       </Card>
     </div>
   }
+
+  handleSetUrls = urlArray => {
+    this.props.handleInputChange({ target: { name: const { 'logo', urlArray[0] }}})
+  };
+
 
   renderAllEBrochureRows = (whiteLabel) => {
     return whiteLabel.ebrochures.map((eBrochure, i) => {
