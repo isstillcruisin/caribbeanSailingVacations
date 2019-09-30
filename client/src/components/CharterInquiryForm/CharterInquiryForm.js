@@ -6,20 +6,19 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import DatePickerWithBlackoutDates from '../DatePickerWithBlackoutDates';
+import formatPrice from '../../utils/formatPrice';
 
 class CharterInquiryForm extends Component {
-  renderPrice=price => Number(price).toLocaleString('en-US', { style: 'currency', currency: 'USD' })
-
   renderEstimatedPrice=() => {
     if (this.props.estimatedPrice) {
-      return <h4>{this.renderPrice(this.props.estimatedPrice)}</h4>
+      return <h4>{formatPrice(this.props.estimatedPrice)}</h4>
     } else {
       return <i>Choose dates first.</i>
     }
   }
 
   renderPricePerWeek=() => {
-    return <h4>{this.renderPrice(this.props.boat.pricePerWeek)}</h4>
+    return <h4>{formatPrice(this.props.boat.pricePerWeek)}</h4>
   }
 
   render() {
