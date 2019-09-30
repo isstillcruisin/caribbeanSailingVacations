@@ -33,6 +33,7 @@ describe('Boats', () => {
             res.body.maxPassengers.should.equal(8);
             res.body.manufacture.should.equal('N/A');
             res.body.crewBio.should.equal('There is no crew bio here, but I felt like it needed something.');
+            res.body.pricePerWeek.should.equal(20000);
             done();
           });
     });
@@ -62,7 +63,8 @@ describe('Boats', () => {
         'year': 1999,
         maxPassengers: 5,
         manufacture: 'Anything',
-        crewBio: 'No Bio Needed'
+        crewBio: 'No Bio Needed',
+        pricePerWeek: 30000
       });
     }
 
@@ -117,6 +119,11 @@ describe('Boats', () => {
                 res.should.have.status(200);
                 res.body.should.be.a('object');
                 res.body.boatName.should.equal('FakeBoat');
+                res.body.year.should.equal(1999);
+                res.body.maxPassengers.should.equal(5);
+                res.body.manufacture.should.equal('Anything');
+                res.body.crewBio.should.equal('No Bio Needed');
+                res.body.pricePerWeek.should.equal(30000);
                 done();          
               });
           });  

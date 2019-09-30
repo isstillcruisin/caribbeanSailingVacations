@@ -7,7 +7,8 @@ const boatSchema = new Schema({
   year: { type: Number, required: true },
   maxPassengers: { type: Number, required: true },
   manufacture: {type: String, required: true},
-  crewBio: {type: String, required: true}
+  crewBio: {type: String, required: true},
+  pricePerWeek: {type: Number, required: true }
 });
 
 const Boat = mongoose.model("Boat", boatSchema);

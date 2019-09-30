@@ -21,7 +21,8 @@ module.exports = {
       year: req.body.year,
       maxPassengers: req.body.maxPassengers,
       manufacture: req.body.manufacture,
-      crewBio: req.body.crewBio
+      crewBio: req.body.crewBio,
+      pricePerWeek: req.body.pricePerWeek,
     };
     if (!(req.user && req.user.isAdmin)) {
       return res.status(401).json("Unauthorized");
