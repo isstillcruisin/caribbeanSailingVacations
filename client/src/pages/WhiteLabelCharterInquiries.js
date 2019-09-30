@@ -6,6 +6,7 @@ import Card from "react-bootstrap/Card"
 import Button from "react-bootstrap/Button"
 import moment from 'moment';
 import { LinkContainer } from 'react-router-bootstrap'
+import formatPrice from '../utils/formatPrice'
 
 class WhiteLabelCharterInquiries extends Component {
   _isMounted = false;
@@ -46,6 +47,8 @@ class WhiteLabelCharterInquiries extends Component {
                 <td>{charterInquiry._yacht.boatName}</td>
                 <td>{moment(charterInquiry.startDate).format('LL')}</td>
                 <td>{moment(charterInquiry.endDate).format('LL')}</td>
+                <td>{formatPrice(charterInquiry._yacht.pricePerWeek)}</td>
+                <td>{formatPrice(charterInquiry.estimatedPrice)}</td>
                 <td><LinkContainer
                       to={`/e-brochure/${charterInquiry._eBrochure._id}`}
                       className="e-brochure-link"
@@ -73,6 +76,8 @@ class WhiteLabelCharterInquiries extends Component {
                 <th>Yacht Name</th>
                 <th>Start Date</th>
                 <th>End Date</th>
+                <th>Price Per Week</th>
+                <th>Estimated Price</th>
                 <th>E-Brochure</th>
                 <th>Post-Acceptance Email Link</th>
               </tr>

@@ -40,6 +40,7 @@ class WhiteLabelCharterInquiry extends Component {
       endDate: this.state.endDate,
       eBrochure: this.state.eBrochure,
       yacht: this.state.boat,
+      estimatedPrice: this.state.estimatedPrice,
     });
   };
 
