@@ -49,7 +49,7 @@ class ImageUploader extends Component {
   renderImages = () => {
     if (this.state.uploadedFileCloudinaryUrl === '') {
       return <div>
-        {this.props.images.map(image => <img src={image} alt=""/>)}
+        {this.props.images && this.props.images.map((image, index) => <img key={index + 1} src={image} alt=""/>)}
       </div>
     } else {
       return <div>

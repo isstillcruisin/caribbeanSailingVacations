@@ -180,7 +180,15 @@ exports[`ConfigureWhiteLabelForm component Matches the snapshot 1`] = `
                 Dropping a logo image here, or click to select a file to upload. The image will be scaled to fit in a rectangle of 200px wide, 100px tall.
               </p>
             </div>
-            <div />
+            <div>
+              <div>
+                <div>
+                  <img
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div

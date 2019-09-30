@@ -122,7 +122,11 @@ exports[`AddBoatForm component Matches the snapshot 1`] = `
         Try dropping some files here, or click to select files to upload.
       </p>
     </div>
-    <div />
+    <div>
+      <div>
+        <div />
+      </div>
+    </div>
   </div>
   <div
     className="pull-right"
