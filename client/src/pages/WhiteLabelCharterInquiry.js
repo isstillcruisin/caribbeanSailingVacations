@@ -39,7 +39,7 @@ class WhiteLabelCharterInquiry extends Component {
       startDate: this.state.startDate,
       endDate: this.state.endDate,
       eBrochure: this.state.eBrochure,
-      yacht: this.state.boat,   
+      yacht: this.state.boat,
     });
   };
 
@@ -50,15 +50,24 @@ class WhiteLabelCharterInquiry extends Component {
     });
   };
 
+  calculateEstimatedPrice = (from, to) => {
+    var oneWeekInMsecs = 7*24*60*60*1000;
+    if (from && to) {
+      return this.state.boat.pricePerWeek * (to.getTime() - from.getTime())/oneWeekInMsecs
+    } else {
+      return null
+    }
+  }
+
   handleDateRangeChange = ({ from, to }) => {
-    this.setState({ startDate: from, endDate: to });
+    this.setState({ startDate: from, endDate: to, estimatedPrice: this.calculateEstimatedPrice(from, to) });
   }
 
   showWhiteLabelInquiry = () => {
     if (this.state.done) {
       return <div><p>You're All Set!</p><p>Your Inquiry has been submitted to {TravelAgentInfo(this.state.eBrochure._whiteLabel._travelAgent).fullName}.</p></div>
     } else if (this.state.boat && this.state.eBrochure) {
-      return <CharterInquiryForm whiteLabel={this.state.eBrochure._whiteLabel} boat={this.state.boat} handleInputChange={this.handleInputChange} handleSubmitInquiry={this.handleSubmitInquiry} handleDateRangeChange={this.handleDateRangeChange}/>
+      return <CharterInquiryForm whiteLabel={this.state.eBrochure._whiteLabel} boat={this.state.boat} estimatedPrice={this.state.estimatedPrice} handleInputChange={this.handleInputChange} handleSubmitInquiry={this.handleSubmitInquiry} handleDateRangeChange={this.handleDateRangeChange}/>
     } else {
       return <Loader />
     }

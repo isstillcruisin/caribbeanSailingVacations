@@ -8,6 +8,20 @@ import Card from 'react-bootstrap/Card';
 import DatePickerWithBlackoutDates from '../DatePickerWithBlackoutDates';
 
 class CharterInquiryForm extends Component {
+  renderPrice=price => Number(price).toLocaleString('en-US', { style: 'currency', currency: 'USD' })
+
+  renderEstimatedPrice=() => {
+    if (this.props.estimatedPrice) {
+      return <h4>{this.renderPrice(this.props.estimatedPrice)}</h4>
+    } else {
+      return <i>Choose dates first.</i>
+    }
+  }
+
+  renderPricePerWeek=() => {
+    return <h4>{this.renderPrice(this.props.boat.pricePerWeek)}</h4>
+  }
+
   render() {
     return (
       <Container>
@@ -54,7 +68,22 @@ class CharterInquiryForm extends Component {
                   <i>All fields are required unless otherwise stated.</i>
                 </Col>
               </Form.Row>
-             
+               <Form.Row>
+                <Form.Label column xs={3}>
+                  <b>Price Per Week</b>
+                </Form.Label>
+                <Col xs={9}>
+                 {this.renderPricePerWeek()}
+                </Col>
+              </Form.Row>   
+              <Form.Row>
+                <Form.Label column xs={3}>
+                  <b>Estimated Price</b>
+                </Form.Label>
+                <Col xs={9}>
+                 {this.renderEstimatedPrice()}
+                </Col>
+              </Form.Row>           
               <Button
                 onClick={this.props.handleSubmitInquiry}
                 type="submit"
