@@ -106,7 +106,7 @@ class AllBoats extends Component {
                 {this.renderImages(boat.imgs)}
               </Carousel>
               <BoatName key={`${boat._id}${i + 1}`}>{boat.boatName}</BoatName>
-              <BoatPrice>Week | $20,000</BoatPrice>
+              <BoatPrice>{`Week | $${Number(boat.pricePerWeek).toLocaleString()}`}</BoatPrice>
               {link}
             </BoatContainer>
           </Zoom>
