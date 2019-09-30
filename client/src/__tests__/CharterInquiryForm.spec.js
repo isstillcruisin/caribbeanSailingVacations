@@ -6,7 +6,7 @@ describe("CharterInquiryForm component", () => {
   test("Matches the snapshot", () => {
     const alert = create(
       <CharterInquiryForm 
-        boat={{boatName: 'test boat'}}
+        boat={{boatName: 'test boat', pricePerWeek: 10000}}
         whiteLabel={{
           _travelAgent: {
             firstName: 'Test',

@@ -1171,6 +1171,42 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
             </i>
           </div>
         </div>
+        <div
+          className="form-row"
+        >
+          <label
+            className="form-label col-form-label col-3"
+          >
+            <b>
+              Price Per Week
+            </b>
+          </label>
+          <div
+            className="col-9"
+          >
+            <h4>
+              $10,000.00
+            </h4>
+          </div>
+        </div>
+        <div
+          className="form-row"
+        >
+          <label
+            className="form-label col-form-label col-3"
+          >
+            <b>
+              Estimated Price
+            </b>
+          </label>
+          <div
+            className="col-9"
+          >
+            <i>
+              Choose dates first.
+            </i>
+          </div>
+        </div>
         <button
           className="btn btn-lg btn btn-primary"
           disabled={false}
