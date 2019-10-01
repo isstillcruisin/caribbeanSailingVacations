@@ -5,12 +5,14 @@ import { LinkContainer } from 'react-router-bootstrap'
 import Carousel from 'react-bootstrap/Carousel';
 import Zoom from "react-reveal/Zoom";
 import Button from 'react-bootstrap/Button';
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Loader from '../components/Loader';
+import Row from 'react-bootstrap/Row';
 
 const BoatContainer = styled.div`
   display: grid;
   overflow: hidden;
-  border: 1px solid ${props => props.theme.transparentGrey};
+  border: 1px solid ${props => props.theme.white};
   position: relative;
   width: 100%;
   transition: all 1s ease-out;
@@ -36,15 +38,16 @@ const BoatsDisplay = styled.div`
   display: grid;
   grid-template: 50% 50% / 50% 50%;
   grid-gap: 3rem;
-  background: ${props => props.theme.transparentGrey};
+  background: ${props => props.theme.white};
   @media (max-width: 800px) {
     grid-template: 50% 50% / 100%;
   }
 `;
 
 const BoatImage = styled.img`
-  max-height: 30rem;
-  object-fit: fill;
+  height: 30rem;
+  object-fit: scale-down;
+
 `;
 
 class AllBoats extends Component {
@@ -68,17 +71,19 @@ class AllBoats extends Component {
         console.log("response error (╯°□°)╯︵ ┻━┻ ", response);
       }
     });
-  };
+  }
 
   renderImages = images => {
     return images.map((image, i) => {
+      const imageParts = image.split('/upload/'),
+        imgUrl = `${imageParts[0]}/upload/w_500,h_300,c_fill/${imageParts[1]}`
       return (
-        <Carousel.Item>
-          <BoatImage src={image} alt=""></BoatImage>
+        <Carousel.Item style={{'min-height': '30rem'}}>
+          <img src={imgUrl} alt="" className='d-block w-100' />
         </Carousel.Item>
       );
     });
-  };
+  }
 
   showBoats = () => {
     if (this.state.boats) {
@@ -103,6 +108,7 @@ class AllBoats extends Component {
           <Zoom bottom>
             <BoatContainer key={boat._id}>
               <Carousel key={`${boat._id}${i + 6}`} style={{width: "470px"}}>
+              <Carousel key={`${boat._id}${i + 6}`} style={{width: '100%'}}>
                 {this.renderImages(boat.imgs)}
               </Carousel>
               <BoatName key={`${boat._id}${i + 1}`}>{boat.boatName}</BoatName>
