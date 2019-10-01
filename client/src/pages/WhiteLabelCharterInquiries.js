@@ -5,6 +5,9 @@ import Table from "react-bootstrap/Table"
 import Card from "react-bootstrap/Card"
 import Button from "react-bootstrap/Button"
 import Container from "react-bootstrap/Container"
+import Modal from "react-bootstrap/Modal"
+import Tab from "react-bootstrap/Tab"
+import Tabs from "react-bootstrap/Tabs"
 import moment from 'moment';
 import { LinkContainer } from 'react-router-bootstrap'
 import formatPrice from '../utils/formatPrice'
@@ -12,7 +15,7 @@ import formatPrice from '../utils/formatPrice'
 class WhiteLabelCharterInquiries extends Component {
   _isMounted = false;
   state = {
-    charterInquiries: []
+    charterInquiries: {}
   };
 
   componentDidMount() {
@@ -48,14 +51,18 @@ class WhiteLabelCharterInquiries extends Component {
     this._isMounted = false;
   }
 
-  confirmedCharterInquiryRows=() => this.renderCharterInquiryRows(this.state.charterInquiries.confirmed, true);
-  unconfirmedCharterInquiryRows=() => this.renderCharterInquiryRows(this.state.charterInquiries.unconfirmed, false);
+  confirmedCharterInquiryRows=() => this.renderCharterInquiryRows(this.state.charterInquiries.confirmed, true)
+  unconfirmedCharterInquiryRows=() => this.renderCharterInquiryRows(this.state.charterInquiries.unconfirmed, false)
+
+  handleSendContract=() => this.setState(Object.assign({}, this.state, {showSendContractModal: true}))
+  handleCloseSendContractModal=() => this.setState(Object.assign({}, this.state, {showSendContractModal: false}))
 
   renderCharterInquiryRows(charterInquiries, confirmed) {
     return charterInquiries && charterInquiries.map((charterInquiry, i) => {
       const sendOrientationButtonColumn = <td><Button onClick={this.handleSendOrientationPacket} data-id={charterInquiry._id}>Send Orientation Packet</Button></td>,
-        setConfirmedButtonColumn = <td><Button onClick={this.handleSetInquiryConfirmed} data-id={charterInquiry._id}>Confirm</Button></td>,
-        buttonColumn = confirmed ? sendOrientationButtonColumn : setConfirmedButtonColumn;            
+        setConfirmedButtonColumn = <td><Button onClick={this.handleSetInquiryConfirmed} data-id={charterInquiry._id}>Set Confirmed</Button></td>,
+        buttonColumn = confirmed ? sendOrientationButtonColumn : setConfirmedButtonColumn,
+        sendContractColumn = confirmed ? '' : <td><Button onClick={this.handleSendContract} data-id={charterInquiry._id}>Send Contract</Button></td>
       return (<tr key={i}>
                 <td>{charterInquiry.firstName}</td>
                 <td>{charterInquiry.lastName}</td>
@@ -70,6 +77,7 @@ class WhiteLabelCharterInquiries extends Component {
                       className="e-brochure-link"
                     ><Button>E-Brochure</Button></LinkContainer>
                 </td>
+                {sendContractColumn}
                 {buttonColumn}
               </tr>
       )
@@ -77,11 +85,11 @@ class WhiteLabelCharterInquiries extends Component {
   }
 
   renderTableHeaders(confirmed) {
-    const buttonHeader = confirmed ? <th>Post-Acceptance Email Link</th> : <th>Set Confirmed</th>
+    const buttonHeader = confirmed ? <th>Post-Acceptance Email Link</th> : <th>Set Confirmed</th>,
+      sendContractHeader = confirmed ? '' : <th>Send Contract</th>
 
     return  <thead>
-              <tr>
-                <th>First Name</th>
+              <tr><th>First Name</th>
                 <th>Last Name</th>
                 <th>Email Address</th>
                 <th>Yacht Name</th>
@@ -90,40 +98,78 @@ class WhiteLabelCharterInquiries extends Component {
                 <th>Price Per Week</th>
                 <th>Estimated Price</th>
                 <th>E-Brochure</th>
+                {sendContractHeader}
                 {buttonHeader}
               </tr>
             </thead>
   }
 
+  renderUnconfirmedTab = () => {
+    return <Tab eventKey="unconfirmed" title="Unconfirmed">
+            <Card style={{color: 'black'}}>
+              <Card.Header>
+                Unconfirmed Charter Inquiries on White Label: <i>{this.props.match.params.whiteLabelName}</i>
+              </Card.Header>
+              <Card.Body>
+                <Table striped bordered hover>
+                  {this.renderTableHeaders(false)}
+                  <tbody>
+                    {this.unconfirmedCharterInquiryRows()}   
+                  </tbody>
+                </Table>
+              </Card.Body>
+            </Card>
+          </Tab>
+  }
+
+  renderConfirmedTab = () => {
+    return <Tab eventKey="confirmed" title="Confirmed">
+            <Card style={{color: 'black'}}>
+             <Card.Header>
+                Confirmed Charter Inquiries on White Label: <i>{this.props.match.params.whiteLabelName}</i>
+              </Card.Header>
+              <Card.Body>
+                <Table striped bordered hover>
+                  {this.renderTableHeaders(true)}
+                  <tbody>
+                    {this.confirmedCharterInquiryRows()}   
+                  </tbody>
+                </Table>
+              </Card.Body>
+            </Card>
+          </Tab>
+
+  }
+
+  renderArchivedTab = () => {
+    if (this.state.charterInquiries.archived && this.state.charterInquiries.archived.length > 0) {
+      return <Tab eventKey="archived" title="Archived">
+         This tab should show the archived Charter Inquiries
+      </Tab>
+    } else {
+      return <Tab eventKey="archived" title="Archived" disabled />
+    }
+  }
+
   render() {
     if (this.state.charterInquiries) {
       return <Container>
-        <Card style={{color: 'black'}}>
-          <Card.Header>
-            Unconfirmed Charter Inquiries on White Label: <i>{this.props.match.params.whiteLabelName}</i>
-          </Card.Header>
-          <Card.Body>
-            <Table striped bordered hover>
-              {this.renderTableHeaders(false)}
-              <tbody>
-                {this.unconfirmedCharterInquiryRows()}   
-              </tbody>
-            </Table>
-          </Card.Body>
-        </Card>
-        <Card style={{color: 'black'}}>
-         <Card.Header>
-            Confirmed Charter Inquiries on White Label: <i>{this.props.match.params.whiteLabelName}</i>
-          </Card.Header>
-          <Card.Body>
-            <Table striped bordered hover>
-              {this.renderTableHeaders(true)}
-              <tbody>
-                {this.confirmedCharterInquiryRows()}   
-              </tbody>
-            </Table>
-          </Card.Body>
-        </Card>
+        <Tabs defaultActiveKey="unconfirmed" id="uncontrolled-tab-example" variant='pills'>
+          {this.renderUnconfirmedTab()}
+          {this.renderConfirmedTab()}
+          {this.renderArchivedTab()}
+        </Tabs>
+        <Modal show={this.state.showSendContractModal} onHide={this.handleCloseSendContractModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>Send Contract</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Ideally, this would send a contract to the person inquiring about the charter. As it is now, that has to be done by the travel agent.</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={this.handleCloseSendContractModal}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Container>
     } else {
       return <Loader />

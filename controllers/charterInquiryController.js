@@ -2,6 +2,7 @@ const db = require("../models");
 const jwt = require("jwt-simple");
 const keys = require("../config/keys");
 const Mailer = require("../routes/services/Mailer");
+const moment = require('moment');
 
 // Defining methods for the articleController
 module.exports = {
@@ -43,7 +44,7 @@ module.exports = {
               return result;
             },
             [[], []]);      
-          res.json({ confirmed, unconfirmed })
+          res.json({ confirmed, unconfirmed, archived: [] })
         })
         .catch(err => res.status(422).json(err));
       } else {
@@ -87,8 +88,27 @@ module.exports = {
       { _id: req.params.id }, 
       { confirmed: true }
     )
-    .then(() => { res.status(200).send({})})
-    .catch(error => console.error(error.toString()));
-  }
-
+    .populate({
+      path: '_whiteLabel',
+      populate: { path: '_travelAgent' }
+    })
+    .populate('_yacht')
+    .then((dbCharterInquiry) => { 
+      ta = dbCharterInquiry._whiteLabel._travelAgent,
+        subject = 'Yacht Charter Confirmed', 
+        mailer = new Mailer(
+          subject,
+          [{email: dbCharterInquiry.email}], 
+          `Dear ${dbCharterInquiry.firstName} ${dbCharterInquiry.lastName},` + 
+          `<br><br>Congratulations! The dates you requested have been reserved and all parties have signed the contract!</br></br>` +
+          `<br>Yacht: ${dbCharterInquiry._yacht.boatName}</br>` +
+          `<br>Dates: ${moment(dbCharterInquiry.startDate).format('LL')} - ${moment(dbCharterInquiry.endDate).format('LL')}` +
+          `<br><br>Thanks,<br><br>${ta.firstName} ${ta.lastName}`
+        )
+        mailer
+          .send()
+          .then(() => {res.status(200).send({ })})
+          .catch(error => console.error(error.toString()));
+    });
+  },
 };
