@@ -107,7 +107,6 @@ class AllBoats extends Component {
         return (
           <Zoom bottom>
             <BoatContainer key={boat._id}>
-              <Carousel key={`${boat._id}${i + 6}`} style={{width: "470px"}}>
               <Carousel key={`${boat._id}${i + 6}`} style={{width: '100%'}}>
                 {this.renderImages(boat.imgs)}
               </Carousel>
