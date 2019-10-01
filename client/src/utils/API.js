@@ -159,4 +159,8 @@ export default {
     return axios.post(`/api/ebrochures/update/${ebrochure._id}`, ebrochure);
   },
 
+
+  setCharterInquiryConfirmed: async function(id) {
+    return axios.get(`/api/charterinquiries/confirm/${id}`)
+  }
 };

@@ -11,5 +11,7 @@ router.route("/orientation/:id")
 router.route("/:whiteLabelName/")
   .get(charterInquiryController.findByWhiteLabel)
 
+router.route('/confirm/:id')
+  .get(charterInquiryController.confirm)
   
 module.exports = router;

@@ -12,6 +12,7 @@ const charterInquirySchema = new Schema({
   startDate: { type: String },
   endDate: { type: String },
   estimatedPrice: { type: Number },
+  confirmed: { type: Boolean },
   _whiteLabel: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'WhiteLabel' },
   _yacht: { type:  mongoose.Schema.Types.ObjectId, required: true, ref: 'Boat' },
   _eBrochure: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'EBrochure' },

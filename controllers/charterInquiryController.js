@@ -14,6 +14,7 @@ module.exports = {
       endDate: req.body.endDate,
       email: req.body.email,
       estimatedPrice: req.body.estimatedPrice,
+      confirmed: false,
       _whiteLabel: req.body.eBrochure._whiteLabel._id,
       _eBrochure: req.body.eBrochure._id,
       _yacht: req.body.yacht._id,
@@ -36,7 +37,13 @@ module.exports = {
         .populate('_eBrochure')
         .populate('_yacht')
         .then((dbCharterInquiries) => {
-          res.json(dbCharterInquiries)
+          const [confirmed, unconfirmed] =
+            dbCharterInquiries.reduce((result, element) => {
+              result[element.confirmed ?  0 : 1].push(element); // Determine and push to small/large arr
+              return result;
+            },
+            [[], []]);      
+          res.json({ confirmed, unconfirmed })
         })
         .catch(err => res.status(422).json(err));
       } else {
@@ -73,5 +80,15 @@ module.exports = {
           .then(() => {res.status(200).send({ })})
           .catch(error => console.error(error.toString()));
     });
+  },
+
+  confirm: function(req, res) {
+    db.CharterInquiry.findOneAndUpdate(
+      { _id: req.params.id }, 
+      { confirmed: true }
+    )
+    .then(() => { res.status(200).send({})})
+    .catch(error => console.error(error.toString()));
   }
+
 };
