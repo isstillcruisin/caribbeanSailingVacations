@@ -28,7 +28,7 @@ const Background = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background-image: url("https://res.cloudinary.com/dui3yyhou/image/upload/v1563737195/DROCK_1.jpg");
+  background-color: white;
   height: 100%;
   width: 100%;
   z-index: -1;
@@ -36,9 +36,6 @@ const Background = styled.div`
   min-width: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
-  background-color: rgba(0.4, 0.4, 0.4, 0.3);
-  background-blend-mode: multiply;
-  background-repeat: no-repeat;
 `;
 
 axios.interceptors.request.use(function (config) {

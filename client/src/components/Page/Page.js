@@ -16,12 +16,13 @@ const theme = {
   transparentGrey: "rgba(.3, .3, .3, .09)",
   turquoise: "#2DECB1",
   maxWidth: "1000px",
-  bs: "0 12px 24px 0 rgba(0, 0, 0, 0.09)"
+  bs: "0 12px 24px 0 rgba(0, 0, 0, 0.09)",
+  white: "#FFFFFF"
 };
 
 const StyledPage = styled.div`
-  background: ${props => props.theme.transparentGrey};
-  color: ${props => props.theme.offWhite};
+  background: ${props => props.theme.white};
+  color: ${props => props.theme.black};
   height: 100%;
 `;
 
