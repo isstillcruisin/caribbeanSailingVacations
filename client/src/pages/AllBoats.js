@@ -85,6 +85,32 @@ class AllBoats extends Component {
     });
   }
 
+  deleteLink = (boat) => {
+    if (!this.props.eBrochure) {
+      return <Button variant="danger" style={{'margin-right': '10px'}} onClick={() => this.handleDeleteBoat(boat)}>Delete</Button>
+    }
+  }
+
+  editLink = (boat) => {
+    if (!this.props.eBrochure) {
+      return <LinkContainer to={`/boat/${boat._id}/edit`}>
+          <Button style={{'margin-right': '10px'}}>Modify</Button>
+        </LinkContainer>
+    }
+  }
+
+  handleDeleteBoat = (boat) => {
+    if (window.confirm(`Are you sure you want to delete the yacht named ${boat.boatName}.`)) {
+      API.deleteBoat(boat._id).then(response => {
+        if (response) {
+          let boats = this.state.boats.filter( b => b._id !== boat._id)
+          this.setState({boats: boats})
+        }
+      })
+    } 
+  }
+
+
   showBoats = () => {
     if (this.state.boats) {
       return this.state.boats.map((boat, i) => {
@@ -94,7 +120,7 @@ class AllBoats extends Component {
             key={`${boat._id}${i + 5}`}
             to={`/boat/${boat._id}`}
             className="boat-detail-link"
-          ><Button>See Details</Button></LinkContainer>)
+          ><Button style={{'margin-right': '10px'}}>See Details</Button></LinkContainer>)
         if (this.props.eBrochure) {
           link = 
             (<LinkContainer
@@ -113,6 +139,11 @@ class AllBoats extends Component {
               <BoatName key={`${boat._id}${i + 1}`}>{boat.boatName}</BoatName>
               <BoatPrice>{`Week | $${Number(boat.pricePerWeek).toLocaleString()}`}</BoatPrice>
               {link}
+              <Row className='button-row'> 
+                {link}                
+                {this.editLink(boat)}
+                {this.deleteLink(boat)}
+              </Row>
             </BoatContainer>
           </Zoom>
         );
