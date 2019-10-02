@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AddBoatForm from "../components/AddBoatForm";
 import API from "../utils/API";
+import { Redirect } from "react-router-dom";
 
 class AddBoat extends Component {
   state = {
@@ -24,18 +25,16 @@ class AddBoat extends Component {
   saveBoat = () => {
     API.saveBoat({
       boatName: this.state.boatName,
-      imgs: this.state.imgUrls,
+      imgs: this.state.imgs,
       year: this.state.year,
       maxPassengers: this.state.maxPassengers,
       manufacture: this.state.manufacture,
-      crewBio: this.state.crewBio
+      crewBio: this.state.crewBio,
+      pricePerWeek: this.state.pricePerWeek
     })
       .then(res =>
         this.setState({
-          boats: res.data,
-          message: !res.data.length
-            ? "No New boats Found, Try a Different Query"
-            : ""
+          saved: true
         })
       )
       .catch(err => console.log("saving boat error", err));
@@ -48,30 +47,40 @@ class AddBoat extends Component {
     });
   };
 
-  handleSetUrls = url => {
+  handleSetUrls = urls => {
     this.setState({
-      imgUrls: [...this.state.imgUrls, url]
+      imgs: urls
     });
   };
 
   render() {
-    return (
-      <div className="AddBoat">
-        <header className="AddBoat-header">
-          <AddBoatForm
-            handleInputChange={this.handleInputChange}
-            handleFormSubmit={this.handleFormSubmit}
-            handleSetUrls={this.handleSetUrls}
-            boatName={this.state.boatName}
-            imgs={this.state.imgs}
-            year={this.state.year}
-            maxPassengers={this.state.maxPassengers}
-            manufacture={this.state.manufacture}
-            crewBio={this.state.crewBio}
-          />
-        </header>
-      </div>
-    );
+    if (this.state.saved) {
+      return (<Redirect 
+        to={{ 
+          pathname: `/boats`,
+          state: { alert: `Yacht creation successful!` } 
+        }} 
+      />)
+    } else {
+      return (
+        <div className="AddBoat">
+          <header className="AddBoat-header">
+            <AddBoatForm
+              handleInputChange={this.handleInputChange}
+              handleFormSubmit={this.handleFormSubmit}
+              handleSetUrls={this.handleSetUrls}
+              boatName={this.state.boatName}
+              imgs={this.state.imgs}
+              year={this.state.year}
+              maxPassengers={this.state.maxPassengers}
+              manufacture={this.state.manufacture}
+              crewBio={this.state.crewBio}
+              pricePerWeek={this.state.pricePerWeek}
+            />
+          </header>
+        </div>
+      );
+    }
   }
 }
 
