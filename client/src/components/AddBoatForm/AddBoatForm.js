@@ -69,6 +69,19 @@ const AddBoatForm = props => (
         onChange={props.handleInputChange}
         required
       />
+       <label htmlFor="pricePerWeek">
+        <strong>Price per week ($)</strong>
+      </label>
+      <input
+        className="form-control"
+        id="manufacture"
+        type="text"
+        value={props.pricePerWeek}
+        placeholder="price per week ($)"
+        name="pricePerWeek"
+        onChange={props.handleInputChange}
+        required
+      />
       <label htmlFor="image-url">
         <strong>Boat Images</strong>
       </label>
