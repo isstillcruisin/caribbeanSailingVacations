@@ -35,7 +35,8 @@ class DatePickerWithBlackoutDates extends React.Component {
   }
 
   handleResetClick() {
-    this.setState(this.getInitialState());
+    this.setState(this.getInitialState())
+    this.props.handleSelectedRange(this.getInitialState())
   }
 
   render() {

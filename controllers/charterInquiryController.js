@@ -15,6 +15,7 @@ module.exports = {
       endDate: req.body.endDate,
       email: req.body.email,
       estimatedPrice: req.body.estimatedPrice,
+      numberOfPassengers: req.body.numberOfPassengers,
       confirmed: false,
       _whiteLabel: req.body.eBrochure._whiteLabel._id,
       _eBrochure: req.body.eBrochure._id,

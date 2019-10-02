@@ -12,6 +12,7 @@ const charterInquirySchema = new Schema({
   startDate: { type: String },
   endDate: { type: String },
   estimatedPrice: { type: Number },
+  numberOfPassengers: { type: Number },
   confirmed: { type: Boolean },
   _whiteLabel: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'WhiteLabel' },
   _yacht: { type:  mongoose.Schema.Types.ObjectId, required: true, ref: 'Boat' },
@@ -36,6 +37,7 @@ charterInquirySchema.post('save', function(charterInquiry, next) {
               `<tr><td>Name:</td><td>${charterInquiry.firstName} ${charterInquiry.lastName}</td></tr>` +
               `<tr><td>Email:</td><td>${charterInquiry.email}</td></tr>` +
               `<tr><td>Yacht:</td><td>${charterInquiry._yacht.boatName}</td></tr>` +
+              `<tr><td>Number of Passengers:</td><td>${charterInquiry.numberOfPassengers}</td></tr>` +
               `<tr><td>Dates:</td><td>${moment(charterInquiry.startDate).format('LL')} - ${moment(charterInquiry.endDate).format('LL')}</td></tr>` +
               `<tr><tr>Price Per Week:</td><td>${Number(charterInquiry._yacht.pricePerWeek).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td></tr>` +
               `<tr><tr>Estimated Price:</td><td>${Number(charterInquiry.estimatedPrice).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td></tr>` +

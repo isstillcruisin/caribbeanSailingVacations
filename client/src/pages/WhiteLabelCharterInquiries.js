@@ -62,16 +62,18 @@ class WhiteLabelCharterInquiries extends Component {
       const sendOrientationButtonColumn = <td><Button onClick={this.handleSendOrientationPacket} data-id={charterInquiry._id}>Send Orientation Packet</Button></td>,
         setConfirmedButtonColumn = <td><Button onClick={this.handleSetInquiryConfirmed} data-id={charterInquiry._id}>Set Confirmed</Button></td>,
         buttonColumn = confirmed ? sendOrientationButtonColumn : setConfirmedButtonColumn,
-        sendContractColumn = confirmed ? '' : <td><Button onClick={this.handleSendContract} data-id={charterInquiry._id}>Send Contract</Button></td>
+        sendContractColumn = confirmed ? '' : <td><Button onClick={this.handleSendContract} data-id={charterInquiry._id}>Send Contract</Button></td>,
+        yacht = charterInquiry._yacht
       return (<tr key={i}>
                 <td>{charterInquiry.firstName}</td>
                 <td>{charterInquiry.lastName}</td>
                 <td>{charterInquiry.email}</td>
-                <td>{charterInquiry._yacht.boatName}</td>
+                <td>{yacht ? yacht.boatName : '***DELETED***'}</td>
                 <td>{moment(charterInquiry.startDate).format('LL')}</td>
                 <td>{moment(charterInquiry.endDate).format('LL')}</td>
-                <td>{formatPrice(charterInquiry._yacht.pricePerWeek)}</td>
-                <td>{formatPrice(charterInquiry.estimatedPrice)}</td>
+                <td>{charterInquiry.numberOfPassengers}</td>
+                <td>{yacht ? formatPrice(yacht.pricePerWeek) : 'N/A'}</td>
+                <td>{yacht ? formatPrice(charterInquiry.estimatedPrice) : 'N/A'}</td>
                 <td><LinkContainer
                       to={`/e-brochure/${charterInquiry._eBrochure._id}`}
                       className="e-brochure-link"
@@ -95,6 +97,7 @@ class WhiteLabelCharterInquiries extends Component {
                 <th>Yacht Name</th>
                 <th>Start Date</th>
                 <th>End Date</th>
+                <th>Number of Passengers</th>
                 <th>Price Per Week</th>
                 <th>Estimated Price</th>
                 <th>E-Brochure</th>

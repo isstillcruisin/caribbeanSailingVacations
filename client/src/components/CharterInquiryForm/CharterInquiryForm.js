@@ -21,6 +21,26 @@ class CharterInquiryForm extends Component {
     return <h4>{formatPrice(this.props.boat.pricePerWeek)}</h4>
   }
 
+  renderSubmitButton=() => {
+    if (this.props.disableSubmit) {
+      return (<Button
+        onClick={this.props.handleSubmitInquiry}
+        type="submit"
+        className="btn btn-lg"
+        disabled
+      >
+        {this.props.submitText}
+      </Button>)
+    } else {
+      return (<Button
+        onClick={this.props.handleSubmitInquiry}
+        type="submit"
+        className="btn btn-lg">
+        Submit Inquiry
+      </Button>)
+    }
+  }
+
   render() {
     const blackoutDates = [
       { from: new Date("October 12, 2019"), to: new Date("October 25, 2019")},
@@ -57,7 +77,15 @@ class CharterInquiryForm extends Component {
                   <Form.Control type='email' placeholder='Email Address' name='email' onChange={this.props.handleInputChange}  />
                 </Col>
               </Form.Row>
-              <Form.Row controlid='formEmail'>
+              <Form.Row controlid='numberOfPassengers'>
+                <Form.Label column xs={3}>
+                  Number of Passengers
+                </Form.Label>
+                <Col xs={9}>
+                  <Form.Control type='number' placeholder='Number of Passengers' name='numberOfPassengers' onChange={this.props.handleInputChange}  />
+                </Col>
+              </Form.Row>
+              <Form.Row controlid='dates'>
                 <Form.Label column xs={3}>
                   Desired Dates<br/><i>(availability TBD)</i>
                 </Form.Label>
@@ -87,14 +115,8 @@ class CharterInquiryForm extends Component {
                 <Col xs={9}>
                  {this.renderEstimatedPrice()}
                 </Col>
-              </Form.Row>           
-              <Button
-                onClick={this.props.handleSubmitInquiry}
-                type="submit"
-                className="btn btn-lg"
-              > 
-                Submit Inquiry
-              </Button>
+              </Form.Row>
+              {this.renderSubmitButton()}
             </Form>
           </Card.Body>
         </Card>
