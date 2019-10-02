@@ -35,6 +35,9 @@ export default {
   saveBoat: function(boatData) {
     return axios.post("/api/boats", boatData);
   },
+  updateBoat: function(boatData) {
+    return axios.put(`/api/boats/${boatData._id}`, boatData);
+  },
   // finds an existing user and logs them in
   userSignIn: async function(userData) {
     try {
