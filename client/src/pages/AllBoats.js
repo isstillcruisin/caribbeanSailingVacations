@@ -87,14 +87,14 @@ class AllBoats extends Component {
 
   deleteLink = (boat) => {
     if (!this.props.eBrochure) {
-      return <Button variant="danger" style={{'margin-right': '10px'}} onClick={() => this.handleDeleteBoat(boat)}>Delete</Button>
+      return <Button variant="danger" style={{'margin-left': '100px', }} onClick={() => this.handleDeleteBoat(boat)}>Delete</Button>
     }
   }
 
   editLink = (boat) => {
     if (!this.props.eBrochure) {
-      return <LinkContainer to={`/boat/${boat._id}/edit`}>
-          <Button style={{'margin-right': '10px'}}>Modify</Button>
+      return <LinkContainer to={`/boat/${boat._id}/edit`}  style={{'margin-right': '100px'}}>
+          <Button>Modify</Button>
         </LinkContainer>
     }
   }
@@ -110,21 +110,18 @@ class AllBoats extends Component {
     } 
   }
 
-
   showBoats = () => {
     if (this.state.boats) {
       return this.state.boats.map((boat, i) => {
         let link = 
           (<LinkContainer
-            params={{ id: boat._id }}
             key={`${boat._id}${i + 5}`}
             to={`/boat/${boat._id}`}
             className="boat-detail-link"
-          ><Button style={{'margin-right': '10px'}}>See Details</Button></LinkContainer>)
+          ><Button>See Details</Button></LinkContainer>)
         if (this.props.eBrochure) {
           link = 
             (<LinkContainer
-              params={{ id: boat._id }}
               key={`${boat._id}${i + 5}`}
               to={`/charter-a-yacht/${this.props.eBrochure._id}/inquiry/${boat._id}`}
               className="book-it-link"
@@ -138,10 +135,9 @@ class AllBoats extends Component {
               </Carousel>
               <BoatName key={`${boat._id}${i + 1}`}>{boat.boatName}</BoatName>
               <BoatPrice>{`Week | $${Number(boat.pricePerWeek).toLocaleString()}`}</BoatPrice>
-              {link}
               <Row className='button-row'> 
-                {link}                
                 {this.editLink(boat)}
+                {link}                
                 {this.deleteLink(boat)}
               </Row>
             </BoatContainer>
