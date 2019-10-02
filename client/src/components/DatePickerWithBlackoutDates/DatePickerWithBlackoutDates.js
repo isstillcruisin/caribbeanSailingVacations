@@ -64,6 +64,7 @@ class DatePickerWithBlackoutDates extends React.Component {
           modifiers={modifiers}
           onDayClick={this.handleDayClick}
           disabledDays={this.props.blackoutDates}
+          month={this.props.month}
         />
       </div>
     )    

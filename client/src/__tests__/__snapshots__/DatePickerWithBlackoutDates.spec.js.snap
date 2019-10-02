@@ -52,7 +52,7 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
             <div
               onKeyUp={[Function]}
             >
-              September 2019
+              December 2019
             </div>
           </div>
           <div
@@ -145,7 +145,7 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
             >
               <div
                 aria-disabled={false}
-                aria-label="Sun Sep 01 2019"
+                aria-label="Sun Dec 01 2019"
                 aria-selected={false}
                 className="DayPicker-Day"
                 onClick={[Function]}
@@ -157,7 +157,7 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
               </div>
               <div
                 aria-disabled={false}
-                aria-label="Mon Sep 02 2019"
+                aria-label="Mon Dec 02 2019"
                 aria-selected={false}
                 className="DayPicker-Day"
                 onClick={[Function]}
@@ -169,7 +169,7 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
               </div>
               <div
                 aria-disabled={false}
-                aria-label="Tue Sep 03 2019"
+                aria-label="Tue Dec 03 2019"
                 aria-selected={false}
                 className="DayPicker-Day"
                 onClick={[Function]}
@@ -181,7 +181,7 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
               </div>
               <div
                 aria-disabled={false}
-                aria-label="Wed Sep 04 2019"
+                aria-label="Wed Dec 04 2019"
                 aria-selected={false}
                 className="DayPicker-Day"
                 onClick={[Function]}
@@ -193,7 +193,7 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
               </div>
               <div
                 aria-disabled={false}
-                aria-label="Thu Sep 05 2019"
+                aria-label="Thu Dec 05 2019"
                 aria-selected={false}
                 className="DayPicker-Day"
                 onClick={[Function]}
@@ -205,7 +205,7 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
               </div>
               <div
                 aria-disabled={false}
-                aria-label="Fri Sep 06 2019"
+                aria-label="Fri Dec 06 2019"
                 aria-selected={false}
                 className="DayPicker-Day"
                 onClick={[Function]}
@@ -217,7 +217,7 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
               </div>
               <div
                 aria-disabled={false}
-                aria-label="Sat Sep 07 2019"
+                aria-label="Sat Dec 07 2019"
                 aria-selected={false}
                 className="DayPicker-Day"
                 onClick={[Function]}
@@ -234,7 +234,7 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
             >
               <div
                 aria-disabled={false}
-                aria-label="Sun Sep 08 2019"
+                aria-label="Sun Dec 08 2019"
                 aria-selected={false}
                 className="DayPicker-Day"
                 onClick={[Function]}
@@ -246,7 +246,7 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
               </div>
               <div
                 aria-disabled={false}
-                aria-label="Mon Sep 09 2019"
+                aria-label="Mon Dec 09 2019"
                 aria-selected={false}
                 className="DayPicker-Day"
                 onClick={[Function]}
@@ -258,7 +258,7 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
               </div>
               <div
                 aria-disabled={false}
-                aria-label="Tue Sep 10 2019"
+                aria-label="Tue Dec 10 2019"
                 aria-selected={false}
                 className="DayPicker-Day"
                 onClick={[Function]}
@@ -270,7 +270,7 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
               </div>
               <div
                 aria-disabled={false}
-                aria-label="Wed Sep 11 2019"
+                aria-label="Wed Dec 11 2019"
                 aria-selected={false}
                 className="DayPicker-Day"
                 onClick={[Function]}
@@ -282,7 +282,7 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
               </div>
               <div
                 aria-disabled={false}
-                aria-label="Thu Sep 12 2019"
+                aria-label="Thu Dec 12 2019"
                 aria-selected={false}
                 className="DayPicker-Day"
                 onClick={[Function]}
@@ -294,7 +294,7 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
               </div>
               <div
                 aria-disabled={false}
-                aria-label="Fri Sep 13 2019"
+                aria-label="Fri Dec 13 2019"
                 aria-selected={false}
                 className="DayPicker-Day"
                 onClick={[Function]}
@@ -306,7 +306,7 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
               </div>
               <div
                 aria-disabled={false}
-                aria-label="Sat Sep 14 2019"
+                aria-label="Sat Dec 14 2019"
                 aria-selected={false}
                 className="DayPicker-Day"
                 onClick={[Function]}
@@ -323,7 +323,7 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
             >
               <div
                 aria-disabled={false}
-                aria-label="Sun Sep 15 2019"
+                aria-label="Sun Dec 15 2019"
                 aria-selected={false}
                 className="DayPicker-Day"
                 onClick={[Function]}
@@ -335,7 +335,7 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
               </div>
               <div
                 aria-disabled={false}
-                aria-label="Mon Sep 16 2019"
+                aria-label="Mon Dec 16 2019"
                 aria-selected={false}
                 className="DayPicker-Day"
                 onClick={[Function]}
@@ -347,7 +347,7 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
               </div>
               <div
                 aria-disabled={false}
-                aria-label="Tue Sep 17 2019"
+                aria-label="Tue Dec 17 2019"
                 aria-selected={false}
                 className="DayPicker-Day"
                 onClick={[Function]}
@@ -359,7 +359,7 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
               </div>
               <div
                 aria-disabled={false}
-                aria-label="Wed Sep 18 2019"
+                aria-label="Wed Dec 18 2019"
                 aria-selected={false}
                 className="DayPicker-Day"
                 onClick={[Function]}
@@ -371,7 +371,7 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
               </div>
               <div
                 aria-disabled={false}
-                aria-label="Thu Sep 19 2019"
+                aria-label="Thu Dec 19 2019"
                 aria-selected={false}
                 className="DayPicker-Day"
                 onClick={[Function]}
@@ -383,7 +383,7 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
               </div>
               <div
                 aria-disabled={false}
-                aria-label="Fri Sep 20 2019"
+                aria-label="Fri Dec 20 2019"
                 aria-selected={false}
                 className="DayPicker-Day"
                 onClick={[Function]}
@@ -395,7 +395,7 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
               </div>
               <div
                 aria-disabled={false}
-                aria-label="Sat Sep 21 2019"
+                aria-label="Sat Dec 21 2019"
                 aria-selected={false}
                 className="DayPicker-Day"
                 onClick={[Function]}
@@ -412,7 +412,7 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
             >
               <div
                 aria-disabled={false}
-                aria-label="Sun Sep 22 2019"
+                aria-label="Sun Dec 22 2019"
                 aria-selected={false}
                 className="DayPicker-Day"
                 onClick={[Function]}
@@ -424,7 +424,7 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
               </div>
               <div
                 aria-disabled={false}
-                aria-label="Mon Sep 23 2019"
+                aria-label="Mon Dec 23 2019"
                 aria-selected={false}
                 className="DayPicker-Day"
                 onClick={[Function]}
@@ -435,10 +435,10 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
                 23
               </div>
               <div
-                aria-disabled={false}
-                aria-label="Tue Sep 24 2019"
+                aria-disabled={true}
+                aria-label="Tue Dec 24 2019"
                 aria-selected={false}
-                className="DayPicker-Day"
+                className="DayPicker-Day DayPicker-Day--disabled"
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 role="gridcell"
@@ -447,10 +447,10 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
                 24
               </div>
               <div
-                aria-disabled={false}
-                aria-label="Wed Sep 25 2019"
+                aria-disabled={true}
+                aria-label="Wed Dec 25 2019"
                 aria-selected={false}
-                className="DayPicker-Day"
+                className="DayPicker-Day DayPicker-Day--disabled"
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 role="gridcell"
@@ -459,10 +459,10 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
                 25
               </div>
               <div
-                aria-disabled={false}
-                aria-label="Thu Sep 26 2019"
+                aria-disabled={true}
+                aria-label="Thu Dec 26 2019"
                 aria-selected={false}
-                className="DayPicker-Day"
+                className="DayPicker-Day DayPicker-Day--disabled"
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 role="gridcell"
@@ -471,10 +471,10 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
                 26
               </div>
               <div
-                aria-disabled={false}
-                aria-label="Fri Sep 27 2019"
+                aria-disabled={true}
+                aria-label="Fri Dec 27 2019"
                 aria-selected={false}
-                className="DayPicker-Day"
+                className="DayPicker-Day DayPicker-Day--disabled"
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 role="gridcell"
@@ -483,10 +483,10 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
                 27
               </div>
               <div
-                aria-disabled={false}
-                aria-label="Sat Sep 28 2019"
+                aria-disabled={true}
+                aria-label="Sat Dec 28 2019"
                 aria-selected={false}
-                className="DayPicker-Day"
+                className="DayPicker-Day DayPicker-Day--disabled"
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 role="gridcell"
@@ -500,10 +500,10 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
               role="row"
             >
               <div
-                aria-disabled={false}
-                aria-label="Sun Sep 29 2019"
+                aria-disabled={true}
+                aria-label="Sun Dec 29 2019"
                 aria-selected={false}
-                className="DayPicker-Day"
+                className="DayPicker-Day DayPicker-Day--disabled"
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 role="gridcell"
@@ -512,10 +512,10 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
                 29
               </div>
               <div
-                aria-disabled={false}
-                aria-label="Mon Sep 30 2019"
+                aria-disabled={true}
+                aria-label="Mon Dec 30 2019"
                 aria-selected={false}
-                className="DayPicker-Day DayPicker-Day--today"
+                className="DayPicker-Day DayPicker-Day--disabled"
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 role="gridcell"
@@ -525,15 +525,23 @@ exports[`DatePickerWithBlackoutDates component Matches the snapshot 1`] = `
               </div>
               <div
                 aria-disabled={true}
-                className="DayPicker-Day DayPicker-Day--outside"
+                aria-label="Tue Dec 31 2019"
+                aria-selected={false}
+                className="DayPicker-Day DayPicker-Day--disabled"
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                role="gridcell"
+                tabIndex={-1}
+              >
+                31
+              </div>
+              <div
+                aria-disabled={true}
+                className="DayPicker-Day DayPicker-Day--disabled DayPicker-Day--outside"
               />
               <div
                 aria-disabled={true}
-                className="DayPicker-Day DayPicker-Day--outside"
-              />
-              <div
-                aria-disabled={true}
-                className="DayPicker-Day DayPicker-Day--outside"
+                className="DayPicker-Day DayPicker-Day--disabled DayPicker-Day--outside"
               />
               <div
                 aria-disabled={true}

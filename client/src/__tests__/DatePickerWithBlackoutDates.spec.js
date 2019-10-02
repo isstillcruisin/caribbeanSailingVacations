@@ -10,6 +10,7 @@ describe("DatePickerWithBlackoutDates component", () => {
           { from: new Date("December 24, 2019"), to: new Date("January 2, 2020") }
         ]}
         numberOfMonths={1}
+        month={new Date(2019, 11)}
       />
     );
     expect(alert.toJSON()).toMatchSnapshot();
