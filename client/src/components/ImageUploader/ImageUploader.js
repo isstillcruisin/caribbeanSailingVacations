@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
+import Image from 'react-bootstrap/Image'
+import Button from 'react-bootstrap/Button'
 
 const CLOUDINARY_UPLOAD_PRESET = "ecaxfmj9";
 const CLOUDINARY_UPLOAD_URL = "https://api.cloudinary.com/v1_1/dui3yyhou/upload";
@@ -42,21 +44,27 @@ class ImageUploader extends Component {
           uploadedFileCloudinaryUrl: url
         });
       }
-      this.props.setUrls(this.state.uploadedFileCloudinaryUrl);
+      let imgs = this.props.imgs || []
+      imgs.push(this.state.uploadedFileCloudinaryUrl);
+      this.props.setUrls(imgs);
     });
   }
 
+  removeImage = (index) => {
+    let imgs = this.props.imgs
+    imgs.splice(index, 1)
+    this.props.setUrls(imgs)
+  }
+
   renderImages = () => {
-    if (this.state.uploadedFileCloudinaryUrl === '') {
-      return <div>
-        {this.props.images && this.props.images.map((image, index) => <img key={index + 1} src={image} alt=""/>)}
-      </div>
-    } else {
-      return <div>
-        <p>{this.state.uploadedFile.name}</p>
-        <img src={this.state.uploadedFileCloudinaryUrl} alt="" />
-      </div>  
-    } 
+    return <div className='image-thumbnails'>
+      {this.props.imgs && this.props.imgs.map((image, index) => {
+        return <div className='thumbnail-with-remove-button'>
+          <Image key={index + 1} src={image} alt="" style={{'maxWidth': '200px'}} thumbnail />
+          <Button onClick={() => this.removeImage(index)}>Delete</Button>
+        </div>
+      })}
+    </div>   
   }
 
   render() {
