@@ -13,6 +13,7 @@ describe("CharterInquiryForm component", () => {
             lastName: 'Testerson'
           }
         }}
+        month={new Date(2019, 11)}
       />
     );
     expect(alert.toJSON()).toMatchSnapshot();

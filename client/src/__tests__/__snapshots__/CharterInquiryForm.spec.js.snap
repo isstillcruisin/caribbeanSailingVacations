@@ -151,7 +151,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                         <div
                           onKeyUp={[Function]}
                         >
-                          September 2019
+                          December 2019
                         </div>
                       </div>
                       <div
@@ -244,7 +244,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                         >
                           <div
                             aria-disabled={false}
-                            aria-label="Sun Sep 01 2019"
+                            aria-label="Sun Dec 01 2019"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -256,7 +256,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Mon Sep 02 2019"
+                            aria-label="Mon Dec 02 2019"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -268,7 +268,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Tue Sep 03 2019"
+                            aria-label="Tue Dec 03 2019"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -280,7 +280,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Wed Sep 04 2019"
+                            aria-label="Wed Dec 04 2019"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -292,7 +292,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Thu Sep 05 2019"
+                            aria-label="Thu Dec 05 2019"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -304,7 +304,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Fri Sep 06 2019"
+                            aria-label="Fri Dec 06 2019"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -316,7 +316,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Sat Sep 07 2019"
+                            aria-label="Sat Dec 07 2019"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -333,7 +333,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                         >
                           <div
                             aria-disabled={false}
-                            aria-label="Sun Sep 08 2019"
+                            aria-label="Sun Dec 08 2019"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -345,7 +345,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Mon Sep 09 2019"
+                            aria-label="Mon Dec 09 2019"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -357,7 +357,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Tue Sep 10 2019"
+                            aria-label="Tue Dec 10 2019"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -369,7 +369,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Wed Sep 11 2019"
+                            aria-label="Wed Dec 11 2019"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -381,7 +381,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Thu Sep 12 2019"
+                            aria-label="Thu Dec 12 2019"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -393,7 +393,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Fri Sep 13 2019"
+                            aria-label="Fri Dec 13 2019"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -405,7 +405,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Sat Sep 14 2019"
+                            aria-label="Sat Dec 14 2019"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -422,7 +422,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                         >
                           <div
                             aria-disabled={false}
-                            aria-label="Sun Sep 15 2019"
+                            aria-label="Sun Dec 15 2019"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -434,7 +434,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Mon Sep 16 2019"
+                            aria-label="Mon Dec 16 2019"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -446,7 +446,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Tue Sep 17 2019"
+                            aria-label="Tue Dec 17 2019"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -458,7 +458,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Wed Sep 18 2019"
+                            aria-label="Wed Dec 18 2019"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -470,7 +470,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Thu Sep 19 2019"
+                            aria-label="Thu Dec 19 2019"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -482,7 +482,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Fri Sep 20 2019"
+                            aria-label="Fri Dec 20 2019"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -494,7 +494,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Sat Sep 21 2019"
+                            aria-label="Sat Dec 21 2019"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -511,7 +511,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                         >
                           <div
                             aria-disabled={false}
-                            aria-label="Sun Sep 22 2019"
+                            aria-label="Sun Dec 22 2019"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -523,7 +523,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Mon Sep 23 2019"
+                            aria-label="Mon Dec 23 2019"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -534,10 +534,10 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                             23
                           </div>
                           <div
-                            aria-disabled={false}
-                            aria-label="Tue Sep 24 2019"
+                            aria-disabled={true}
+                            aria-label="Tue Dec 24 2019"
                             aria-selected={false}
-                            className="DayPicker-Day"
+                            className="DayPicker-Day DayPicker-Day--disabled"
                             onClick={[Function]}
                             onKeyDown={[Function]}
                             role="gridcell"
@@ -546,10 +546,10 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                             24
                           </div>
                           <div
-                            aria-disabled={false}
-                            aria-label="Wed Sep 25 2019"
+                            aria-disabled={true}
+                            aria-label="Wed Dec 25 2019"
                             aria-selected={false}
-                            className="DayPicker-Day"
+                            className="DayPicker-Day DayPicker-Day--disabled"
                             onClick={[Function]}
                             onKeyDown={[Function]}
                             role="gridcell"
@@ -558,10 +558,10 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                             25
                           </div>
                           <div
-                            aria-disabled={false}
-                            aria-label="Thu Sep 26 2019"
+                            aria-disabled={true}
+                            aria-label="Thu Dec 26 2019"
                             aria-selected={false}
-                            className="DayPicker-Day"
+                            className="DayPicker-Day DayPicker-Day--disabled"
                             onClick={[Function]}
                             onKeyDown={[Function]}
                             role="gridcell"
@@ -570,10 +570,10 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                             26
                           </div>
                           <div
-                            aria-disabled={false}
-                            aria-label="Fri Sep 27 2019"
+                            aria-disabled={true}
+                            aria-label="Fri Dec 27 2019"
                             aria-selected={false}
-                            className="DayPicker-Day"
+                            className="DayPicker-Day DayPicker-Day--disabled"
                             onClick={[Function]}
                             onKeyDown={[Function]}
                             role="gridcell"
@@ -582,10 +582,10 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                             27
                           </div>
                           <div
-                            aria-disabled={false}
-                            aria-label="Sat Sep 28 2019"
+                            aria-disabled={true}
+                            aria-label="Sat Dec 28 2019"
                             aria-selected={false}
-                            className="DayPicker-Day"
+                            className="DayPicker-Day DayPicker-Day--disabled"
                             onClick={[Function]}
                             onKeyDown={[Function]}
                             role="gridcell"
@@ -599,10 +599,10 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           role="row"
                         >
                           <div
-                            aria-disabled={false}
-                            aria-label="Sun Sep 29 2019"
+                            aria-disabled={true}
+                            aria-label="Sun Dec 29 2019"
                             aria-selected={false}
-                            className="DayPicker-Day"
+                            className="DayPicker-Day DayPicker-Day--disabled"
                             onClick={[Function]}
                             onKeyDown={[Function]}
                             role="gridcell"
@@ -611,10 +611,10 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                             29
                           </div>
                           <div
-                            aria-disabled={false}
-                            aria-label="Mon Sep 30 2019"
+                            aria-disabled={true}
+                            aria-label="Mon Dec 30 2019"
                             aria-selected={false}
-                            className="DayPicker-Day DayPicker-Day--today"
+                            className="DayPicker-Day DayPicker-Day--disabled"
                             onClick={[Function]}
                             onKeyDown={[Function]}
                             role="gridcell"
@@ -624,15 +624,23 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={true}
-                            className="DayPicker-Day DayPicker-Day--outside"
+                            aria-label="Tue Dec 31 2019"
+                            aria-selected={false}
+                            className="DayPicker-Day DayPicker-Day--disabled"
+                            onClick={[Function]}
+                            onKeyDown={[Function]}
+                            role="gridcell"
+                            tabIndex={-1}
+                          >
+                            31
+                          </div>
+                          <div
+                            aria-disabled={true}
+                            className="DayPicker-Day DayPicker-Day--disabled DayPicker-Day--outside"
                           />
                           <div
                             aria-disabled={true}
-                            className="DayPicker-Day DayPicker-Day--outside"
-                          />
-                          <div
-                            aria-disabled={true}
-                            className="DayPicker-Day DayPicker-Day--outside"
+                            className="DayPicker-Day DayPicker-Day--disabled DayPicker-Day--outside"
                           />
                           <div
                             aria-disabled={true}
@@ -656,7 +664,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                         <div
                           onKeyUp={[Function]}
                         >
-                          October 2019
+                          January 2020
                         </div>
                       </div>
                       <div
@@ -749,17 +757,21 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                         >
                           <div
                             aria-disabled={true}
-                            className="DayPicker-Day DayPicker-Day--outside"
+                            className="DayPicker-Day DayPicker-Day--disabled DayPicker-Day--outside"
                           />
                           <div
                             aria-disabled={true}
-                            className="DayPicker-Day DayPicker-Day--today DayPicker-Day--outside"
+                            className="DayPicker-Day DayPicker-Day--disabled DayPicker-Day--outside"
                           />
                           <div
-                            aria-disabled={false}
-                            aria-label="Tue Oct 01 2019"
+                            aria-disabled={true}
+                            className="DayPicker-Day DayPicker-Day--disabled DayPicker-Day--outside"
+                          />
+                          <div
+                            aria-disabled={true}
+                            aria-label="Wed Jan 01 2020"
                             aria-selected={false}
-                            className="DayPicker-Day"
+                            className="DayPicker-Day DayPicker-Day--disabled"
                             onClick={[Function]}
                             onKeyDown={[Function]}
                             role="gridcell"
@@ -768,10 +780,10 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                             1
                           </div>
                           <div
-                            aria-disabled={false}
-                            aria-label="Wed Oct 02 2019"
+                            aria-disabled={true}
+                            aria-label="Thu Jan 02 2020"
                             aria-selected={false}
-                            className="DayPicker-Day"
+                            className="DayPicker-Day DayPicker-Day--disabled"
                             onClick={[Function]}
                             onKeyDown={[Function]}
                             role="gridcell"
@@ -781,7 +793,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Thu Oct 03 2019"
+                            aria-label="Fri Jan 03 2020"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -793,7 +805,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Fri Oct 04 2019"
+                            aria-label="Sat Jan 04 2020"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -803,9 +815,14 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           >
                             4
                           </div>
+                        </div>
+                        <div
+                          className="DayPicker-Week"
+                          role="row"
+                        >
                           <div
                             aria-disabled={false}
-                            aria-label="Sat Oct 05 2019"
+                            aria-label="Sun Jan 05 2020"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -815,14 +832,9 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           >
                             5
                           </div>
-                        </div>
-                        <div
-                          className="DayPicker-Week"
-                          role="row"
-                        >
                           <div
                             aria-disabled={false}
-                            aria-label="Sun Oct 06 2019"
+                            aria-label="Mon Jan 06 2020"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -834,7 +846,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Mon Oct 07 2019"
+                            aria-label="Tue Jan 07 2020"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -846,7 +858,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Tue Oct 08 2019"
+                            aria-label="Wed Jan 08 2020"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -858,7 +870,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Wed Oct 09 2019"
+                            aria-label="Thu Jan 09 2020"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -870,7 +882,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Thu Oct 10 2019"
+                            aria-label="Fri Jan 10 2020"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -882,7 +894,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Fri Oct 11 2019"
+                            aria-label="Sat Jan 11 2020"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -892,11 +904,16 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           >
                             11
                           </div>
+                        </div>
+                        <div
+                          className="DayPicker-Week"
+                          role="row"
+                        >
                           <div
-                            aria-disabled={true}
-                            aria-label="Sat Oct 12 2019"
+                            aria-disabled={false}
+                            aria-label="Sun Jan 12 2020"
                             aria-selected={false}
-                            className="DayPicker-Day DayPicker-Day--disabled"
+                            className="DayPicker-Day"
                             onClick={[Function]}
                             onKeyDown={[Function]}
                             role="gridcell"
@@ -904,16 +921,11 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           >
                             12
                           </div>
-                        </div>
-                        <div
-                          className="DayPicker-Week"
-                          role="row"
-                        >
                           <div
-                            aria-disabled={true}
-                            aria-label="Sun Oct 13 2019"
+                            aria-disabled={false}
+                            aria-label="Mon Jan 13 2020"
                             aria-selected={false}
-                            className="DayPicker-Day DayPicker-Day--disabled"
+                            className="DayPicker-Day"
                             onClick={[Function]}
                             onKeyDown={[Function]}
                             role="gridcell"
@@ -922,10 +934,10 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                             13
                           </div>
                           <div
-                            aria-disabled={true}
-                            aria-label="Mon Oct 14 2019"
+                            aria-disabled={false}
+                            aria-label="Tue Jan 14 2020"
                             aria-selected={false}
-                            className="DayPicker-Day DayPicker-Day--disabled"
+                            className="DayPicker-Day"
                             onClick={[Function]}
                             onKeyDown={[Function]}
                             role="gridcell"
@@ -934,10 +946,10 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                             14
                           </div>
                           <div
-                            aria-disabled={true}
-                            aria-label="Tue Oct 15 2019"
+                            aria-disabled={false}
+                            aria-label="Wed Jan 15 2020"
                             aria-selected={false}
-                            className="DayPicker-Day DayPicker-Day--disabled"
+                            className="DayPicker-Day"
                             onClick={[Function]}
                             onKeyDown={[Function]}
                             role="gridcell"
@@ -946,10 +958,10 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                             15
                           </div>
                           <div
-                            aria-disabled={true}
-                            aria-label="Wed Oct 16 2019"
+                            aria-disabled={false}
+                            aria-label="Thu Jan 16 2020"
                             aria-selected={false}
-                            className="DayPicker-Day DayPicker-Day--disabled"
+                            className="DayPicker-Day"
                             onClick={[Function]}
                             onKeyDown={[Function]}
                             role="gridcell"
@@ -958,10 +970,10 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                             16
                           </div>
                           <div
-                            aria-disabled={true}
-                            aria-label="Thu Oct 17 2019"
+                            aria-disabled={false}
+                            aria-label="Fri Jan 17 2020"
                             aria-selected={false}
-                            className="DayPicker-Day DayPicker-Day--disabled"
+                            className="DayPicker-Day"
                             onClick={[Function]}
                             onKeyDown={[Function]}
                             role="gridcell"
@@ -970,10 +982,10 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                             17
                           </div>
                           <div
-                            aria-disabled={true}
-                            aria-label="Fri Oct 18 2019"
+                            aria-disabled={false}
+                            aria-label="Sat Jan 18 2020"
                             aria-selected={false}
-                            className="DayPicker-Day DayPicker-Day--disabled"
+                            className="DayPicker-Day"
                             onClick={[Function]}
                             onKeyDown={[Function]}
                             role="gridcell"
@@ -981,11 +993,16 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           >
                             18
                           </div>
+                        </div>
+                        <div
+                          className="DayPicker-Week"
+                          role="row"
+                        >
                           <div
-                            aria-disabled={true}
-                            aria-label="Sat Oct 19 2019"
+                            aria-disabled={false}
+                            aria-label="Sun Jan 19 2020"
                             aria-selected={false}
-                            className="DayPicker-Day DayPicker-Day--disabled"
+                            className="DayPicker-Day"
                             onClick={[Function]}
                             onKeyDown={[Function]}
                             role="gridcell"
@@ -993,16 +1010,11 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           >
                             19
                           </div>
-                        </div>
-                        <div
-                          className="DayPicker-Week"
-                          role="row"
-                        >
                           <div
-                            aria-disabled={true}
-                            aria-label="Sun Oct 20 2019"
+                            aria-disabled={false}
+                            aria-label="Mon Jan 20 2020"
                             aria-selected={false}
-                            className="DayPicker-Day DayPicker-Day--disabled"
+                            className="DayPicker-Day"
                             onClick={[Function]}
                             onKeyDown={[Function]}
                             role="gridcell"
@@ -1011,10 +1023,10 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                             20
                           </div>
                           <div
-                            aria-disabled={true}
-                            aria-label="Mon Oct 21 2019"
+                            aria-disabled={false}
+                            aria-label="Tue Jan 21 2020"
                             aria-selected={false}
-                            className="DayPicker-Day DayPicker-Day--disabled"
+                            className="DayPicker-Day"
                             onClick={[Function]}
                             onKeyDown={[Function]}
                             role="gridcell"
@@ -1023,10 +1035,10 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                             21
                           </div>
                           <div
-                            aria-disabled={true}
-                            aria-label="Tue Oct 22 2019"
+                            aria-disabled={false}
+                            aria-label="Wed Jan 22 2020"
                             aria-selected={false}
-                            className="DayPicker-Day DayPicker-Day--disabled"
+                            className="DayPicker-Day"
                             onClick={[Function]}
                             onKeyDown={[Function]}
                             role="gridcell"
@@ -1035,10 +1047,10 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                             22
                           </div>
                           <div
-                            aria-disabled={true}
-                            aria-label="Wed Oct 23 2019"
+                            aria-disabled={false}
+                            aria-label="Thu Jan 23 2020"
                             aria-selected={false}
-                            className="DayPicker-Day DayPicker-Day--disabled"
+                            className="DayPicker-Day"
                             onClick={[Function]}
                             onKeyDown={[Function]}
                             role="gridcell"
@@ -1047,10 +1059,10 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                             23
                           </div>
                           <div
-                            aria-disabled={true}
-                            aria-label="Thu Oct 24 2019"
+                            aria-disabled={false}
+                            aria-label="Fri Jan 24 2020"
                             aria-selected={false}
-                            className="DayPicker-Day DayPicker-Day--disabled"
+                            className="DayPicker-Day"
                             onClick={[Function]}
                             onKeyDown={[Function]}
                             role="gridcell"
@@ -1059,10 +1071,10 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                             24
                           </div>
                           <div
-                            aria-disabled={true}
-                            aria-label="Fri Oct 25 2019"
+                            aria-disabled={false}
+                            aria-label="Sat Jan 25 2020"
                             aria-selected={false}
-                            className="DayPicker-Day DayPicker-Day--disabled"
+                            className="DayPicker-Day"
                             onClick={[Function]}
                             onKeyDown={[Function]}
                             role="gridcell"
@@ -1070,9 +1082,14 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           >
                             25
                           </div>
+                        </div>
+                        <div
+                          className="DayPicker-Week"
+                          role="row"
+                        >
                           <div
                             aria-disabled={false}
-                            aria-label="Sat Oct 26 2019"
+                            aria-label="Sun Jan 26 2020"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -1082,14 +1099,9 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           >
                             26
                           </div>
-                        </div>
-                        <div
-                          className="DayPicker-Week"
-                          role="row"
-                        >
                           <div
                             aria-disabled={false}
-                            aria-label="Sun Oct 27 2019"
+                            aria-label="Mon Jan 27 2020"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -1101,7 +1113,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Mon Oct 28 2019"
+                            aria-label="Tue Jan 28 2020"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -1113,7 +1125,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Tue Oct 29 2019"
+                            aria-label="Wed Jan 29 2020"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -1125,7 +1137,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Wed Oct 30 2019"
+                            aria-label="Thu Jan 30 2020"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -1137,7 +1149,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           </div>
                           <div
                             aria-disabled={false}
-                            aria-label="Thu Oct 31 2019"
+                            aria-label="Fri Jan 31 2020"
                             aria-selected={false}
                             className="DayPicker-Day"
                             onClick={[Function]}
@@ -1147,10 +1159,6 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                           >
                             31
                           </div>
-                          <div
-                            aria-disabled={true}
-                            className="DayPicker-Day DayPicker-Day--outside"
-                          />
                           <div
                             aria-disabled={true}
                             className="DayPicker-Day DayPicker-Day--outside"
