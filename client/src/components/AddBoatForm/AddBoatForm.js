@@ -57,7 +57,7 @@ const AddBoatForm = props => (
         required
       />
       <label htmlFor="manufacture">
-        <strong>Manufacturer of Boat</strong>
+        <strong>Manufacture of Boat</strong>
       </label>
       <input
         className="form-control"
