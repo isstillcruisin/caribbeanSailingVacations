@@ -22,6 +22,7 @@ const WhiteLabelCharterInquiries = React.lazy(() => import("./pages/WhiteLabelCh
 const AddEBrochure = React.lazy(() => import("./pages/AddEBrochure"));
 const EBrochure = React.lazy(() => import("./pages/EBrochure"));
 const ConfigureEBrochure = React.lazy(() => import("./pages/ConfigureEBrochure"));
+const EditBoat = React.lazy(() => import("./pages/EditBoat"));
 
 
 const Background = styled.div`
@@ -118,6 +119,7 @@ class App extends Component {
               <Switch>
                 <AdminRoute exact path="/add-boat" component={AddBoat} />
                 <AdminRoute exact path="/boats" component={AllBoats} />
+                <AdminRoute exact path="/boat/:id/edit" component={EditBoat} />
                 <Route exact path="/sign-in" component={SignIn} />
                 <Route exact path="/sign-up" component={SignUp} />
                 <Route exact path="/sign-out" component={SignOut} />
