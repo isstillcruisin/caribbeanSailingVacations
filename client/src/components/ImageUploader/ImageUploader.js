@@ -38,7 +38,7 @@ class ImageUploader extends Component {
         let url = response.body.secure_url;
         if (this.props.width && this.props.height) {
           const parts = url.split('/upload/')
-          url = `${parts[0]}/upload/w_200,h_100,c_fit/${parts[1]}`
+          url = `${parts[0]}/upload/w_${this.props.width},h_${this.props.height},c_fit/${parts[1]}`
         }
         this.setState({
           uploadedFileCloudinaryUrl: url
