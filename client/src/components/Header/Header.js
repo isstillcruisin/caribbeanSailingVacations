@@ -44,9 +44,14 @@ class IncompleteHeader extends React.Component {
       return <Navbar bg="light" variant="light">
               <Navbar.Brand href="#home">Charter Assistant - Admin</Navbar.Brand>
               <Nav className="mr-auto">
-                <Nav.Link href='/'>Home</Nav.Link>
+                <LinkContainer to='/'>
+                  <Nav.Link>Home</Nav.Link>
+                </LinkContainer>
                 <LinkContainer to='/boats'>
                   <Nav.Link>Yachts</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to='/all-white-labels'>
+                  <Nav.Link>All White Labels</Nav.Link>
                 </LinkContainer>
               </Nav>
               <Nav pullright={1}>
@@ -59,8 +64,10 @@ class IncompleteHeader extends React.Component {
       return <Navbar bg="light" variant="light">
               <Navbar.Brand href="#home">{`Charter Assistant - Logged In as ${this.state.currentUser.firstName}`}</Navbar.Brand>
               <Nav className="mr-auto">
-                <Nav.Link href='/'>Home</Nav.Link>
-                <Nav.Link href="/boats">Yachts</Nav.Link>
+                <LinkContainer to='/'>
+                  <Nav.Link>home</Nav.Link>
+                </LinkContainer>
+                <Nav.Link href="/white-labels">My White Labels</Nav.Link>
               </Nav>
               <Nav pullright={1}>
                 <LinkContainer to='/sign-out'>
