@@ -1,76 +1,94 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import Nav from 'react-bootstrap/Nav'
+import Navbar from 'react-bootstrap/Navbar'
+import { Form, FormControl, Button } from 'react-bootstrap'
+import ls from "local-storage";
+import { Redirect, LinkContainer } from 'react-router-bootstrap'
+import { withRouter } from "react-router";
+import API from "../../utils/API";
 
-const NavStyles = React.lazy(() => import("../styles/NavStyles"));
 
-const StyledHeader = styled.header`
-  .bar {
-    border-bottom: 10px solid ${props => props.theme.transparentGrey};
-    display: grid;
-    grid-template-columns: auto 1fr;
-    justify-content: space-between;
-    align-items: stretch;
-    background-color: rgba(200, 200, 200, 0.4);
+class IncompleteHeader extends React.Component {
+  state = {};
 
-    @media (max-width: 1300px) {
-      grid-template-columns: 1fr;
-      justify-content: center;
+  refreshCurrentUser() {
+    console.log("***** REFRESHING")
+    let userToken = ls.get("user-token")
+    if (userToken) {
+      API.getCurrentUser().then(res => {
+        this.setState({
+          currentUser: res.data,
+          mounted: true,
+          userToken: userToken,
+        })
+      })
+    } else {
+      console.log("****** NOT LOGGED IN")
+      this.setState({
+        currentUser: null,
+        userToken: false,
+      })
+    } 
+  }
+
+  componentDidUpdate(prevProps) {
+    console.log("******", prevProps, this.props)
+    if (this.props.location !== prevProps.location) {
+      this.refreshCurrentUser();
     }
   }
-  .sub-bar {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    border-bottom: 1px solid ${props => props.theme.transparentGrey};
-  }
-`;
 
-const Logo = styled.h1`
-  font-size: 2.5rem;
-  margin-left: 2rem;
-  position: relative;
-  z-index: 2;
-  transform: skew(-7deg);
-  a {
-    padding: 0.5rem 1rem;
-    color: ${props => props.theme.turquoise};
-    text-transform: uppercase;
-    text-decoration: none;
-  }
-  @media (max-width: 1300px) {
-    margin: 0;
-    text-align: center;
-  }
-`;
-
-class Header extends React.Component {
   render() {
-    return this.props.display() ? (
-      <StyledHeader>
-        <div className="bar">
-          <Logo>
-            <Link to="/">Charter Assistant</Link>
-          </Logo>
-          <NavStyles>
-            <Link to="/sign-out">Sign Out</Link>
-          </NavStyles>
-        </div>
-        <div className="sub-bar" />
-      </StyledHeader>
-    ) : (
-      <StyledHeader>
-        <div className="bar">
-          <Logo>
-            <Link to="/">Charter Assistant</Link>
-          </Logo>
-          <NavStyles>
-            <Link to="/sign-up">Register</Link>
-          </NavStyles>
-        </div>
-        <div className="sub-bar" />
-      </StyledHeader>
-    );
+    if (this.state.currentUser && this.state.currentUser.isAdmin) {
+      return <Navbar bg="light" variant="light">
+              <Navbar.Brand href="#home">Charter Assistant - Admin</Navbar.Brand>
+              <Nav className="mr-auto">
+                <Nav.Link href='/'>Home</Nav.Link>
+                <LinkContainer to='/boats'>
+                  <Nav.Link>Yachts</Nav.Link>
+                </LinkContainer>
+              </Nav>
+              <Nav pullright={1}>
+                <LinkContainer to='/sign-out'>
+                  <Nav.Link>Sign Out</Nav.Link>
+                </LinkContainer>
+              </Nav>
+            </Navbar>
+    } else if (this.state.currentUser) {
+      return <Navbar bg="light" variant="light">
+              <Navbar.Brand href="#home">{`Charter Assistant - Logged In as ${this.state.currentUser.firstName}`}</Navbar.Brand>
+              <Nav className="mr-auto">
+                <Nav.Link href='/'>Home</Nav.Link>
+                <Nav.Link href="/boats">Yachts</Nav.Link>
+              </Nav>
+              <Nav pullright={1}>
+                <LinkContainer to='/sign-out'>
+                  <Nav.Link>Sign Out</Nav.Link>
+                </LinkContainer>
+              </Nav>
+            </Navbar>
+    } else {
+      return <Navbar bg="light" variant="light">
+              <Navbar.Brand href="#home">{'Charter Assistant'}</Navbar.Brand>
+              <Nav className="mr-auto">
+                <LinkContainer to='/'>
+                  <Nav.Link>Home</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to='/sign-up'>
+                  <Nav.Link>Sign Up</Nav.Link>
+                </LinkContainer>
+              </Nav>
+              <Nav pullright={1}>
+                <LinkContainer to='/sign-in'>
+                  <Nav.Link>Sign In</Nav.Link>
+                </LinkContainer>
+              </Nav>
+            </Navbar>
+    }
+
   }
 }
+const Header = withRouter(IncompleteHeader);
 
 export default Header;
