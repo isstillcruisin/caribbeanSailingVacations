@@ -131,10 +131,10 @@ export default {
     await axios.get(`/api/charterinquiries/orientation/${charterInquiryId}`);
   },
 
-  getCurrentUserId: async function() {
+  getCurrentUser: async function() {
     try {
-      const currentId = await axios.get('/api/users/currentid');
-      return currentId;
+      const currentUser = await axios.get('/api/users/current');
+      return currentUser;
     } catch (error) {
       console.log("error in get Current User ID (╯°□°)╯︵ ┻━┻ ", error);
     }

@@ -12,8 +12,8 @@ class ConfigureEBrochure extends Component {
     let { id } = this.props.match.params;
 
     API.getEBrochure(id).then(res => {
-      API.getCurrentUserId().then(res2 => {
-        if (res2 && res2.data.id !== res.data._whiteLabel._travelAgent._id) {
+      API.getCurrentUser().then(res2 => {
+        if (res2 && res2.data._id !== res.data._whiteLabel._travelAgent._id) {
           this.setState({ unauthorized: true});
         } else {
           API.getBoats({}).then(res3 => {
@@ -26,34 +26,6 @@ class ConfigureEBrochure extends Component {
       });
     });
   }
-
-  // handleFormSubmit = event => {
-  //   event.preventDefault();
-  //   try {
-  //     this.saveWhiteLabel();
-  //   } catch (err) {
-  //     console.log("error in save White Label (╯°□°)╯︵ ┻━┻ ", err);
-  //   }
-  // };
-
-  // saveWhiteLabel = () => {
-  //   API.saveWhiteLabel({
-  //     whiteLabelName: this.state.whiteLabelName,      
-  //   })
-  //     .then(res =>
-  //       this.setState({
-  //         saved: true
-  //       })
-  //     )
-  //     .catch(err => console.log("saving white label error", err));
-  // };
-
-  // handleInputChange = event => {
-  //   const { name, value } = event.target;
-  //   this.setState({
-  //     [name]: value
-  //   });
-  // };
 
   handleEnableYacht = (yacht) => {
     let eBrochure = Object.assign({}, this.state.eBrochure)

@@ -11,8 +11,8 @@ class ConfigureWhiteLabel extends Component {
   componentDidMount() {
     let { name } = this.props.match.params;
     API.getWhiteLabel(name).then(res => {
-      API.getCurrentUserId().then(res2 => {
-        if (res2 && res2.data.id !== res.data._travelAgent._id) {
+      API.getCurrentUser().then(res2 => {
+        if (res2 && res2.data._id !== res.data._travelAgent._id) {
           this.setState({ unauthorized: true});
         } else {
           this.setState({ whiteLabel: res.data});

@@ -101,10 +101,10 @@ exports.confirm = function (req, res, next) {
   });
 };
 
-exports.currentId = function(req, res, next) {
+exports.currentUser = function(req, res, next) {
   if (req.user) {
-    res.status(200).send({ id: req.user._id });
+    res.json(req.user);
   } else {
-    res.status(404).send({ msg: 'there is no logged in user' });
+    res.status(404).json({ msg: 'there is no logged in user' });
   }
 }
