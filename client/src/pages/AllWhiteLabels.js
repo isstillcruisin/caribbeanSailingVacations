@@ -22,7 +22,7 @@ class AllWhiteLabels extends Component {
   allWhiteLabelRows() {
     return this.state.whiteLabels.map((whiteLabel, i) => {
       return (
-        <tr>
+        <tr key={`${i + 1}`}>
           <td>{whiteLabel.name}</td>
           <td>
             <BootstrapSwitchButton

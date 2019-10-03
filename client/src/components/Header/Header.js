@@ -1,8 +1,6 @@
 import React from "react";
-import styled from "styled-components";
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
-import { Form, FormControl, Button } from 'react-bootstrap'
 import ls from "local-storage";
 import { Redirect, LinkContainer } from 'react-router-bootstrap'
 import { withRouter } from "react-router";
@@ -13,18 +11,15 @@ class IncompleteHeader extends React.Component {
   state = {};
 
   refreshCurrentUser() {
-    console.log("***** REFRESHING")
     let userToken = ls.get("user-token")
     if (userToken) {
       API.getCurrentUser().then(res => {
         this.setState({
           currentUser: res.data,
-          mounted: true,
           userToken: userToken,
         })
       })
     } else {
-      console.log("****** NOT LOGGED IN")
       this.setState({
         currentUser: null,
         userToken: false,
@@ -32,8 +27,12 @@ class IncompleteHeader extends React.Component {
     } 
   }
 
+  componentDidMount() {
+    this.refreshCurrentUser();
+  }
+
+
   componentDidUpdate(prevProps) {
-    console.log("******", prevProps, this.props)
     if (this.props.location !== prevProps.location) {
       this.refreshCurrentUser();
     }
