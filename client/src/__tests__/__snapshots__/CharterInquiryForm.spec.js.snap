@@ -86,7 +86,27 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
         </div>
         <div
           className="form-row"
-          controlid="formEmail"
+          controlid="numberOfPassengers"
+        >
+          <label
+            className="form-label col-form-label col-3"
+          >
+            Number of Passengers
+          </label>
+          <div
+            className="col-9"
+          >
+            <input
+              className="form-control"
+              name="numberOfPassengers"
+              placeholder="Number of Passengers"
+              type="number"
+            />
+          </div>
+        </div>
+        <div
+          className="form-row"
+          controlid="dates"
         >
           <label
             className="form-label col-form-label col-3"

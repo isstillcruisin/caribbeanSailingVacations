@@ -73,7 +73,7 @@ exports[`AddBoatForm component Matches the snapshot 1`] = `
       htmlFor="manufacture"
     >
       <strong>
-        Manufacturer of Boat
+        Manufacture of Boat
       </strong>
     </label>
     <input
@@ -84,6 +84,21 @@ exports[`AddBoatForm component Matches the snapshot 1`] = `
       required={true}
       type="text"
       value="2000 feet test manufacture"
+    />
+    <label
+      htmlFor="pricePerWeek"
+    >
+      <strong>
+        Price per week ($)
+      </strong>
+    </label>
+    <input
+      className="form-control"
+      id="manufacture"
+      name="pricePerWeek"
+      placeholder="price per week ($)"
+      required={true}
+      type="text"
     />
     <label
       htmlFor="image-url"
@@ -124,7 +139,9 @@ exports[`AddBoatForm component Matches the snapshot 1`] = `
     </div>
     <div>
       <div>
-        <div />
+        <div
+          className="image-thumbnails"
+        />
       </div>
     </div>
   </div>

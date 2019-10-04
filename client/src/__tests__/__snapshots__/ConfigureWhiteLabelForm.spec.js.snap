@@ -182,11 +182,9 @@ exports[`ConfigureWhiteLabelForm component Matches the snapshot 1`] = `
             </div>
             <div>
               <div>
-                <div>
-                  <img
-                    alt=""
-                  />
-                </div>
+                <div
+                  className="image-thumbnails"
+                />
               </div>
             </div>
           </div>
