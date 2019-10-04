@@ -62,7 +62,7 @@ class ConfigureWhiteLabel extends Component {
       />)
     } else if (this.state.whiteLabel) {
       return (<> 
-        <h1>Configure Charter Assistant {this.state.whiteLabel.name}</h1>
+        <h1>Configure White Label: '{this.state.whiteLabel.name}'</h1>
         <Card>
           <ConfigureWhiteLabelForm
             whiteLabel = {this.state.whiteLabel}
