@@ -12,19 +12,19 @@ class IncompleteHeader extends React.Component {
 
   refreshCurrentUser() {
     let userToken = ls.get("user-token")
-    if (userToken) {
+    if (this.props.location.pathname === '/sign-out' && !userToken) {
+      this.setState({
+        currentUser: null,
+        userToken: false
+      })
+    } else if (this.state.userToken !== userToken) {
       API.getCurrentUser().then(res => {
         this.setState({
           currentUser: res.data,
           userToken: userToken,
         })
       })
-    } else {
-      this.setState({
-        currentUser: null,
-        userToken: false,
-      })
-    } 
+    }
   }
 
   componentDidMount() {
