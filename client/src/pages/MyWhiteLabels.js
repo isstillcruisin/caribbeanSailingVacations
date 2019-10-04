@@ -19,7 +19,7 @@ class MyWhiteLabels extends Component {
     });
   }
 
-  myWhiteLabelRows() {
+  renderWhiteLabelRows() {
     return this.state.whiteLabels.map((whiteLabel, i) => {
       return (
         <tr key={`${i + 1}`}>
@@ -44,6 +44,24 @@ class MyWhiteLabels extends Component {
     });
   }
 
+  renderWhiteLabelTable() {
+    if (this.state.whiteLabels.length > 0) {
+      return <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Configure</th>
+            <th>E-Brochures</th>
+            <th>Charter Inquiries</th>
+          </tr>
+        </thead>
+        <tbody>
+          {this.renderWhiteLabelRows()}   
+        </tbody>
+      </Table>
+    } else return ''
+  }
+
   render() {
     if (this.state.whiteLabels) {
       return <Card style={{color: 'black'}}>
@@ -51,19 +69,8 @@ class MyWhiteLabels extends Component {
           My Registered White Labels
         </Card.Header>
         <Card.Body>
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Configure</th>
-                <th>E-Brochures</th>
-                <th>Charter Inquiries</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.myWhiteLabelRows()}   
-            </tbody>
-          </Table>
+          {this.renderWhiteLabelTable()}
+          <Link to='/add-white-label'>{`Add ${(this.state.whiteLabels.length === 0) ? 'First' : ''} White Label`}</Link>
         </Card.Body>
       </Card>
     } else {
