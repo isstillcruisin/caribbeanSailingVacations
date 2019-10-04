@@ -33,7 +33,7 @@ class SignIn extends Component {
       if (this.state.admin) {
         return <Redirect to={{ pathname: "/all-white-labels" }} />
       } else {
-        return <Redirect to={{ pathname: "/add-white-label" }} />
+        return <Redirect to={{ pathname: "/my-white-labels" }} />
       }
     } else {
       return <>
