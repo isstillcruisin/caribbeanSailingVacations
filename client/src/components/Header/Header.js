@@ -2,7 +2,7 @@ import React from "react";
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import ls from "local-storage";
-import { Redirect, LinkContainer } from 'react-router-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 import { withRouter } from "react-router";
 import API from "../../utils/API";
 

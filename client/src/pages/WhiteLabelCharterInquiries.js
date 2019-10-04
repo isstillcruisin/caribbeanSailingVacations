@@ -30,7 +30,6 @@ class WhiteLabelCharterInquiries extends Component {
       if (this._isMounted) {
         this.setState({charterInquiries: res.data});
       }
-      console.log(res.data);
     });
   }
 
@@ -62,7 +61,7 @@ class WhiteLabelCharterInquiries extends Component {
       const sendOrientationButtonColumn = <td><Button onClick={this.handleSendOrientationPacket} data-id={charterInquiry._id}>Send Orientation Packet</Button></td>,
         setConfirmedButtonColumn = <td><Button onClick={this.handleSetInquiryConfirmed} data-id={charterInquiry._id}>Set Confirmed</Button></td>,
         buttonColumn = confirmed ? sendOrientationButtonColumn : setConfirmedButtonColumn,
-        sendContractColumn = confirmed ? '' : <td><Button onClick={this.handleSendContract} data-id={charterInquiry._id}>Send Contract</Button></td>,
+        sendContractColumn = confirmed ? null : <td><Button onClick={this.handleSendContract} data-id={charterInquiry._id}>Send Contract</Button></td>,
         yacht = charterInquiry._yacht
       return (<tr key={i}>
                 <td>{charterInquiry.firstName}</td>
@@ -87,8 +86,8 @@ class WhiteLabelCharterInquiries extends Component {
   }
 
   renderTableHeaders(confirmed) {
-    const buttonHeader = confirmed ? <th>Post-Acceptance Email Link</th> : <th>Set Confirmed</th>,
-      sendContractHeader = confirmed ? '' : <th>Send Contract</th>
+    const buttonHeader = confirmed ? (<th>Post-Acceptance Email Link</th>) : (<th>Set Confirmed</th>),
+      sendContractHeader = confirmed ? null : (<th>Send Contract</th>)
 
     return  <thead>
               <tr><th>First Name</th>

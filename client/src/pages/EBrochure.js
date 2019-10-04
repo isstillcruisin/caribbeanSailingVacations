@@ -26,13 +26,12 @@ class EBrochure extends Component {
       return (
         <Container>
           <Row>
-            <h2 style={{width: '100%', 'text-align': 'center'}}>CHARTER ASSISTANT</h2>
             <img src={this.state.eBrochure._whiteLabel.logoUrl} alt='White Label Logo' />
           </Row>
           <Row>
-            <h5 style={{'margin-left': '15px'}}>Welcome. Please choose a yacht to request further information about chartering:</h5>
+            <h5 style={{'marginLeft': '15px'}}>Welcome. Please choose a yacht to request further information about chartering:</h5>
           </Row>
-          <Row style={{'margin-bottom': '20px'}}>
+          <Row style={{'marginBottom': '20px'}}>
             <AllBoats eBrochure={this.state.eBrochure}/>
           </Row>
           <Row className='footer-address'>

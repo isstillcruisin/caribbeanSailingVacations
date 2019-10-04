@@ -5,7 +5,6 @@ import { LinkContainer } from 'react-router-bootstrap'
 import Carousel from 'react-bootstrap/Carousel';
 import Zoom from "react-reveal/Zoom";
 import Button from 'react-bootstrap/Button';
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Loader from '../components/Loader';
 import Row from 'react-bootstrap/Row';
 
@@ -44,12 +43,6 @@ const BoatsDisplay = styled.div`
   }
 `;
 
-const BoatImage = styled.img`
-  height: 30rem;
-  object-fit: scale-down;
-
-`;
-
 class AllBoats extends Component {
   state = {
     boats: []
@@ -78,7 +71,7 @@ class AllBoats extends Component {
       const imageParts = image.split('/upload/'),
         imgUrl = `${imageParts[0]}/upload/w_500,h_300,c_fill/${imageParts[1]}`
       return (
-        <Carousel.Item style={{'min-height': '30rem'}}>
+        <Carousel.Item style={{minHeight: '30rem'}} key={`${i+1}`}>
           <img src={imgUrl} alt="" className='d-block w-100' />
         </Carousel.Item>
       );
@@ -87,13 +80,13 @@ class AllBoats extends Component {
 
   deleteLink = (boat) => {
     if (!this.props.eBrochure) {
-      return <Button variant="danger" style={{'margin-left': '100px', }} onClick={() => this.handleDeleteBoat(boat)}>Delete</Button>
+      return <Button variant="danger" style={{marginLeft: '100px', }} onClick={() => this.handleDeleteBoat(boat)}>Delete</Button>
     }
   }
 
   editLink = (boat) => {
     if (!this.props.eBrochure) {
-      return <LinkContainer to={`/boat/${boat._id}/edit`}  style={{'margin-right': '100px'}}>
+      return <LinkContainer to={`/boat/${boat._id}/edit`}  style={{marginRight: '100px'}}>
           <Button>Modify</Button>
         </LinkContainer>
     }
@@ -128,9 +121,9 @@ class AllBoats extends Component {
             ><Button>Request Information</Button></LinkContainer>)          
         }
         return (
-          <Zoom bottom>
-            <BoatContainer key={boat._id}>
-              <Carousel key={`${boat._id}${i + 6}`} style={{width: '100%'}}>
+          <Zoom bottom key={boat._id}>
+            <BoatContainer>
+              <Carousel style={{width: '100%'}}>
                 {this.renderImages(boat.imgs)}
               </Carousel>
               <BoatName key={`${boat._id}${i + 1}`}>{boat.boatName}</BoatName>

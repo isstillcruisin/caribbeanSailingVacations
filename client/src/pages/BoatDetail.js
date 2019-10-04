@@ -50,7 +50,7 @@ class BoatDetail extends Component {
   renderImages = images => {
     return images.map((image, i) => {
       return (
-        <Carousel.Item>
+        <Carousel.Item key={`${i}`}>
           <BoatImage src={image} alt=""></BoatImage>
         </Carousel.Item>
       );
@@ -63,10 +63,10 @@ class BoatDetail extends Component {
         <div>{this.state.boat.boatName}</div>
         <div>{this.state.boat.crewBio}</div>
         <BoatContainer key={this.state.boat._id} style={{width: "50%"}}>
-          <Carousel key={`${this.state.boat._id}`} style={{width: "500px"}}>
+          <Carousel style={{width: "500px"}}>
             {this.renderImages(this.state.boat.imgs)}
           </Carousel>
-          <BoatName key={`${this.state.boat._id}`}>{this.state.boat.boatName}</BoatName>
+          <BoatName>{this.state.boat.boatName}</BoatName>
           <BoatPrice>45 min | $20,000</BoatPrice>
         </BoatContainer>
       </Fade>
