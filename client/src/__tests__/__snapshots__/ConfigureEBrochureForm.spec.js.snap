@@ -38,10 +38,19 @@ exports[`ConfigureEBrochureForm component Matches the snapshot 1`] = `
           Name
         </th>
         <th>
+          Maximum Number Of Passengers
+        </th>
+        <th>
+          Price Per Week
+        </th>
+        <th>
+          Images
+        </th>
+        <th>
           Enabled?
         </th>
         <th>
-          Yacht Details
+          More Yacht Details
         </th>
       </tr>
     </thead>
@@ -49,6 +58,17 @@ exports[`ConfigureEBrochureForm component Matches the snapshot 1`] = `
       <tr>
         <td>
           boat1
+        </td>
+        <td>
+          5
+        </td>
+        <td>
+          $1,000.00
+        </td>
+        <td>
+          <div
+            className="image-thumbnails-in-table"
+          />
         </td>
         <td>
           <div
@@ -96,6 +116,17 @@ exports[`ConfigureEBrochureForm component Matches the snapshot 1`] = `
       <tr>
         <td>
           boat2
+        </td>
+        <td>
+          5
+        </td>
+        <td>
+          $1,000.00
+        </td>
+        <td>
+          <div
+            className="image-thumbnails-in-table"
+          />
         </td>
         <td>
           <div

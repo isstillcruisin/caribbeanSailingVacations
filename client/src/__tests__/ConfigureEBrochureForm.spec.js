@@ -10,14 +10,14 @@ describe("ConfigureEBrochureForm component", () => {
         <ConfigureEBrochureForm 
           allYachts={
             [
-              {'_id': 1, boatName: 'boat1'}, 
-              {'_id': 2, boatName: 'boat2'}
+              {'_id': 1, boatName: 'boat1', maxPassengers: 5, pricePerWeek: 1000, imgs: []}, 
+              {'_id': 2, boatName: 'boat2', maxPassengers: 5, pricePerWeek: 1000, imgs: []}, 
             ]
           }
           eBrochure={
             {
               yachts:[
-                {_id: 2, boatName: 'boat2'}
+                {_id: 2, boatName: 'boat2', maxPassengers: 5, pricePerWeek: 1000, imgs: []}, 
               ],
               name: 'test'
             }
