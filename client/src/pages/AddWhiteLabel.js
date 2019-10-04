@@ -46,7 +46,6 @@ class AddWhiteLabel extends Component {
       />
     ) : (
       <>
-        <h1>Setup Your Yacht Charter Site</h1>
         <AddWhiteLabelForm
           handleInputChange={this.handleInputChange}
           handleFormSubmit={this.handleFormSubmit}
