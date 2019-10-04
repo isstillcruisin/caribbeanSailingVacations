@@ -43,7 +43,9 @@ class AddEBrochure extends Component {
       {
         name: this.state.name
       }
-    ).then(() => this.setState({saved: true}));
+    ).then((res) => {
+      this.setState(Object.assign({}, this.state, {eBrochure: res.data, saved: true}))
+    });
   };
 
   handleInputChange = event => {
@@ -57,7 +59,7 @@ class AddEBrochure extends Component {
     if (this.state.saved === true) {
       return <Redirect 
         to={{ 
-          pathname: `/white-label/${this.state.whiteLabel.name}/edit`
+          pathname: `/e-brochure/${this.state.eBrochure._id}/edit`
         }} 
       />
     }
