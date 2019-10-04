@@ -40,6 +40,15 @@ module.exports = {
       .then(dbWhiteLabels => res.json(dbWhiteLabels))
       .catch(err => res.status(422).json(err));
   },
+
+  findByCurrentTravelAgent: function(req, res) {
+    if (!req.user) {
+      return res.status(401)
+    } 
+    db.WhiteLabel.find({_travelAgent: req.user._id})
+      .then(dbWhiteLabels => res.json(dbWhiteLabels))
+      .catch(err => res.status(422).json(err));
+  },
   
   update: function(req, res) {
     db.WhiteLabel.findOneAndUpdate({ _id: req.params.id }, req.body)

@@ -10,6 +10,9 @@ router.route("/")
 router.route("/update/:id")
   .post(whiteLabelController.update)
 
+router.route('/forcurrentuser')
+  .get(whiteLabelController.findByCurrentTravelAgent)
+
 router.route('/:name')
   .get(whiteLabelController.findByName);
 

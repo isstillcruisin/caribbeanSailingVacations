@@ -104,6 +104,15 @@ export default {
     }
   },
 
+  getMyWhiteLabels: async function() {
+    try {
+      const whiteLabels = await axios.get("/api/whitelabels/forcurrentuser");
+      return whiteLabels;
+    } catch (error) {
+      console.log("error in get mywhiteLabels (╯°□°)╯︵ ┻━┻ ", error);
+    }
+  },
+
   charterInquiryCreate:  async function(charterInquiryData) {
     try {
       const newCharterInquiry = await axios.post("/api/charterinquiries", charterInquiryData);
