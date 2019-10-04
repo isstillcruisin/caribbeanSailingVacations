@@ -18,7 +18,7 @@ class ConfigureEBrochureForm extends Component {
             type="text"
             value={this.props.eBrochure.name}
             name="eBrochureName"
-            required
+            disabled
           />
         </div>
       </form>
