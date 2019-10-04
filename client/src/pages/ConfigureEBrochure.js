@@ -54,14 +54,12 @@ class ConfigureEBrochure extends Component {
     } else if (this.state.eBrochure && this.state.boats) {
       return (<> 
         <h1>Configure e-Brochure: {this.state.eBrochure.name}</h1>
-        <Card>
-          <ConfigureEBrochureForm
-            eBrochure = {this.state.eBrochure}
-            allYachts = {this.state.boats}
-            handleEnableYacht = {this.handleEnableYacht}
-            handleDisableYacht = {this.handleDisableYacht}
-          />
-        </Card>
+        <ConfigureEBrochureForm
+          eBrochure = {this.state.eBrochure}
+          allYachts = {this.state.boats}
+          handleEnableYacht = {this.handleEnableYacht}
+          handleDisableYacht = {this.handleDisableYacht}
+        />
       </>)
     } else {
       return <Loader />;

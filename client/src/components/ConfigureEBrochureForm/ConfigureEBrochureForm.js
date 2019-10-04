@@ -1,7 +1,8 @@
 import React, {Component} from "react";
-import { Table, Button } from 'react-bootstrap';
+import { Table, Button, Image } from 'react-bootstrap';
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import { LinkContainer } from 'react-router-bootstrap'
+import formatPrice from '../../utils/formatPrice';
 
 class ConfigureEBrochureForm extends Component {
   render() {
@@ -26,8 +27,11 @@ class ConfigureEBrochureForm extends Component {
         <thead>
           <tr>
             <th>Name</th>
+            <th>Maximum Number Of Passengers</th>
+            <th>Price Per Week</th>
+            <th>Images</th>
             <th>Enabled?</th>
-            <th>Yacht Details</th>
+            <th>More Yacht Details</th>
           </tr>
         </thead>
         <tbody>
@@ -41,6 +45,13 @@ class ConfigureEBrochureForm extends Component {
     return allYachts.map((yacht, i) => {
       return <tr key={`yacht-${i}`}>
           <td>{yacht.boatName}</td>
+          <td>{yacht.maxPassengers}</td>
+          <td>{formatPrice(yacht.pricePerWeek)}</td>
+          <td><div className='image-thumbnails-in-table'>
+            {yacht.imgs && yacht.imgs.map((image, index) => {
+              return <Image key={index + 1} src={image} alt="" thumbnail />
+            })}</div>
+          </td>
           <td>
             <BootstrapSwitchButton
               checked={ eBrochure.yachts.map(y => y._id).includes(yacht._id) }

@@ -64,6 +64,17 @@ code {
   width: 800px;
 }
 
+.image-thumbnails-in-table {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 600px;
+}
+
+.image-thumbnails-in-table img {
+  max-width: 150px; 
+}
+
 .thumbnail-with-remove-button {
   display: flex;
   flex-direction: column;
