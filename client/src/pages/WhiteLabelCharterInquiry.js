@@ -108,6 +108,7 @@ class WhiteLabelCharterInquiry extends Component {
         handleDateRangeChange={this.handleDateRangeChange}
         disableSubmit={this.state.disableSubmit}
         submitText={this.state.submitText}
+        eBrochurePath={`/e-brochure/${this.state.eBrochure._id}`}
       />
     } else {
       return <Loader />
