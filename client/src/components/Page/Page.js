@@ -15,7 +15,6 @@ const theme = {
   offWhite: "#EDEDED",
   transparentGrey: "rgba(.3, .3, .3, .09)",
   turquoise: "#2DECB1",
-  maxWidth: "1000px",
   bs: "0 12px 24px 0 rgba(0, 0, 0, 0.09)",
   white: "#FFFFFF"
 };
@@ -94,8 +93,7 @@ class Page extends Component {
     let token = ls.get("user-token");
     const Inner = withReveal(
       styled.div`
-        max-width: ${props => props.theme.maxWidth};
-        margin: 0 auto;
+        margin: 0;
       `,
       <Fade bottom opposite when={this.state.mounted} />
     );
