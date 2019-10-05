@@ -12,19 +12,33 @@ class IncompleteHeader extends React.Component {
 
   refreshCurrentUser() {
     let userToken = ls.get("user-token")
-    if (this.props.location.pathname === '/sign-out' && !userToken) {
+    if (!userToken && 
+      !(
+        this.props.location.pathname === '/sign-in' || 
+        this.props.location.pathname === '/' ||
+        this.props.location.pathname === '/sign-up'
+      )
+    ) {
       this.setState({
+        noToolbar: true,
         currentUser: null,
-        userToken: false
+        userToken: false,
+      })
+    } else if (this.props.location.pathname === '/sign-out' && !userToken) {
+      this.setState({
+        noToolbar: false,
+        currentUser: null,
+        userToken: false,
       })
     } else if (this.state.userToken !== userToken) {
       API.getCurrentUser().then(res => {
         this.setState({
+          noToolbar: false,
           currentUser: res.data,
           userToken: userToken,
         })
       })
-    }
+    } 
   }
 
   componentDidMount() {
@@ -76,6 +90,8 @@ class IncompleteHeader extends React.Component {
                 </LinkContainer>
               </Nav>
             </Navbar>
+    } else if (this.state.noToolbar) {
+      return ''
     } else {
       return <Navbar bg="light" variant="light">
               <Navbar.Brand href="#home">{'Charter Assistant'}</Navbar.Brand>
@@ -94,7 +110,6 @@ class IncompleteHeader extends React.Component {
               </Nav>
             </Navbar>
     }
-
   }
 }
 const Header = withRouter(IncompleteHeader);
