@@ -96,7 +96,6 @@ class Page extends Component {
       styled.div`
         max-width: ${props => props.theme.maxWidth};
         margin: 0 auto;
-        padding: 2rem;
       `,
       <Fade bottom opposite when={this.state.mounted} />
     );
