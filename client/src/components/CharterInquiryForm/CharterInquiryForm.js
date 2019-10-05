@@ -5,8 +5,10 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
+import Image from 'react-bootstrap/Image';
 import DatePickerWithBlackoutDates from '../DatePickerWithBlackoutDates';
 import formatPrice from '../../utils/formatPrice';
+import { LinkContainer } from 'react-router-bootstrap'
 
 class CharterInquiryForm extends Component {
   renderEstimatedPrice=() => {
@@ -47,11 +49,18 @@ class CharterInquiryForm extends Component {
       { from: new Date("December 24, 2019"), to: new Date("January 2, 2020")}
     ]
     return (
-      <Container>
+      <Container style={{marginTop: '20px'}} >
         <Row>
           <Col>
             <h2>Yacht Charter: {this.props.boat.boatName}</h2>
           </Col>
+        </Row>
+        <Row>
+          <div className='image-thumbnails-in-table'>
+            {this.props.boat.imgs && this.props.boat.imgs.map((image, index) => {
+              return <Image key={index + 1} src={image} alt="" thumbnail />
+            })}
+          </div>
         </Row>
         <p>To inquire about chartering this yacht, please fill out the following form and an email will be sent to your Travel Agent, 
         &nbsp; {this.props.whiteLabel._travelAgent.firstName} {this.props.whiteLabel._travelAgent.lastName}: </p>
@@ -117,6 +126,9 @@ class CharterInquiryForm extends Component {
                 </Col>
               </Form.Row>
               {this.renderSubmitButton()}
+              <LinkContainer to={this.props.eBrochurePath} pullright>
+                <Button className="btn btn-lg">Back</Button>
+              </LinkContainer>
             </Form>
           </Card.Body>
         </Card>
