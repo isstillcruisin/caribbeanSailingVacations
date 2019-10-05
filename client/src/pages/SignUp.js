@@ -1,9 +1,10 @@
-import React, { Component } from "react";
-import SignUpForm from "../components/SignUpForm";
-import { Redirect } from "react-router-dom";
-import API from "../utils/API";
-import _ from "lodash";
-import validateEmails from "../utils/validateEmails";
+import React, { Component } from "react"
+import SignUpForm from "../components/SignUpForm"
+import { Redirect } from "react-router-dom"
+import API from "../utils/API"
+import _ from "lodash"
+import validateEmails from "../utils/validateEmails"
+import Container from 'react-bootstrap/Container'
 
 class SignUp extends Component {
   state = {
@@ -68,7 +69,7 @@ class SignUp extends Component {
         }} 
       />
     ) : (
-      <>
+      <Container>
         <h1>Register With Your Email Address And Setup Your Own Yacht Charter Site!</h1>
         <SignUpForm
           handleInputChange={this.handleInputChange}
@@ -76,7 +77,7 @@ class SignUp extends Component {
           userName={this.state.email}
           password={this.state.password}
         />
-      </>
+      </Container>
     );
   }
 }

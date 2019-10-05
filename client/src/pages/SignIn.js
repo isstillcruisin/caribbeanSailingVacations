@@ -4,6 +4,7 @@ import SignInForm from "../components/SignInForm";
 import API from "../utils/API";
 import ls from "local-storage";
 import Alert from "../components/Alert"
+import Container from "react-bootstrap/Container"
 
 class SignIn extends Component {
   state = {
@@ -36,7 +37,7 @@ class SignIn extends Component {
         return <Redirect to={{ pathname: "/my-white-labels" }} />
       }
     } else {
-      return <>
+      return <Container>
         <Alert {...this.props}/>
         <h4>Sign In</h4>
         <SignInForm
@@ -45,7 +46,7 @@ class SignIn extends Component {
           email={this.state.email}
           password={this.state.password}
         />
-      </>
+      </Container>
     }
   }
 }

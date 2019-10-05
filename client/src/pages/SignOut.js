@@ -14,7 +14,7 @@ class SignOut extends Component {
   render() {
     const signOut = () => {
       this.handleSignOut();
-      return <Redirect to={{ pathname: "/boats" }} />;
+      return <Redirect to={{ pathname: "/" }} />;
     };
     return signOut() || "Thank you!";
   }

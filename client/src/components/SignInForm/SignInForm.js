@@ -1,40 +1,38 @@
 import React from "react";
+import { Card, Form, Col } from 'react-bootstrap'
 
 const SignInForm = props => (
-  <form>
-    <div className="form-group">
-      <input
-        className="form-control"
-        id="email"
-        type="text"
-        value={props.email}
-        placeholder="Email"
-        name="email"
-        onChange={props.handleInputChange}
-        required
-      />
-      <input
-        style={{ marginLeft: ".5rem" }}
-        className="form-control"
-        id="password"
-        type="password"
-        value={props.password}
-        placeholder="Password"
-        name="password"
-        onChange={props.handleInputChange}
-        required
-      />
-    </div>
-    <div className="pull-right">
-      <button
-        onClick={props.handleSignIn}
-        type="submit"
-        className="btn btn-lg btn-danger"
-      >
-        Submit
-      </button>
-    </div>
-  </form>
+  <Form>
+      <Form.Row controlid="formEmail">
+        <Form.Label column xs={3}>
+          Email
+        </Form.Label>
+        <Col xs={9}>
+          <Form.Control type="email" name='email' placeholder="Email Address" value={props.email} onChange={props.handleInputChange} />
+        </Col>
+      </Form.Row>
+      <Form.Row controlid="formPassword">
+        <Form.Label column xs={3}>
+          Password
+        </Form.Label>
+        <Col xs={9}>
+          <Form.Control type="password" name='password' placeholder="Password" value={props.password} onChange={props.handleInputChange} />
+        </Col>
+      </Form.Row>
+      <Form.Row controlid="formSubmit">
+        <Col>
+          <div className="pull-right">
+            <button
+              onClick={props.handleSignIn}
+              type="submit"
+              className="btn btn-lg btn-danger"
+            >
+              Sign In
+            </button>
+          </div>
+        </Col>
+      </Form.Row>
+  </Form>
 );
 
 export default SignInForm;
