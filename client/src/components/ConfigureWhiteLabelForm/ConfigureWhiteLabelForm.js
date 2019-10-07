@@ -85,10 +85,11 @@ class ConfigureWhiteLabelForm extends Component {
             <Form.Row>
               <Form.Group>
                 <ImageUploader
-                  images={[this.props.whiteLabel.logoUrl]}
+                  imgs={this.props.whiteLabel.logoUrl ? [this.props.whiteLabel.logoUrl] : []}
+                  showDropZone={!this.props.whiteLabel.logoUrl}
                   onChange={this.props.handleInputChange}
                   setUrls={this.handleSetUrls}
-                  placeholder='Dropping a logo image here, or click to select a file to upload. The image will be scaled to fit in a rectangle of 200px wide, 100px tall.'
+                  placeholder='Drop a logo image here, or click to select a file to upload. The image will be scaled to fit in a rectangle of 200px wide, 100px tall.'
                   multiple={false}
                   width={200}
                   height={100}
@@ -138,7 +139,7 @@ class ConfigureWhiteLabelForm extends Component {
   }
 
   handleSetUrls = urlArray => {
-    this.props.handleInputChange({ target: { name: 'logoUrl', value: urlArray }})
+    this.props.handleInputChange({ target: { name: 'logoUrl', value: urlArray[0] }})
   };
 
 

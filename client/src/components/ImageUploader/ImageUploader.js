@@ -3,6 +3,7 @@ import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import Image from 'react-bootstrap/Image'
 import Button from 'react-bootstrap/Button'
+import Loader from '../Loader'
 
 const CLOUDINARY_UPLOAD_PRESET = "ecaxfmj9";
 const CLOUDINARY_UPLOAD_URL = "https://api.cloudinary.com/v1_1/dui3yyhou/upload";
@@ -25,6 +26,7 @@ class ImageUploader extends Component {
   }
 
   handleImageUpload(file) {
+    this.setState({loading: true})
     let upload = request.post(CLOUDINARY_UPLOAD_URL)
       .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
       .field('file', file);
@@ -41,7 +43,8 @@ class ImageUploader extends Component {
           url = `${parts[0]}/upload/w_${this.props.width},h_${this.props.height},c_fit/${parts[1]}`
         }
         this.setState({
-          uploadedFileCloudinaryUrl: url
+          uploadedFileCloudinaryUrl: url,
+          loading: false,
         });
       }
       let imgs = this.props.imgs || []
@@ -68,34 +71,47 @@ class ImageUploader extends Component {
   }
 
   render() {
-    return (
-      <>
-        <Dropzone
-          onDrop={this.onImageDrop.bind(this)}
-          accept="image/*"
-          multiple={this.props.multiple}
-        >
-          {({ getRootProps, getInputProps }) => {
-            return (
-              <div {...getRootProps()} className='boat-image-dropzone'>
-                <input {...getInputProps()} />
-                {
-                  <p>
-                    {this.props.placeholder}
-                  </p>
-                }
-              </div>
-            );
-          }}
-        </Dropzone>
+    if (this.state.loading) {
+      return <Loader />
+    } else if (this.props.showDropZone) {
+      return (
+        <><Dropzone
+            onDrop={this.onImageDrop.bind(this)}
+            accept="image/*"
+            multiple={this.props.multiple}
+          >
+            {({ getRootProps, getInputProps }) => {
+              return (
+                <div {...getRootProps()} className='boat-image-dropzone'>
+                  <input {...getInputProps()} />
+                  {
+                    <p>
+                      {this.props.placeholder}
+                    </p>
+                  }
+                </div>
+              );
+            }}
+          </Dropzone>
 
-        <div>
           <div>
-            {this.renderImages()}
+            <div>
+              {this.renderImages()}
+            </div>
           </div>
-        </div>
-      </>
-    );
+        </>
+      )
+    } else {
+      return (
+        <>
+          <div>
+            <div>
+              {this.renderImages()}
+            </div>
+          </div>
+        </>
+      )
+    }
   }
 }
 
