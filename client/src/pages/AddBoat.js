@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AddBoatForm from "../components/AddBoatForm";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
+import Container from 'react-bootstrap/Container'
 
 class AddBoat extends Component {
   state = {
@@ -63,7 +64,7 @@ class AddBoat extends Component {
       />)
     } else {
       return (
-        <div className="AddBoat">
+        <Container className="AddBoat">
           <header className="AddBoat-header">
             <AddBoatForm
               handleInputChange={this.handleInputChange}
@@ -78,7 +79,7 @@ class AddBoat extends Component {
               pricePerWeek={this.state.pricePerWeek}
             />
           </header>
-        </div>
+        </Container>
       );
     }
   }

@@ -4,6 +4,7 @@ import API from "../utils/API";
 import { Redirect } from "react-router-dom";
 import Loader from '../components/Loader'
 import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
 
 class ConfigureWhiteLabel extends Component {
   state = {saved: true};
@@ -61,7 +62,7 @@ class ConfigureWhiteLabel extends Component {
         }} 
       />)
     } else if (this.state.whiteLabel) {
-      return (<> 
+      return (<Container> 
         <h1>Configure White Label: '{this.state.whiteLabel.name}'</h1>
         <Card>
           <ConfigureWhiteLabelForm
@@ -71,7 +72,7 @@ class ConfigureWhiteLabel extends Component {
             saved = {this.state.saved}
           />
         </Card>
-      </>)
+      </Container>)
     } else {
       return <Loader />;
     }

@@ -15,7 +15,7 @@ const BoatContainer = styled.div`
   position: relative;
   width: 100%;
   transition: all 1s ease-out;
-  height: 40rem;
+  height: 500px;
   background-color: rgba(200, 200, 200, 0.6);
 `;
 
