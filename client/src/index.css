@@ -96,3 +96,8 @@ code {
 .home .blue-card {
   background-color: #18548D;
 }
+
+.carousel-item img {
+  height: 300px;
+  width: auto;
+}

@@ -71,7 +71,7 @@ class AllBoats extends Component {
       const imageParts = image.split('/upload/'),
         imgUrl = `${imageParts[0]}/upload/w_500,h_300,c_fill/${imageParts[1]}`
       return (
-        <Carousel.Item style={{minHeight: '30rem'}} key={`${i+1}`}>
+        <Carousel.Item key={`${i+1}`}>
           <img src={imgUrl} alt="" className='d-block w-100' />
         </Carousel.Item>
       );
@@ -123,7 +123,7 @@ class AllBoats extends Component {
         return (
           <Zoom bottom key={boat._id}>
             <BoatContainer>
-              <Carousel style={{width: '100%'}}>
+              <Carousel>
                 {this.renderImages(boat.imgs)}
               </Carousel>
               <BoatName key={`${boat._id}${i + 1}`}>{boat.boatName}</BoatName>
