@@ -2,36 +2,11 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import styled from "styled-components";
 import { LinkContainer } from 'react-router-bootstrap'
-import Carousel from 'react-bootstrap/Carousel';
 import Zoom from "react-reveal/Zoom";
 import Button from 'react-bootstrap/Button';
 import Loader from '../components/Loader';
 import Row from 'react-bootstrap/Row';
-
-const BoatContainer = styled.div`
-  display: grid;
-  overflow: hidden;
-  border: 1px solid ${props => props.theme.white};
-  position: relative;
-  width: 100%;
-  transition: all 1s ease-out;
-  height: 500px;
-  background-color: rgba(200, 200, 200, 0.6);
-`;
-
-const BoatName = styled.div`
-  position: relative;
-  height: 100%;
-  width: 100%;
-  text-align: center;  
-`;
-
-const BoatPrice = styled.div`
-  position: relative;
-  height: 100%;
-  width: 100%;
-  text-align: center;  
-`;
+import EBrochureYacht from '../components/EBrochureYacht'
 
 const BoatsDisplay = styled.div`
   display: grid;
@@ -63,18 +38,6 @@ class AllBoats extends Component {
       } else {
         console.log("response error (╯°□°)╯︵ ┻━┻ ", response);
       }
-    });
-  }
-
-  renderImages = images => {
-    return images.map((image, i) => {
-      const imageParts = image.split('/upload/'),
-        imgUrl = `${imageParts[0]}/upload/w_500,h_300,c_fill/${imageParts[1]}`
-      return (
-        <Carousel.Item key={`${i+1}`}>
-          <img src={imgUrl} alt="" className='d-block w-100' />
-        </Carousel.Item>
-      );
     });
   }
 
@@ -122,18 +85,14 @@ class AllBoats extends Component {
         }
         return (
           <Zoom bottom key={boat._id}>
-            <BoatContainer>
-              <Carousel>
-                {this.renderImages(boat.imgs)}
-              </Carousel>
-              <BoatName key={`${boat._id}${i + 1}`}>{boat.boatName}</BoatName>
-              <BoatPrice>{`Week | $${Number(boat.pricePerWeek).toLocaleString()}`}</BoatPrice>
+            <div style={{display: 'flex', flexDirection: 'column', height: '500px'}}>
+              <EBrochureYacht yacht={boat} />
               <Row className='button-row'> 
                 {this.editLink(boat)}
                 {link}                
                 {this.deleteLink(boat)}
               </Row>
-            </BoatContainer>
+            </div>
           </Zoom>
         );
       });
