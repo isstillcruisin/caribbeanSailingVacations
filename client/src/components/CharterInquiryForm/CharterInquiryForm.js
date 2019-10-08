@@ -104,10 +104,10 @@ class CharterInquiryForm extends Component {
                   </Form.Row>
                   <Form.Row controlid='numberOfPassengers'>
                     <Form.Label column xs={3}>
-                      Number of Passengers
+                      Number of Passengers (max: {this.props.boat.maxPassengers})
                     </Form.Label>
                     <Col xs={9}>
-                      <Form.Control type='number' placeholder='Number of Passengers' name='numberOfPassengers' onChange={this.props.handleInputChange}  />
+                      <Form.Control type='number' placeholder={`Number of Passengers (max: ${this.props.boat.maxPassengers})`} name='numberOfPassengers' onChange={this.props.handleInputChange}  />
                     </Col>
                   </Form.Row>
                   <Form.Row controlid='dates'>
