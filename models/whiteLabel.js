@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const { newWhiteLabelEmail } = require("../util/TransactionalMailer")
 
 const whiteLabelSchema = new Schema({
   name: { type: String, required: true },
@@ -15,6 +16,14 @@ const whiteLabelSchema = new Schema({
   phoneNumber: { type: String },
   logoUrl: { type: String },
 });
+
+whiteLabelSchema.post('save', function(whiteLabel, next) {
+  whiteLabel.populate('_travelAgent', function (err, _ta) {
+    if (err) console.log("**** ERR", err)
+    else newWhiteLabelEmail(whiteLabel, next);
+  });
+});
+
 
 const WhiteLabel = mongoose.model("WhiteLabel", whiteLabelSchema);
 
