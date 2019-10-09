@@ -3,6 +3,31 @@ const db = require("../models");
 const keys = require("../config/keys");
 const constants = require('./constants');
 const Mailer = require("../routes/services/Mailer");
+const moment = require('moment');
+
+async function newCharterInquiryEmail(charterInquiry, callback) {
+  const subject = 'Yacht Charter Inquiry', 
+    ta = charterInquiry._whiteLabel._travelAgent,
+    mailer = new Mailer(
+      subject,
+      [{email: ta.email}], 
+      `Dear ${ta.firstName} ${ta.lastName}:` + 
+      '<br>You have received the following Yacht Charter Inquiry:' +
+      '<table>' +
+      `<tr><td>Name:</td><td>${charterInquiry.firstName} ${charterInquiry.lastName}</td></tr>` +
+      `<tr><td>Email:</td><td>${charterInquiry.email}</td></tr>` +
+      `<tr><td>Yacht:</td><td>${charterInquiry._yacht.boatName}</td></tr>` +
+      `<tr><td>Number of Passengers:</td><td>${charterInquiry.numberOfPassengers}</td></tr>` +
+      `<tr><td>Dates:</td><td>${moment(charterInquiry.startDate).format('LL')} - ${moment(charterInquiry.endDate).format('LL')}</td></tr>` +
+      `<tr><tr>Price Per Week:</td><td>${Number(charterInquiry._yacht.pricePerWeek).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td></tr>` +
+      `<tr><tr>Estimated Price:</td><td>${Number(charterInquiry.estimatedPrice).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td></tr>` +
+      '</table>'
+    );
+  mailer
+    .send()
+    .then(() => {callback();})
+    .catch(error => console.error(error.toString()));
+}
 
 async function sendPreferencesEmail(charterInquiryId, callback) {
   var id = new mongoose.Types.ObjectId(charterInquiryId);
@@ -52,5 +77,5 @@ async function sendPreferencesEmail(charterInquiryId, callback) {
   .catch(error => console.error(`ERROR FINDING CHARTER INQUIRY: : ${error.toString()}`));
 }
 
-module.exports = { sendPreferencesEmail }
+module.exports = { sendPreferencesEmail, newCharterInquiryEmail }
 
