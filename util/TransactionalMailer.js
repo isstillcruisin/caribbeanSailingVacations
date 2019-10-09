@@ -32,7 +32,7 @@ async function newCharterInquiryEmail(charterInquiry, callback) {
 async function newWhiteLabelEmail(whiteLabel, callback) {
   const subject = 'New White Label', 
     ta = whiteLabel._travelAgent;
-  db.Users.find({isAdmin: true})
+  db.User.find({isAdmin: true})
     .then(dbAdminUsers => {
       const mailer = new Mailer(
         subject,
