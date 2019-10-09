@@ -1,21 +1,22 @@
-import React, { Component } from "react";
-import AddWhiteLabelForm from "../components/AddWhiteLabelForm";
-import API from "../utils/API";
-import { Redirect } from "react-router-dom";
+import React, { Component } from "react"
+import AddWhiteLabelForm from "../components/AddWhiteLabelForm"
+import API from "../utils/API"
+import { Redirect } from "react-router-dom"
+import Card from 'react-bootstrap/Card'
 
 class AddWhiteLabel extends Component {
   state = {
     whiteLabelName: ""
-  };
+  }
 
   handleFormSubmit = event => {
-    event.preventDefault();
+    event.preventDefault()
     try {
-      this.saveWhiteLabel();
+      this.saveWhiteLabel()
     } catch (err) {
-      console.log("error in save White Label (╯°□°)╯︵ ┻━┻ ", err);
+      console.log("error in save White Label (╯°□°)╯︵ ┻━┻ ", err)
     }
-  };
+  }
 
   saveWhiteLabel = () => {
     API.createWhiteLabel({
@@ -26,15 +27,15 @@ class AddWhiteLabel extends Component {
           saved: true
         })
       )
-      .catch(err => console.log("saving white label error", err));
-  };
+      .catch(err => console.log("saving white label error", err))
+  }
 
   handleInputChange = event => {
-    const { name, value } = event.target;
+    const { name, value } = event.target
     this.setState({
       [name]: value
-    });
-  };
+    })
+  }
 
   render() {
     return this.state.saved === true ? (
@@ -45,15 +46,20 @@ class AddWhiteLabel extends Component {
         }} 
       />
     ) : (
-      <>
-        <AddWhiteLabelForm
-          handleInputChange={this.handleInputChange}
-          handleFormSubmit={this.handleFormSubmit}
-          whiteLabelName={this.state.whiteLabelName}
-        />
-      </>
-    );
+      <Card style={{color: 'black'}}>
+        <Card.Header>
+          Add New White Label
+        </Card.Header>
+        <Card.Body>
+          <AddWhiteLabelForm
+            handleInputChange={this.handleInputChange}
+            handleFormSubmit={this.handleFormSubmit}
+            whiteLabelName={this.state.whiteLabelName}
+          />
+        </Card.Body>
+      </Card>
+    )
   }
 }
 
-export default AddWhiteLabel;
+export default AddWhiteLabel
