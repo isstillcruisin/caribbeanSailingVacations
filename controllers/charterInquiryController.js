@@ -1,6 +1,5 @@
 const db = require("../models");
 const jwt = require("jwt-simple");
-const keys = require("../config/keys");
 const Mailer = require("../routes/services/Mailer");
 const moment = require('moment');
 const {ORIENTATION_PDF_URL} = require('../util/constants');
@@ -18,6 +17,8 @@ module.exports = {
       estimatedPrice: req.body.estimatedPrice,
       numberOfPassengers: req.body.numberOfPassengers,
       confirmed: false,
+      sentPreferencesEmail: false,
+      sentOrientationEmail: false,
       _whiteLabel: req.body.eBrochure._whiteLabel._id,
       _eBrochure: req.body.eBrochure._id,
       _yacht: req.body.yacht._id,
@@ -67,7 +68,7 @@ module.exports = {
     .then(dbCharterInquiry => {
       // Send the orientation email
       let ta = dbCharterInquiry._whiteLabel._travelAgent,
-        subject = 'Charter Orientation Packet', 
+        subject = 'Yacht Charter Orientation', 
         mailer = new Mailer(
           subject,
           [{email: dbCharterInquiry.email}], 
