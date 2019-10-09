@@ -6,7 +6,6 @@ const mongoose = require("mongoose");
 const keys = require("../config/keys");
 const moment = require('moment');
 
-mongoose.set('debug', true)
 mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 mongoose.set('useFindAndModify', false);
