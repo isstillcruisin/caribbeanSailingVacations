@@ -149,7 +149,7 @@ class WhiteLabelCharterInquiries extends Component {
   render() {
     if (this.state.charterInquiries) {
       return <Container>
-        <Tabs defaultActiveKey="unconfirmed" id="uncontrolled-tab-example" variant='pills'>
+        <Tabs defaultActiveKey="unconfirmed" id="charter-inquiries" variant='pills'>
           {this.renderUnconfirmedTab()}
           {this.renderConfirmedTab()}
         </Tabs>
