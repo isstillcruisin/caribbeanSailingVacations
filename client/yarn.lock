@@ -2116,6 +2116,10 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
+classnames@2.2.5:
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
+
 classnames@^2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
@@ -2892,7 +2896,7 @@ dom-converter@^0.2:
   dependencies:
     utila "~0.4"
 
-dom-helpers@^3.4.0:
+dom-helpers@^3.3.1, dom-helpers@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-3.4.0.tgz#e9b369700f959f62ecde5a6babde4bccd9169af8"
   dependencies:
@@ -7242,6 +7246,14 @@ react-app-polyfill@^0.2.2:
     raf "3.4.1"
     whatwg-fetch "3.0.0"
 
+react-bootstrap-table-next@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/react-bootstrap-table-next/-/react-bootstrap-table-next-3.2.1.tgz#9f752ebd6592b8d512820e714dd810df38ae0cfc"
+  dependencies:
+    classnames "2.2.5"
+    react-transition-group "2.5.3"
+    underscore "1.9.1"
+
 react-bootstrap@^1.0.0-beta.12:
   version "1.0.0-beta.12"
   resolved "https://registry.yarnpkg.com/react-bootstrap/-/react-bootstrap-1.0.0-beta.12.tgz#49fb83e288b1b5fa86e4c51e145630ec8b8598bb"
@@ -7326,6 +7338,10 @@ react-error-overlay@^5.1.4:
 react-is@^16.3.2, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.9.0:
   version "16.9.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.9.0.tgz#21ca9561399aad0ff1a7701c01683e8ca981edcb"
+
+react-lifecycles-compat@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
 
 react-overlays@^1.2.0:
   version "1.2.0"
@@ -7455,6 +7471,15 @@ react-test-renderer@^16.9.0:
     prop-types "^15.6.2"
     react-is "^16.9.0"
     scheduler "^0.15.0"
+
+react-transition-group@2.5.3:
+  version "2.5.3"
+  resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.5.3.tgz#26de363cab19e5c88ae5dbae105c706cf953bb92"
+  dependencies:
+    dom-helpers "^3.3.1"
+    loose-envify "^1.4.0"
+    prop-types "^15.6.2"
+    react-lifecycles-compat "^3.0.4"
 
 react-transition-group@^4.0.0, react-transition-group@^4.0.1:
   version "4.3.0"
@@ -8752,6 +8777,10 @@ uncontrollable@^7.0.0:
   dependencies:
     "@babel/runtime" "^7.4.5"
     invariant "^2.2.4"
+
+underscore@1.9.1:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.9.1.tgz#06dce34a0e68a7babc29b365b8e74b8925203961"
 
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import Loader from "../components/Loader";
-import Table from "react-bootstrap/Table"
 import Card from "react-bootstrap/Card"
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import { Link } from "react-router-dom";
+import BootstrapTable from 'react-bootstrap-table-next';
 
 class MyWhiteLabels extends Component {
   state = {
@@ -19,46 +19,25 @@ class MyWhiteLabels extends Component {
     });
   }
 
-  renderWhiteLabelRows() {
-    return this.state.whiteLabels.map((whiteLabel, i) => {
-      return (
-        <tr key={`${i + 1}`}>
-          <td>{whiteLabel.name}</td>
-          <td>
-            <Link 
-              to={`/white-label/${whiteLabel.name}/edit`}
-            >Configure</Link>
-          </td>
-          <td>
-            <Link
-              to={`/white-label/${whiteLabel.name}/edit`}
-            >E-Brochures</Link> 
-          </td>
-          <td>
-            <Link
-              to={`/charter-inquiries/${whiteLabel.name}`}
-            >Inquiries</Link> 
-          </td> 
-        </tr>
-      )
-    });
-  }
-
   renderWhiteLabelTable() {
     if (this.state.whiteLabels.length > 0) {
-      return <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Configure</th>
-            <th>E-Brochures</th>
-            <th>Charter Inquiries</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.renderWhiteLabelRows()}   
-        </tbody>
-      </Table>
+      const columns = [{
+        dataField: 'name',
+        text: 'Name'
+      }, {
+        dataField: 'name',
+        text: 'Configure',
+        formatter: (cell) => <Link to={`/white-label/${cell}/edit`}>Configure</Link> 
+      }, {
+        dataField: 'name',
+        text: 'E-Brochures',
+        formatter: (cell) => <Link to={`/white-label/${cell}/edit`}>E-Brochures</Link> 
+      }, {
+        dataField: 'name',
+        text: 'Inquiries',
+        formatter: (cell) => <Link to={`/charter-inquiries/${cell}`}>Charter Inquiries</Link>
+      }];
+      return <BootstrapTable keyField='id' data={ this.state.whiteLabels } columns={ columns } />
     } else return ''
   }
 

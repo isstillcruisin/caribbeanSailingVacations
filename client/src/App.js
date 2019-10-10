@@ -4,6 +4,7 @@ import styled from "styled-components";
 import ls from "local-storage";
 import axios from "axios";
 import history from './history';
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 
 const Page = React.lazy(() => import("./components/Page"));
 const AddBoat = React.lazy(() => import("./pages/AddBoat"));
