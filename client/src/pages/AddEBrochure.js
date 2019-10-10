@@ -3,6 +3,7 @@ import AddEBrochureForm from "../components/AddEBrochureForm";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
 import Loader from "../components/Loader";
+import Card from 'react-bootstrap/Card';
 
 class AddEBrochure extends Component {
   componentDidMount() {
@@ -62,8 +63,7 @@ class AddEBrochure extends Component {
           pathname: `/e-brochure/${this.state.eBrochure._id}/edit`
         }} 
       />
-    }
-    else if (this.state.unauthorized) {
+    } else if (this.state.unauthorized) {
       return (<Redirect 
         to={{ 
           pathname: `/`,
@@ -71,14 +71,18 @@ class AddEBrochure extends Component {
         }} 
       />)
     } else if (this.state.whiteLabel && this.state.boats) {
-      return (<> 
-        <h1>Setup Your E-Brochure</h1>
-        <AddEBrochureForm
+      return (<Card>
+        <Card.Header>
+          Setup Your E-Brochure
+        </Card.Header>
+        <Card.Body>
+          <AddEBrochureForm
             handleInputChange={this.handleInputChange}
             handleFormSubmit={this.handleFormSubmit}
             name={this.state.name}
           />
-      </>)
+        </Card.Body>
+      </Card>)
     } else {
       return <Loader />;
     }  
