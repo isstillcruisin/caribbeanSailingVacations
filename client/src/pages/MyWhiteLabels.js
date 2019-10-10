@@ -5,6 +5,7 @@ import Card from "react-bootstrap/Card"
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import { Link } from "react-router-dom";
 import BootstrapTable from 'react-bootstrap-table-next';
+import paginationFactory from 'react-bootstrap-table2-paginator';
 
 class MyWhiteLabels extends Component {
   state = {
@@ -37,7 +38,12 @@ class MyWhiteLabels extends Component {
         text: 'Inquiries',
         formatter: (cell) => <Link to={`/charter-inquiries/${cell}`}>Charter Inquiries</Link>
       }];
-      return <BootstrapTable keyField='id' data={ this.state.whiteLabels } columns={ columns } />
+      return <BootstrapTable 
+        keyField='id' 
+        data={ this.state.whiteLabels } 
+        columns={ columns } 
+        pagination={ paginationFactory() }
+      />
     } else return ''
   }
 
