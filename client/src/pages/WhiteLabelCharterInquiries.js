@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import Loader from "../components/Loader";
-import Table from "react-bootstrap/Table"
 import Card from "react-bootstrap/Card"
 import Button from "react-bootstrap/Button"
 import Container from "react-bootstrap/Container"
@@ -11,11 +10,13 @@ import Tabs from "react-bootstrap/Tabs"
 import moment from 'moment';
 import { LinkContainer } from 'react-router-bootstrap'
 import formatPrice from '../utils/formatPrice'
+import BootstrapTable from 'react-bootstrap-table-next';
+import paginationFactory from 'react-bootstrap-table2-paginator';
 
 class WhiteLabelCharterInquiries extends Component {
   _isMounted = false;
   state = {
-    charterInquiries: {}
+    charterInquiries: undefined
   };
 
   componentDidMount() {
@@ -50,107 +51,99 @@ class WhiteLabelCharterInquiries extends Component {
     this._isMounted = false;
   }
 
-  confirmedCharterInquiryRows=() => this.renderCharterInquiryRows(this.state.charterInquiries.confirmed, true)
-  unconfirmedCharterInquiryRows=() => this.renderCharterInquiryRows(this.state.charterInquiries.unconfirmed, false)
-
   handleSendContract=() => this.setState(Object.assign({}, this.state, {showSendContractModal: true}))
   handleCloseSendContractModal=() => this.setState(Object.assign({}, this.state, {showSendContractModal: false}))
 
-  renderCharterInquiryRows(charterInquiries, confirmed) {
-    return charterInquiries && charterInquiries.map((charterInquiry, i) => {
-      const sendOrientationButtonColumn = <td><Button onClick={this.handleSendOrientationPacket} data-id={charterInquiry._id}>Send Orientation Packet</Button></td>,
-        setConfirmedButtonColumn = <td><Button onClick={this.handleSetInquiryConfirmed} data-id={charterInquiry._id}>Set Confirmed</Button></td>,
-        buttonColumn = confirmed ? sendOrientationButtonColumn : setConfirmedButtonColumn,
-        sendContractColumn = confirmed ? null : <td><Button onClick={this.handleSendContract} data-id={charterInquiry._id}>Send Contract</Button></td>,
-        yacht = charterInquiry._yacht
-      return (<tr key={i}>
-                <td>{charterInquiry.firstName}</td>
-                <td>{charterInquiry.lastName}</td>
-                <td>{charterInquiry.email}</td>
-                <td>{yacht ? yacht.boatName : '***DELETED***'}</td>
-                <td>{moment(charterInquiry.startDate).format('LL')}</td>
-                <td>{moment(charterInquiry.endDate).format('LL')}</td>
-                <td>{charterInquiry.numberOfPassengers}</td>
-                <td>{yacht ? formatPrice(yacht.pricePerWeek) : 'N/A'}</td>
-                <td>{yacht ? formatPrice(charterInquiry.estimatedPrice) : 'N/A'}</td>
-                <td><LinkContainer
-                      to={`/e-brochure/${charterInquiry._eBrochure._id}`}
-                      className="e-brochure-link"
-                    ><Button>E-Brochure</Button></LinkContainer>
-                </td>
-                {sendContractColumn}
-                {buttonColumn}
-              </tr>
-      )
-    });
+  columnDefinitions(confirmed) {
+    const commonColumns = [{
+      dataField: 'firstName',
+      text: 'First Name',
+    }, {
+      dataField: 'lastName',
+      text: 'Last Name',     
+    }, {
+      dataField: '_yacht',
+      text: 'Yacht Name',
+      formatter: (yacht) => yacht ? yacht.boatName : 'N/A'
+    }, {
+      dataField: 'startDate',
+      text: 'Start Date',
+      formatter: (date) => moment(date).format('LL')
+    }, {
+      dataField: 'endDate',
+      text: 'End Date',
+      formatter: (date) => moment(date).format('LL')
+    }, {
+      dataField: 'numberOfPassengers',
+      text: 'Number Of Passengers',
+    }, {
+      dataField: '_yacht',
+      text: 'Price Per Week',
+      formatter: (yacht) => yacht ? formatPrice(yacht.pricePerWeek) : 'N/A'
+    }, {
+      dataField: 'estimatedPrice',
+      text: 'Estimated Price',
+      formatter: (estimatedPrice, row) => row._yacht ? formatPrice(estimatedPrice) : 'N/A'
+    }, {
+      dataField: '_eBrochure',
+      text: 'E-Brochure',
+      formatter: (eBrochure) => <LinkContainer
+         to={`/e-brochure/${eBrochure._id}`}
+         className="e-brochure-link"
+      ><Button>E-Brochure</Button></LinkContainer>
+    }]
+    if (confirmed) {
+      return commonColumns.concat([{
+        dataField: '_id',
+        text: 'Send Contract',
+        formatter: (id) => <Button onClick={this.handleSendContract} data-id={id}>Send Contract</Button>
+      }, {
+        dataField: '_id',
+        text: 'Send Orientation Packet',
+        formatter: (id) => <Button onClick={this.handleSendOrientationPacket} data-id={id}>Send Orientation Packet</Button>
+      }])
+    } else {
+      return commonColumns.concat([{
+        dataField: '_id',
+        text: 'Set Confirmed',
+        formatter: (id) => <Button onClick={this.handleSetInquiryConfirmed} data-id={id}>Set Confirmed</Button>
+      }])
+    }
   }
 
-  renderTableHeaders(confirmed) {
-    const buttonHeader = confirmed ? (<th>Post-Acceptance Email Link</th>) : (<th>Set Confirmed</th>),
-      sendContractHeader = confirmed ? null : (<th>Send Contract</th>)
-
-    return  <thead>
-              <tr><th>First Name</th>
-                <th>Last Name</th>
-                <th>Email Address</th>
-                <th>Yacht Name</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Number of Passengers</th>
-                <th>Price Per Week</th>
-                <th>Estimated Price</th>
-                <th>E-Brochure</th>
-                {sendContractHeader}
-                {buttonHeader}
-              </tr>
-            </thead>
+  renderTable(confirmed) {
+    return <BootstrapTable 
+      keyField='id' 
+      data={ confirmed ? this.state.charterInquiries.confirmed : this.state.charterInquiries.unconfirmed } 
+      columns={ this.columnDefinitions(confirmed) } 
+      pagination={ paginationFactory() }
+    />  
   }
 
   renderUnconfirmedTab = () => {
     return <Tab eventKey="unconfirmed" title="Unconfirmed">
-            <Card style={{color: 'black'}}>
-              <Card.Header>
-                Unconfirmed Charter Inquiries on White Label: <i>{this.props.match.params.whiteLabelName}</i>
-              </Card.Header>
-              <Card.Body>
-                <Table striped bordered hover>
-                  {this.renderTableHeaders(false)}
-                  <tbody>
-                    {this.unconfirmedCharterInquiryRows()}   
-                  </tbody>
-                </Table>
-              </Card.Body>
-            </Card>
-          </Tab>
+      <Card style={{color: 'black'}}>
+        <Card.Header>
+          Unconfirmed Charter Inquiries on White Label: <i>{this.props.match.params.whiteLabelName}</i>
+        </Card.Header>
+        <Card.Body>
+          {this.renderTable(false)}
+        </Card.Body>
+      </Card>
+    </Tab>
   }
 
   renderConfirmedTab = () => {
     return <Tab eventKey="confirmed" title="Confirmed">
-            <Card style={{color: 'black'}}>
-             <Card.Header>
-                Confirmed Charter Inquiries on White Label: <i>{this.props.match.params.whiteLabelName}</i>
-              </Card.Header>
-              <Card.Body>
-                <Table striped bordered hover>
-                  {this.renderTableHeaders(true)}
-                  <tbody>
-                    {this.confirmedCharterInquiryRows()}   
-                  </tbody>
-                </Table>
-              </Card.Body>
-            </Card>
-          </Tab>
-
-  }
-
-  renderArchivedTab = () => {
-    if (this.state.charterInquiries.archived && this.state.charterInquiries.archived.length > 0) {
-      return <Tab eventKey="archived" title="Archived">
-         This tab should show the archived Charter Inquiries
-      </Tab>
-    } else {
-      return <Tab eventKey="archived" title="Archived" disabled />
-    }
+      <Card style={{color: 'black'}}>
+        <Card.Header>
+          Confirmed Charter Inquiries on White Label: <i>{this.props.match.params.whiteLabelName}</i>
+        </Card.Header>
+        <Card.Body>
+          {this.renderTable(true)}
+        </Card.Body>
+      </Card>
+    </Tab>
   }
 
   render() {
@@ -159,7 +152,6 @@ class WhiteLabelCharterInquiries extends Component {
         <Tabs defaultActiveKey="unconfirmed" id="uncontrolled-tab-example" variant='pills'>
           {this.renderUnconfirmedTab()}
           {this.renderConfirmedTab()}
-          {this.renderArchivedTab()}
         </Tabs>
         <Modal show={this.state.showSendContractModal} onHide={this.handleCloseSendContractModal}>
           <Modal.Header closeButton>
