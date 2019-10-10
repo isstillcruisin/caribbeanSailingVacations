@@ -3,7 +3,6 @@ import ConfigureEBrochureForm from "../components/ConfigureEBrochureForm";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
 import Loader from '../components/Loader'
-import Card from 'react-bootstrap/Card';
 
 class ConfigureEBrochure extends Component {
   state = {};
