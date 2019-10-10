@@ -26,6 +26,10 @@ class AllWhiteLabels extends Component {
         dataField: 'name',
         text: 'Name'
       }, {
+        dataField: '_travelAgent',
+        text: 'Travel Agent',
+        formatter: (cell) => <a href={`mailto:${cell.email}`}>{cell.firstName} {cell.lastName}</a>
+      }, {
         dataField: 'name',
         text: 'Enabled?',
         formatter: (cell, row) => <BootstrapSwitchButton

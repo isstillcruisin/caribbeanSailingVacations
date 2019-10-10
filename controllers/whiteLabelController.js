@@ -52,6 +52,7 @@ module.exports = {
 
   findAll: function(req, res) {
     db.WhiteLabel.find(req.query)
+      .populate('_travelAgent')
       .then(dbWhiteLabels => res.json(dbWhiteLabels))
       .catch(err => res.status(422).json(err));
   },
