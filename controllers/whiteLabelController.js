@@ -1,8 +1,9 @@
 const db = require("../models");
 const jwt = require("jwt-simple");
 const keys = require("../config/keys");
+const { newWhiteLabelEmail } = require("../util/TransactionalMailer");
 
-// Defining methods for the articleController
+// Defining methods for the whiteLabelController
 module.exports = {
   create: function(req, res) {
     const whiteLabel = {
@@ -12,7 +13,21 @@ module.exports = {
       isConfirmed: true,
     };
     db.WhiteLabel.create(whiteLabel)
-      .then(dbWhiteLabel => res.json(dbWhiteLabel))
+      .then(dbWhiteLabel => {
+        db.WhiteLabel.findOne({'_id': dbWhiteLabel._id})
+          .populate('_travelAgent')
+          .then(dbWhiteLabel2 => {
+            db.User.find({isAdmin: true})
+            .then(dbAdminUsers => {
+              newWhiteLabelEmail(dbWhiteLabel2, dbAdminUsers, () => {
+                res.json(dbWhiteLabel)
+              })
+              .catch(err => res.status(422).json(err));
+            })
+            .catch(err => res.status(422).json(err));
+          })
+          .catch(err => res.status(422).json(err));
+      })
       .catch(err => res.status(422).json(err));
   },
 

@@ -29,28 +29,25 @@ async function newCharterInquiryEmail(charterInquiry, callback) {
     .catch(error => console.error(error.toString()));
 }
 
-async function newWhiteLabelEmail(whiteLabel, callback) {
+async function newWhiteLabelEmail(whiteLabel, adminUsers, callback) {
   const subject = 'New White Label', 
-    ta = whiteLabel._travelAgent;
-  db.User.find({isAdmin: true})
-    .then(dbAdminUsers => {
-      const mailer = new Mailer(
-        subject,
-        dbAdminUsers.map(admin => { return {email: admin.email} }),
-        `To Whom It May Concern:` + 
-        '<br>A Travel Agent has signed up for a White Label:' +
-        '<table>' +
-        `<tr><td>White Label:</td><td>${whiteLabel.name}` +
-        `<tr><td>Travel Agent Name:</td><td>${ta.firstName} ${ta.lastName}</td></tr>` +
-        `<tr><td>Travel Agent Email:</td><td>${ta.email}</td></tr>` +
-        '</table>'
-      );
-      mailer
-        .send()
-        .then(() => {callback()})
-        .catch(error => console.error(`ERROR SENDING 'new white label' EMAIL: : ${error.toString()}`))
-    })
-    .catch(error => console.error(`ERROR FINDING ADMINISTRATORS: : ${error.toString()}`))
+    ta = whiteLabel._travelAgent,
+    mailer = new Mailer(
+      subject,
+      adminUsers.map(admin => { return {email: admin.email} }),
+      'A Travel Agent has signed up for a White Label: <table>' +
+      `<tr><td>White Label:</td><td>${whiteLabel.name}` +
+      `<tr><td>Travel Agent Name:</td><td>${ta.firstName} ${ta.lastName}</td></tr>` +
+      `<tr><td>Travel Agent Email:</td><td>${ta.email}</td></tr>` +
+      '</table>'
+    );
+    mailer
+      .send()
+      .then(() => {callback()})
+      .catch(error => {
+        console.error(`ERROR SENDING 'new white label' EMAIL: : ${error.toString()}`)
+        callback()
+      })
 }
 
 async function sendPreferencesEmail(charterInquiryId, callback) {
