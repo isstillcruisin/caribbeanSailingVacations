@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import Loader from "../components/Loader";
-import Table from "react-bootstrap/Table"
 import Card from "react-bootstrap/Card"
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import { Link } from "react-router-dom";
+import BootstrapTable from 'react-bootstrap-table-next';
+import paginationFactory from 'react-bootstrap-table2-paginator';
 
 class AllWhiteLabels extends Component {
   state = {
@@ -19,32 +20,37 @@ class AllWhiteLabels extends Component {
     });
   }
 
-  allWhiteLabelRows() {
-    return this.state.whiteLabels.map((whiteLabel, i) => {
-      return (
-        <tr key={`${i + 1}`}>
-          <td>{whiteLabel.name}</td>
-          <td>
-            <BootstrapSwitchButton
-              checked={whiteLabel.isConfirmed}
-              onlabel='Y'
-              offlabel='N'
-              onChange={(checked: boolean) => {
-                whiteLabel.isConfirmed = checked;
-                API.updateIsConfirmed(whiteLabel, checked);
-              }}
-            />
-          </td>
-          <td>
-            <Link
-              key={`${whiteLabel.name}`}
-              to={`/charter-inquiries/${whiteLabel.name}`}
-            >Inquiries</Link> 
-          </td> 
-        </tr>
-      )
-    });
+  renderWhiteLabelTable() {
+    if (this.state.whiteLabels.length > 0) {
+      const columns = [{
+        dataField: 'name',
+        text: 'Name'
+      }, {
+        dataField: 'name',
+        text: 'Enabled?',
+        formatter: (cell, row) => <BootstrapSwitchButton
+            checked={row.isConfirmed}
+            onlabel='Y'
+            offlabel='N'
+            onChange={(checked: boolean) => {
+              row.isConfirmed = checked;
+              API.updateIsConfirmed(row, checked);
+            }}
+          />
+      }, {
+        dataField: 'name',
+        text: 'Inquiries',
+        formatter: (cell) => <Link to={`/charter-inquiries/${cell}`}>Inquiries</Link> 
+      }];
+      return <BootstrapTable 
+        keyField='id' 
+        data={ this.state.whiteLabels } 
+        columns={ columns } 
+        pagination={ paginationFactory() }
+      />
+    } else return ''
   }
+
 
   render() {
     if (this.state.whiteLabels) {
@@ -53,18 +59,7 @@ class AllWhiteLabels extends Component {
           All Registered White Labels
         </Card.Header>
         <Card.Body>
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Enabled?</th>
-                <th>Links</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.allWhiteLabelRows()}   
-            </tbody>
-          </Table>
+          {this.renderWhiteLabelTable()}
         </Card.Body>
       </Card>
     } else {
