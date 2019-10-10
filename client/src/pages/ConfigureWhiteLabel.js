@@ -15,6 +15,7 @@ class ConfigureWhiteLabel extends Component {
   state = {saved: true};
 
   componentDidMount() {
+    console.log(this.props.match.params)
     let { name } = this.props.match.params;
     API.getWhiteLabel(name).then(res => {
       API.getCurrentUser().then(res2 => {
@@ -94,7 +95,7 @@ class ConfigureWhiteLabel extends Component {
     } else if (this.state.whiteLabel) {
       return (<Container> 
         <h1>White Label: '{this.state.whiteLabel.name}'</h1>
-        <Tabs defaultActiveKey="configure" id="white-label-tabs" variant='pills'>
+        <Tabs defaultActiveKey={this.props.match.params.tab} id="white-label-tabs" variant='pills'>
           <Tab eventKey="configure" title="Configure">
             <Card>
               <ConfigureWhiteLabelForm

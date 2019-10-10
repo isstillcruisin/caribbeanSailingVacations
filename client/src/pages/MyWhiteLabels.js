@@ -28,11 +28,11 @@ class MyWhiteLabels extends Component {
       }, {
         dataField: 'name',
         text: 'Configure',
-        formatter: (cell) => <Link to={`/white-label/${cell}/edit`}>Configure</Link> 
+        formatter: (cell) => <Link to={`/white-label/${cell}/edit/configure`}>Configure</Link> 
       }, {
         dataField: 'name',
         text: 'E-Brochures',
-        formatter: (cell) => <Link to={`/white-label/${cell}/edit`}>E-Brochures</Link> 
+        formatter: (cell) => <Link to={`/white-label/${cell}/edit/ebrochures`}>E-Brochures</Link> 
       }, {
         dataField: 'name',
         text: 'Inquiries',
