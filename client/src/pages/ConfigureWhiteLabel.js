@@ -5,6 +5,11 @@ import { Redirect } from "react-router-dom";
 import Loader from '../components/Loader'
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
+import Tab from "react-bootstrap/Tab"
+import Tabs from "react-bootstrap/Tabs"
+import { LinkContainer } from 'react-router-bootstrap'
+import { Table, Button, Form, Col } from 'react-bootstrap';
+
 
 class ConfigureWhiteLabel extends Component {
   state = {saved: true};
@@ -53,6 +58,31 @@ class ConfigureWhiteLabel extends Component {
     });
   };
 
+  renderAllEBrochureRows = (whiteLabel) => {
+    return whiteLabel.ebrochures.map((eBrochure, i) => {
+      return <tr key={`ebrochure-${i}`}>
+        <td>{eBrochure.name}</td>
+        <td>
+          <LinkContainer
+            to={`/e-brochure/${eBrochure._id}`}
+            className="e-brochure-link"
+          >
+            <Button>View E-Brochure</Button>
+          </LinkContainer>
+        </td> 
+        <td>
+          <LinkContainer
+            to={`/e-brochure/${eBrochure._id}/edit`}
+            className="edit-e-brochure-link"
+          >
+            <Button>Edit E-Brochure</Button>
+          </LinkContainer>
+        </td> 
+        
+      </tr>
+    });
+  }
+
   render() {
     if (this.state.unauthorized) {
       return (<Redirect 
@@ -63,15 +93,45 @@ class ConfigureWhiteLabel extends Component {
       />)
     } else if (this.state.whiteLabel) {
       return (<Container> 
-        <h1>Configure White Label: '{this.state.whiteLabel.name}'</h1>
-        <Card>
-          <ConfigureWhiteLabelForm
-            whiteLabel = {this.state.whiteLabel}
-            handleInputChange = {this.handleInputChange}
-            handleSaveWhiteLabel = {this.saveWhiteLabel}
-            saved = {this.state.saved}
-          />
-        </Card>
+        <h1>White Label: '{this.state.whiteLabel.name}'</h1>
+        <Tabs defaultActiveKey="configure" id="white-label-tabs" variant='pills'>
+          <Tab eventKey="configure" title="Configure">
+            <Card>
+              <ConfigureWhiteLabelForm
+                whiteLabel = {this.state.whiteLabel}
+                handleInputChange = {this.handleInputChange}
+                handleSaveWhiteLabel = {this.saveWhiteLabel}
+                saved = {this.state.saved}
+              />
+            </Card>
+          </Tab>
+          <Tab eventKey="ebrochures" title='E-Brochures'>
+            <Card>
+              <Card.Header>E-Brochures</Card.Header>
+              <Card.Body>
+                <Table striped bordered hover>
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>View</th>
+                      <th>Edit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {this.renderAllEBrochureRows(this.state.whiteLabel)}   
+                  </tbody>
+                </Table>
+
+                <LinkContainer
+                  to={`/white-label/${this.state.whiteLabel.name}/new-e-brochure`}
+                  className="add-e-brochure-link"
+                >
+                  <Button>Add New E-Brochure</Button>
+                </LinkContainer>
+              </Card.Body>
+            </Card>
+          </Tab>
+        </Tabs>
       </Container>)
     } else {
       return <Loader />;

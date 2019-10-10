@@ -111,62 +111,12 @@ class ConfigureWhiteLabelForm extends Component {
           </Form>
         </Card.Body>
       </Card>
-      <Card>
-        <Card.Header>E-Brochures</Card.Header>
-        <Card.Body>
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>View</th>
-                <th>Edit</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.renderAllEBrochureRows(this.props.whiteLabel)}   
-            </tbody>
-          </Table>
-
-          <LinkContainer
-            to={`/white-label/${this.props.whiteLabel.name}/new-e-brochure`}
-            className="add-e-brochure-link"
-          >
-            <Button>Add New E-Brochure</Button>
-          </LinkContainer>
-        </Card.Body>
-      </Card>
     </div>
   }
 
   handleSetUrls = urlArray => {
     this.props.handleInputChange({ target: { name: 'logoUrl', value: urlArray[0] }})
   };
-
-
-  renderAllEBrochureRows = (whiteLabel) => {
-    return whiteLabel.ebrochures.map((eBrochure, i) => {
-      return <tr key={`ebrochure-${i}`}>
-        <td>{eBrochure.name}</td>
-        <td>
-          <LinkContainer
-            to={`/e-brochure/${eBrochure._id}`}
-            className="e-brochure-link"
-          >
-            <Button>View E-Brochure</Button>
-          </LinkContainer>
-        </td> 
-        <td>
-          <LinkContainer
-            to={`/e-brochure/${eBrochure._id}/edit`}
-            className="edit-e-brochure-link"
-          >
-            <Button>Edit E-Brochure</Button>
-          </LinkContainer>
-        </td> 
-        
-      </tr>
-    });
-  }
 }
 
 export default ConfigureWhiteLabelForm;
