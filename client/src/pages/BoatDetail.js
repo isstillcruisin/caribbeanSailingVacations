@@ -8,9 +8,9 @@ import Carousel from 'react-bootstrap/Carousel';
 const BoatContainer = styled.div`
   display: grid;
   overflow: hidden;
-  border: 1px solid ${props => props.theme.transparentGrey};
   position: relative;
-  width: 100%;
+  width: 500px;
+  margin: 20px;
   transition: all 1s ease-out;
   height: 40rem;
   background-color: rgba(200, 200, 200, 0.6);
@@ -63,12 +63,12 @@ class BoatDetail extends Component {
         <div>{this.state.boat.boatName}</div>
         <div>{this.state.boat.crewBio}</div>
         <BoatContainer key={this.state.boat._id} style={{width: "50%"}}>
-          <Carousel style={{width: "500px"}}>
+          <Carousel style={{width: "540px"}}>
             {this.renderImages(this.state.boat.imgs)}
           </Carousel>
-          <BoatName>{this.state.boat.boatName}</BoatName>
-          <BoatPrice>45 min | $20,000</BoatPrice>
-        </BoatContainer>
+        <BoatName>{this.props.yacht.boatName}</BoatName>
+        <BoatPrice>{`Week | $${Number(this.props.yacht.pricePerWeek).toLocaleString()}`}</BoatPrice>
+       </BoatContainer>
       </Fade>
     ) : (
       <Loader/>

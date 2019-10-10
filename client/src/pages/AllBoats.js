@@ -11,7 +11,6 @@ import EBrochureYacht from '../components/EBrochureYacht'
 const BoatsDisplay = styled.div`
   display: grid;
   grid-template: 50% 50% / 50% 50%;
-  grid-gap: 3rem;
   background: ${props => props.theme.white};
   @media (max-width: 800px) {
     grid-template: 50% 50% / 100%;

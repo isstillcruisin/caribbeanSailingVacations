@@ -5,6 +5,8 @@ import Alert from '../components/Alert';
 import Loader from '../components/Loader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
 import StreetAddress from '../components/StreetAddress';
 
 class EBrochure extends Component {
@@ -24,21 +26,32 @@ class EBrochure extends Component {
   showEBrochure = () => {
     if (this.state.eBrochure) {
       return (
-        <Container>
-          <Row>
-            <img src={this.state.eBrochure._whiteLabel.logoUrl} alt='White Label Logo' />
-          </Row>
-          <Row>
-            <h5 style={{'marginLeft': '15px'}}>Welcome. Please choose a yacht to request further information about chartering:</h5>
-          </Row>
-          <Row style={{'marginBottom': '20px'}}>
-            <AllBoats eBrochure={this.state.eBrochure}/>
-          </Row>
-          <Row className='footer-address'>
-            <i>These yachts were specifically chosen for you by your Travel Agent, and all communication will be with them, on your behalf.</i>
-          </Row>
+        <>
+          <Card>
+            <Card.Header>
+              <Row>
+                <Col>
+                  <img src={this.state.eBrochure._whiteLabel.logoUrl} alt='White Label Logo' />
+                </Col>
+                <Col style={{flexGrow: '2'}}>
+                  <h1 style={{marginTop: '30px', float: 'right'}}>{this.state.eBrochure._whiteLabel.companyName}</h1>
+                </Col>
+              </Row>
+            </Card.Header>
+            <Card.Body>
+              <Row>
+                <h4 style={{'margin': '20px'}}>Please choose a yacht to request further information:</h4>
+              </Row>
+              <Row style={{'marginBottom': '20px'}}>
+                <AllBoats eBrochure={this.state.eBrochure}/>
+              </Row>
+              <Row className='footer-address'>
+                <i>These yachts were specifically chosen for you by your Travel Agent, and all communication will be with them, on your behalf.</i>
+              </Row>
+            </Card.Body>
+          </Card>
           <StreetAddress address={Object.assign({}, this.state.eBrochure._whiteLabel, {name: this.travelAgentName()})}/>
-        </Container>
+        </>
       )
     } else {
       return <Loader />;

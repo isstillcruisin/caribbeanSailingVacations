@@ -97,7 +97,7 @@ class WhiteLabelCharterInquiry extends Component {
     if (this.state.done) {
       return <div><p>You're All Set!</p><p>Your Inquiry has been submitted to {TravelAgentInfo(this.state.eBrochure._whiteLabel._travelAgent).fullName}.</p></div>
     } else if (this.state.boat && this.state.eBrochure) {
-      return <CharterInquiryForm 
+      return <CharterInquiryForm
         whiteLabel={this.state.eBrochure._whiteLabel} 
         boat={this.state.boat} 
         estimatedPrice={this.state.estimatedPrice} 
@@ -109,6 +109,7 @@ class WhiteLabelCharterInquiry extends Component {
         disableSubmit={this.state.disableSubmit}
         submitText={this.state.submitText}
         eBrochurePath={`/e-brochure/${this.state.eBrochure._id}`}
+        alert={this.state.alert}
       />
     } else {
       return <Loader />
@@ -116,10 +117,7 @@ class WhiteLabelCharterInquiry extends Component {
   };
 
   render() {
-    return <div>    
-      <Alert location={{state: { alert: this.state.alert }}} />
-      {this.showWhiteLabelInquiry()}
-    </div>;
+    return this.showWhiteLabelInquiry()
   }
 }
 
