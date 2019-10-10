@@ -5,6 +5,7 @@ import Card from "react-bootstrap/Card"
 import { Link } from "react-router-dom";
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
+import Container from "react-bootstrap/Container"
 
 class MyWhiteLabels extends Component {
   state = {
@@ -48,15 +49,17 @@ class MyWhiteLabels extends Component {
 
   render() {
     if (this.state.whiteLabels) {
-      return <Card style={{color: 'black'}}>
-        <Card.Header>
-          My Registered White Labels
-        </Card.Header>
-        <Card.Body>
-          {this.renderWhiteLabelTable()}
-          <Link to='/add-white-label'>{`Add ${(this.state.whiteLabels.length === 0) ? 'First' : ''} White Label`}</Link>
-        </Card.Body>
-      </Card>
+      return <Container>
+        <Card style={{color: 'black'}}>
+          <Card.Header>
+            My Registered White Labels
+          </Card.Header>
+          <Card.Body>
+            {this.renderWhiteLabelTable()}
+            <Link to='/add-white-label'>{`Add ${(this.state.whiteLabels.length === 0) ? 'First' : ''} White Label`}</Link>
+          </Card.Body>
+        </Card>
+      </Container>
     } else {
       return <Loader />
     }

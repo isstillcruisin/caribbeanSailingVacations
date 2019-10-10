@@ -3,6 +3,7 @@ import ConfigureEBrochureForm from "../components/ConfigureEBrochureForm";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
 import Loader from '../components/Loader'
+import Container from 'react-bootstrap/Container'
 
 class ConfigureEBrochure extends Component {
   state = {};
@@ -51,7 +52,7 @@ class ConfigureEBrochure extends Component {
         }} 
       />)
     } else if (this.state.eBrochure && this.state.boats) {
-      return (<> 
+      return (<Container> 
         <h1>Configure e-Brochure: {this.state.eBrochure.name}</h1>
         <ConfigureEBrochureForm
           eBrochure = {this.state.eBrochure}
@@ -59,7 +60,7 @@ class ConfigureEBrochure extends Component {
           handleEnableYacht = {this.handleEnableYacht}
           handleDisableYacht = {this.handleDisableYacht}
         />
-      </>)
+      </Container>)
     } else {
       return <Loader />;
     }

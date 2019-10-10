@@ -4,6 +4,7 @@ import API from "../utils/API";
 import { Redirect } from "react-router-dom";
 import Loader from "../components/Loader";
 import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
 
 class AddEBrochure extends Component {
   componentDidMount() {
@@ -71,18 +72,21 @@ class AddEBrochure extends Component {
         }} 
       />)
     } else if (this.state.whiteLabel && this.state.boats) {
-      return (<Card>
-        <Card.Header>
-          Setup Your E-Brochure
-        </Card.Header>
-        <Card.Body>
-          <AddEBrochureForm
-            handleInputChange={this.handleInputChange}
-            handleFormSubmit={this.handleFormSubmit}
-            name={this.state.name}
-          />
-        </Card.Body>
-      </Card>)
+      return (<Container>
+        <Card>
+          <Card.Header>
+            Setup Your E-Brochure
+          </Card.Header>
+          <Card.Body>
+            <AddEBrochureForm
+              handleInputChange={this.handleInputChange}
+              handleFormSubmit={this.handleFormSubmit}
+              name={this.state.name}
+            />
+          </Card.Body>
+        </Card>
+      </Container>
+      )
     } else {
       return <Loader />;
     }  
