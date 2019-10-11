@@ -26,6 +26,7 @@ const EBrochure = React.lazy(() => import("./pages/EBrochure"));
 const ConfigureEBrochure = React.lazy(() => import("./pages/ConfigureEBrochure"));
 const EditBoat = React.lazy(() => import("./pages/EditBoat"));
 const MyWhiteLabels = React.lazy(() => import("./pages/MyWhiteLabels"));
+const ForgotPassword = React.lazy(() => import("./pages/ForgotPassword"));
 
 const Background = styled.div`
   position: absolute;
@@ -123,6 +124,7 @@ class App extends Component {
                 <AdminRoute exact path="/boats" component={AllBoats} />
                 <AdminRoute exact path="/boat/:id/edit" component={EditBoat} />
                 <Route exact path="/sign-in" component={SignIn} />
+                <Route exact path='/forgot-password' component={ForgotPassword} />
                 <Route exact path="/sign-up" component={SignUp} />
                 <Route exact path="/sign-out" component={SignOut} />
                 <Route exact path="/confirm/:id" component={Confirm} />

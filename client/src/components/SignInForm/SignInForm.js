@@ -1,5 +1,6 @@
 import React from "react";
-import { Form, Col } from 'react-bootstrap'
+import { Form, Col, Button } from 'react-bootstrap'
+import { Link } from "react-router-dom";
 
 const SignInForm = props => (
   <Form>
@@ -20,7 +21,7 @@ const SignInForm = props => (
         </Col>
       </Form.Row>
       <Form.Row controlid="formSubmit">
-        <Col>
+        <Col xs={3}>
           <div className="pull-right">
             <button
               onClick={props.handleSignIn}
@@ -30,6 +31,11 @@ const SignInForm = props => (
               Sign In
             </button>
           </div>
+        </Col>
+        <Col xs={3} style={{marginTop: '5px'}}>
+          <Link to='/forgot-password'>
+            Forgot Password?
+          </Link>
         </Col>
       </Form.Row>
   </Form>
