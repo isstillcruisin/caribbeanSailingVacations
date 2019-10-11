@@ -13,9 +13,10 @@ class ForgotPassword extends Component {
     }
   }
 
-  handleChange = name => event => {
+  handleInputChange = event => {
+    const { name, value } = event.target;
     this.setState({
-      [name]: event.target.value,
+      [name]: value
     });
   };
 
@@ -29,7 +30,6 @@ class ForgotPassword extends Component {
     } else {
       API.resetPassword(this.state.email)
       .then(response => {
-        console.log(response.data);
         if (response.data === 'email not in db') {
           this.setState({
             showError: true,
@@ -59,12 +59,12 @@ class ForgotPassword extends Component {
               Email
             </Form.Label>
             <Col xs={9}>
-              <Form.Control type='email' placeholder='Email Address' name='email' onChange={this.props.handleInputChange}  />
+              <Form.Control type='email' placeholder='Email Address' name='email' onChange={this.handleInputChange}  />
             </Col>
           </Form.Row>
           <Button
             style={{marginTop: '5px'}}
-            onClick={this.props.sendEmail}
+            onClick={this.sendEmail}
             type="submit"
             className="btn btn-lg"
           >Send Password Reset Email</Button>
@@ -81,9 +81,9 @@ class ForgotPassword extends Component {
             </p>
           </div>
         )}
-        {messageFromServer === 'recover email sent' && (
+        {messageFromServer === 'recovery email sent' && (
           <div>
-            <h3>Password Reset Email Successfully Sent!</h3>
+            <i>Password Reset Email Successfully Sent</i>
           </div>
         )}
       </Container>

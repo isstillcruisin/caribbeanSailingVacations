@@ -174,5 +174,9 @@ export default {
 
   setCharterInquiryConfirmed: async function(id) {
     return axios.get(`/api/charterinquiries/confirm/${id}`)
+  },
+
+  resetPassword: async function(email) {
+    return {data: 'recovery email sent'};
   }
 };
