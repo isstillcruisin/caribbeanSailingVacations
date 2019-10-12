@@ -13,7 +13,7 @@ class IncompleteHeader extends React.Component {
   refreshCurrentUser() {
     let userToken = ls.get("user-token")
     if (!userToken && 
-      !(['/sign-in', '/sign-up', '/', '/forgot-password'].includes(this.props.location.pathname))
+      !(['/sign-in', '/sign-up', '/', '/forgot-password', '/reset-password'].includes(this.props.location.pathname))
     ) {
       this.setState({
         noToolbar: true,

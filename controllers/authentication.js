@@ -58,7 +58,7 @@ exports.signup = function(req, res, next) {
         if (err) { return res.status(500).send({ msg: err.message }); }
  
         // Create a verification token for this user
-        var token = new Token({ _userId: user._id, token: crypto.randomBytes(16).toString('hex') });
+        var token = new Token({ _userId: user._id, token: crypto.randomBytes(16).toString('hex'), type: 'confirm' });
  
         // Save the verification token
         token.save(function (err) {
@@ -83,7 +83,7 @@ exports.signup = function(req, res, next) {
 
 exports.confirm = function (req, res, next) { 
   // Find a matching token
-  Token.findOne({ token: req.params.id }, function (err, token) {
+  Token.findOne({ token: req.params.id, type: 'confirm' }, function (err, token) {
     if (!token) return res.status(400).send({ type: 'not-verified', msg: 'We were unable to find a valid token. Your token my have expired.' });
 
     // If we found a token, find a matching user
@@ -107,4 +107,54 @@ exports.currentUser = function(req, res, next) {
   } else {
     res.status(404).json({ msg: 'there is no logged in user' });
   }
+}
+
+exports.resetPasswordEmail = function(req, res, next) { 
+  User.findOne({ email: req.body.email }, function (err, user) {
+ 
+    // Make sure user exists:
+    if (!user) return res.status(200).send('email not in db');
+ 
+    // Create a password reset token for this user
+    var token = new Token({ _userId: user._id, token: crypto.randomBytes(16).toString('hex'), type: 'passwordreset' });
+ 
+    // Save the verification token
+    token.save(function (err) {
+      if (err) { return res.status(500).send({ msg: err.message }); }
+
+      // Send the email
+      var url = 'http:\/\/' + req.hostname + ':' + keys.clientPort + '\/reset-password\/' + token.token,
+        subject = 'Password Reset', 
+        mailer = new Mailer(
+          subject,
+          [{email: user.email}], 
+          'You are receiving this email because you (or someone else) have requested the reset of the password for your account.' +
+          '<br><br>To reset your password, click the following link: \n' + url + '.\n' + 
+          '<br><br>If you did not request this, please ignore this email.' + 
+          '<br><br>Thanks, <br>Charter Assistant'
+        );
+      mailer
+        .send()
+        .then(() => {res.status(200).send('recovery email sent')})
+        .catch(error => console.error(error.toString()));
+    });
+  });
+}
+
+exports.resetPassword = function(req, res, next) {
+  Token.findOne({ token: req.body.token, type: 'passwordreset' })
+  .then((dbToken) => {
+    User.update({ _id: dbToken._userId }, {
+      $set: { password: req.body.password }
+    })
+    .then(() => {
+      dbToken.remove()
+      .then(() => {
+        res.status(200).send('password updated')
+      })
+      .catch(err => res.status(422).json(err));
+    })
+    .catch(err => res.status(422).json(err));
+  })
+  .catch(error => console.error(error.toString()));
 }

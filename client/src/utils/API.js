@@ -176,7 +176,11 @@ export default {
     return axios.get(`/api/charterinquiries/confirm/${id}`)
   },
 
-  resetPassword: async function(email) {
-    return {data: 'recovery email sent'};
-  }
+  resetPasswordEmail: async function(email) {
+    return axios.post('/api/users/resetpasswordemail', {email: email});
+  },
+
+  setNewPassword: async function(password, token) {
+    return axios.post('/api/users/resetpassword', {password: password, token: token})
+  }      
 };

@@ -17,7 +17,6 @@ const userSchema = new Schema({
 userSchema.pre("save", function(next) {
   const user = this;
   if (this.isNew) {
-    //TODO: make sure this also triggers if updating password
     bcrypt.genSalt(10, function(err, salt) {
       if (err) return next(err);
       bcrypt.hash(user.password, salt, null, function(err, hash) {
@@ -33,6 +32,23 @@ userSchema.pre("save", function(next) {
   } else {
     next();
   }
+});
+
+userSchema.pre("update", function(next) {
+  const password = this.getUpdate().$set.password;
+  if (!password) {
+    return next();
+  }
+  bcrypt.genSalt(10, function(err, salt) {
+    if (err) return next(err);
+    bcrypt.hash(password, salt, null, function(err, hash) {
+      if (err) {
+        return next(err);
+      }
+      this.getUpdate().$set.password = hash;
+      next();
+    }.bind(this));
+  }.bind(this));
 });
 
 userSchema.methods.comparePassword = function(candidatePassword, callback) {

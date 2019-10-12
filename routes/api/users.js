@@ -9,4 +9,8 @@ router.route("/confirmation/:id").get(userController.confirm);
 
 router.route("/current").get(userController.currentUser);
 
+router.route("/resetpasswordemail").post(userController.resetPasswordEmail);
+
+router.route('/resetpassword').post(userController.resetPassword);
+
 module.exports = router;

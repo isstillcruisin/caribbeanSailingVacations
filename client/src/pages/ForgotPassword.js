@@ -28,7 +28,7 @@ class ForgotPassword extends Component {
         messageFromServer: '',
       });
     } else {
-      API.resetPassword(this.state.email)
+      API.resetPasswordEmail(this.state.email)
       .then(response => {
         if (response.data === 'email not in db') {
           this.setState({
