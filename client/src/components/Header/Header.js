@@ -66,6 +66,9 @@ class IncompleteHeader extends React.Component {
           </Nav>
           <Nav pullright={1}>
             <NavDropdown title={`${this.state.currentUser.firstName} ${this.state.currentUser.lastName}`} id="basic-nav-dropdown">
+              <LinkContainer to='/settings'>
+                <NavDropdown.Item>Settings</NavDropdown.Item>
+              </LinkContainer>
               <LinkContainer to='/sign-out'>
                 <NavDropdown.Item>Sign Out</NavDropdown.Item>
               </LinkContainer>
@@ -86,6 +89,9 @@ class IncompleteHeader extends React.Component {
           </Nav>
           <Nav pullright={1}>
             <NavDropdown title={`${this.state.currentUser.firstName} ${this.state.currentUser.lastName}`} id="basic-nav-dropdown">
+              <LinkContainer to='/settings'>
+                <NavDropdown.Item>Settings</NavDropdown.Item>
+              </LinkContainer>
               <LinkContainer to='/sign-out'>
                 <NavDropdown.Item>Sign Out</NavDropdown.Item>
               </LinkContainer>
