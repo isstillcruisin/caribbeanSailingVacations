@@ -28,6 +28,7 @@ const EditBoat = React.lazy(() => import("./pages/EditBoat"));
 const MyWhiteLabels = React.lazy(() => import("./pages/MyWhiteLabels"));
 const ForgotPassword = React.lazy(() => import("./pages/ForgotPassword"));
 const ResetPassword = React.lazy(() => import("./pages/ResetPassword"));
+const ConfigureCurrentUser = React.lazy(() => import('./pages/ConfigureCurrentUser'));
 
 const Background = styled.div`
   position: absolute;
@@ -130,6 +131,7 @@ class App extends Component {
                 <Route exact path="/sign-up" component={SignUp} />
                 <Route exact path="/sign-out" component={SignOut} />
                 <Route exact path="/confirm/:id" component={Confirm} />
+                <AuthenticatedRoute exact path="/settings" component={ConfigureCurrentUser} />
                 <AuthenticatedRoute exact path="/add-white-label" component={AddWhiteLabel} />
                 <AdminRoute exact path="/all-white-labels" component={AllWhiteLabels} />
                 <Route exact path="/charter-a-yacht/:eBrochureId/inquiry/:boatId" component={WhiteLabelCharterInquiry} />
