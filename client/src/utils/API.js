@@ -182,5 +182,9 @@ export default {
 
   setNewPassword: async function(password, token) {
     return axios.post('/api/users/resetpassword', {password: password, token: token})
-  }      
+  },
+
+  updateUser: async function(user) {
+    return axios.post('/api/users/update', user);
+  },
 };

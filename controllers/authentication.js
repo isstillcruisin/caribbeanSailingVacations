@@ -158,3 +158,14 @@ exports.resetPassword = function(req, res, next) {
   })
   .catch(error => console.error(error.toString()));
 }
+
+exports.update = function(req, res, next) {
+  User.update({_id: req.user._id}, {
+    $set: req.body 
+  })
+  .then((dbUser) => {
+    res.status(200).send(dbUser)
+  })
+  .catch(err => res.status(500).json(err));
+}
+
