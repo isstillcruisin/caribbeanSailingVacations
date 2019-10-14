@@ -66,8 +66,8 @@ class BoatDetail extends Component {
           <Carousel style={{width: "540px"}}>
             {this.renderImages(this.state.boat.imgs)}
           </Carousel>
-        <BoatName>{this.props.yacht.boatName}</BoatName>
-        <BoatPrice>{`Week | $${Number(this.props.yacht.pricePerWeek).toLocaleString()}`}</BoatPrice>
+        <BoatName>{this.state.boat.boatName}</BoatName>
+        <BoatPrice>{`Week | $${Number(this.state.boat.pricePerWeek).toLocaleString()}`}</BoatPrice>
        </BoatContainer>
       </Fade>
     ) : (
