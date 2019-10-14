@@ -15,7 +15,6 @@ class ConfigureWhiteLabel extends Component {
   state = {saved: true};
 
   componentDidMount() {
-    console.log(this.props.match.params)
     let { name } = this.props.match.params;
     API.getWhiteLabel(name).then(res => {
       API.getCurrentUser().then(res2 => {
