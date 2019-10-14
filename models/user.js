@@ -57,6 +57,12 @@ userSchema.methods.comparePassword = function(candidatePassword, callback) {
   });
 };
 
+userSchema.methods.toJSON = function() {
+ var obj = this.toObject();
+ delete obj.password;
+ return obj;
+}
+
 // create model class
 const User = mongoose.model("user", userSchema);
 
