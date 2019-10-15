@@ -21,9 +21,9 @@ exports[`ConfigureEBrochureForm component Matches the snapshot 1`] = `
       </label>
       <input
         className="form-control"
+        disabled={true}
         id="e-brochure-name"
         name="eBrochureName"
-        required={true}
         type="text"
         value="test"
       />

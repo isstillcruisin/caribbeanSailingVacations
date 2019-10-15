@@ -134,7 +134,7 @@ exports[`AddBoatForm component Matches the snapshot 1`] = `
         type="file"
       />
       <p>
-        Try dropping some files here, or click to select files to upload.
+        Drop a file here, or click to select a file to upload.
       </p>
     </div>
     <div>

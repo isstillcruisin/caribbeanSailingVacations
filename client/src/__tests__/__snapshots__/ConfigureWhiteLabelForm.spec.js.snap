@@ -42,20 +42,6 @@ exports[`ConfigureWhiteLabelForm component Matches the snapshot 1`] = `
               placeholder="Company Name"
             />
           </div>
-          <div
-            className="form-group"
-          >
-            <label
-              className="form-label"
-            >
-              Phone number
-            </label>
-            <input
-              className="form-control"
-              name="phoneNumber"
-              placeholder="Phone number"
-            />
-          </div>
         </div>
         <div
           className="form-group"
@@ -177,7 +163,7 @@ exports[`ConfigureWhiteLabelForm component Matches the snapshot 1`] = `
                 type="file"
               />
               <p>
-                Dropping a logo image here, or click to select a file to upload. The image will be scaled to fit in a rectangle of 200px wide, 100px tall.
+                Drop a logo image here, or click to select a file to upload. The image will be scaled to fit in a rectangle of 200px wide, 100px tall.
               </p>
             </div>
             <div>
@@ -205,71 +191,6 @@ exports[`ConfigureWhiteLabelForm component Matches the snapshot 1`] = `
           </div>
         </div>
       </form>
-    </div>
-  </div>
-  <div
-    className="card"
-  >
-    <div
-      className="card-header"
-    >
-      E-Brochures
-    </div>
-    <div
-      className="card-body"
-    >
-      <table
-        className="table table-striped table-bordered table-hover"
-      >
-        <thead>
-          <tr>
-            <th>
-              Name
-            </th>
-            <th>
-              View
-            </th>
-            <th>
-              Edit
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              test brochure
-            </td>
-            <td>
-              <a
-                className="e-brochure-link btn btn-primary"
-                href="/e-brochure/1"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-              >
-                View E-Brochure
-              </a>
-            </td>
-            <td>
-              <a
-                className="edit-e-brochure-link btn btn-primary"
-                href="/e-brochure/1/edit"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-              >
-                Edit E-Brochure
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <a
-        className="add-e-brochure-link btn btn-primary"
-        href="/white-label/test/new-e-brochure"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-      >
-        Add New E-Brochure
-      </a>
     </div>
   </div>
 </div>
