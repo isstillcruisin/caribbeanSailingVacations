@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import AddBoatForm from "../components/AddBoatForm"
+import YachtForm from "../components/YachtForm"
 import API from "../utils/API"
 import Loader from "../components/Loader"
 import Alert from "../components/Alert"
@@ -61,7 +61,7 @@ class EditBoat extends Component {
         <div className="EditBoat">
           <Alert location={{state: { alert: this.state.alert }}} />
           <header className="EditBoat-header">
-            <AddBoatForm
+            <YachtForm
               handleInputChange={this.handleInputChange}
               handleFormSubmit={this.handleFormSubmit}
               handleSetUrls={this.handleSetUrls}

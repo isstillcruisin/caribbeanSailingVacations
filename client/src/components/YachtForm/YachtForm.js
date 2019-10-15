@@ -1,7 +1,7 @@
 import React from "react";
 import ImageUploader from '../ImageUploader'
 
-const AddBoatForm = props => (
+const YachtForm = props => (
   <form>
     <div className="form-group add-boat-form">
       <label htmlFor="boat-name">
@@ -105,4 +105,4 @@ const AddBoatForm = props => (
   </form>
 );
 
-export default AddBoatForm;
+export default YachtForm;

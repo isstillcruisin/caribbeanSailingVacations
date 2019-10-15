@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AddBoatForm component Matches the snapshot 1`] = `
+exports[`YachtForm component Matches the snapshot 1`] = `
 <form>
   <div
     className="form-group add-boat-form"

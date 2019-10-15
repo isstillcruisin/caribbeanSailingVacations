@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import AddBoatForm from "../components/AddBoatForm";
+import YachtForm from "../components/YachtForm";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
 import Container from 'react-bootstrap/Container'
@@ -66,7 +66,7 @@ class AddBoat extends Component {
       return (
         <Container className="AddBoat">
           <header className="AddBoat-header">
-            <AddBoatForm
+            <YachtForm
               handleInputChange={this.handleInputChange}
               handleFormSubmit={this.handleFormSubmit}
               handleSetUrls={this.handleSetUrls}

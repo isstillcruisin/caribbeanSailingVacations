@@ -1,10 +1,10 @@
 import React from "react";
 import { create } from "react-test-renderer";
-import AddBoatForm from '../components/AddBoatForm';
+import YachtForm from '../components/YachtForm';
 
-describe("AddBoatForm component", () => {
+describe("YachtForm component", () => {
   test("Matches the snapshot", () => {
-    const form = create(<AddBoatForm 
+    const form = create(<YachtForm 
       boatName='test boat'
       crewBio='test bio'
       maxPassengers='10'
