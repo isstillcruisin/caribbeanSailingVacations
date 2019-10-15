@@ -3,6 +3,11 @@ import YachtForm from "../components/YachtForm"
 import API from "../utils/API"
 import Loader from "../components/Loader"
 import Alert from "../components/Alert"
+import Tab from "react-bootstrap/Tab"
+import Tabs from "react-bootstrap/Tabs"
+import Card from "react-bootstrap/Card"
+import MultipleDateRangePicker from '../components/MultipleDateRangePicker'
+import moment from 'moment';
 
 class EditBoat extends Component {
   state = {
@@ -22,7 +27,11 @@ class EditBoat extends Component {
     let { id } = this.props.match.params
     API.getBoat(id).then(res => {
       this.setState({
-        boat: res.data
+        boat: res.data,
+        unavailableDateRanges: [
+          { from: new Date("October 12, 2019"), to: new Date("October 25, 2019")},
+          { from: new Date("December 24, 2019"), to: new Date("January 2, 2020")}
+        ]
       })
     })
   }
@@ -43,7 +52,8 @@ class EditBoat extends Component {
     let boat = Object.assign({}, this.state.boat, {[name]: value})
 
     this.setState({
-      boat: boat
+      boat: boat,
+      alert: '',
     })
   }
 
@@ -59,21 +69,43 @@ class EditBoat extends Component {
     if (this.state.boat) {
       return (
         <div className="EditBoat">
-          <Alert location={{state: { alert: this.state.alert }}} />
-          <header className="EditBoat-header">
-            <YachtForm
-              handleInputChange={this.handleInputChange}
-              handleFormSubmit={this.handleFormSubmit}
-              handleSetUrls={this.handleSetUrls}
-              boatName={this.state.boat.boatName}
-              imgs={this.state.boat.imgs}
-              year={this.state.boat.year}
-              maxPassengers={this.state.boat.maxPassengers}
-              manufacture={this.state.boat.manufacture}
-              crewBio={this.state.boat.crewBio}
-              pricePerWeek={this.state.boat.pricePerWeek}
-            />
-          </header>
+          <Tabs>
+            <Tab eventKey="configure" title="Configure">
+              <Card>
+                <Card.Header>
+                  <h3>Configure Yacht: <i>{this.state.boat.boatName}</i></h3>
+                </Card.Header>
+                <Card.Body>
+                  <YachtForm
+                    handleInputChange={this.handleInputChange}
+                    handleFormSubmit={this.handleFormSubmit}
+                    handleSetUrls={this.handleSetUrls}
+                    boatName={this.state.boat.boatName}
+                    imgs={this.state.boat.imgs}
+                    year={this.state.boat.year}
+                    maxPassengers={this.state.boat.maxPassengers}
+                    manufacture={this.state.boat.manufacture}
+                    crewBio={this.state.boat.crewBio}
+                    pricePerWeek={this.state.boat.pricePerWeek}
+                    alert={this.state.alert}
+                  />
+                </Card.Body>
+              </Card>
+            </Tab>
+            <Tab eventKey="availability" title='Yacht availability'>
+              <Card>
+                <Card.Header>Availability</Card.Header>
+                <Card.Body>
+                  <MultipleDateRangePicker ranges={this.state.unavailableDateRanges} />
+                  <ul>
+                    {this.state.unavailableDateRanges && this.state.unavailableDateRanges.map(range =>
+                      <li>{moment(range.from).format('LL')} - {moment(range.to).format('LL')}</li>
+                    )}
+                  </ul>
+                </Card.Body>
+              </Card>
+            </Tab>
+          </Tabs>
         </div>
       )
     } else {
