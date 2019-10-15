@@ -14,7 +14,6 @@ const whiteLabelSchema = new Schema({
   state: { type: String },
   country: { type: String },
   zipCode: { type: String },
-  phoneNumber: { type: String },
   logoUrl: { type: String },
 });
 

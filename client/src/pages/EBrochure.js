@@ -1,30 +1,31 @@
-import React, { Component } from "react";
-import API from "../utils/API";
-import AllBoats from "./AllBoats";
-import Alert from '../components/Alert';
-import Loader from '../components/Loader';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
-import StreetAddress from '../components/StreetAddress';
-
+import React, { Component } from "react"
+import API from "../utils/API"
+import AllBoats from "./AllBoats"
+import Alert from '../components/Alert'
+import Loader from '../components/Loader'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Card from 'react-bootstrap/Card'
+import StreetAddress from '../components/StreetAddress'
 class EBrochure extends Component {
-  state = {};
+  state = {}
 
   componentDidMount() {
-    let { id } = this.props.match.params;
+    let { id } = this.props.match.params
     API.getEBrochure(id).then(res => {
       this.setState({
         eBrochure: res.data
-      });
-    });
+      })
+    })
   }
+  
 
   travelAgentName = () => `${this.state.eBrochure._whiteLabel._travelAgent.firstName} ${this.state.eBrochure._whiteLabel._travelAgent.lastName}`
+  travelAgentPhoneNumber = () => this.state.eBrochure._whiteLabel._travelAgent.phoneNumber
 
   showEBrochure = () => {
-    if (this.state.eBrochure) {
+    if (this.state.eBrochure){
       return (
         <>
           <Card>
@@ -50,20 +51,20 @@ class EBrochure extends Component {
               </Row>
             </Card.Body>
           </Card>
-          <StreetAddress address={Object.assign({}, this.state.eBrochure._whiteLabel, {name: this.travelAgentName()})}/>
+          <StreetAddress address={Object.assign({}, this.state.eBrochure._whiteLabel, {name: this.travelAgentName(), phoneNumber: this.travelAgentPhoneNumber()})}/>
         </>
       )
     } else {
-      return <Loader />;
+      return <Loader />
     }
-  };
+  }
 
   render() {
     return <div>
       <Alert {...this.props}/>
       {this.showEBrochure()}
-    </div>;
+    </div>
   }
 }
 
-export default EBrochure;
+export default EBrochure

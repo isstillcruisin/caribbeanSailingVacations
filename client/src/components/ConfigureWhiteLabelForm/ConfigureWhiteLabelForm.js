@@ -21,15 +21,6 @@ class ConfigureWhiteLabelForm extends Component {
                   value={this.props.whiteLabel.companyName}
                 />
               </Form.Group>
-              <Form.Group>
-                <Form.Label>Phone number</Form.Label>
-                <Form.Control 
-                  placeholder="Phone number"
-                  name='phoneNumber' 
-                  onChange={this.props.handleInputChange}
-                  value={this.props.whiteLabel.phoneNumber} 
-                />
-              </Form.Group>
             </Form.Row>
             <Form.Group>
               <Form.Label>Street address</Form.Label>

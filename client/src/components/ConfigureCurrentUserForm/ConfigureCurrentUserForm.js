@@ -23,6 +23,14 @@ const ConfigureCurrentUserForm = props => (
           <Form.Control type="email" name='email' placeholder="Email Address" value={props.currentUser.email} onChange={props.handleInputChange} />
         </Col>
       </Form.Row>
+       <Form.Row>
+        <Form.Label column xs={3}>
+          Phone number
+        </Form.Label>
+        <Col xs={9}>
+          <Form.Control type='tel' name='phoneNumber' placeholder="Phone number" value={props.currentUser.phoneNumber} onChange={props.handleInputChange} />
+        </Col>
+      </Form.Row>
       <Form.Row controlid="formPassword">
         <Form.Label column xs={3}>
           Password

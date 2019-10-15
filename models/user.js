@@ -10,7 +10,8 @@ const userSchema = new Schema({
   passwordResetToken: String,
   passwordResetExpires: Date,
   firstName: String,
-  lastName: String
+  lastName: String,
+  phoneNumber: String,
 });
 
 
