@@ -1,7 +1,5 @@
 import React, { Component } from "react"
-import SignUpForm from "../components/SignUpForm"
 import API from "../utils/API"
-import validateEmails from "../utils/validateEmails"
 import Container from 'react-bootstrap/Container'
 import Loader from '../components/Loader'
 import ConfigureCurrentUserForm from '../components/ConfigureCurrentUserForm'

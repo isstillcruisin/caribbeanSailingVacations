@@ -1347,21 +1347,33 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
                   </i>
                 </div>
               </div>
-              <button
-                className="btn btn-lg btn btn-primary"
-                disabled={false}
-                type="submit"
+              <div
+                className="form-row"
               >
-                Submit Inquiry
-              </button>
-              <button
-                className="btn btn-primary"
-                disabled={false}
-                pullright={true}
-                type="button"
-              >
-                Back
-              </button>
+                <div
+                  className="col"
+                >
+                  <button
+                    className="btn btn-lg btn btn-primary"
+                    disabled={false}
+                    type="submit"
+                  >
+                    Submit Inquiry
+                  </button>
+                </div>
+                <div
+                  className="col"
+                  pullright={true}
+                >
+                  <button
+                    className="btn btn-lg btn btn-primary"
+                    disabled={false}
+                    type="button"
+                  >
+                    Back
+                  </button>
+                </div>
+              </div>
             </form>
           </div>
         </div>
