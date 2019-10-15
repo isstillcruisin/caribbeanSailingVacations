@@ -8,6 +8,8 @@ import Tabs from "react-bootstrap/Tabs"
 import Card from "react-bootstrap/Card"
 import MultipleDateRangePicker from '../components/MultipleDateRangePicker'
 import moment from 'moment';
+import BootstrapTable from 'react-bootstrap-table-next';
+import paginationFactory from 'react-bootstrap-table2-paginator';
 
 class EditBoat extends Component {
   state = {
@@ -26,12 +28,11 @@ class EditBoat extends Component {
   componentDidMount() {
     let { id } = this.props.match.params
     API.getBoat(id).then(res => {
-      this.setState({
-        boat: res.data,
-        unavailableDateRanges: [
-          { from: new Date("October 12, 2019"), to: new Date("October 25, 2019")},
-          { from: new Date("December 24, 2019"), to: new Date("January 2, 2020")}
-        ]
+      API.getUnavailableDateRanges(id).then(res2 => {
+        this.setState({
+          boat: res.data,
+          unavailableDateRanges: res2.data,
+        })
       })
     })
   }
@@ -97,11 +98,20 @@ class EditBoat extends Component {
                 <Card.Header>Availability</Card.Header>
                 <Card.Body>
                   <MultipleDateRangePicker ranges={this.state.unavailableDateRanges} />
-                  <ul>
-                    {this.state.unavailableDateRanges && this.state.unavailableDateRanges.map(range =>
-                      <li>{moment(range.from).format('LL')} - {moment(range.to).format('LL')}</li>
-                    )}
-                  </ul>
+                  <BootstrapTable 
+                    keyField='dateRange' 
+                    data={ this.state.unavailableDateRanges } 
+                    columns={[{
+                      dataField: 'from',
+                      text: 'From',
+                      formatter: (from) => moment(from).format('LL')
+                    }, {
+                      dataField: 'to',
+                      text: 'To',
+                      formatter: (to) => moment(to).format('LL')
+                    }]}
+                    pagination={ paginationFactory() }
+                  />  
                 </Card.Body>
               </Card>
             </Tab>

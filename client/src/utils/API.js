@@ -38,6 +38,15 @@ export default {
   updateBoat: function(boatData) {
     return axios.put(`/api/boats/${boatData._id}`, boatData);
   },
+
+  getUnavailableDateRanges: async function(id) {
+    try {
+      const ranges = await axios.get(`/api/boats/unavailable/${id}`);
+      return ranges;
+    } catch (error) {
+      console.log("Error in get getUnavailableDateRanges (╯°□°)╯︵ ┻━┻ ", error);
+    }
+  },
   // finds an existing user and logs them in
   userSignIn: async function(userData) {
     try {
@@ -170,7 +179,6 @@ export default {
   updateEBrochure: async function(ebrochure) {
     return axios.post(`/api/ebrochures/update/${ebrochure._id}`, ebrochure);
   },
-
 
   setCharterInquiryConfirmed: async function(id) {
     return axios.get(`/api/charterinquiries/confirm/${id}`)

@@ -13,4 +13,8 @@ router
   .put(boatController.update)
   .delete(boatController.remove);
 
+router
+  .route("/unavailable/:id")
+  .get(boatController.unavailableDateRanges)
+
 module.exports = router;
