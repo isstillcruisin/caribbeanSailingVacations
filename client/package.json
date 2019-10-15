@@ -37,6 +37,11 @@
     "test": "jest",
     "eject": "react-scripts eject"
   },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+    }
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -49,6 +54,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
+    "identity-obj-proxy": "^3.0.0",
     "react-test-renderer": "^16.9.0"
   }
 }
