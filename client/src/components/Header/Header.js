@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import ls from "local-storage";
 import { LinkContainer } from 'react-router-bootstrap'
-import { withRouter } from "react-router";
+import { withRouter } from "react-router-dom";
 import API from "../../utils/API";
 
 
