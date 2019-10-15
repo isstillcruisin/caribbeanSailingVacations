@@ -1,43 +1,69 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SignInForm component Matches the snapshot 1`] = `
-<form>
+<form
+  className=""
+>
   <div
-    className="form-group"
+    className="form-row"
+    controlid="formEmail"
   >
-    <input
-      className="form-control"
-      id="email"
-      name="email"
-      placeholder="Email"
-      required={true}
-      type="text"
-      value="test@testerson.com"
-    />
-    <input
-      className="form-control"
-      id="password"
-      name="password"
-      placeholder="Password"
-      required={true}
-      style={
-        Object {
-          "marginLeft": ".5rem",
-        }
-      }
-      type="password"
-      value="aPassword"
-    />
+    <label
+      className="form-label col-form-label col-3"
+    >
+      Email
+    </label>
+    <div
+      className="col-9"
+    >
+      <input
+        className="form-control"
+        name="email"
+        placeholder="Email Address"
+        type="email"
+        value="test@testerson.com"
+      />
+    </div>
   </div>
   <div
-    className="pull-right"
+    className="form-row"
+    controlid="formPassword"
   >
-    <button
-      className="btn btn-lg btn-danger"
-      type="submit"
+    <label
+      className="form-label col-form-label col-3"
     >
-      Submit
-    </button>
+      Password
+    </label>
+    <div
+      className="col-9"
+    >
+      <input
+        className="form-control"
+        name="password"
+        placeholder="Password"
+        type="password"
+        value="aPassword"
+      />
+    </div>
+  </div>
+  <div
+    className="form-row"
+    controlid="formSubmit"
+  >
+    <div
+      className="col-3"
+    >
+      <div
+        className="pull-right"
+      >
+        <button
+          className="btn btn-lg btn-danger"
+          type="submit"
+        >
+          Sign In
+        </button>
+      </div>
+    </div>
   </div>
 </form>
 `;

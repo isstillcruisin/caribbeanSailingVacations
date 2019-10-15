@@ -32,11 +32,6 @@ const SignInForm = props => (
             </button>
           </div>
         </Col>
-        <Col xs={3} style={{marginTop: '5px'}}>
-          <Link to='/forgot-password'>
-            Forgot Password?
-          </Link>
-        </Col>
       </Form.Row>
   </Form>
 );

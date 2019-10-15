@@ -5,6 +5,8 @@ import API from "../utils/API";
 import ls from "local-storage";
 import Alert from "../components/Alert"
 import Container from "react-bootstrap/Container"
+import Col from 'react-bootstrap/Col'
+import { Link } from 'react-router-dom'
 
 class SignIn extends Component {
   state = {
@@ -44,8 +46,11 @@ class SignIn extends Component {
           handleInputChange={this.handleInputChange}
           handleSignIn={this.handleSignIn}
           email={this.state.email}
-          password={this.state.password}
+          password={this.state.password}          
         />
+        <Link to='/forgot-password' style={{ marginTop: '15px', display: 'block' }}>
+          Forgot Password?
+        </Link>
       </Container>
     }
   }
