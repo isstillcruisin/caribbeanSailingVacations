@@ -1,6 +1,5 @@
 import React, {Component} from "react";
-import { Table, Button, Form, Col, Card } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap'
+import { Button, Form, Col, Card } from 'react-bootstrap';
 import ImageUploader from '../ImageUploader'
 
 

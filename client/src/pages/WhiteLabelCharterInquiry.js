@@ -3,7 +3,6 @@ import API from "../utils/API";
 import Loader from '../components/Loader';
 import CharterInquiryForm from '../components/CharterInquiryForm';
 import TravelAgentInfo from '../utils/travelAgentInfo'
-import Alert from '../components/Alert'
 import { Redirect } from "react-router-dom";
 
 class WhiteLabelCharterInquiry extends Component {

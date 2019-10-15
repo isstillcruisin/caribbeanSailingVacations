@@ -3,7 +3,6 @@ import API from "../utils/API"
 import AllBoats from "./AllBoats"
 import Alert from '../components/Alert'
 import Loader from '../components/Loader'
-import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
@@ -20,7 +19,6 @@ class EBrochure extends Component {
     })
   }
   
-
   travelAgentName = () => `${this.state.eBrochure._whiteLabel._travelAgent.firstName} ${this.state.eBrochure._whiteLabel._travelAgent.lastName}`
   travelAgentPhoneNumber = () => this.state.eBrochure._whiteLabel._travelAgent.phoneNumber
 

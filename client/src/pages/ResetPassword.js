@@ -63,7 +63,7 @@ class ResetPassword extends Component {
   }
 
   render() {
-    const { password, duplicatePassword, showError, messageFromServer} = this.state;
+    const { showError, messageFromServer} = this.state;
     if (showError) {
       return (<Redirect 
         to={{ 

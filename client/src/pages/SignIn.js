@@ -5,7 +5,6 @@ import API from "../utils/API";
 import ls from "local-storage";
 import Alert from "../components/Alert"
 import Container from "react-bootstrap/Container"
-import Col from 'react-bootstrap/Col'
 import { Link } from 'react-router-dom'
 
 class SignIn extends Component {

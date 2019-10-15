@@ -8,7 +8,7 @@ import Container from 'react-bootstrap/Container';
 import Tab from "react-bootstrap/Tab"
 import Tabs from "react-bootstrap/Tabs"
 import { LinkContainer } from 'react-router-bootstrap'
-import { Table, Button, Form, Col } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 
 
 class ConfigureWhiteLabel extends Component {

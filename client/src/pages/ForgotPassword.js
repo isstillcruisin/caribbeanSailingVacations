@@ -49,7 +49,7 @@ class ForgotPassword extends Component {
   }
 
   render() {
-    const { email, messageFromServer, showNullError, showError } = this.state;
+    const { messageFromServer, showNullError, showError } = this.state;
     
     return (
       <Container>
@@ -71,7 +71,7 @@ class ForgotPassword extends Component {
         </Form>
         {showNullError && (
           <div>
-            <p>The email address cannot be null.</p>
+            <p>The email address cannot be empty.</p>
           </div>
         )}
         {showError && (
