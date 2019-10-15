@@ -45,7 +45,7 @@ class CharterInquiryForm extends Component {
   }
 
   renderImages = images => {
-    return images.map((image, i) => {
+    return images && images.map((image, i) => {
       const imageParts = image.split('/upload/'),
         imgUrl = `${imageParts[0]}/upload/w_500,h_300,c_fill/${imageParts[1]}`
       return (
@@ -152,10 +152,14 @@ class CharterInquiryForm extends Component {
                        {this.renderEstimatedPrice()}
                       </Col>
                     </Form.Row>
-                    {this.renderSubmitButton()}
-                    <LinkContainer to={this.props.eBrochurePath} pullright>
-                      <Button className="btn btn-lg">Back</Button>
-                    </LinkContainer>
+                    <Form.Row>
+                      <Col>
+                       {this.renderSubmitButton()}
+                      </Col>
+                      <Col pullright>
+                        <Button onClick={this.props.handleBack}  className="btn btn-lg">Back</Button>
+                      </Col>
+                    </Form.Row>
                   </Form>
                 </Card.Body>
               </Card>

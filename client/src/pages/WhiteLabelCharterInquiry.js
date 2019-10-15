@@ -4,6 +4,7 @@ import Loader from '../components/Loader';
 import CharterInquiryForm from '../components/CharterInquiryForm';
 import TravelAgentInfo from '../utils/travelAgentInfo'
 import Alert from '../components/Alert'
+import { Redirect } from "react-router-dom";
 
 class WhiteLabelCharterInquiry extends Component {
   state = {};
@@ -89,6 +90,10 @@ class WhiteLabelCharterInquiry extends Component {
     }
   }
 
+  handleBack = () => {
+    this.setState({back: true})
+  }
+
   handleDateRangeChange = ({ from, to }) => {
     this.applyChangesAndValidateInquiry({ startDate: from, endDate: to, estimatedPrice: this.calculateEstimatedPrice(from, to) });
   }
@@ -96,6 +101,8 @@ class WhiteLabelCharterInquiry extends Component {
   showWhiteLabelInquiry = () => {
     if (this.state.done) {
       return <div><p>You're All Set!</p><p>Your Inquiry has been submitted to {TravelAgentInfo(this.state.eBrochure._whiteLabel._travelAgent).fullName}.</p></div>
+    } else if (this.state.back) {
+      return <Redirect to={`/e-brochure/${this.state.eBrochure._id}`}/>
     } else if (this.state.boat && this.state.eBrochure) {
       return <CharterInquiryForm
         whiteLabel={this.state.eBrochure._whiteLabel} 
@@ -110,6 +117,7 @@ class WhiteLabelCharterInquiry extends Component {
         submitText={this.state.submitText}
         eBrochurePath={`/e-brochure/${this.state.eBrochure._id}`}
         alert={this.state.alert}
+        handleBack={this.handleBack}
       />
     } else {
       return <Loader />
