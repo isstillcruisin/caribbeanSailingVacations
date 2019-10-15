@@ -3,32 +3,7 @@ import API from "../utils/API";
 import Fade from "react-reveal/Fade";
 import Loader from '../components/Loader';
 import styled from "styled-components";
-import Carousel from 'react-bootstrap/Carousel';
-
-const BoatContainer = styled.div`
-  display: grid;
-  overflow: hidden;
-  position: relative;
-  width: 500px;
-  margin: 20px;
-  transition: all 1s ease-out;
-  height: 40rem;
-  background-color: rgba(200, 200, 200, 0.6);
-`;
-
-const BoatName = styled.div`
-  position: relative;
-  height: 100%;
-  width: 100%;
-  text-align: center;  
-`;
-
-const BoatPrice = styled.div`
-  position: relative;
-  height: 100%;
-  width: 100%;
-  text-align: center;  
-`;
+import { Carousel, Accordion, Card, Button, Container, Row, Col } from 'react-bootstrap';
 
 const BoatImage = styled.img`
   max-height: 30rem;
@@ -59,17 +34,69 @@ class BoatDetail extends Component {
 
   showBoat = () => {
     return this.state.boat ? (
-      <Fade bottom cascade>
-        <div>{this.state.boat.boatName}</div>
-        <div>{this.state.boat.crewBio}</div>
-        <BoatContainer key={this.state.boat._id} style={{width: "50%"}}>
-          <Carousel style={{width: "540px"}}>
-            {this.renderImages(this.state.boat.imgs)}
-          </Carousel>
-        <BoatName>{this.state.boat.boatName}</BoatName>
-        <BoatPrice>{`Week | $${Number(this.state.boat.pricePerWeek).toLocaleString()}`}</BoatPrice>
-       </BoatContainer>
-      </Fade>
+      <Container>
+        <Card>
+          <Card.Header>
+            <h3>Yacht: <i>{this.state.boat.boatName}</i></h3>
+          </Card.Header>
+          <Card.Body>
+            <Accordion defaultActiveKey="0">
+              <Card>
+                <Card.Header>
+                  <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                    Images
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="0">
+                  <Card.Body>
+                    <Carousel style={{width: "540px"}}>
+                      {this.renderImages(this.state.boat.imgs)}
+                    </Carousel>  
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+              <Card>
+                <Card.Header>
+                  <Accordion.Toggle as={Button} variant="link" eventKey="2">
+                    Specification
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="2">
+                  <Card.Body>
+                    <Row>
+                      <Col xs={3}>Price Per Week</Col>
+                      <Col>{`$${Number(this.state.boat.pricePerWeek).toLocaleString()}`}</Col>
+                    </Row>
+                    <Row>
+                      <Col xs={3}>Max Passengers</Col>
+                      <Col>{this.state.boat.maxPassengers}</Col>
+                    </Row>
+                    <Row>
+                      <Col xs={3}>Year</Col>
+                      <Col>{this.state.boat.year}</Col>
+                    </Row>
+                    <Row>
+                      <Col xs={3}>Manufacture</Col>
+                      <Col>{this.state.boat.manufacture}</Col>
+                    </Row>
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+              <Card>
+                <Card.Header>
+                  <Accordion.Toggle as={Button} variant="link" eventKey="1">
+                    Crew Biography
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="1">
+                  <Card.Body>{this.state.boat.crewBio}</Card.Body>
+                </Accordion.Collapse>
+              </Card>
+            </Accordion>            
+           
+          </Card.Body>
+        </Card>
+      </Container>
     ) : (
       <Loader/>
     );
