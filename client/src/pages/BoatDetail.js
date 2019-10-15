@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-import Fade from "react-reveal/Fade";
 import Loader from '../components/Loader';
 import styled from "styled-components";
 import { Carousel, Accordion, Card, Button, Container, Row, Col } from 'react-bootstrap';
