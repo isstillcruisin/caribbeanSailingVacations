@@ -55,10 +55,6 @@ class CharterInquiryForm extends Component {
   }
 
   render() {
-    const blackoutDates = [
-      { from: new Date("October 12, 2019"), to: new Date("October 25, 2019")},
-      { from: new Date("December 24, 2019"), to: new Date("January 2, 2020")}
-    ]
     return (
       <Card>
         <Card.Header>
@@ -125,7 +121,9 @@ class CharterInquiryForm extends Component {
                       </Form.Label>
                       <Col xs={9}>
                         <DatePickerWithBlackoutDates 
-                          blackoutDates={blackoutDates} 
+                          blackoutDates={this.props.unavailableDateRanges.map(range => { 
+                            return { from: new Date(range.from), to: new Date(range.to)}
+                          })} 
                           handleSelectedRange={this.props.handleDateRangeChange} 
                           month={this.props.month}
                         />

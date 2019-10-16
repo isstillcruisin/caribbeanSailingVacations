@@ -12,11 +12,14 @@ class WhiteLabelCharterInquiry extends Component {
     let { eBrochureId, boatId } = this.props.match.params;
     API.getEBrochure(eBrochureId).then(res => {
       API.getBoat(boatId).then(res2 => {
-        this.setState({
-          eBrochure: res.data,
-          boat: res2.data,
-          disableSubmit: true,
-          submitText: 'Fill All Entry Fields',
+        API.getUnavailableDateRanges(boatId).then(res3 => {
+          this.setState({
+            eBrochure: res.data,
+            boat: res2.data,
+            disableSubmit: true,
+            submitText: 'Fill All Entry Fields',
+            unavailableDateRanges: res3.data,
+          });
         });
       });
     });
@@ -117,6 +120,7 @@ class WhiteLabelCharterInquiry extends Component {
         eBrochurePath={`/e-brochure/${this.state.eBrochure._id}`}
         alert={this.state.alert}
         handleBack={this.handleBack}
+        unavailableDateRanges={this.state.unavailableDateRanges}
       />
     } else {
       return <Loader />
