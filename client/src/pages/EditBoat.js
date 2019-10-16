@@ -66,6 +66,18 @@ class EditBoat extends Component {
     })
   }
 
+  handleDeleteRange = range => {
+    //TODO: make this actually remove from the DB via an API call
+    const ranges = this.state.unavailableDateRanges.filter(range2 => !(range.from === range2.from && range.to === range2.to)) 
+    this.setState({unavailableDateRanges: ranges})
+  }
+
+  handleAddRange = range => {
+    //TODO: make this actually add a range to the DB via an API call
+    const ranges = [...this.state.unavailableDateRanges, range]
+    this.setState({unavailableDateRanges: ranges})
+  }
+
   render() {
     if (this.state.boat) {
       return (
@@ -97,7 +109,11 @@ class EditBoat extends Component {
               <Card>
                 <Card.Header>Availability</Card.Header>
                 <Card.Body>
-                  <MultipleDateRangePicker ranges={this.state.unavailableDateRanges} />
+                  <MultipleDateRangePicker 
+                    ranges={this.state.unavailableDateRanges} 
+                    handleDeleteRange={this.handleDeleteRange} 
+                    handleAddRange={this.handleAddRange} 
+                  />
                   <BootstrapTable 
                     keyField='dateRange' 
                     data={ this.state.unavailableDateRanges } 
