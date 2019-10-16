@@ -44,9 +44,8 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   unavailableDateRanges: function(req, res) {
-    res.json([
-      { from: new Date("October 12, 2019"), to: new Date("October 25, 2019")},
-      { from: new Date("December 24, 2019"), to: new Date("January 2, 2020")}
-    ])
+    db.UnavailableDateRange.find({_yacht: {_id: req.params.id}})
+      .then(dbRanges => res.json(dbRanges))
+      .catch(err => res.status(422).json(err));
   },
 };
