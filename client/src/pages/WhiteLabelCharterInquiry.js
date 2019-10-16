@@ -12,13 +12,13 @@ class WhiteLabelCharterInquiry extends Component {
     let { eBrochureId, boatId } = this.props.match.params;
     API.getEBrochure(eBrochureId).then(res => {
       API.getBoat(boatId).then(res2 => {
-        API.getUnavailableDateRanges(boatId).then(res3 => {
+        API.getUnavailableDateRanges(boatId).then(ranges => {
           this.setState({
             eBrochure: res.data,
             boat: res2.data,
             disableSubmit: true,
             submitText: 'Fill All Entry Fields',
-            unavailableDateRanges: res3.data,
+            unavailableDateRanges: ranges,
           });
         });
       });

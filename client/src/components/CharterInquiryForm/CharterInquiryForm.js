@@ -121,9 +121,7 @@ class CharterInquiryForm extends Component {
                       </Form.Label>
                       <Col xs={9}>
                         <DatePickerWithBlackoutDates 
-                          blackoutDates={this.props.unavailableDateRanges.map(range => { 
-                            return { from: new Date(range.from), to: new Date(range.to)}
-                          })} 
+                          blackoutDates={this.props.unavailableDateRanges} 
                           handleSelectedRange={this.props.handleDateRangeChange} 
                           month={this.props.month}
                         />

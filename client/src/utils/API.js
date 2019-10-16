@@ -41,8 +41,8 @@ export default {
 
   getUnavailableDateRanges: async function(id) {
     try {
-      const ranges = await axios.get(`/api/boats/unavailable/${id}`);
-      return ranges;
+      const rangesResult = await axios.get(`/api/boats/unavailable/${id}`);
+      return rangesResult.data.map(range => { return { from: new Date(range.from), to: new Date(range.to) }});
     } catch (error) {
       console.log("Error in get getUnavailableDateRanges (╯°□°)╯︵ ┻━┻ ", error);
     }

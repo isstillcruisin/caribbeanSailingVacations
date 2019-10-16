@@ -28,10 +28,10 @@ class EditBoat extends Component {
   componentDidMount() {
     let { id } = this.props.match.params
     API.getBoat(id).then(res => {
-      API.getUnavailableDateRanges(id).then(res2 => {
+      API.getUnavailableDateRanges(id).then(ranges => {
         this.setState({
           boat: res.data,
-          unavailableDateRanges: res2.data,
+          unavailableDateRanges: ranges,
         })
       })
     })
