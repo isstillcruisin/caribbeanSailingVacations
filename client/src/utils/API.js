@@ -38,10 +38,25 @@ export default {
   updateBoat: function(boatData) {
     return axios.put(`/api/boats/${boatData._id}`, boatData);
   },
-
   getUnavailableDateRanges: async function(id) {
     try {
       const rangesResult = await axios.get(`/api/boats/unavailable/${id}`);
+      return rangesResult.data.map(range => { return { from: new Date(range.from), to: new Date(range.to) }});
+    } catch (error) {
+      console.log("Error in get getUnavailableDateRanges (╯°□°)╯︵ ┻━┻ ", error);
+    }
+  },
+  addUnavailableDateRange: async function(yacht, range) {
+     try {
+      const rangesResult = await axios.post(`/api/boats/unavailable/${yacht._id}`, range);
+      return rangesResult.data.map(range => { return { from: new Date(range.from), to: new Date(range.to) }});
+    } catch (error) {
+      console.log("Error in get getUnavailableDateRanges (╯°□°)╯︵ ┻━┻ ", error);
+    }
+  },
+  deleteUnavailableDateRange: async function(yacht, range) {
+    try {
+      const rangesResult = await axios.post(`/api/boats/unavailable/${yacht._id}/delete`, range);
       return rangesResult.data.map(range => { return { from: new Date(range.from), to: new Date(range.to) }});
     } catch (error) {
       console.log("Error in get getUnavailableDateRanges (╯°□°)╯︵ ┻━┻ ", error);

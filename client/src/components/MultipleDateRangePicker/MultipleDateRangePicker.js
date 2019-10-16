@@ -28,11 +28,7 @@ class MultipleDateRangePicker extends Component {
     if (foundRange) {
       this.setState({from: null, message: 'New unavailable date ranges can not overlap an existing unavailable date range'})
     } else {
-      if (day > this.state.from) {
-        this.props.handleAddRange({from: this.state.from, to: day})
-      } else {
-        this.props.handleAddRange({from: day, to: this.state.from})   
-      }
+      this.props.handleAddRange(newRange)
       this.setState({from: null, message: 'Unavailable Date Range Added'})
     }
   }
@@ -86,8 +82,8 @@ class MultipleDateRangePicker extends Component {
     return <div>
       <Alert location={{ state: { alert: message} }} />
       <p>
-        {!from && !to && !selectedRange && 'Please select the first day in the unavailable range.'}
-        {from && !to && !selectedRange && 'Please select the last day in the unavailable range.'}
+        {!from && !to && !selectedRange && 'Please select the first day in a new unavailable range OR an unavailable date range to delete.'}
+        {from && !to && !selectedRange && 'Please select the last day in the new unavailable range.'}
         {from &&
           to &&
           `Selected from ${from.toLocaleDateString()} to
@@ -105,7 +101,7 @@ class MultipleDateRangePicker extends Component {
       </p>
      <DayPicker
         className="UnavailableDateRangePicker"
-        numberOfMonths={4}
+        numberOfMonths={6}
         selectedDays={[...this.props.ranges,from, { from, to }]}
         modifiers={modifiers}
         onDayClick={this.handleDayClick}

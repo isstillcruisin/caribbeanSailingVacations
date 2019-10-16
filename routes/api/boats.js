@@ -16,5 +16,10 @@ router
 router
   .route("/unavailable/:id")
   .get(boatController.unavailableDateRanges)
+  .post(boatController.addUnavailableDateRange)
+
+router
+  .route("/unavailable/:id/delete")
+  .post(boatController.deleteUnavailableDateRange)
 
 module.exports = router;

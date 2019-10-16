@@ -48,4 +48,32 @@ module.exports = {
       .then(dbRanges => res.json(dbRanges))
       .catch(err => res.status(422).json(err));
   },
+  addUnavailableDateRange: function(req, res) {
+    const range = {
+      _yacht: req.params.id,
+      from: req.body.from,
+      to: req.body.to,
+    }
+    db.UnavailableDateRange.create(range)
+      .then(() => {
+         db.UnavailableDateRange.find({_yacht: {_id: req.params.id}})
+        .then(dbRanges => res.json(dbRanges))
+        .catch(err => res.status(422).json(err));
+      })
+      .catch(err => res.status(422).json(err));
+  },
+  deleteUnavailableDateRange: function(req, res) {
+    const range = {
+      _yacht: req.params.id,
+      from: req.body.from,
+      to: req.body.to,
+    }
+    db.UnavailableDateRange.findOneAndRemove(range)
+      .then(() => {
+         db.UnavailableDateRange.find({_yacht: {_id: req.params.id}})
+        .then(dbRanges => res.json(dbRanges))
+        .catch(err => res.status(422).json(err));
+      })
+      .catch(err => res.status(422).json(err));
+  }
 };

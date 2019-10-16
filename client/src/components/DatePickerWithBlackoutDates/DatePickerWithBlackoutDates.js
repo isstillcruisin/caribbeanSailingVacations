@@ -30,7 +30,7 @@ class DatePickerWithBlackoutDates extends React.Component {
       this.setState(range);
       this.props.handleSelectedRange(range);
     } else {
-      this.setState(Object.assign({}, this.state, { message: 'Unfortunately, those days include some blacked-out dates'}));
+      this.setState(Object.assign({}, this.state, { message: 'Unfortunately, those days include some unavailable dates'}));
     }
   }
 

@@ -39,13 +39,13 @@ class EditBoat extends Component {
 
   saveBoat = () => {
     API.updateBoat(this.state.boat)
-      .then(res =>
-        this.setState({
-          boat: this.state.boat,
-          alert: 'Yacht Saved'
-        })
-      )
-      .catch(err => console.log("saving boat error", err))
+    .then(res =>
+      this.setState({
+        boat: this.state.boat,
+        alert: 'Yacht Saved'
+      })
+    )
+    .catch(err => console.log("saving boat error", err))
   }
 
   handleInputChange = event => {
@@ -67,15 +67,23 @@ class EditBoat extends Component {
   }
 
   handleDeleteRange = range => {
-    //TODO: make this actually remove from the DB via an API call
-    const ranges = this.state.unavailableDateRanges.filter(range2 => !(range.from === range2.from && range.to === range2.to)) 
-    this.setState({unavailableDateRanges: ranges})
+    API.deleteUnavailableDateRange(this.state.boat, range)
+    .then(ranges => 
+      this.setState({
+        unavailableDateRanges: ranges
+      })
+    )
+    .catch(err => console.log("deleting range error", err))
   }
 
   handleAddRange = range => {
-    //TODO: make this actually add a range to the DB via an API call
-    const ranges = [...this.state.unavailableDateRanges, range]
-    this.setState({unavailableDateRanges: ranges})
+    API.addUnavailableDateRange(this.state.boat, range)
+    .then(ranges => 
+      this.setState({
+        unavailableDateRanges: ranges
+      })
+    )
+    .catch(err => console.log("adding range error", err))
   }
 
   render() {
@@ -105,9 +113,9 @@ class EditBoat extends Component {
                 </Card.Body>
               </Card>
             </Tab>
-            <Tab eventKey="availability" title='Yacht availability'>
+            <Tab eventKey="availability" title='Unavailable Dates'>
               <Card>
-                <Card.Header>Availability</Card.Header>
+                <Card.Header>Unavailable Dates</Card.Header>
                 <Card.Body>
                   <MultipleDateRangePicker 
                     ranges={this.state.unavailableDateRanges} 
