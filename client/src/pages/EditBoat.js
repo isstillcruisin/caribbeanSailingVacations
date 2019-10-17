@@ -88,6 +88,16 @@ class EditBoat extends Component {
     .catch(err => console.log("adding range error", err))
   }
 
+  handleRefreshAvailability = (event) => {
+    event.preventDefault();
+    API.refreshAvailability(this.state.boat)
+    .then(ranges => 
+      this.setState({
+        unavailableDateRanges: ranges
+      }))
+    .catch(err => console.log("error loading new CYA API calendar", err))
+  }
+
   render() {
     if (this.state.boat) {
       return (
@@ -110,6 +120,7 @@ class EditBoat extends Component {
                     manufacture={this.state.boat.manufacture}
                     crewBio={this.state.boat.crewBio}
                     pricePerWeek={this.state.boat.pricePerWeek}
+                    cyaId={this.state.boat.cyaId}
                     alert={this.state.alert}
                   />
                 </Card.Body>
@@ -119,6 +130,11 @@ class EditBoat extends Component {
               <Card>
                 <Card.Header>Unavailable Dates</Card.Header>
                 <Card.Body>
+                  <ButtonToolbar className='mb-2'>
+                    <Button onClick={this.handleRefreshAvailability}>
+                      Refresh Availability (From Central Yacht Agent API)
+                    </Button>
+                  </ButtonToolbar>
                   <MultipleDateRangePicker 
                     ranges={this.state.unavailableDateRanges} 
                     handleDeleteRange={this.handleDeleteRange} 

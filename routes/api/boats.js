@@ -22,4 +22,7 @@ router
   .route("/unavailable/:id/delete")
   .post(boatController.deleteUnavailableDateRange)
 
+router
+  .route("/unavailable/:id/refresh")
+  .get(boatController.refreshAvailability)
 module.exports = router;

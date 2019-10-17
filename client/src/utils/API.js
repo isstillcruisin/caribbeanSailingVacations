@@ -63,6 +63,14 @@ export default {
       console.log("Error in get getUnavailableDateRanges (╯°□°)╯︵ ┻━┻ ", error);
     }
   },
+  refreshAvailability: async function(yacht) {
+    try {
+      const rangesResult = await axios.get(`/api/boats/unavailable/${yacht._id}/refresh`);
+      return rangesResult.data.map(this._convertDateRangeToDates);
+    } catch (error) {
+      console.log("Error in get getUnavailableDateRanges (╯°□°)╯︵ ┻━┻ ", error);
+    }
+  },
   // finds an existing user and logs them in
   userSignIn: async function(userData) {
     try {

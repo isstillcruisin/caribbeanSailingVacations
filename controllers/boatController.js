@@ -1,4 +1,6 @@
 const db = require("../models");
+const fetch = require('node-fetch');
+const keys = require("../config/keys");
 
 // Defining methods for the articleController
 module.exports = {
@@ -48,6 +50,35 @@ module.exports = {
     db.UnavailableDateRange.find({_yacht: {_id: req.params.id}})
       .then(dbRanges => res.json(dbRanges))
       .catch(err => res.status(422).json(err));
+  },
+  refreshAvailability: function(req, res) {
+    db.Boat.findById({ _id: req.params.id })
+      .then(dbBoat => {
+        fetch(`https://www.centralyachtagent.com/snapins/json-calendar.php?idin=${dbBoat.cyaId}&user=${keys.cyaUserId}`)
+        .then(response => response.json())
+        .then(data => {
+          const unavailableDateRanges = data.calendar.map(function(range) { return { 
+            _yacht: req.params.id,
+            from: new Date(range.yachtStartDate),
+            to: new Date(range.yachtEndDate), 
+            description: range.yachtBookDesc,
+            type: 'CYA',
+          }})
+          db.UnavailableDateRange.deleteMany({_yacht: {_id: req.params.id}, type: 'CYA'})
+          .then((dbDeleted) => {
+            db.UnavailableDateRange.create(unavailableDateRanges)
+            .then((dbCreated) => {
+               db.UnavailableDateRange.find({_yacht: {_id: req.params.id}})
+              .then(dbRanges => res.json(dbRanges))
+              .catch(err => res.status(422).json(err));
+            })
+            .catch(err => res.status(422).json(err));
+          })
+          .catch(err => res.status(422).json(err));
+        })
+        .catch(err => res.status(422).json(err))
+      })
+      .catch(err => res.status(422).json(err))
   },
   addUnavailableDateRange: function(req, res) {
     const range = {
