@@ -16,5 +16,6 @@ module.exports = {
   cloudinarySecret: process.env.CLOUDINARY_UPLOAD_PRESET,
   cloudinaryEnvVariable: process.env.CLOUDINARY_UPLOAD_URL,
   sessionSecret: process.env.SESSION_SECRET,
+  cyaUserId: process.env.CYA_USER_ID,
   clientPort: 80
 };

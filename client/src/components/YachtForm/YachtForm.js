@@ -86,6 +86,19 @@ const YachtForm = props => (
           onChange={props.handleInputChange}
           required
         />
+        <label htmlFor="cyaId">
+          <strong>Central Yacht Agent ID</strong>
+        </label>
+        <input
+          className="form-control"
+          id="cyaId"
+          type="number"
+          value={props.cyaId}
+          placeholder="Central Yacht Agent ID"
+          name="cyaId"
+          onChange={props.handleInputChange}
+          required
+        />
         <label htmlFor="image-url">
           <strong>Boat Images</strong>
         </label>
