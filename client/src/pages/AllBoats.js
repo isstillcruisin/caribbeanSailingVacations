@@ -6,7 +6,8 @@ import Zoom from "react-reveal/Zoom";
 import Button from 'react-bootstrap/Button';
 import Loader from '../components/Loader';
 import Row from 'react-bootstrap/Row';
-import EBrochureYacht from '../components/EBrochureYacht'
+import EBrochureYacht from '../components/EBrochureYacht';
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 
 const BoatsDisplay = styled.div`
   display: grid;
@@ -101,7 +102,16 @@ class AllBoats extends Component {
   };
 
   render() {
-    return <BoatsDisplay>{this.showBoats()}</BoatsDisplay>;
+    return <>
+      {!this.props.eBrochure &&(
+        <LinkContainer to='/add-boat' className='m-4'>
+          <Button>Add Yacht</Button>
+        </LinkContainer>
+      )}
+      <BoatsDisplay>
+        {this.showBoats()}
+      </BoatsDisplay>;
+    </>
   }
 }
 
