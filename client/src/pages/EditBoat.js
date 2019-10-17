@@ -10,6 +10,8 @@ import MultipleDateRangePicker from '../components/MultipleDateRangePicker'
 import moment from 'moment';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
+import Button from "react-bootstrap/Button"
+import ButtonToolbar from "react-bootstrap/ButtonToolbar"
 
 class EditBoat extends Component {
   state = {
@@ -133,6 +135,12 @@ class EditBoat extends Component {
                       dataField: 'to',
                       text: 'To',
                       formatter: (to) => moment(to).format('LL')
+                    }, {
+                      dataField: 'description',
+                      text: 'Reason Unavailable'
+                    }, {
+                      dataField: 'type',
+                      text: 'Source'
                     }]}
                     pagination={ paginationFactory() }
                   />  

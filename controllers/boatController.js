@@ -53,6 +53,8 @@ module.exports = {
       _yacht: req.params.id,
       from: req.body.from,
       to: req.body.to,
+      description: 'Administrator added',
+      type: 'Admin'
     }
     db.UnavailableDateRange.create(range)
       .then(() => {
