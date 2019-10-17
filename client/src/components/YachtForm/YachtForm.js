@@ -116,9 +116,16 @@ const YachtForm = props => (
           type="submit"
           className="btn btn-lg btn-danger"
         >
-          Submit
+          Save
         </button>
       </div>
+      { props.cyaId && (
+        <div className='mt-2'>
+          <a href={`https://www.centralyachtagent.com/yachtadmin/showyachts.php?id=${props.cyaId}&disptype=1&uid=1892&unit=1&stat=1`} target='_blank'>
+            CYA E-Brochure (opens in new tab)
+          </a>
+        </div>
+      )}
     </form>
   </Container>
 );
