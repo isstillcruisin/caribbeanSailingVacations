@@ -38,10 +38,11 @@ export default {
   updateBoat: function(boatData) {
     return axios.put(`/api/boats/${boatData._id}`, boatData);
   },
+ 
   getUnavailableDateRanges: async function(id) {
     try {
       const rangesResult = await axios.get(`/api/boats/unavailable/${id}`);
-      return rangesResult.data.map(range => { return { from: new Date(range.from), to: new Date(range.to) }});
+      return rangesResult.data.map(this._convertDateRangeToDates);
     } catch (error) {
       console.log("Error in get getUnavailableDateRanges (╯°□°)╯︵ ┻━┻ ", error);
     }
@@ -49,7 +50,7 @@ export default {
   addUnavailableDateRange: async function(yacht, range) {
      try {
       const rangesResult = await axios.post(`/api/boats/unavailable/${yacht._id}`, range);
-      return rangesResult.data.map(range => { return { from: new Date(range.from), to: new Date(range.to) }});
+      return rangesResult.data.map(this._convertDateRangeToDates);
     } catch (error) {
       console.log("Error in get getUnavailableDateRanges (╯°□°)╯︵ ┻━┻ ", error);
     }
@@ -57,7 +58,7 @@ export default {
   deleteUnavailableDateRange: async function(yacht, range) {
     try {
       const rangesResult = await axios.post(`/api/boats/unavailable/${yacht._id}/delete`, range);
-      return rangesResult.data.map(range => { return { from: new Date(range.from), to: new Date(range.to) }});
+      return rangesResult.data.map(this._convertDateRangeToDates);
     } catch (error) {
       console.log("Error in get getUnavailableDateRanges (╯°□°)╯︵ ┻━┻ ", error);
     }
@@ -209,5 +210,8 @@ export default {
 
   updateUser: async function(user) {
     return axios.post('/api/users/update', user);
+  },
+  _convertDateRangeToDates: function(range) {
+    return { from: new Date(range.from), to: new Date(range.to), description: range.description, type: range.type }
   },
 };
