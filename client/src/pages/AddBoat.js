@@ -3,6 +3,7 @@ import YachtForm from "../components/YachtForm";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
 import Container from 'react-bootstrap/Container'
+import Card from 'react-bootstrap/Card'
 
 class AddBoat extends Component {
   state = {
@@ -11,7 +12,8 @@ class AddBoat extends Component {
     year: 0,
     maxPassengers: 0,
     manufacture: "",
-    crewBio: ""
+    crewBio: "",
+    cyaId: "",
   };
 
   handleFormSubmit = event => {
@@ -31,7 +33,8 @@ class AddBoat extends Component {
       maxPassengers: this.state.maxPassengers,
       manufacture: this.state.manufacture,
       crewBio: this.state.crewBio,
-      pricePerWeek: this.state.pricePerWeek
+      pricePerWeek: this.state.pricePerWeek,
+      cyaId: this.state.cyaId,
     })
       .then(res =>
         this.setState({
@@ -64,8 +67,11 @@ class AddBoat extends Component {
       />)
     } else {
       return (
-        <Container className="AddBoat">
-          <header className="AddBoat-header">
+        <Card>
+          <Card.Header>
+            <h3>New Yacht: <i>{this.state.boatName}</i></h3>
+          </Card.Header>
+          <Card.Body>
             <YachtForm
               handleInputChange={this.handleInputChange}
               handleFormSubmit={this.handleFormSubmit}
@@ -77,9 +83,11 @@ class AddBoat extends Component {
               manufacture={this.state.manufacture}
               crewBio={this.state.crewBio}
               pricePerWeek={this.state.pricePerWeek}
+              cyaId={this.state.cyaId}
+              alert={this.state.alert}
             />
-          </header>
-        </Container>
+          </Card.Body>
+        </Card>
       );
     }
   }
