@@ -23,6 +23,7 @@ module.exports = {
       manufacture: req.body.manufacture,
       crewBio: req.body.crewBio,
       pricePerWeek: req.body.pricePerWeek,
+      cyaId: req.body.cyaId,
     };
     if (!(req.user && req.user.isAdmin)) {
       return res.status(401).json("Unauthorized");
