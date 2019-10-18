@@ -54,9 +54,9 @@ axios.interceptors.response.use(response => {
    return response;
 }, error => {
   if (error.response.status === 401) {
-    console.log("Unable to - unauthorized")
-    history.push('/');
-    //place your reentry code
+    if (window.location.pathname !== '/sign-in') {
+      history.push('/');
+    }
   }
   return error;
 });
