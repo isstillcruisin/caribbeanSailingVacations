@@ -15,12 +15,27 @@ class SignIn extends Component {
     admin: false
   };
 
+  componentDidMount() {
+    if (this.props.location && this.props.location.state) {
+      this.setState({alert: this.props.location.state.alert})
+    }
+  }
+
   handleSignIn = async event => {
     event.preventDefault();
+    event.stopPropagation();
     const { email, password } = this.state;
-    const validatedUser = await API.userSignIn({ email, password });
-    this.setState({ validatedUser, admin: validatedUser.data.adminMode });
-    console.log("validatedUser (╯°□°)╯︵ ┻━┻ ", validatedUser);
+    const res = await API.userSignIn({ email, password });
+    if (res.message) {
+      this.setState({
+        alert: 'Incorrect Username Or Password',
+        password: "",
+        validatedUser: null,
+        admin: false
+      })
+    } else {
+      this.setState({ validatedUser: res.user, admin: res.user.data.adminMode });
+    }
   };
 
   handleInputChange = event => {
@@ -39,7 +54,7 @@ class SignIn extends Component {
       }
     } else {
       return <Container>
-        <Alert {...this.props}/>
+        <Alert alert={this.state.alert}/>
         <h4>Sign In</h4>
         <SignInForm
           handleInputChange={this.handleInputChange}

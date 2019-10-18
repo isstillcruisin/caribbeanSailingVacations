@@ -74,16 +74,19 @@ export default {
   // finds an existing user and logs them in
   userSignIn: async function(userData) {
     try {
-      const user = await axios.post("/api/users/signin", userData);
-      if (user) {
-        ls.set("user-token", user.data.token);
-        if (user.data.adminMode) {
-          ls.set("admin", user.data.adminMode);
+      const res = await axios.post("/api/users/signin", userData);
+      if (res && res.data) {
+        ls.set("user-token", res.data.token);
+        if (res.data.adminMode) {
+          ls.set("admin", res.data.adminMode);
         }
-        return user;
+        return res;
+      } else {
+        return { message: res.message}
       }
     } catch (error) {
       console.log("user login error (╯°□°)╯︵ ┻━┻ ", error);
+      return { error: error};
     }
   },
   userSignOut: async function() {
