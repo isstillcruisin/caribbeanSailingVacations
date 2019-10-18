@@ -56,7 +56,7 @@ class CharterInquiryForm extends Component {
 
   render() {
     return (
-      <Card>
+      <Card className='bg-lightgreen'>
         <Card.Header>
           <Row>
             <Col>

@@ -53,7 +53,7 @@ code {
   justify-content: center;
   width: 100%;
   margin: 0 20px 20px 20px;
-  background-color: rgba(200, 200, 200, 0.6);
+  background-color: #FFFFFF;
   width: 500px;
 }
 
@@ -121,4 +121,12 @@ code {
 .UnavailableDateRangePicker .DayPicker-Day--end {
   border-top-right-radius: 50% !important;
   border-bottom-right-radius: 50% !important;
+}
+
+.bg-lightgreen {
+  background-color: #B6E8E3 !important;
+}
+
+h3 {
+  text-transform: uppercase;
 }

@@ -16,12 +16,15 @@ const theme = {
   transparentGrey: "rgba(.3, .3, .3, .09)",
   turquoise: "#2DECB1",
   bs: "0 12px 24px 0 rgba(0, 0, 0, 0.09)",
-  white: "#FFFFFF"
+  white: "#FFFFFF",
+  lightgreen: "#B6E8E3",
+  midgreen: "#5FD7BD",
+  darkgreen: "#337C74",
 };
 
 const StyledPage = styled.div`
-  background: ${props => props.theme.white};
-  color: ${props => props.theme.black};
+  background: ${props => props.theme.lightgreen};
+  color: ${props => props.theme.darkgreen};
   height: 100%;
 `;
 

@@ -26,16 +26,10 @@ class EBrochure extends Component {
     if (this.state.eBrochure){
       return (
         <>
-          <Card>
-            <Card.Header>
-              <Row>
-                <Col>
-                  <img src={this.state.eBrochure._whiteLabel.logoUrl} alt='White Label Logo' />
-                </Col>
-                <Col style={{flexGrow: '2'}}>
-                  <h1 style={{marginTop: '30px', float: 'right'}}>{this.state.eBrochure._whiteLabel.companyName}</h1>
-                </Col>
-              </Row>
+          <Card className='bg-lightgreen'>
+            <Card.Header className='text-center'>
+              <img src={this.state.eBrochure._whiteLabel.logoUrl} alt='White Label Logo' />
+              <h3 className='mt-3'>{this.state.eBrochure._whiteLabel.title}</h3>
             </Card.Header>
             <Card.Body>
               <Row>

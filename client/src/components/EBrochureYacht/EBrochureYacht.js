@@ -9,7 +9,7 @@ const BoatContainer = styled.div`
   transition: all 1s ease-out;
   height: 450px;
   width: 500px;
-  background-color: rgba(200, 200, 200, 0.6);
+  background-color: ${props => props.theme.white};
   margin: 0 20px 0 20px
 `;
 

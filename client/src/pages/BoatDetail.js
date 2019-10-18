@@ -34,7 +34,7 @@ class BoatDetail extends Component {
   showBoat = () => {
     return this.state.boat ? (
       <Container>
-        <Card>
+        <Card className='bg-lightgreen'>
           <Card.Header>
             <h3>Yacht: <i>{this.state.boat.boatName}</i></h3>
           </Card.Header>

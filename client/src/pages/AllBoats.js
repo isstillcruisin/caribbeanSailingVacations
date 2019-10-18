@@ -12,7 +12,7 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 const BoatsDisplay = styled.div`
   display: grid;
   grid-template: 50% 50% / 50% 50%;
-  background: ${props => props.theme.white};
+  background: ${props => props.theme.lightgreen};
   @media (max-width: 800px) {
     grid-template: 50% 50% / 100%;
   }
@@ -94,15 +94,15 @@ class AllBoats extends Component {
               </Row>
             </div>
           </Zoom>
-        );
-      });
+        )
+      })
     } else {
       return <Loader />;
     }
   };
 
   render() {
-    return <>
+    return <div className='bg-lightgreen'>
       {!this.props.eBrochure &&(
         <LinkContainer to='/add-boat' className='m-4'>
           <Button>Add Yacht</Button>
@@ -110,8 +110,8 @@ class AllBoats extends Component {
       )}
       <BoatsDisplay>
         {this.showBoats()}
-      </BoatsDisplay>;
-    </>
+      </BoatsDisplay>
+    </div>
   }
 }
 

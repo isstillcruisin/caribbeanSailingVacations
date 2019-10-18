@@ -11,6 +11,17 @@ class ConfigureWhiteLabelForm extends Component {
         <Card.Body>
           <Form>
             <Form.Row>
+              <Form.Group as={Col} controlId="formGridTitle">
+                <Form.Label>White Label Title</Form.Label>
+                <Form.Control 
+                  placeholder="White Label Title" 
+                  name='title'
+                  onChange={this.props.handleInputChange}
+                  value={this.props.whiteLabel.title}
+                />
+              </Form.Group>
+            </Form.Row>
+            <Form.Row>
               <Form.Group as={Col} controlId="formGridCompanyName">
                 <Form.Label>Company Name</Form.Label>
                 <Form.Control 

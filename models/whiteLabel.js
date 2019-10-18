@@ -15,6 +15,7 @@ const whiteLabelSchema = new Schema({
   country: { type: String },
   zipCode: { type: String },
   logoUrl: { type: String },
+  title: { type: String },
 });
 
 const WhiteLabel = mongoose.model("WhiteLabel", whiteLabelSchema);
