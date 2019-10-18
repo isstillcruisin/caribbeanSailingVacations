@@ -45,7 +45,7 @@ class ConfigureCurrentUser extends Component {
       return (
         <Container>
           <h1>Update Contact Information and Password:</h1>
-          <Alert location={{state: { alert: this.state.alert }}} />
+          <Alert alert={this.state.alert} />
           <ConfigureCurrentUserForm currentUser={this.state.currentUser} handleInputChange={this.handleInputChange} handleSave={this.handleSave} saved={this.state.saved} />
         </Container>
       )

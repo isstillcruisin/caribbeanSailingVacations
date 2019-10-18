@@ -5,7 +5,7 @@ import Alert from '../Alert'
 
 const YachtForm = props => (
   <Container>
-    <Alert location={{state: { alert: props.alert }}} />      
+    <Alert alert={props.alert} />      
     <form>
       <div className="form-group add-boat-form">
         <label htmlFor="boat-name">

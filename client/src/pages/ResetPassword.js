@@ -38,7 +38,6 @@ class ResetPassword extends Component {
         messageFromServer: '',
       })
     } else {
-      //MHATODO: pick it up here.
       this.setState({
         alert: ''
       })
@@ -81,7 +80,7 @@ class ResetPassword extends Component {
     } else {
       return (
         <Container>
-          <Alert location={{ state: { alert: this.state.alert }}}/>
+          <Alert alert={this.state.alert}/>
           <Card>
             <Card.Header>
               Password Reset

@@ -1,8 +1,8 @@
 import React from "react";
 
 function Alert(props) {
-  if (props.location && props.location.state && props.location.state.alert) {
-    return (<div className='alert'>{props.location ? props.location.state.alert : ''}</div>);
+  if (props.alert) {
+    return (<div className='alert'>{props.alert}</div>);
   } else {
     return "";
   }

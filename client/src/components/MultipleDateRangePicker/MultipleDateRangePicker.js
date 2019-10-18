@@ -80,7 +80,7 @@ class MultipleDateRangePicker extends Component {
       modifiers = selectedRange ? { start: selectedRange.from, end: selectedRange.to } : { start: from }
 
     return <div>
-      <Alert location={{ state: { alert: message} }} />
+      <Alert alert={message} />
       <p>
         {!from && !to && !selectedRange && 'Please select the first day in a new unavailable range OR an unavailable date range to delete.'}
         {from && !to && !selectedRange && 'Please select the last day in the new unavailable range.'}

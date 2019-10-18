@@ -86,7 +86,7 @@ class CharterInquiryForm extends Component {
                   <h1>Charter Inquiry Form</h1>
                 </Card.Header>
                 <Card.Body>
-                  <Alert location={{state: { alert: this.props.alert }}} />
+                  <Alert alert={this.props.alert} />
                   <Form>
                     <Form.Row>
                       <Form.Label column xs={3}>
