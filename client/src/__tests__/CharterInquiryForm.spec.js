@@ -14,6 +14,10 @@ describe("CharterInquiryForm component", () => {
           }
         }}
         month={new Date(2019, 11)}
+        unavailableDateRanges={[
+          { from: new Date("October 12, 2019"), to: new Date("October 25, 2019")},
+          { from: new Date("December 24, 2019"), to: new Date("January 2, 2020")}
+        ]}
       />
     );
     expect(alert.toJSON()).toMatchSnapshot();
