@@ -34,7 +34,7 @@ class SignIn extends Component {
         admin: false
       })
     } else {
-      this.setState({ validatedUser: res.user, admin: res.user.data.adminMode });
+      this.setState({ validatedUser: res, admin: res.data.adminMode });
     }
   };
 
