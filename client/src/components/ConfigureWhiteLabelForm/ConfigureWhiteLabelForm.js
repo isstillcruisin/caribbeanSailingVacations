@@ -22,6 +22,19 @@ class ConfigureWhiteLabelForm extends Component {
               </Form.Group>
             </Form.Row>
             <Form.Row>
+              <Form.Group as={Col} controlId="formGridTitle">
+                <Form.Label>'About Us' Text <i>(This is the text that will show on the ABOUT US section of an E-Brochure under this white label.)</i>
+                </Form.Label>
+                <Form.Control 
+                  placeholder="'About Us' Text" 
+                  name='aboutText'
+                  onChange={this.props.handleInputChange}
+                  value={this.props.whiteLabel.aboutText}
+                  as="textarea" rows="3"
+                />
+              </Form.Group>
+            </Form.Row>
+            <Form.Row>
               <Form.Group as={Col} controlId="formGridCompanyName">
                 <Form.Label>Company Name</Form.Label>
                 <Form.Control 

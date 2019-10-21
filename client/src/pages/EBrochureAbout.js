@@ -27,15 +27,15 @@ class EBrochureAbout extends Component {
     if (this.state.eBrochure){
       return (
         <>
-          <Card className='bg-lightgreen'>
+          <Card className='bg-lightgreen e-brochure'>
             <Card.Header className='text-center bg-lightgreen'>
               <img src={this.state.eBrochure._whiteLabel.logoUrl} alt='White Label Logo' />
               <h3 className='mt-3'>{this.state.eBrochure._whiteLabel.title}</h3>
               <EBrochureHeader ebrochure={this.state.eBrochure}/>
             </Card.Header>
             <Card.Body>
-              <h3>About US</h3>
-              <p>TODO: SHOW ABOUT WHITE LABEL</p>
+              <h1 class='text-center'>About Us</h1>
+              <pre>{this.state.eBrochure._whiteLabel.aboutText}</pre>
             </Card.Body>
           </Card>
           <StreetAddress address={Object.assign({}, this.state.eBrochure._whiteLabel, {name: this.travelAgentName(), phoneNumber: this.travelAgentPhoneNumber()})}/>

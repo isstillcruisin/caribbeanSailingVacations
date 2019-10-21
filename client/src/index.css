@@ -146,3 +146,16 @@ h3 {
   color: #163E3A !important;
 }
 
+.e-brochure .card-body{
+  background-color: white;
+}
+
+.e-brochure pre {
+  color: #2B7C74;
+  font: normal normal normal 18px/1.4em 'raleway',sans-serif;
+}
+
+.e-brochure h1 {
+   font: normal normal normal 40px 'raleway',sans-serif;
+}
+
