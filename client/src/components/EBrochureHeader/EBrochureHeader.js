@@ -11,8 +11,8 @@ const IncompleteEBrochureHeader = props => (
   <Container>
     <Navbar className='e-brochure-header'>
       <Nav className="m-auto">
-        <LinkContainer to={`/e-brochure/${props.ebrochure._id}`}>
-          <Navbar.Brand>Home</Navbar.Brand>
+        <LinkContainer to={`/e-brochure/${props.ebrochure._id}`} exact>
+          <Nav.Link>Home</Nav.Link>
         </LinkContainer>
         <LinkContainer to={`/e-brochure/${props.ebrochure._id}/about`}>
           <Nav.Link>About</Nav.Link>

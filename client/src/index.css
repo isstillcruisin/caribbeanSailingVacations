@@ -142,3 +142,7 @@ h3 {
   display: inline-block;
 }
 
+.e-brochure-header a.active {
+  color: #163E3A !important;
+}
+
