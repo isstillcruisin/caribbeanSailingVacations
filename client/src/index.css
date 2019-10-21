@@ -130,3 +130,15 @@ code {
 h3 {
   text-transform: uppercase;
 }
+
+.e-brochure-header {
+  background-color: #B6E8E3;
+}
+
+.e-brochure-header a {
+  font-size: 18px;
+  color: #337C74 !important;  
+  text-transform: uppercase;
+  display: inline-block;
+}
+

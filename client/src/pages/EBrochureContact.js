@@ -8,7 +8,7 @@ import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import StreetAddress from '../components/StreetAddress'
 import EBrochureHeader from '../components/EBrochureHeader'
-class EBrochure extends Component {
+class EBrochureAbout extends Component {
   state = {}
 
   componentDidMount() {
@@ -23,7 +23,7 @@ class EBrochure extends Component {
   travelAgentName = () => `${this.state.eBrochure._whiteLabel._travelAgent.firstName} ${this.state.eBrochure._whiteLabel._travelAgent.lastName}`
   travelAgentPhoneNumber = () => this.state.eBrochure._whiteLabel._travelAgent.phoneNumber
 
-  showEBrochure = () => {
+  showEBrochureContact = () => {
     if (this.state.eBrochure){
       return (
         <>
@@ -34,10 +34,8 @@ class EBrochure extends Component {
               <EBrochureHeader ebrochure={this.state.eBrochure}/>
             </Card.Header>
             <Card.Body>
-              <h3>Set Sail</h3>
-              <h3>With Confidence</h3>
-​              <p>We have hand selected yachts out of many different management operations in the Caribbean to bring you the best possible vacation for your budget. We have met with crews and in many cases eaten the foods of the fantastic chefs on board. We own our vacation and are sure that you will love your time aboard.</p>
-              <p>It is our hope to bring our love of sailing and the beautiful Caribbean to as many people as possible. We want to make the process of selecting the perfect boat and crew for you as simple as possible.</p>
+              <h3>Contact Us</h3>
+              <p>TODO: SHOW Contact Us Form</p>
             </Card.Body>
           </Card>
           <StreetAddress address={Object.assign({}, this.state.eBrochure._whiteLabel, {name: this.travelAgentName(), phoneNumber: this.travelAgentPhoneNumber()})}/>
@@ -51,9 +49,9 @@ class EBrochure extends Component {
   render() {
     return <div>
       <Alert {...this.props}/>
-      {this.showEBrochure()}
+      {this.showEBrochureContact()}
     </div>
   }
 }
 
-export default EBrochure
+export default EBrochureAbout
