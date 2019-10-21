@@ -23,7 +23,7 @@ class ConfigureWhiteLabelForm extends Component {
             </Form.Row>
             <Form.Row>
               <Form.Group as={Col} controlId="formGridTitle">
-                <Form.Label>'About Us' Text <i>(This is the text that will show on the ABOUT US section of an E-Brochure under this white label.)</i>
+                <Form.Label>'About Us' Text <i>(This is the text that will show on the ABOUT section of an E-Brochure under this white label.)</i>
                 </Form.Label>
                 <Form.Control 
                   placeholder="'About Us' Text" 
