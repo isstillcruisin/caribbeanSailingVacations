@@ -5,6 +5,7 @@ import Alert from '../components/Alert'
 import Loader from '../components/Loader'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container'
 import Card from 'react-bootstrap/Card'
 import StreetAddress from '../components/StreetAddress'
 import EBrochureHeader from '../components/EBrochureHeader'
@@ -34,8 +35,10 @@ class EBrochureAbout extends Component {
               <EBrochureHeader ebrochure={this.state.eBrochure}/>
             </Card.Header>
             <Card.Body>
-              <h1 class='text-center'>About Us</h1>
-              <pre>{this.state.eBrochure._whiteLabel.aboutText}</pre>
+              <Container>
+                <h1 class='text-center'>About Us</h1>
+                <pre>{this.state.eBrochure._whiteLabel.aboutText}</pre>
+              </Container>
             </Card.Body>
           </Card>
           <StreetAddress address={Object.assign({}, this.state.eBrochure._whiteLabel, {name: this.travelAgentName(), phoneNumber: this.travelAgentPhoneNumber()})}/>
