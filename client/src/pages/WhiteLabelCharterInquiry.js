@@ -121,6 +121,7 @@ class WhiteLabelCharterInquiry extends Component {
         alert={this.state.alert}
         handleBack={this.handleBack}
         unavailableDateRanges={this.state.unavailableDateRanges}
+        eBrochure={this.state.eBrochure}
       />
     } else {
       return <Loader />

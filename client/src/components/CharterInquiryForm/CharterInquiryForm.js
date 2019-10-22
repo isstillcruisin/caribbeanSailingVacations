@@ -8,6 +8,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import DatePickerWithBlackoutDates from '../DatePickerWithBlackoutDates';
 import formatPrice from '../../utils/formatPrice';
 import Alert from '../Alert'
+import EBrochureHeader from '../EBrochureHeader'
 
 class CharterInquiryForm extends Component {
   renderEstimatedPrice=() => {
@@ -57,19 +58,10 @@ class CharterInquiryForm extends Component {
   render() {
     return (
       <Card className='bg-lightgreen'>
-        <Card.Header>
-          <Row>
-            <Col>
-              <img src={this.props.whiteLabel.logoUrl} alt='White Label Logo' />
-            </Col>
-            <Col>
-              <h2 style={{marginTop: '30px'}}>Selected Yacht: <i>{this.props.boat.boatName}</i></h2>
-            </Col>
-            <Col style={{flexGrow: '2'}}>
-              <h1 style={{marginTop: '30px', float: 'right'}}>{this.props.whiteLabel.companyName}</h1>
-            </Col>
-
-          </Row>
+        <Card.Header className='text-center bg-lightgreen'>
+          <img src={this.props.whiteLabel.logoUrl} alt='White Label Logo' />
+          <h3 className='mt-3'>{this.props.whiteLabel.title}</h3>
+          <EBrochureHeader ebrochure={this.props.eBrochure}/>
         </Card.Header>
         <Card.Body>
           <Row>
@@ -117,7 +109,7 @@ class CharterInquiryForm extends Component {
                     </Form.Row>
                     <Form.Row controlid='dates'>
                       <Form.Label column xs={3}>
-                        Desired Dates<br/><i>(availability TBD)</i>
+                        Desired Dates
                       </Form.Label>
                       <Col xs={9}>
                         <DatePickerWithBlackoutDates 

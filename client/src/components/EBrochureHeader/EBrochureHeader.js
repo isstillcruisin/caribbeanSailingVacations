@@ -28,8 +28,8 @@ const IncompleteEBrochureHeader = props => (
         </LinkContainer>
       </Nav>
       <Nav pullright={1}>
-        <LinkContainer to={`/e-brochure/${props.ebrochure._id}/request-charter`}>
-          <Button>Book Now</Button>
+        <LinkContainer to={`/e-brochure/${props.ebrochure._id}/yachts`}>
+          <Button variant='outline-success'>Book Now</Button>
         </LinkContainer>
       </Nav>      
     </Navbar>

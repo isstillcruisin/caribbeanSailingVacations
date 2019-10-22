@@ -146,6 +146,13 @@ h3 {
   color: #163E3A !important;
 }
 
+.e-brochure-header .btn-outline-success {
+  border-radius: 15px;
+  background-color: transparent !important;
+  border-width: 3px;
+  color: #2B7C74;
+}
+
 .e-brochure .card-body{
   background-color: white;
 }
@@ -176,4 +183,5 @@ h3 {
   font: normal normal normal 16px 'raleway',sans-serif;
   color: #337C74;
 }
+
 

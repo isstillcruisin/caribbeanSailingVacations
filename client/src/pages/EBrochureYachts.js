@@ -36,7 +36,7 @@ class EBrochureYachts extends Component {
             </Card.Header>
             <Card.Body>
               <Row>
-                <h4 style={{'margin': '20px'}}>Please choose a yacht for further information:</h4>
+                <h4 style={{'margin': '20px'}}>Please choose a yacht to book:</h4>
               </Row>
               <Row style={{'marginBottom': '20px'}}>
                 <AllBoats eBrochure={this.state.eBrochure}/>

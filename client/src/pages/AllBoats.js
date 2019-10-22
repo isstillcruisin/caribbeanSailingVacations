@@ -81,7 +81,7 @@ class AllBoats extends Component {
               key={`${boat._id}${i + 5}`}
               to={`/charter-a-yacht/${this.props.eBrochure._id}/inquiry/${boat._id}`}
               className="book-it-link"
-            ><Button>Request Information</Button></LinkContainer>)          
+            ><Button>Book Now</Button></LinkContainer>)          
         }
         return (
           <Zoom bottom key={boat._id}>
