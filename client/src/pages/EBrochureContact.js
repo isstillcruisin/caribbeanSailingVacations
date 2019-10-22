@@ -45,7 +45,7 @@ class EBrochureAbout extends Component {
       this.state.eBrochure,
       this.state.contact
     ).then((res) => {
-       this.setState(Object.assign({}, this.state, { alert: 'Message sent to travel agent.'} ))
+       this.setState(Object.assign({}, this.defaultState, { alert: 'Message sent to travel agent.'} ))
     });
   }
 
