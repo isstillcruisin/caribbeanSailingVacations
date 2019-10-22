@@ -6,6 +6,7 @@ import Loader from '../components/Loader'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
+import Container from 'react-bootstrap/Container'
 import StreetAddress from '../components/StreetAddress'
 import EBrochureHeader from '../components/EBrochureHeader'
 class EBrochureDestinations extends Component {
@@ -27,15 +28,18 @@ class EBrochureDestinations extends Component {
     if (this.state.eBrochure){
       return (
         <>
-          <Card className='bg-lightgreen'>
+          <Card className='bg-lightgreen e-brochure'>
             <Card.Header className='text-center bg-lightgreen'>
               <img src={this.state.eBrochure._whiteLabel.logoUrl} alt='White Label Logo' />
               <h3 className='mt-3'>{this.state.eBrochure._whiteLabel.title}</h3>
               <EBrochureHeader ebrochure={this.state.eBrochure}/>
             </Card.Header>
             <Card.Body>
-              <h3>Destinations</h3>
-              <p>TODO: ADD IMAGES</p>
+              <Container>
+                <h1 className='text-center'>Destinations</h1>
+                <i>Whether you are looking for a relaxing vacation spent on the beautiful white sand beaches of the BVI or an adventure vacation spent diving and hiking the Caribbean Islands, we have just the ting' for you. We offer trips in the USVI and BVI, as well as seasonal trips to St. Maarten, St. Barths, Antigua Puerto Rico St. Vincent & The Grenadines.</i> 
+                <p>TODO: ADD IMAGES</p>
+              </Container>
             </Card.Body>
           </Card>
           <StreetAddress address={Object.assign({}, this.state.eBrochure._whiteLabel, {name: this.travelAgentName(), phoneNumber: this.travelAgentPhoneNumber()})}/>

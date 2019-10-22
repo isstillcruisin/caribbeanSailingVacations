@@ -120,7 +120,8 @@ class App extends Component {
         />
         
         <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet" />
-
+        <link href="https://fonts.googleapis.com/css?family=Signika&display=swap" rel="stylesheet" />
+        <link href="//db.onlinewebfonts.com/c/39a2c7f346d5cfae7045aeb2fb50d9ad?family=LuloCleanW01-OneBold" rel="stylesheet" type="text/css" />
         <Suspense
           fallback={
             <Background>

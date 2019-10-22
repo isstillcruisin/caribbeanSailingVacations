@@ -159,3 +159,21 @@ h3 {
    font: normal normal normal 40px 'raleway',sans-serif;
 }
 
+.e-brochure h3.section-header {
+  font: normal normal normal 21px/1.4em 'LuloCleanW01-OneBold',sans-serif;
+}
+
+.e-brochure p.pretty-italic {
+  font: normal normal normal 28px 'signika',sans-serif;
+}
+
+.e-brochure i {
+  font: italic normal normal 16px/1.4em 'times new roman',times,serif;
+  color: #605E5E;
+}
+
+.e-brochure a {
+  font: normal normal normal 16px 'raleway',sans-serif;
+  color: #337C74;
+}
+
