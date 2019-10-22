@@ -2,6 +2,8 @@ const db = require("../models");
 const jwt = require("jwt-simple");
 const keys = require("../config/keys");
 const { newWhiteLabelEmail } = require("../util/TransactionalMailer");
+const Mailer = require('../routes/services/Mailer')
+
 
 // Defining methods for the whiteLabelController
 module.exports = {
@@ -82,6 +84,31 @@ module.exports = {
     })
     .catch((err) => {
       return res.status(422).json(err)
+    });
+  },
+
+  sendContact: function(req, res) {
+    db.WhiteLabel.findOne({
+      _id: req.params.id
+    })
+    .populate('_travelAgent')
+    .then(dbWhiteLabel => {
+      // Send the contact email
+      const ta = dbWhiteLabel._travelAgent,
+        subject = `Contact Message: ${req.body.subject}`, 
+        body = `Dear ${dbWhiteLabel._travelAgent.firstName} ${dbWhiteLabel._travelAgent.lastName},\n\n` + 
+          `<br><br>You have received a message from ${req.body.firstName} ${req.body.lastName} (${req.body.email}).\n`+
+          `<br>The message is:</br><pre>${req.body.message}</pre>`,
+        mailer = new Mailer(
+          subject,
+          [{email: ta.email}], 
+          body,
+          {email: req.body.email, name: `${req.body.firstName} ${req.body.lastName}`}
+        );
+        mailer
+          .send()
+          .then(() => {res.status(200).send({ })})
+          .catch(error => console.error(error.toString()));
     });
   },
 };

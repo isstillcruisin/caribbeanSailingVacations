@@ -22,4 +22,7 @@ router.route('/:name/boats')
 router.route('/:id/ebrochures/')
   .post(eBrochureController.create)
 
+router.route('/:id/contact')
+  .post(whiteLabelController.sendContact)
+
 module.exports = router;

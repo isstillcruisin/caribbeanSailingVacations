@@ -1,20 +1,26 @@
 import React, { Component } from "react"
 import API from "../utils/API"
-import AllBoats from "./AllBoats"
 import Alert from '../components/Alert'
 import Loader from '../components/Loader'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import Container from 'react-bootstrap/Container'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-
-
-import StreetAddress from '../components/StreetAddress'
 import EBrochureHeader from '../components/EBrochureHeader'
+import EBrochureContactForm from '../components/EBrochureContactForm'
+
 class EBrochureAbout extends Component {
-  state = {}
+  defaultState = {
+    contact: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      subject: '',
+      message: '',
+    },
+    alert: ''
+  }
+  state = this.defaultState
 
   componentDidMount() {
     let { id } = this.props.match.params
@@ -24,7 +30,25 @@ class EBrochureAbout extends Component {
       })
     })
   }
+
+  handleInputChange = event => {
+    const { name, value } = event.target
+    let contact = Object.assign({}, this.state.contact, {[name]: value})
+
+    this.setState({
+      contact: contact,
+    })
+  }
   
+  handleSubmitContact = () => {
+    API.sendContact(
+      this.state.eBrochure,
+      this.state.contact
+    ).then((res) => {
+       this.setState(Object.assign({}, this.state, { alert: 'Message sent to travel agent.'} ))
+    });
+  }
+
   showEBrochureContact = () => {
     if (this.state.eBrochure){
       return (
@@ -37,6 +61,7 @@ class EBrochureAbout extends Component {
             </Card.Header>
             <Card.Body>
               <Container>
+                <Alert alert={this.state.alert} />
                 <h1 className='text-center'>Contact Us</h1>
                 <p>For detailed information on selecting the perfect yacht for your sailing vacation & information on the crew(s) please send us an email and we will get back to you as soon as possible.</p>
                 <Row>
@@ -47,48 +72,7 @@ class EBrochureAbout extends Component {
                     <br/><i>Tel: {this.state.eBrochure._whiteLabel._travelAgent.phoneNumber}</i>
                   </Col>
                   <Col xs={9}>
-                    <Form>
-                      <Form.Row>
-                        <Form.Label column xs={3}>
-                          Name
-                        </Form.Label>
-                        <Col>
-                          <Form.Control placeholder='First name' name='firstName' onChange={this.props.handleInputChange} />
-                        </Col>
-                        <Col>
-                          <Form.Control placeholder='Last name' name='lastName' onChange={this.props.handleInputChange} />
-                        </Col>
-                      </Form.Row>
-                      <Form.Row controlid='formEmail'>
-                        <Form.Label column xs={3}>
-                          Email
-                        </Form.Label>
-                        <Col xs={9}>
-                          <Form.Control type='email' placeholder='Email Address' name='email' onChange={this.props.handleInputChange}  />
-                        </Col>
-                      </Form.Row>
-                      <Form.Row controlid='formEmail'>
-                        <Form.Label column xs={3}>
-                          Subject
-                        </Form.Label>
-                        <Col xs={9}>
-                          <Form.Control placeholder='Subject' name='subject' onChange={this.props.handleInputChange}  />
-                        </Col>
-                      </Form.Row>
-                      <Form.Row controlid='formEmail'>
-                        <Form.Label column xs={3}>
-                          Message
-                        </Form.Label>
-                        <Col xs={9}>
-                          <Form.Control as='textarea' cols={3} placeholder='Message' name='message' onChange={this.props.handleInputChange}  />
-                        </Col>
-                      </Form.Row>
-                      <Form.Row>
-                        <Col xs={12} className='d-flex flex-row-reverse'>
-                          <Button>Send</Button>
-                        </Col>
-                      </Form.Row>
-                    </Form>
+                    <EBrochureContactForm handleInputChange={this.handleInputChange} handleSubmitContact={this.handleSubmitContact} contact={this.state.contact}/>
                   </Col>
                 </Row>
               </Container>

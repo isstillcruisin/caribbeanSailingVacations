@@ -222,6 +222,12 @@ export default {
   updateUser: async function(user) {
     return axios.post('/api/users/update', user);
   },
+
+  sendContact: async function(eBrochure, contact) {
+    return axios.post(`/api/whiteLabels/${eBrochure._whiteLabel._id}/contact`, contact);
+  },
+
+  //PRIVATE
   _convertDateRangeToDates: function(range) {
     return { from: new Date(range.from), to: new Date(range.to), description: range.description, type: range.type }
   },

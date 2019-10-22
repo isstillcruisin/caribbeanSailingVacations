@@ -3,7 +3,7 @@ const helper = sendgrid.mail;
 const keys = require("../../config/keys");
 
 class Mailer extends helper.Mail {
-  constructor(subject, recipients, content) {
+  constructor(subject, recipients, content, replyTo) {
     super();
 
     this.sgApi = sendgrid(keys.sendGridKey);
@@ -13,6 +13,10 @@ class Mailer extends helper.Mail {
     this.subject = subject;
     this.body = new helper.Content("text/html", content);
     this.recipients = this.formatAddresses(recipients);
+
+    if (replyTo) {
+      this.reply_to = replyTo;
+    }
 
     this.addContent(this.body);
     this.addClickTracking();
