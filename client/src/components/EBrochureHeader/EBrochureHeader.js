@@ -27,7 +27,7 @@ const EBrochureHeader = () => (
       </Nav>
       <Nav pullright={1}>
         <Nav.Item>
-          <Nav.Link eventKey="yachts">Our Fleet</Nav.Link>
+          <Nav.Link eventKey="yachts" className='btn btn-outline-success'>Book Now</Nav.Link>
         </Nav.Item>
       </Nav>      
     </Row>
