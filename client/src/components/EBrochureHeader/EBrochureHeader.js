@@ -3,40 +3,35 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
+import Row from 'react-bootstrap/Row'
 
-import { LinkContainer } from 'react-router-bootstrap'
-import { withRouter } from "react-router-dom";
-
-const IncompleteEBrochureHeader = props => (
+const EBrochureHeader = () => (
   <Container>
-    <Navbar className='e-brochure-header'>
+    <Row className='e-brochure-header'>
       <Nav className="m-auto">
-        <LinkContainer to={`/e-brochure/${props.ebrochure._id}`} exact>
-          <Nav.Link>Home</Nav.Link>
-        </LinkContainer>
-        <LinkContainer to={`/e-brochure/${props.ebrochure._id}/about`}>
-          <Nav.Link>About</Nav.Link>
-        </LinkContainer>
-        <LinkContainer to={`/e-brochure/${props.ebrochure._id}/yachts`}>
-          <Nav.Link>Our Fleet</Nav.Link>
-        </LinkContainer>
-        <LinkContainer to={`/e-brochure/${props.ebrochure._id}/destinations`}>
-          <Nav.Link>Destinations</Nav.Link>
-        </LinkContainer>
-        <LinkContainer to={`/e-brochure/${props.ebrochure._id}/contact`}>
-          <Nav.Link>Contact</Nav.Link>
-        </LinkContainer>
+        <Nav.Item>
+          <Nav.Link eventKey="home">Home</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="about">About</Nav.Link>
+        </Nav.Item>
+         <Nav.Item>
+          <Nav.Link eventKey="yachts">Our Fleet</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="destinations">Destinations</Nav.Link>
+        </Nav.Item> 
+        <Nav.Item>
+          <Nav.Link eventKey="contact">Contact</Nav.Link>
+        </Nav.Item>
       </Nav>
       <Nav pullright={1}>
-        <LinkContainer to={`/e-brochure/${props.ebrochure._id}/yachts`}>
-          <Button variant='outline-success'>Book Now</Button>
-        </LinkContainer>
+        <Nav.Item>
+          <Nav.Link eventKey="yachts">Our Fleet</Nav.Link>
+        </Nav.Item>
       </Nav>      
-    </Navbar>
+    </Row>
   </Container>
 )
-
-
-const EBrochureHeader = withRouter(IncompleteEBrochureHeader);
 
 export default EBrochureHeader;

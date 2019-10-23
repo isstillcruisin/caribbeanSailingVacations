@@ -20,7 +20,7 @@ class CharterInquiryForm extends Component {
   }
 
   renderPricePerWeek=() => {
-    return <h4>{formatPrice(this.props.boat.pricePerWeek)}</h4>
+    return <h4>{formatPrice(this.props.yacht.pricePerWeek)}</h4>
   }
 
   renderSubmitButton=() => {
@@ -57,102 +57,95 @@ class CharterInquiryForm extends Component {
 
   render() {
     return (
-      <Card className='bg-lightgreen'>
-        <Card.Header className='text-center bg-lightgreen'>
-          <img src={this.props.whiteLabel.logoUrl} alt='White Label Logo' />
-          <h3 className='mt-3'>{this.props.whiteLabel.title}</h3>
-          <EBrochureHeader ebrochure={this.props.eBrochure}/>
-        </Card.Header>
-        <Card.Body>
-          <Row>
-            <Col>
-              <Carousel>
-                {this.renderImages(this.props.boat.imgs)}
-              </Carousel>
-            </Col>
-            <Col style={{flexGrow: '2'}}>
-              <p>To inquire about chartering this yacht, please fill out the following form and an email will be sent to your Travel Agent,&nbsp;
-              {this.props.whiteLabel._travelAgent.firstName} {this.props.whiteLabel._travelAgent.lastName}: </p>
-              <Card style={{color: 'black'}}>
-                <Card.Header>
-                  <h1>Charter Inquiry Form</h1>
-                </Card.Header>
-                <Card.Body>
-                  <Alert alert={this.props.alert} />
-                  <Form>
-                    <Form.Row>
-                      <Form.Label column xs={3}>
-                        Name
-                      </Form.Label>
-                      <Col>
-                        <Form.Control placeholder='First name' name='firstName' onChange={this.props.handleInputChange} />
-                      </Col>
-                      <Col>
-                        <Form.Control placeholder='Last name' name='lastName' onChange={this.props.handleInputChange} />
-                      </Col>
-                    </Form.Row>
-                    <Form.Row controlid='formEmail'>
-                      <Form.Label column xs={3}>
-                        Email
-                      </Form.Label>
-                      <Col xs={9}>
-                        <Form.Control type='email' placeholder='Email Address' name='email' onChange={this.props.handleInputChange}  />
-                      </Col>
-                    </Form.Row>
-                    <Form.Row controlid='numberOfPassengers'>
-                      <Form.Label column xs={3}>
-                        Number of Passengers (max: {this.props.boat.maxPassengers})
-                      </Form.Label>
-                      <Col xs={9}>
-                        <Form.Control type='number' placeholder={`Number of Passengers (max: ${this.props.boat.maxPassengers})`} name='numberOfPassengers' onChange={this.props.handleInputChange}  />
-                      </Col>
-                    </Form.Row>
-                    <Form.Row controlid='dates'>
-                      <Form.Label column xs={3}>
-                        Desired Dates
-                      </Form.Label>
-                      <Col xs={9}>
-                        <DatePickerWithBlackoutDates 
-                          blackoutDates={this.props.unavailableDateRanges} 
-                          handleSelectedRange={this.props.handleDateRangeChange} 
-                          month={this.props.month}
-                        />
-                      </Col>     
-                      <Col>
-                        <i>All fields are required unless otherwise stated.</i>
-                      </Col>
-                    </Form.Row>
-                     <Form.Row>
-                      <Form.Label column xs={3}>
-                        <b>Price Per Week</b>
-                      </Form.Label>
-                      <Col xs={9}>
-                       {this.renderPricePerWeek()}
-                      </Col>
-                    </Form.Row>   
-                    <Form.Row>
-                      <Form.Label column xs={3}>
-                        <b>Estimated Price</b>
-                      </Form.Label>
-                      <Col xs={9}>
-                       {this.renderEstimatedPrice()}
-                      </Col>
-                    </Form.Row>
-                    <Form.Row>
-                      <Col>
-                       {this.renderSubmitButton()}
-                      </Col>
-                      <Col pullright>
-                        <Button onClick={this.props.handleBack}  className="btn btn-lg">Back</Button>
-                      </Col>
-                    </Form.Row>
-                  </Form>
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
-        </Card.Body>
-      </Card>
+      <Row className='bg-lightgreen'>
+        <Col>
+          <Carousel>
+            {this.renderImages(this.props.yacht.imgs)}
+          </Carousel>
+        </Col>
+        <Col style={{flexGrow: '2'}}>
+          <p>To inquire about chartering this yacht, please fill out the following form and an email will be sent to your Travel Agent,&nbsp;
+          {this.props.whiteLabel._travelAgent.firstName} {this.props.whiteLabel._travelAgent.lastName}: </p>
+          <Card style={{color: 'black'}}>
+            <Card.Header>
+              <h1>Charter Inquiry Form</h1>
+            </Card.Header>
+            <Card.Body>
+              <Alert alert={this.props.alert} />
+              <Form>
+                <Form.Row>
+                  <Form.Label column xs={3}>
+                    Name
+                  </Form.Label>
+                  <Col>
+                    <Form.Control placeholder='First name' name='firstName' onChange={this.props.handleInputChange} />
+                  </Col>
+                  <Col>
+                    <Form.Control placeholder='Last name' name='lastName' onChange={this.props.handleInputChange} />
+                  </Col>
+                </Form.Row>
+                <Form.Row controlid='formEmail'>
+                  <Form.Label column xs={3}>
+                    Email
+                  </Form.Label>
+                  <Col xs={9}>
+                    <Form.Control type='email' placeholder='Email Address' name='email' onChange={this.props.handleInputChange}  />
+                  </Col>
+                </Form.Row>
+                <Form.Row controlid='numberOfPassengers'>
+                  <Form.Label column xs={3}>
+                    Number of Passengers (max: {this.props.yacht.maxPassengers})
+                  </Form.Label>
+                  <Col xs={9}>
+                    <Form.Control type='number' placeholder={`Number of Passengers (max: ${this.props.yacht.maxPassengers})`} name='numberOfPassengers' onChange={this.props.handleInputChange}  />
+                  </Col>
+                </Form.Row>
+                <Form.Row controlid='dates'>
+                  <Form.Label column xs={3}>
+                    Desired Dates
+                  </Form.Label>
+                  <Col xs={9}>
+                    <DatePickerWithBlackoutDates 
+                      blackoutDates={this.props.unavailableDateRanges} 
+                      handleSelectedRange={this.props.handleDateRangeChange} 
+                      month={this.props.month}
+                      startDate={this.props.startDate}
+                      endDate={this.props.endDate}
+                    />
+                  </Col>     
+                  <Col>
+                    <i>All fields are required unless otherwise stated.</i>
+                  </Col>
+                </Form.Row>
+                 <Form.Row>
+                  <Form.Label column xs={3}>
+                    <b>Price Per Week</b>
+                  </Form.Label>
+                  <Col xs={9}>
+                   {this.renderPricePerWeek()}
+                  </Col>
+                </Form.Row>   
+                <Form.Row>
+                  <Form.Label column xs={3}>
+                    <b>Estimated Price</b>
+                  </Form.Label>
+                  <Col xs={9}>
+                   {this.renderEstimatedPrice()}
+                  </Col>
+                </Form.Row>
+                <Form.Row>
+                  <Col>
+                   {this.renderSubmitButton()}
+                  </Col>
+                  <Col pullright>
+                    <Button onClick={this.props.handleBack}  className="btn btn-lg">Back</Button>
+                  </Col>
+                </Form.Row>
+              </Form>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
     );
   }
 }

@@ -6,8 +6,11 @@ import Zoom from "react-reveal/Zoom";
 import Button from 'react-bootstrap/Button';
 import Loader from '../components/Loader';
 import Row from 'react-bootstrap/Row';
+import Nav from 'react-bootstrap/Nav';
+
 import EBrochureYacht from '../components/EBrochureYacht';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
+
 
 const BoatsDisplay = styled.div`
   display: grid;
@@ -76,12 +79,11 @@ class AllBoats extends Component {
             className="boat-detail-link"
           ><Button>See Details</Button></LinkContainer>)
         if (this.props.eBrochure) {
+          console.log("*-*-*-*-*-*-*", `charter-inquiry-${boat._id}`)
           link = 
-            (<LinkContainer
-              key={`${boat._id}${i + 5}`}
-              to={`/charter-a-yacht/${this.props.eBrochure._id}/inquiry/${boat._id}`}
-              className="book-it-link"
-            ><Button>Book Now</Button></LinkContainer>)          
+            (<Nav>
+              <Nav.Link eventKey='about' id='test-tab-about'>Book Now</Nav.Link>
+            </Nav>)          
         }
         return (
           <Zoom bottom key={boat._id}>

@@ -179,7 +179,7 @@ h3 {
   color: #605E5E;
 }
 
-.e-brochure a {
+.e-brochure a.btn-link {
   font: normal normal normal 16px 'raleway',sans-serif;
   color: #337C74;
 }

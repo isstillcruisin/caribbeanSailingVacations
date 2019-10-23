@@ -10,14 +10,11 @@ class DatePickerWithBlackoutDates extends React.Component {
   }
 
   getInitialState() {
-    return {
-      from: undefined,
-      to: undefined,
-    };
+    return {};
   }
 
   handleDayClick(day) {
-    const range = DateUtils.addDayToRange(day, this.state);
+    const range = DateUtils.addDayToRange(day, {from: this.props.startDate, to: this.props.endDate});
     let blackoutDates = this.props.blackoutDates;
     //Are any of the days in the range overlapping the days in the blackoutDates?
     let found = blackoutDates.find(function(blackoutDate) {
@@ -27,7 +24,6 @@ class DatePickerWithBlackoutDates extends React.Component {
              blackoutDate.to >= range.from
     });
     if (!found) {
-      this.setState(range);
       this.props.handleSelectedRange(range);
     } else {
       this.setState(Object.assign({}, this.state, { message: 'Unfortunately, those days include some unavailable dates'}));
@@ -40,19 +36,19 @@ class DatePickerWithBlackoutDates extends React.Component {
   }
 
   render() {
-    const { from, to, message } = this.state;
-    const modifiers = { start: from, end: to };
+    const { message } = this.state;
+    const modifiers = { start: this.props.startDate, end: this.props.endDate };
     return (
       <div className="DatePickerWithBlackoutDates">
         <i>{message}</i>
         <p>
-          {!from && !to && 'Please select the first day.'}
-          {from && !to && 'Please select the last day.'}
-          {from &&
-            to &&
-            `Selected from ${from.toLocaleDateString()} to
-                ${to.toLocaleDateString()}`}{' '}
-          {from && to && (
+          {!this.props.startDate && !this.props.endDate && 'Please select the first day.'}
+          {this.props.startDate && !this.props.endDate && 'Please select the last day.'}
+          {this.props.startDate &&
+            this.props.endDate &&
+            `Selected from ${this.props.startDate.toLocaleDateString()} to
+                ${this.props.endDate.toLocaleDateString()}`}{' '}
+          {this.props.startDate && this.props.endDate && (
             <button className="link" onClick={this.handleResetClick}>
               Reset
             </button>
@@ -61,7 +57,7 @@ class DatePickerWithBlackoutDates extends React.Component {
         <DayPicker
           className="Selectable"
           numberOfMonths={this.props.numberOfMonths || 2}
-          selectedDays={[from, { from, to }]}
+          selectedDays={[this.props.startDate, { to: this.props.startDate, from: this.props.endDate }]}
           modifiers={modifiers}
           onDayClick={this.handleDayClick}
           disabledDays={this.props.blackoutDates}
