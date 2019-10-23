@@ -12,7 +12,7 @@ const Home = props => (
     <hr />
 ​    <p className='pretty-italic'>We have hand selected yachts out of many different management operations in the Caribbean to bring you the best possible vacation for your budget. We have met with crews and in many cases eaten the foods of the fantastic chefs on board. We own our vacation and are sure that you will love your time aboard.</p>
     <p className='pretty-italic'>It is our hope to bring our love of sailing and the beautiful Caribbean to as many people as possible. We want to make the process of selecting the perfect boat and crew for you as simple as possible.</p>
-    <Row style={{ height: '250px'}} >
+    <Row style={{ height: '120px'}} >
       <Col style={{backgroundColor: 'white', marginRight: '5px'}}>
         <Container>
           <h2>Our Fleet</h2>
@@ -31,16 +31,12 @@ const Home = props => (
     <Row>
       <Col style={{backgroundColor: 'white', marginRight: '5px'}}>
         <Container>
-          <LinkContainer to={`/e-brochure/${props.eBrochure._id}/yachts`}>
-            <Button variant='link'>Read More</Button>
-          </LinkContainer>
+          <Button variant='link' onClick={props.showYachts}>Read More</Button>
         </Container>
       </Col>
       <Col style={{backgroundColor: 'white'}}>
         <Container>
-          <LinkContainer to={`/e-brochure/${props.eBrochure._id}/destinations`}>
-            <Button variant='link'>Read More</Button>
-          </LinkContainer>
+          <Button variant='link' onClick={props.showDestinations}>Read More</Button>
         </Container>
       </Col>
     </Row>

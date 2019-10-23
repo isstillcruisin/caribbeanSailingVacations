@@ -29,9 +29,10 @@ class EBrochure extends Component {
   travelAgentName = () => `${this.state.eBrochure._whiteLabel._travelAgent.firstName} ${this.state.eBrochure._whiteLabel._travelAgent.lastName}`
   travelAgentPhoneNumber = () => this.state.eBrochure._whiteLabel._travelAgent.phoneNumber
 
-  handleCharterYacht = (yachtId) => {
-    this.setState({key: `charter-inquiry-${yachtId}`})
-  }
+  handleCharterYacht = (yachtId) => this.setState({key: `charter-inquiry-${yachtId}`})
+
+  handleShowYachts =  () => this.setState({key: 'yachts'})
+  handleShowDestinations =  () => this.setState({key: 'destinations'})
 
   showEBrochure = () => {
     if (this.state.eBrochure){
@@ -47,7 +48,7 @@ class EBrochure extends Component {
               <Card.Body className='text-center bg-lightgreen'> 
                 <Tab.Content>
                   <Tab.Pane eventKey="home">
-                    <Home eBrochure={this.state.eBrochure} />
+                    <Home eBrochure={this.state.eBrochure} showYachts={this.handleShowYachts} showDestinations={this.handleShowDestinations}/>
                   </Tab.Pane>
                   <Tab.Pane eventKey="about">
                     <About eBrochure={this.state.eBrochure} />

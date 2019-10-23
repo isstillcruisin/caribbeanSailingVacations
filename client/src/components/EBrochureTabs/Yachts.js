@@ -5,14 +5,10 @@ import EBrochureYacht from '../EBrochureYacht'
 
 const Yachts = props => {
   return <>
-    <Row>
-      <h4 style={{'margin': '20px'}}>Please choose a yacht to book:</h4>
-    </Row>
     <Row style={{'marginBottom': '20px'}}>
       {props.eBrochure.yachts.map((yacht, i) => {
         return <div key={i} style={{display: 'flex', flexDirection: 'column', height: '500px'}}>
-          <EBrochureYacht yacht={yacht} />
-          <Button onClick={() => props.onCharterYacht(yacht._id)} >Book Now</Button>
+          <EBrochureYacht yacht={yacht} onCharterYacht={() => props.onCharterYacht(yacht._id)} />
         </div>
       })}
     </Row>
