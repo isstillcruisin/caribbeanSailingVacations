@@ -1,6 +1,5 @@
 import React, { Component } from "react"
 import API from "../utils/API"
-import AllBoats from "./AllBoats"
 import Alert from '../components/Alert'
 import Loader from '../components/Loader'
 import Row from 'react-bootstrap/Row'

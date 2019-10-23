@@ -72,26 +72,17 @@ class AllBoats extends Component {
   showBoats = () => {
     if (this.state.boats) {
       return this.state.boats.map((boat, i) => {
-        let link = 
-          (<LinkContainer
-            key={`${boat._id}${i + 5}`}
-            to={`/boat/${boat._id}`}
-            className="boat-detail-link"
-          ><Button>See Details</Button></LinkContainer>)
-        if (this.props.eBrochure) {
-          console.log("*-*-*-*-*-*-*", `charter-inquiry-${boat._id}`)
-          link = 
-            (<Nav>
-              <Nav.Link eventKey='about' id='test-tab-about'>Book Now</Nav.Link>
-            </Nav>)          
-        }
         return (
           <Zoom bottom key={boat._id}>
             <div style={{display: 'flex', flexDirection: 'column', height: '500px'}}>
               <EBrochureYacht yacht={boat} />
               <Row className='button-row'> 
                 {this.editLink(boat)}
-                {link}                
+                <LinkContainer
+                  key={`${boat._id}${i + 5}`}
+                  to={`/boat/${boat._id}`}
+                  className="boat-detail-link"
+                ><Button>See Details</Button></LinkContainer>               
                 {this.deleteLink(boat)}
               </Row>
             </div>
@@ -105,11 +96,9 @@ class AllBoats extends Component {
 
   render() {
     return <div className='bg-lightgreen'>
-      {!this.props.eBrochure &&(
-        <LinkContainer to='/add-boat' className='m-4'>
-          <Button>Add Yacht</Button>
-        </LinkContainer>
-      )}
+      <LinkContainer to='/add-boat' className='m-4'>
+        <Button>Add Yacht</Button>
+      </LinkContainer>
       <BoatsDisplay>
         {this.showBoats()}
       </BoatsDisplay>
