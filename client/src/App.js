@@ -18,7 +18,6 @@ const SignOut = React.lazy(() => import("./pages/SignOut"));
 const Confirm = React.lazy(() => import("./pages/Confirm"));
 const AddWhiteLabel = React.lazy(() => import("./pages/AddWhiteLabel"));
 const ConfigureWhiteLabel = React.lazy(() => import("./pages/ConfigureWhiteLabel"));
-const WhiteLabelCharterInquiry = React.lazy(() => import("./pages/WhiteLabelCharterInquiry"));
 const AllWhiteLabels =  React.lazy(() => import("./pages/AllWhiteLabels"));
 const WhiteLabelCharterInquiries = React.lazy(() => import("./pages/WhiteLabelCharterInquiries"));
 const AddEBrochure = React.lazy(() => import("./pages/AddEBrochure"));
@@ -29,12 +28,6 @@ const MyWhiteLabels = React.lazy(() => import("./pages/MyWhiteLabels"));
 const ForgotPassword = React.lazy(() => import("./pages/ForgotPassword"));
 const ResetPassword = React.lazy(() => import("./pages/ResetPassword"));
 const ConfigureCurrentUser = React.lazy(() => import('./pages/ConfigureCurrentUser'));
-const EBrochureYachts = React.lazy(() => import("./pages/EBrochureYachts"));
-const EBrochureAbout = React.lazy(() => import("./pages/EBrochureAbout"));
-const EBrochureDestinations = React.lazy(() => import("./pages/EBrochureDestinations"));
-const EBrochureContact = React.lazy(() => import("./pages/EBrochureContact"));
-const EBrochureRequestCharter = React.lazy(() => import("./pages/EBrochureRequestCharter"));
-
 
 const Background = styled.div`
   position: absolute;
@@ -144,17 +137,11 @@ class App extends Component {
                 <AuthenticatedRoute exact path="/settings" component={ConfigureCurrentUser} />
                 <AuthenticatedRoute exact path="/add-white-label" component={AddWhiteLabel} />
                 <AdminRoute exact path="/all-white-labels" component={AllWhiteLabels} />
-                <Route exact path="/charter-a-yacht/:eBrochureId/inquiry/:boatId" component={WhiteLabelCharterInquiry} />
                 <AuthenticatedRoute exact path="/my-white-labels" component={MyWhiteLabels} />
                 <AuthenticatedRoute exact path="/charter-inquiries/:whiteLabelName" component={WhiteLabelCharterInquiries} />
                 <AuthenticatedRoute exact path="/white-label/:name/edit/:tab" component={ConfigureWhiteLabel} />
                 <AuthenticatedRoute exact path="/white-label/:name/new-e-brochure" component={AddEBrochure} />
                 <AuthenticatedRoute exact path="/e-brochure/:id/edit" component={ConfigureEBrochure} />
-                <Route path="/e-brochure/:id/yachts" component={EBrochureYachts} />
-                <Route path="/e-brochure/:id/about" component={EBrochureAbout} />
-                <Route path="/e-brochure/:id/contact" component={EBrochureContact} />
-                <Route path="/e-brochure/:id/destinations" component={EBrochureDestinations} />
-                <Route path="/e-brochure/:id/request-charter" component={EBrochureRequestCharter} />
                 <Route path="/e-brochure/:id" component={EBrochure} />
                 <Route path="/boat/:id" component={BoatDetail} />
                 <Route path="/" component={Home} />
