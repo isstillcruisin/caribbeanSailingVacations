@@ -19,6 +19,7 @@ const Home = props => (
         <img src='https://res.cloudinary.com/dui3yyhou/image/upload/w_1200,h_600,c_fill/v1563737195/jeremy-bishop-LZykn1xi4ek-unsplash' alt="" className='d-block w-100' />
         <Carousel.Caption>
           <h1>Conscientous Cruising</h1>
+          <h4>Dedicated to leaving no trace on our beautiful islands, a portion of our proceeds go to cleaning up our oceans</h4>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item key='carousel-3'>
