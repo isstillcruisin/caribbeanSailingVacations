@@ -181,6 +181,8 @@ h3 {
 
 .e-brochure p.pretty-italic {
   font: normal normal normal 28px 'signika',sans-serif;
+  margin: 10px 0 10px 0;
+  text-align: left;
 }
 
 .e-brochure i {
@@ -193,4 +195,28 @@ h3 {
   color: #337C74;
 }
 
+.section-separator.green {
+  border-top: 3px solid #337C74;
+  left: 45%;
+}
+
+.section-separator.left {
+  left: 0%;
+}
+
+.section-separator {
+  box-sizing: border-box;
+  border-top: 3px solid rgba(255, 255, 255, 1);
+  position: relative;
+  left: 48.5%;
+  width: 33px; 
+  height: 5px;
+  color: white !important;
+  margin: 40px 0 40px 0;
+}
+
+.e-brochure-home .carousel-caption {
+  border: 2px solid white;
+  bottom: 150px;
+}
 

@@ -71,8 +71,12 @@ class EBrochure extends Component {
               </Card.Body>
             </Card>
           </Tab.Container>
-          <StreetAddress address={Object.assign({}, this.state.eBrochure._whiteLabel, {name: this.travelAgentName(), phoneNumber: this.travelAgentPhoneNumber()})}/>
-        </>
+          <Container>
+            <div className='section-separator green left'/>
+            <h3>Call us now to book</h3>
+            <h2>{this.state.eBrochure._whiteLabel._travelAgent.phoneNumber}</h2>
+          </Container>
+          </>
       )
     } else {
       return <Loader />

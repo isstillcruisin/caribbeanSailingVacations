@@ -68,7 +68,7 @@ class CharterInquiryForm extends Component {
           {this.props.whiteLabel._travelAgent.firstName} {this.props.whiteLabel._travelAgent.lastName}: </p>
           <Card style={{color: 'black'}}>
             <Card.Header>
-              <h1>Charter Inquiry Form</h1>
+              <h3 className='text-left'>Book now:</h3>
             </Card.Header>
             <Card.Body>
               <Alert alert={this.props.alert} />
@@ -127,7 +127,7 @@ class CharterInquiryForm extends Component {
                 </Form.Row>   
                 <Form.Row>
                   <Form.Label column xs={3}>
-                    <b>Estimated Price</b>
+                    <b>Calculated Price (other fees may apply)</b>
                   </Form.Label>
                   <Col xs={9}>
                    {this.renderEstimatedPrice()}
