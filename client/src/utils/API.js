@@ -203,8 +203,8 @@ export default {
     }
   },
 
-  updateEBrochure: async function(ebrochure) {
-    return axios.post(`/api/ebrochures/update/${ebrochure._id}`, ebrochure);
+  updateEBrochure: async function(eBrochure) {
+    return axios.post(`/api/ebrochures/update/${eBrochure._id}`, eBrochure);
   },
 
   setCharterInquiryConfirmed: async function(id) {
@@ -225,6 +225,10 @@ export default {
 
   sendContact: async function(eBrochure, contact) {
     return axios.post(`/api/whiteLabels/${eBrochure._whiteLabel._id}/contact`, contact);
+  },
+
+  sendEBrochure: async function(eBrochure,  recipient) {
+    return axios.post(`/api/ebrochures/send/${eBrochure._id}`, recipient);
   },
 
   //PRIVATE

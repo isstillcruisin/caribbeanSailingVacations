@@ -8,7 +8,9 @@ router.route("/:id/boats")
   .get(eBrochureController.getBoats);
 
 router.route("/update/:id")
-  .post(eBrochureController.update)
+  .post(eBrochureController.update);
 
+router.route("/send/:id")
+  .post(eBrochureController.sendToRecipient);
 
 module.exports = router;

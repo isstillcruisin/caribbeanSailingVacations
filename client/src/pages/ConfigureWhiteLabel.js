@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ConfigureWhiteLabelForm from "../components/ConfigureWhiteLabelForm";
+import ShowEBrochureWithModal from "../components/ShowEBrochureWithModal";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
 import Loader from '../components/Loader'
@@ -9,7 +10,6 @@ import Tab from "react-bootstrap/Tab"
 import Tabs from "react-bootstrap/Tabs"
 import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button } from 'react-bootstrap';
-
 
 class ConfigureWhiteLabel extends Component {
   state = {saved: true};
@@ -78,7 +78,9 @@ class ConfigureWhiteLabel extends Component {
             <Button>Edit E-Brochure</Button>
           </LinkContainer>
         </td> 
-        
+        <td>
+          <ShowEBrochureWithModal eBrochure={eBrochure} />
+        </td>
       </tr>
     });
   }
@@ -115,6 +117,7 @@ class ConfigureWhiteLabel extends Component {
                       <th>Name</th>
                       <th>View</th>
                       <th>Edit</th>
+                      <th>Show To Prospective Client</th>
                     </tr>
                   </thead>
                   <tbody>

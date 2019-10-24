@@ -17,5 +17,6 @@ module.exports = {
   cloudinaryEnvVariable: process.env.CLOUDINARY_UPLOAD_URL,
   sessionSecret: process.env.SESSION_SECRET,
   cyaUserId: process.env.CYA_USER_ID,
-  clientPort: 80
+  clientPort: 80,
+  clientRootURL: process.env.REACT_CLIENT_ROOT_URL,
 };
