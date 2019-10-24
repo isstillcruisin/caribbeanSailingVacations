@@ -6,24 +6,27 @@ import Col from 'react-bootstrap/Col'
 import API from "../../utils/API";
 
 class ShowEBrochureWithModal extends Component {
-  state = {
+  defaultState = {
     show: false,
+    firstName: null,
+    lastName: null,
+    email: null,
     subject: 'Charter A Luxury Yacht',
     message: "I've setup this e-brochure just for you.  Please take a look at it and then call me with any questions."
   }
+  state = this.defaultState
 
   handleClose = () => this.setState({show: false})
   handleShow = () => this.setState({show: true})
 
   handleInputChange = event => {
     const { name, value } = event.target;
-    //Special case: max number of passengers:
     this.setState({ [name]: value})
   }
 
   handleSendBrochure = () => {
     API.sendEBrochure(this.props.eBrochure, this.state).then(res => {
-      this.setState({show: false});
+      this.setState(this.defaultState);
     });
   }
 
