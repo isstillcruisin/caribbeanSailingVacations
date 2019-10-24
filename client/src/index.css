@@ -220,3 +220,11 @@ h3 {
   bottom: 150px;
 }
 
+.e-brochure-home .carousel-caption h1 {
+    font: normal normal normal 30px 'LuloCleanW01-OneBold',sans-serif;
+}
+
+.destination img {
+  border: 5px solid white;
+}
+

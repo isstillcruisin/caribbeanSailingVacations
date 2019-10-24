@@ -10,24 +10,24 @@ const Destinations = props => (
     <i>Whether you are looking for a relaxing vacation spent on the beautiful white sand beaches of the BVI or an adventure vacation spent diving and hiking the Caribbean Islands, we have just the ting' for you. We offer trips in the USVI and BVI, as well as seasonal trips to St. Maarten, St. Barths, Antigua Puerto Rico St. Vincent & The Grenadines.</i> 
     <Row>
       <Col xs={4} className='destination'>
-        <img src='https://res.cloudinary.com/dui3yyhou/image/upload/w_400,h_300,c_fill/v1563737195/DROCK_1.jpg' />
+        <img src='https://res.cloudinary.com/dui3yyhou/image/upload/w_400,h_300,c_fill/v1563737195/diogo-tavares-PFZTiiJnjag-unsplash' />
       </Col>
       <Col xs={4} className='destination'>
-        <img src='https://res.cloudinary.com/dui3yyhou/image/upload/w_400,h_300,c_fill/v1563737195/DROCK_1.jpg' />
+        <img src='https://res.cloudinary.com/dui3yyhou/image/upload/w_400,h_300,c_fill/v1563737195/eunice-c-QstAba7N2ZY-unsplash' />
       </Col>
       <Col xs={4} className='destination'>
-        <img src='https://res.cloudinary.com/dui3yyhou/image/upload/w_400,h_300,c_fill/v1563737195/DROCK_1.jpg' />
+        <img src='https://res.cloudinary.com/dui3yyhou/image/upload/w_400,h_300,c_fill/v1563737195/alice-donovan-rouse-9MzCd76xLGk-unsplash' />
       </Col>
     </Row>
     <Row>  
       <Col xs={4} className='destination'>
-        <img src='https://res.cloudinary.com/dui3yyhou/image/upload/w_400,h_300,c_fill/v1563737195/DROCK_1.jpg' />
+        <img src='https://res.cloudinary.com/dui3yyhou/image/upload/w_400,h_300,c_fill/v1563737195/todd-desantis-tszmwrc8sJI-unsplash' />
       </Col>
       <Col xs={4} className='destination'>
-        <img src='https://res.cloudinary.com/dui3yyhou/image/upload/w_400,h_300,c_fill/v1563737195/DROCK_1.jpg' />
+        <img src='https://res.cloudinary.com/dui3yyhou/image/upload/w_400,h_300,c_fill/v1563737195/blake-cheek-tsNNCycr5MA-unsplash' />
       </Col>
       <Col xs={4} className='destination'>
-        <img src='https://res.cloudinary.com/dui3yyhou/image/upload/w_400,h_300,c_fill/v1563737195/DROCK_1.jpg' />
+        <img src='https://res.cloudinary.com/dui3yyhou/image/upload/w_400,h_300,c_fill/v1563737195/khadeeja-yasser-0E3BW7mF4Rg-unsplash' />
       </Col>
     </Row>  
   </Container>
