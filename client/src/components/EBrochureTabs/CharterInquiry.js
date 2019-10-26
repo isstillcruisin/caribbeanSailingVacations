@@ -102,7 +102,6 @@ class CharterInquiry extends Component {
   }
 
   handleDateRangeChange = ({ from, to }) => {
-    console.log("*****", from , to);
     if (from && to) {
       this.applyChangesAndValidateInquiry({ startDate: from, endDate: to, estimatedPrice: this.calculateEstimatedPrice(from, to) });
     } else {
