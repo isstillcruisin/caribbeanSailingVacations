@@ -105,10 +105,8 @@ module.exports = {
                   }))
               ) {
                 availableYachts.push(yacht)
-                resolve()
-              } else {
-                resolve()
-              }
+              } 
+              resolve()
             })
             .catch(err => res.status(422).json(err))
         })
