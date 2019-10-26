@@ -81,6 +81,44 @@ module.exports = {
           .catch(error => console.error(error.toString()));
     })
     .catch(err => res.status(422).json(err));
+  },
+  findAvailableYachts: function(req, res) {
+    //MHATODO: Refresh availability first?
+    let availableYachts = []
+    const startDate = new Date(req.body.startDate),
+      endDate = new Date(req.body.endDate)
+    db.EBrochure.findOne({
+      _id: req.params.id
+    })
+    .populate('yachts')
+    .then(dbEBrochure => {
+      let requests = dbEBrochure.yachts.map(yacht => {
+        return new Promise(resolve => {
+          db.UnavailableDateRange.find({_yacht : { _id: yacht._id }})
+            .then(dbDateRanges => {
+              if ((yacht.maxPassengers >= req.body.numPassengers)&&
+                  !(dbDateRanges.find(range => {
+                    return !(
+                      (startDate < range.from && endDate < range.from) ||
+                          (endDate > range.to && startDate > range.to)
+                      )
+                  }))
+              ) {
+                availableYachts.push(yacht)
+                resolve()
+              } else {
+                resolve()
+              }
+            })
+            .catch(err => res.status(422).json(err))
+        })
+      })
+      Promise.all(requests).then(() => {
+        res.status(200).json({yachts: availableYachts})
+      });
+    })    
+    .catch(err => res.status(422).json(err))
   }
+
 
 };

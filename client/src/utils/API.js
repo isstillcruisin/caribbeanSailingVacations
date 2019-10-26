@@ -231,6 +231,10 @@ export default {
     return axios.post(`/api/ebrochures/send/${eBrochure._id}`, recipient);
   },
 
+  findAvailableYachts: async function(eBrochure, startDate, endDate, numPassengers) {
+    return axios.post(`/api/ebrochures/${eBrochure._id}/available`, { startDate, endDate, numPassengers })
+  },
+
   //PRIVATE
   _convertDateRangeToDates: function(range) {
     return { from: new Date(range.from), to: new Date(range.to), description: range.description, type: range.type }

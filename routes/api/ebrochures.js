@@ -13,4 +13,7 @@ router.route("/update/:id")
 router.route("/send/:id")
   .post(eBrochureController.sendToRecipient);
 
+router.route("/:id/available")
+  .post(eBrochureController.findAvailableYachts);
+
 module.exports = router;

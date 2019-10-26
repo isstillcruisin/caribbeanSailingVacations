@@ -5,9 +5,11 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import { LinkContainer } from 'react-router-bootstrap'
 import Carousel from 'react-bootstrap/Carousel';
+import AvailableYachtSearchForm from '../AvailableYachtSearchForm'
 
 const Home = props => (
   <div className='e-brochure-home'>
+    <AvailableYachtSearchForm eBrochure={props.eBrochure} />
     <Carousel className='w-100 mb-5' >
       <Carousel.Item key='carousel-1'>
         <img src='https://res.cloudinary.com/dui3yyhou/image/upload/w_1200,h_600,c_fill/v1563737195/luke-bender-h_YjxPtkRHA-unsplash' alt="" className='d-block w-100' />
