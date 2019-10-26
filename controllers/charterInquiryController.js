@@ -78,11 +78,17 @@ module.exports = {
           `<br><br>Thanks,<br><br>${ta.firstName} ${ta.lastName}` +
           `<br><br>${ta.email}</br></br>`
         );
-        mailer
-          .send()
-          .then(() => {res.status(200).send({ })})
-          .catch(error => console.error(error.toString()));
-    });
+      mailer
+      .send()
+      .then(() => {
+        db.CharterInquiry.findOneAndUpdate({ _id: req.params.id }, {sentOrientationEmail: true})
+        .then(() => {
+          res.status(200).send({ })
+        })
+        .catch(error => res.status(422).json(err))
+      })
+      .catch(error => res.status(422).json(err))
+    })
   },
 
   confirm: function(req, res) {

@@ -36,7 +36,7 @@ class WhiteLabelCharterInquiries extends Component {
 
   handleSendOrientationPacket(event) {
     event.target.disabled = true;
-    event.target.innerText = 'Sent Orientation Packet';
+    event.target.innerText = 'Sent Orientation';
     API.sendOrientationPacket(event.target.dataset.id);
   }
 
@@ -95,18 +95,20 @@ class WhiteLabelCharterInquiries extends Component {
     if (confirmed) {
       return commonColumns.concat([{
         dataField: '_id',
-        text: 'Send Contract',
-        formatter: (id) => <Button onClick={this.handleSendContract} data-id={id}>Send Contract</Button>
-      }, {
-        dataField: '_id',
         text: 'Send Orientation Packet',
-        formatter: (id) => <Button onClick={this.handleSendOrientationPacket} data-id={id}>Send Orientation Packet</Button>
+        formatter: (id, row) => {
+          return <Button onClick={this.handleSendOrientationPacket} data-id={id}>{row.sentOrientationEmail ? 'Re-Send Orientation' : 'Send Orientation'}</Button>
+        }
       }])
     } else {
       return commonColumns.concat([{
         dataField: '_id',
-        text: 'Set Confirmed',
-        formatter: (id) => <Button onClick={this.handleSetInquiryConfirmed} data-id={id}>Set Confirmed</Button>
+        text: 'Send Contract',
+        formatter: (id) => <Button onClick={this.handleSendContract} data-id={id}>Send</Button>
+      }, {
+        dataField: '_id',
+        text: 'Confirm Charter ',
+        formatter: (id) => <Button onClick={this.handleSetInquiryConfirmed} data-id={id}>Confirm</Button>
       }])
     }
   }
@@ -157,7 +159,7 @@ class WhiteLabelCharterInquiries extends Component {
           <Modal.Header closeButton>
             <Modal.Title>Send Contract</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Ideally, this would send a contract to the person inquiring about the charter. As it is now, that has to be done by the travel agent.</Modal.Body>
+          <Modal.Body>Please send a contract to the client. Once the contract is signed and returned to you, click the "Confirm" button.</Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleCloseSendContractModal}>
               Close
