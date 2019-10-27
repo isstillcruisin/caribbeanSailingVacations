@@ -231,8 +231,8 @@ export default {
     return axios.post(`/api/ebrochures/send/${eBrochure._id}`, recipient);
   },
 
-  findAvailableYachts: async function(eBrochure, startDate, endDate, numPassengers) {
-    return axios.post(`/api/ebrochures/${eBrochure._id}/available`, { startDate, endDate, numPassengers })
+  findAvailableYachts: async function(eBrochure, filters) {
+    return axios.post(`/api/ebrochures/${eBrochure._id}/available`, filters)
   },
 
   //PRIVATE

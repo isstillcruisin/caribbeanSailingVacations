@@ -15,13 +15,14 @@ import EBrochureHeader from '../components/EBrochureHeader'
 import { About, Home, Contact, Destinations, Yachts, CharterInquiry } from '../components/EBrochureTabs'
 import Nav from 'react-bootstrap/Nav'
 class EBrochure extends Component {
-  state = { key: 'home' }
+  state = { key: 'home', filters: {} }
 
   componentDidMount() {
     let { id } = this.props.match.params
     API.getEBrochure(id).then(res => {
       this.setState({
-        eBrochure: res.data
+        eBrochure: res.data,
+        yachts: res.data.yachts,
       })
     })
   }
@@ -33,6 +34,22 @@ class EBrochure extends Component {
 
   handleShowYachts =  () => this.setState({key: 'yachts'})
   handleShowDestinations =  () => this.setState({key: 'destinations'})
+
+  handleFilterAndShowYachts = (filterParams) => {
+    API.findAvailableYachts(this.state.eBrochure, filterParams)
+      .then(dbYachts => {
+        this.setState({
+          filters: filterParams,
+          key: 'yachts',
+          yachts: dbYachts.data.yachts,
+        })
+      })
+  }
+
+  handleFilterInputChange = event => {
+    const { name, value } = event.target
+    this.setState(Object.assign({}, this.state.filters, {[event]: value}))
+  }
 
   showEBrochure = () => {
     if (this.state.eBrochure){
@@ -48,13 +65,25 @@ class EBrochure extends Component {
               <Card.Body className='text-center bg-lightgreen'> 
                 <Tab.Content>
                   <Tab.Pane eventKey="home">
-                    <Home eBrochure={this.state.eBrochure} showYachts={this.handleShowYachts} showDestinations={this.handleShowDestinations}/>
+                    <Home 
+                      eBrochure={this.state.eBrochure} 
+                      onShowYachts={this.handleShowYachts} 
+                      onShowDestinations={this.handleShowDestinations} 
+                      filters={this.state.filters}
+                      handleSearch={this.handleFilterAndShowYachts}
+                    />
                   </Tab.Pane>
                   <Tab.Pane eventKey="about">
                     <About eBrochure={this.state.eBrochure} />
                   </Tab.Pane>
                   <Tab.Pane eventKey="yachts">
-                    <Yachts eBrochure={this.state.eBrochure} onCharterYacht={this.handleCharterYacht} />
+                    <Yachts 
+                      eBrochure={this.state.eBrochure} 
+                      onCharterYacht={this.handleCharterYacht} 
+                      filters={this.state.filters}
+                      handleSearch={this.handleFilterAndShowYachts}
+                      yachts={this.state.yachts}                      
+                    />
                   </Tab.Pane>
                   <Tab.Pane eventKey="destinations">
                     <Destinations />

@@ -9,7 +9,11 @@ import AvailableYachtSearchForm from '../AvailableYachtSearchForm'
 
 const Home = props => (
   <div className='e-brochure-home'>
-    <AvailableYachtSearchForm eBrochure={props.eBrochure} />
+    <AvailableYachtSearchForm 
+      eBrochure={props.eBrochure} 
+      onSearch={props.handleSearch} 
+      filters={props.filters}
+    />
     <Carousel className='w-100 mb-5' >
       <Carousel.Item key='carousel-1'>
         <img src='https://res.cloudinary.com/dui3yyhou/image/upload/w_1200,h_600,c_fill/v1563737195/luke-bender-h_YjxPtkRHA-unsplash' alt="" className='d-block w-100' />
@@ -56,12 +60,12 @@ const Home = props => (
       <Row>
         <Col style={{backgroundColor: 'white', marginRight: '5px'}}>
           <Container>
-            <Button variant='link' onClick={props.showYachts}>Read More</Button>
+            <Button variant='link' onClick={props.onShowYachts}>Read More</Button>
           </Container>
         </Col>
         <Col style={{backgroundColor: 'white'}}>
           <Container>
-            <Button variant='link' onClick={props.showDestinations}>Read More</Button>
+            <Button variant='link' onClick={props.onShowDestinations}>Read More</Button>
           </Container>
         </Col>
       </Row>
