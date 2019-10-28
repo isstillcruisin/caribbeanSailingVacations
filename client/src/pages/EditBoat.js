@@ -11,7 +11,6 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import Button from "react-bootstrap/Button"
 import ButtonToolbar from "react-bootstrap/ButtonToolbar"
-import Link from "react-router-dom/Link"
 
 class EditBoat extends Component {
   state = {

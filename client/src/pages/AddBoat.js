@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import YachtForm from "../components/YachtForm";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
-import Container from 'react-bootstrap/Container'
 import Card from 'react-bootstrap/Card'
 
 class AddBoat extends Component {

@@ -2,17 +2,11 @@ import React, { Component } from "react"
 import API from "../utils/API"
 import Alert from '../components/Alert'
 import Loader from '../components/Loader'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import Container from 'react-bootstrap/Container'
-import Button from 'react-bootstrap/Button'
-import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
-import { LinkContainer } from 'react-router-bootstrap'
 import EBrochureHeader from '../components/EBrochureHeader'
 import { About, Home, Contact, Destinations, Yachts, CharterInquiry } from '../components/EBrochureTabs'
-import Nav from 'react-bootstrap/Nav'
 class EBrochure extends Component {
   state = { key: 'home', filters: {} }
 
@@ -43,11 +37,6 @@ class EBrochure extends Component {
           yachts: dbYachts.data.yachts,
         })
       })
-  }
-
-  handleFilterInputChange = event => {
-    const { name, value } = event.target
-    this.setState(Object.assign({}, this.state.filters, {[event]: value}))
   }
 
   showEBrochure = () => {

@@ -6,11 +6,7 @@ import Zoom from "react-reveal/Zoom";
 import Button from 'react-bootstrap/Button';
 import Loader from '../components/Loader';
 import Row from 'react-bootstrap/Row';
-import Nav from 'react-bootstrap/Nav';
-
 import EBrochureYacht from '../components/EBrochureYacht';
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
-
 
 const BoatsDisplay = styled.div`
   display: grid;
