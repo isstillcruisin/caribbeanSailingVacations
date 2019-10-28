@@ -228,6 +228,11 @@ h3 {
   border: 5px solid white;
 }
 
+.DayPickerInput input { 
+  background-image: url('https://res.cloudinary.com/dui3yyhou/image/upload/v1572282815/Calendar.png');
+  background-repeat: no-repeat;
+  background-position: 86px -4px;
+}
 
 .DayPickerInput-OverlayWrapper {
   z-index: 100;
