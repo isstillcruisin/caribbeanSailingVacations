@@ -1,7 +1,5 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-const { newWhiteLabelEmail } = require("../util/TransactionalMailer")
-const db = require("../models");
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const whiteLabelSchema = new Schema({
   name: { type: String, required: true },
@@ -16,9 +14,9 @@ const whiteLabelSchema = new Schema({
   zipCode: { type: String },
   logoUrl: { type: String },
   title: { type: String },
-  aboutText: { type: String },
-});
+  aboutText: { type: String }
+})
 
-const WhiteLabel = mongoose.model("WhiteLabel", whiteLabelSchema);
+const WhiteLabel = mongoose.model('WhiteLabel', whiteLabelSchema)
 
-module.exports = WhiteLabel;
+module.exports = WhiteLabel
