@@ -16,7 +16,7 @@ describe('Boats', () => {
           .end((err, res) => {
              res.should.have.status(200);
              res.body.should.be.a('array');
-             res.body.should.have.length(3);
+             res.body.should.have.length(4);
              done();
           });
     });
@@ -31,7 +31,7 @@ describe('Boats', () => {
             res.body.boatName.should.equal('Excess');
             res.body.year.should.equal(2011);
             res.body.maxPassengers.should.equal(8);
-            res.body.manufacture.should.equal('N/A');
+            res.body.manufacture.should.equal('Wood and fiberglass');
             res.body.crewBio.should.equal('There is no crew bio here, but I felt like it needed something.');
             res.body.pricePerWeek.should.equal(20000);
             done();
@@ -64,7 +64,8 @@ describe('Boats', () => {
         maxPassengers: 5,
         manufacture: 'Anything',
         crewBio: 'No Bio Needed',
-        pricePerWeek: 30000
+        pricePerWeek: 30000,
+        cyaId: 123
       });
     }
 
