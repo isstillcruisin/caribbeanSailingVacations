@@ -1,9 +1,8 @@
-import React, { Component } from "react"
+import React from "react"
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
-import { LinkContainer } from 'react-router-bootstrap'
 import Carousel from 'react-bootstrap/Carousel';
 import AvailableYachtSearchForm from '../AvailableYachtSearchForm'
 

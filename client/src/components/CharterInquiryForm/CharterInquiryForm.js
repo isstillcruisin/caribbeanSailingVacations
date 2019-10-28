@@ -8,7 +8,6 @@ import Carousel from 'react-bootstrap/Carousel';
 import DatePickerWithBlackoutDates from '../DatePickerWithBlackoutDates';
 import formatPrice from '../../utils/formatPrice';
 import Alert from '../Alert'
-import EBrochureHeader from '../EBrochureHeader'
 
 class CharterInquiryForm extends Component {
   renderEstimatedPrice=() => {

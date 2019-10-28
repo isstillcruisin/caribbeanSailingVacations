@@ -5,12 +5,10 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
-import MomentLocaleUtils, {
+import {
   formatDate,
   parseDate,
 } from 'react-day-picker/moment';
-
-import API from "../../utils/API";
 
 class AvailableYachtSearchForm extends Component {
   state = this.props.filters || {}

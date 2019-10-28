@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
-import Loader from '../Loader';
 import CharterInquiryForm from '../CharterInquiryForm';
-import TravelAgentInfo from '../../utils/travelAgentInfo'
 import { Redirect } from "react-router-dom";
 
 class CharterInquiry extends Component {
