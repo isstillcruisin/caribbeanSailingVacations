@@ -121,7 +121,7 @@ const YachtForm = props => (
       </div>
       { props.cyaId && (
         <div className='mt-2'>
-          <a href={`https://www.centralyachtagent.com/yachtadmin/showyachts.php?id=${props.cyaId}&disptype=1&uid=1892&unit=1&stat=1`} target='_blank'>
+          <a href={`https://www.centralyachtagent.com/yachtadmin/showyachts.php?id=${props.cyaId}&disptype=1&uid=1892&unit=1&stat=1`} target='_blank' rel="noopener noreferrer">
             CYA E-Brochure (opens in new tab)
           </a>
         </div>
