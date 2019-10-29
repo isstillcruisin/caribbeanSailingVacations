@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import SignInForm from '../components/SignInForm'
 import API from '../utils/API'
 import ls from 'local-storage'
 import Alert from '../components/Alert'
 import Container from 'react-bootstrap/Container'
-import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 class SignIn extends Component {
