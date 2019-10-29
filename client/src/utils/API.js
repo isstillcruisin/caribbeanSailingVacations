@@ -16,7 +16,7 @@ export default {
         return boats
       }
     } catch (error) {
-      console.log('error in get boats (╯°□°)╯︵ ┻━┻ ', error)
+      console.error('error in get boats (╯°□°)╯︵ ┻━┻ ', error)
     }
   },
   getBoat: async function(id) {
@@ -24,7 +24,7 @@ export default {
       const boat = await axios.get('/api/boats/' + id)
       return boat
     } catch (error) {
-      console.log('error in get boats (╯°□°)╯︵ ┻━┻ ', error)
+      console.error('error in get boats (╯°□°)╯︵ ┻━┻ ', error)
     }
   },
   // Deletes the saved boat with the given id
@@ -44,7 +44,7 @@ export default {
       const rangesResult = await axios.get(`/api/boats/unavailable/${id}`)
       return rangesResult.data.map(this._convertDateRangeToDates)
     } catch (error) {
-      console.log('Error in get getUnavailableDateRanges (╯°□°)╯︵ ┻━┻ ', error)
+      console.error('Error in get getUnavailableDateRanges (╯°□°)╯︵ ┻━┻ ', error)
     }
   },
   addUnavailableDateRange: async function(yacht, range) {
@@ -52,7 +52,7 @@ export default {
       const rangesResult = await axios.post(`/api/boats/unavailable/${yacht._id}`, range)
       return rangesResult.data.map(this._convertDateRangeToDates)
     } catch (error) {
-      console.log('Error in get getUnavailableDateRanges (╯°□°)╯︵ ┻━┻ ', error)
+      console.error('Error in get getUnavailableDateRanges (╯°□°)╯︵ ┻━┻ ', error)
     }
   },
   deleteUnavailableDateRange: async function(yacht, range) {
@@ -60,7 +60,7 @@ export default {
       const rangesResult = await axios.post(`/api/boats/unavailable/${yacht._id}/delete`, range)
       return rangesResult.data.map(this._convertDateRangeToDates)
     } catch (error) {
-      console.log('Error in get getUnavailableDateRanges (╯°□°)╯︵ ┻━┻ ', error)
+      console.error('Error in get getUnavailableDateRanges (╯°□°)╯︵ ┻━┻ ', error)
     }
   },
   refreshAvailability: async function(yacht) {
@@ -68,10 +68,9 @@ export default {
       const rangesResult = await axios.get(`/api/boats/unavailable/${yacht._id}/refresh`)
       return rangesResult.data.map(this._convertDateRangeToDates)
     } catch (error) {
-      console.log('Error in get getUnavailableDateRanges (╯°□°)╯︵ ┻━┻ ', error)
+      console.error('Error in get getUnavailableDateRanges (╯°□°)╯︵ ┻━┻ ', error)
     }
   },
-  // finds an existing user and logs them in
   userSignIn: async function(userData) {
     try {
       const res = await axios.post('/api/users/signin', userData)
@@ -85,7 +84,7 @@ export default {
         return { message: res.message}
       }
     } catch (error) {
-      console.log('user login error (╯°□°)╯︵ ┻━┻ ', error)
+      console.error('user sign-n error (╯°□°)╯︵ ┻━┻ ', error)
       return { error: error}
     }
   },
@@ -100,7 +99,7 @@ export default {
       const newUser = await axios.post('/api/users/signup', userData)
       return newUser
     } catch (error) {
-      console.log('userCreate error (╯°□°)╯︵ ┻━┻ ', error)
+      console.error('userCreate error (╯°□°)╯︵ ┻━┻ ', error)
     }
   },
 
@@ -109,7 +108,7 @@ export default {
       const whiteLabel = await axios.post('/api/whitelabels', whiteLabelData)
       return whiteLabel
     } catch (error) {
-      console.log('saveWhiteLabel error (╯°□°)╯︵ ┻━┻ ', error)
+      console.error('saveWhiteLabel error (╯°□°)╯︵ ┻━┻ ', error)
     }
   },
 
@@ -118,7 +117,7 @@ export default {
       const whiteLabel = await axios.post(`/api/whiteLabels/update/${whiteLabelData._id}`, whiteLabelData)
       return whiteLabel
     } catch (error) {
-      console.log('saveWhiteLabel error (╯°□°)╯︵ ┻━┻ ', error)
+      console.error('saveWhiteLabel error (╯°□°)╯︵ ┻━┻ ', error)
     }
   },
 
@@ -127,7 +126,7 @@ export default {
       const whiteLabel = await axios.get('/api/whitelabels/' + name)
       return whiteLabel
     } catch (error) {
-      console.log('error in get white label (╯°□°)╯︵ ┻━┻ ', error)
+      console.error('error in get white label (╯°□°)╯︵ ┻━┻ ', error)
     }
   },
 
@@ -136,7 +135,7 @@ export default {
       const whiteLabels = await axios.get('/api/whitelabels')
       return whiteLabels
     } catch (error) {
-      console.log('error in get whiteLabels (╯°□°)╯︵ ┻━┻ ', error)
+      console.error('error in get whiteLabels (╯°□°)╯︵ ┻━┻ ', error)
     }
   },
 
@@ -145,7 +144,7 @@ export default {
       const whiteLabels = await axios.get('/api/whitelabels/forcurrentuser')
       return whiteLabels
     } catch (error) {
-      console.log('error in get mywhiteLabels (╯°□°)╯︵ ┻━┻ ', error)
+      console.error('error in get mywhiteLabels (╯°□°)╯︵ ┻━┻ ', error)
     }
   },
 
@@ -154,12 +153,11 @@ export default {
       const newCharterInquiry = await axios.post('/api/charterinquiries', charterInquiryData)
       return newCharterInquiry
     } catch (error) {
-      console.log('charterInquiryCreate error (╯°□°)╯︵ ┻━┻ ', error)
+      console.error('charterInquiryCreate error (╯°□°)╯︵ ┻━┻ ', error)
     }
   },
 
   updateIsConfirmed: function(whiteLabel, checked) {
-    console.log('Posting to api/whitelabels')
     return axios.post(`/api/whiteLabels/update/${whiteLabel._id}`, Object.assign({}, whiteLabel, {isConfirmed: checked}))
   },
 
@@ -168,7 +166,7 @@ export default {
       const charterInquiries = await axios.get(`/api/charterinquiries/${whiteLabelName}`)
       return charterInquiries
     } catch (error) {
-      console.log('error in get whiteLabels (╯°□°)╯︵ ┻━┻ ', error)
+      console.error('error in get whiteLabels (╯°□°)╯︵ ┻━┻ ', error)
     }
   },
 
@@ -181,7 +179,7 @@ export default {
       const currentUser = await axios.get('/api/users/current')
       return currentUser
     } catch (error) {
-      console.log('error in get Current User ID (╯°□°)╯︵ ┻━┻ ', error)
+      console.error('error in get Current User ID (╯°□°)╯︵ ┻━┻ ', error)
     }
   },
 
@@ -190,7 +188,6 @@ export default {
   },
 
   saveEBrochure: async function(whiteLabel, eBrochureData) {
-    console.log('Posting to api/ebrochures with', whiteLabel, eBrochureData)
     return axios.post(`/api/whiteLabels/${whiteLabel._id}/ebrochures/`, eBrochureData)
   },
 
@@ -199,7 +196,7 @@ export default {
       const ebrochure = await axios.get(`/api/ebrochures/${eBrochureId}`)
       return ebrochure
     } catch (error) {
-      console.log('error in get EBrochure (╯°□°)╯︵ ┻━┻ ', error)
+      console.error('error in get EBrochure (╯°□°)╯︵ ┻━┻ ', error)
     }
   },
 
