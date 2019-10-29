@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import DayPicker, { DateUtils } from 'react-day-picker'
 import Alert from '../Alert'
+import PropTypes from 'prop-types'
 
 class MultipleDateRangePicker extends Component {
   constructor(props) {
@@ -108,6 +109,15 @@ class MultipleDateRangePicker extends Component {
       />
     </div>
   }
+}
+
+MultipleDateRangePicker.propTypes = {
+  ranges: PropTypes.array(PropTypes.shape({
+    from: PropTypes.string,
+    to: PropTypes.string,
+  })),
+  handleAddRange: PropTypes.func,
+  handleDeleteRange: PropTypes.func
 }
 
 export default MultipleDateRangePicker

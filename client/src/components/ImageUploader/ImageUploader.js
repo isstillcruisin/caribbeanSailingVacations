@@ -4,6 +4,7 @@ import request from 'superagent'
 import Image from 'react-bootstrap/Image'
 import Button from 'react-bootstrap/Button'
 import Loader from '../Loader'
+import PropTypes from 'prop-types'
 
 const CLOUDINARY_UPLOAD_PRESET = 'ecaxfmj9'
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dui3yyhou/upload'
@@ -32,10 +33,6 @@ class ImageUploader extends Component {
       .field('file', file)
 
     upload.end((err, response) => {
-      if (err) {
-        console.error(err)
-      }
-
       if (response.body.secure_url !== '') {
         let url = response.body.secure_url
         if (this.props.width && this.props.height) {
@@ -62,8 +59,8 @@ class ImageUploader extends Component {
   renderImages = () => {
     return <div className='image-thumbnails'>
       {this.props.imgs && this.props.imgs.map((image, index) => {
-        return <div className='thumbnail-with-remove-button'>
-          <Image key={index + 1} src={image} alt="" style={{'maxWidth': '200px'}} thumbnail />
+        return <div className='thumbnail-with-remove-button' key={`image-${index + 1}`}>
+          <Image src={image} alt="" style={{'maxWidth': '200px'}} thumbnail />
           <Button onClick={() => this.removeImage(index)}>Delete</Button>
         </div>
       })}
@@ -113,6 +110,17 @@ class ImageUploader extends Component {
       )
     }
   }
+}
+
+ImageUploader.propTypes = {
+  width: PropTypes.number,
+  height: PropTypes.number,
+  imgs: PropTypes.array(PropTypes.string),
+  showDropZone: PropTypes.bool,
+  placeholder: PropTypes.string,
+  multiple: PropTypes.bool,
+  onChange: PropTypes.func,
+  setUrls: PropTypes.func,
 }
 
 export default ImageUploader
