@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import { Redirect } from 'react-router-dom'
 import Loader from '../components/Loader'
+import PropTypes from 'prop-types'
 
-export default class Confirm extends Component {
+class Confirm extends Component {
   
   // A bit of state to give the user feedback while their email
   // address is being confirmed on the User model on the server.
@@ -40,3 +41,12 @@ export default class Confirm extends Component {
   }
 }
 
+Confirm.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }),
+}
+
+export default Confirm

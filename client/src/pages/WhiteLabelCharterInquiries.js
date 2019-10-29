@@ -12,6 +12,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import formatPrice from '../utils/formatPrice'
 import BootstrapTable from 'react-bootstrap-table-next'
 import paginationFactory from 'react-bootstrap-table2-paginator'
+import PropTypes from 'prop-types'
 
 class WhiteLabelCharterInquiries extends Component {
   _isMounted = false;
@@ -171,6 +172,14 @@ class WhiteLabelCharterInquiries extends Component {
       return <Loader />
     }
   }
+}
+
+WhiteLabelCharterInquiries.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      whiteLabelName: PropTypes.string,
+    }),
+  }),
 }
 
 export default WhiteLabelCharterInquiries

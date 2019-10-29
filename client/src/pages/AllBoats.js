@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button'
 import Loader from '../components/Loader'
 import Row from 'react-bootstrap/Row'
 import EBrochureYacht from '../components/EBrochureYacht'
+import PropTypes from 'prop-types'
 
 const BoatsDisplay = styled.div`
   display: grid;
@@ -101,5 +102,10 @@ class AllBoats extends Component {
     </div>
   }
 }
+
+AllBoats.propTypes = {
+  eBrochure: PropTypes.object
+}
+
 
 export default AllBoats

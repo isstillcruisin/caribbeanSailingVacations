@@ -4,6 +4,7 @@ import API from '../utils/API'
 import { Redirect } from 'react-router-dom'
 import Loader from '../components/Loader'
 import Container from 'react-bootstrap/Container'
+import PropTypes from 'prop-types'
 
 class ConfigureEBrochure extends Component {
   state = {};
@@ -65,6 +66,14 @@ class ConfigureEBrochure extends Component {
       return <Loader />
     }
   }
+}
+
+ConfigureEBrochure.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }),
 }
 
 export default ConfigureEBrochure

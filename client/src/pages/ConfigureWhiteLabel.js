@@ -10,6 +10,7 @@ import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button } from 'react-bootstrap'
+import PropTypes from 'prop-types'
 
 class ConfigureWhiteLabel extends Component {
   state = {saved: true};
@@ -140,6 +141,15 @@ class ConfigureWhiteLabel extends Component {
       return <Loader />
     }
   }
+}
+
+ConfigureWhiteLabel.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      tab: PropTypes.string,
+      name: PropTypes.string,
+    }),
+  }),
 }
 
 export default ConfigureWhiteLabel

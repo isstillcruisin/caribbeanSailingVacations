@@ -3,6 +3,7 @@ import API from '../utils/API'
 import { Form, Col, Button, Container, Card} from 'react-bootstrap'
 import { Redirect } from 'react-router-dom'
 import Alert from '../components/Alert'
+import PropTypes from 'prop-types'
 
 class ResetPassword extends Component {
   constructor() {
@@ -117,6 +118,14 @@ class ResetPassword extends Component {
       )
     }
   }
+}
+
+ResetPassword.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      token: PropTypes.string,
+    }),
+  }),
 }
 
 export default ResetPassword

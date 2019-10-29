@@ -11,6 +11,7 @@ import BootstrapTable from 'react-bootstrap-table-next'
 import paginationFactory from 'react-bootstrap-table2-paginator'
 import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
+import PropTypes from 'prop-types'
 
 class EditBoat extends Component {
   state = {
@@ -169,6 +170,14 @@ class EditBoat extends Component {
       return <Loader />
     }
   }
+}
+
+EditBoat.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }),
 }
 
 export default EditBoat

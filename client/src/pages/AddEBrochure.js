@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom'
 import Loader from '../components/Loader'
 import Card from 'react-bootstrap/Card'
 import Container from 'react-bootstrap/Container'
+import PropTypes from 'prop-types'
 
 class AddEBrochure extends Component {
   componentDidMount() {
@@ -91,6 +92,14 @@ class AddEBrochure extends Component {
       return <Loader />
     }  
   }
+}
+
+AddEBrochure.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      name: PropTypes.string,
+    }),
+  }),
 }
 
 export default AddEBrochure

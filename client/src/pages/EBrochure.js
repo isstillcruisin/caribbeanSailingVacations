@@ -7,6 +7,8 @@ import Container from 'react-bootstrap/Container'
 import Tab from 'react-bootstrap/Tab'
 import EBrochureHeader from '../components/EBrochureHeader'
 import { About, Home, Contact, Destinations, Yachts, CharterInquiry } from '../components/EBrochureTabs'
+import PropTypes from 'prop-types'
+
 class EBrochure extends Component {
   state = { key: 'home', filters: {} }
 
@@ -106,6 +108,14 @@ class EBrochure extends Component {
       {this.showEBrochure()}
     </div>
   }
+}
+
+EBrochure.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }),
 }
 
 export default EBrochure

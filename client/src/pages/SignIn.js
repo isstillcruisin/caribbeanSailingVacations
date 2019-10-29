@@ -6,6 +6,7 @@ import ls from 'local-storage'
 import Alert from '../components/Alert'
 import Container from 'react-bootstrap/Container'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 class SignIn extends Component {
   state = {
@@ -68,6 +69,14 @@ class SignIn extends Component {
       </Container>
     }
   }
+}
+
+SignIn.propTypes = {
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      alert: PropTypes.string,
+    }),
+  }),
 }
 
 export default SignIn
