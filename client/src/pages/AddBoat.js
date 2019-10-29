@@ -20,7 +20,7 @@ class AddBoat extends Component {
     try {
       this.saveBoat()
     } catch (err) {
-      console.log('error in save boats (╯°□°)╯︵ ┻━┻ ', err)
+      console.error('error in save boats (╯°□°)╯︵ ┻━┻ ', err)
     }
   };
 
@@ -40,7 +40,7 @@ class AddBoat extends Component {
           saved: true
         })
       )
-      .catch(err => console.log('saving boat error', err))
+      .catch(err => console.error('saving boat error', err))
   };
 
   handleInputChange = event => {

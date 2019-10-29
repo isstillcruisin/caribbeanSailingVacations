@@ -35,7 +35,7 @@ class AddEBrochure extends Component {
     try {
       this.saveEBrochure()
     } catch (err) {
-      console.log('error in save boats (╯°□°)╯︵ ┻━┻ ', err)
+      console.error('error in save boats (╯°□°)╯︵ ┻━┻ ', err)
     }
   };
 

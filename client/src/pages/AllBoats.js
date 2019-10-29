@@ -35,7 +35,7 @@ class AllBoats extends Component {
       if (response) {
         this.setState({ boats: response.data })
       } else {
-        console.log('response error (╯°□°)╯︵ ┻━┻ ', response)
+        console.error('response error (╯°□°)╯︵ ┻━┻ ', response)
       }
     })
   }

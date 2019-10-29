@@ -22,7 +22,7 @@ class EditBoat extends Component {
     try {
       this.saveBoat()
     } catch (err) {
-      console.log('error in save boats (╯°□°)╯︵ ┻━┻ ', err)
+      console.error('error in save boats (╯°□°)╯︵ ┻━┻ ', err)
     }
   }
 
@@ -46,7 +46,7 @@ class EditBoat extends Component {
           alert: 'Yacht Saved'
         })
       )
-      .catch(err => console.log('saving boat error', err))
+      .catch(err => console.error('saving boat error', err))
   }
 
   handleInputChange = event => {
@@ -74,7 +74,7 @@ class EditBoat extends Component {
           unavailableDateRanges: ranges
         })
       )
-      .catch(err => console.log('deleting range error', err))
+      .catch(err => console.error('deleting range error', err))
   }
 
   handleAddRange = range => {
@@ -84,7 +84,7 @@ class EditBoat extends Component {
           unavailableDateRanges: ranges
         })
       )
-      .catch(err => console.log('adding range error', err))
+      .catch(err => console.error('adding range error', err))
   }
 
   handleRefreshAvailability = (event) => {
@@ -94,7 +94,7 @@ class EditBoat extends Component {
         this.setState({
           unavailableDateRanges: ranges
         }))
-      .catch(err => console.log('error loading new CYA API calendar', err))
+      .catch(err => console.error('error loading new CYA API calendar', err))
   }
 
   render() {

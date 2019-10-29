@@ -18,14 +18,13 @@ class SignUp extends Component {
 
   handleSignUp = async event => {
     event.preventDefault()
-    console.log('event (╯°□°)╯︵ ┻━┻ ', event.data)
     try {
       let newUser = await this.saveUser()
       if (newUser) {
         this.setState({done: true})
       }
     } catch (error) {
-      console.log('error (╯°□°)╯︵ ┻━┻ ', error.message)
+      console.error('error (╯°□°)╯︵ ┻━┻ ', error.message)
     }
   };
 

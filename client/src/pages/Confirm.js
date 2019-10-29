@@ -23,7 +23,7 @@ export default class Confirm extends Component {
 
     fetch(`/api/users/confirmation/${id}`)
       .then(res => this.setState({ confirming: false }))
-      .catch(err => console.log(err))
+      .catch(err => console.error(err))
   }
 
   // While the email address is being confirmed on the server a spinner is 

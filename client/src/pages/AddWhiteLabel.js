@@ -14,7 +14,7 @@ class AddWhiteLabel extends Component {
     try {
       this.saveWhiteLabel()
     } catch (err) {
-      console.log('error in save White Label (╯°□°)╯︵ ┻━┻ ', err)
+      console.error('error in save White Label (╯°□°)╯︵ ┻━┻ ', err)
     }
   }
 
@@ -27,7 +27,7 @@ class AddWhiteLabel extends Component {
           saved: true
         })
       )
-      .catch(err => console.log('saving white label error', err))
+      .catch(err => console.error('saving white label error', err))
   }
 
   handleInputChange = event => {
