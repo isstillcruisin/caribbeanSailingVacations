@@ -82,7 +82,7 @@ class EBrochure extends Component {
                     <Contact eBrochure={this.state.eBrochure} />
                   </Tab.Pane>
                   {this.state.eBrochure.yachts.map(yacht => (
-                    <Tab.Pane eventKey={`charter-inquiry-${yacht._id}`}>
+                    <Tab.Pane eventKey={`charter-inquiry-${yacht._id}`} key={`charter-inquiry-${yacht._id}`}>
                       <CharterInquiry eBrochure={this.state.eBrochure} yacht={yacht}/>
                     </Tab.Pane>
                   ))}
