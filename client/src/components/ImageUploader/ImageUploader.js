@@ -115,7 +115,7 @@ class ImageUploader extends Component {
 ImageUploader.propTypes = {
   width: PropTypes.number,
   height: PropTypes.number,
-  imgs: PropTypes.array(PropTypes.string),
+  imgs: PropTypes.arrayOf(PropTypes.string),
   showDropZone: PropTypes.bool,
   placeholder: PropTypes.string,
   multiple: PropTypes.bool,

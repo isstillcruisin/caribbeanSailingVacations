@@ -72,7 +72,7 @@ class DatePickerWithBlackoutDates extends React.Component {
 DatePickerWithBlackoutDates.propTypes = {
   startDate: PropTypes.instanceOf(Date),
   endDate: PropTypes.instanceOf(Date),
-  month: PropTypes.number,
+  month: PropTypes.instanceOf(Date),
   blackoutDates: PropTypes.arrayOf(PropTypes.shape({
     from: PropTypes.instanceOf(Date),
     to: PropTypes.instanceOf(Date),

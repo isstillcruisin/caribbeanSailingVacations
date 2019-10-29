@@ -151,7 +151,7 @@ class CharterInquiryForm extends Component {
 }
 
 CharterInquiryForm.propTypes = {
-  month: PropTypes.number,
+  month: PropTypes.instanceOf(Date),
   startDate: PropTypes.instanceOf(Date),
   endDate: PropTypes.instanceOf(Date),
   yacht: PropTypes.shape({
