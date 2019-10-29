@@ -1,18 +1,18 @@
-import React from "react";
-import { create } from "react-test-renderer";
-import DatePickerWithBlackoutDates from '../components/DatePickerWithBlackoutDates';
+import React from 'react'
+import { create } from 'react-test-renderer'
+import DatePickerWithBlackoutDates from '../components/DatePickerWithBlackoutDates'
 
-describe("DatePickerWithBlackoutDates component", () => {
-  test("Matches the snapshot", () => {
+describe('DatePickerWithBlackoutDates component', () => {
+  test('Matches the snapshot', () => {
     const alert = create(
       <DatePickerWithBlackoutDates 
         blackoutDates={[
-          { from: new Date("December 24, 2019"), to: new Date("January 2, 2020") }
+          { from: new Date('December 24, 2019'), to: new Date('January 2, 2020') }
         ]}
         numberOfMonths={1}
         month={new Date(2019, 11)}
       />
-    );
-    expect(alert.toJSON()).toMatchSnapshot();
-  });
-});
+    )
+    expect(alert.toJSON()).toMatchSnapshot()
+  })
+})

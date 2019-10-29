@@ -1,12 +1,12 @@
-import React from "react";
-import { create } from "react-test-renderer";
-import ConfigureEBrochureForm from '../components/ConfigureEBrochureForm';
-import { MemoryRouter } from 'react-router';
+import React from 'react'
+import { create } from 'react-test-renderer'
+import ConfigureEBrochureForm from '../components/ConfigureEBrochureForm'
+import { MemoryRouter } from 'react-router'
 
-describe("ConfigureEBrochureForm component", () => {
-  test("Matches the snapshot", () => {
+describe('ConfigureEBrochureForm component', () => {
+  test('Matches the snapshot', () => {
     const form = create(
-       <MemoryRouter>
+      <MemoryRouter>
         <ConfigureEBrochureForm 
           allYachts={
             [
@@ -24,7 +24,7 @@ describe("ConfigureEBrochureForm component", () => {
           }
         />
       </MemoryRouter>
-    );
-    expect(form.toJSON()).toMatchSnapshot();
-  });
-});
+    )
+    expect(form.toJSON()).toMatchSnapshot()
+  })
+})

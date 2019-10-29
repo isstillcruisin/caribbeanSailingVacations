@@ -1,10 +1,10 @@
-import React from "react";
-import { create } from "react-test-renderer";
-import ConfigureWhiteLabelForm from '../components/ConfigureWhiteLabelForm';
-import { MemoryRouter } from 'react-router';
+import React from 'react'
+import { create } from 'react-test-renderer'
+import ConfigureWhiteLabelForm from '../components/ConfigureWhiteLabelForm'
+import { MemoryRouter } from 'react-router'
 
-describe("ConfigureWhiteLabelForm component", () => {
-  test("Matches the snapshot", () => {
+describe('ConfigureWhiteLabelForm component', () => {
+  test('Matches the snapshot', () => {
     const form = create(
       <MemoryRouter>
         <ConfigureWhiteLabelForm 
@@ -22,7 +22,7 @@ describe("ConfigureWhiteLabelForm component", () => {
           }
         />
       </MemoryRouter>
-    );
-    expect(form.toJSON()).toMatchSnapshot();
-  });
-});
+    )
+    expect(form.toJSON()).toMatchSnapshot()
+  })
+})
