@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import API from '../../utils/API'
 import CharterInquiryForm from '../CharterInquiryForm'
 import { Redirect } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 class CharterInquiry extends Component {
   state = {};
@@ -136,6 +137,23 @@ class CharterInquiry extends Component {
   render() {
     return this.showWhiteLabelInquiry()
   }
+}
+
+CharterInquiry.propTypes = {
+  eBrochure: PropTypes.shape({
+    _id: PropTypes.string,
+    _whiteLabel: PropTypes.shape({      
+      _travelAgent: PropTypes.shape({
+        firstName: PropTypes.string,
+        lastName: PropTypes.string,
+      }),
+    }),
+  }),
+  yacht: PropTypes.shape({
+    _id: PropTypes.string,
+    pricePerWeek: PropTypes.number,
+    maxPassengers: PropTypes.number,
+  }),
 }
 
 export default CharterInquiry

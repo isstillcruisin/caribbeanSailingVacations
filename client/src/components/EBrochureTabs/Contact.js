@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import EBrochureContactForm from '../EBrochureContactForm'
+import PropTypes from 'prop-types'
 
 class Contact extends Component {
   defaultState = {
@@ -69,6 +70,22 @@ class Contact extends Component {
       {this.showEBrochureContact()}
     </div>
   }
+}
+
+Contact.propTypes = {
+  eBrochure: PropTypes.shape({
+    _whiteLabel: PropTypes.shape({
+      companyName: PropTypes.string,
+      streetAddress: PropTypes.string,
+      city: PropTypes.string,
+      state: PropTypes.string,
+      country: PropTypes.string,
+      zipCode: PropTypes.string,
+      _travelAgent: PropTypes.shape({
+        phoneNumber: PropTypes.string,
+      }),
+    }),
+  }),
 }
 
 export default Contact
