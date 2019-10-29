@@ -160,7 +160,7 @@ class WhiteLabelCharterInquiries extends Component {
           <Modal.Header closeButton>
             <Modal.Title>Send Contract</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Please send a contract to the client. Once the contract is signed and returned to you, click the "Confirm" button.</Modal.Body>
+          <Modal.Body>Please send a contract to the client. Once the contract is signed and returned to you, click the <b>Confirm</b> button.</Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleCloseSendContractModal}>
               Close
