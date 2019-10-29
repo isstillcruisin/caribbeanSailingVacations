@@ -6,7 +6,7 @@ import ls from 'local-storage'
 import { LinkContainer } from 'react-router-bootstrap'
 import { withRouter } from 'react-router-dom'
 import API from '../../utils/API'
-
+import PropTypes from 'prop-types'
 
 class IncompleteHeader extends React.Component {
   state = {};
@@ -122,6 +122,13 @@ class IncompleteHeader extends React.Component {
     }
   }
 }
+
+IncompleteHeader.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }),
+}
+
 const Header = withRouter(IncompleteHeader)
 
 export default Header

@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Carousel from 'react-bootstrap/Carousel'
 import AvailableYachtSearchForm from '../AvailableYachtSearchForm'
+import PropTypes from 'prop-types'
 
 const Home = props => (
   <div className='e-brochure-home'>
@@ -38,7 +39,7 @@ const Home = props => (
       <h3 className='section-header'>Set Sail</h3>
       <h3 className='section-header'>With Confidence</h3>
       <div className='section-separator' data-border-width="3px"></div>
-  ​    <p className='pretty-italic'>We have hand selected yachts out of many different management operations in the Caribbean to bring you the best possible vacation for your budget. We have met with crews and in many cases eaten the foods of the fantastic chefs on board. We own our vacation and are sure that you will love your time aboard.</p>
+      <p className='pretty-italic'>We have hand selected yachts out of many different management operations in the Caribbean to bring you the best possible vacation for your budget. We have met with crews and in many cases eaten the foods of the fantastic chefs on board. We own our vacation and are sure that you will love your time aboard.</p>
       <p className='pretty-italic'>It is our hope to bring our love of sailing and the beautiful Caribbean to as many people as possible. We want to make the process of selecting the perfect boat and crew for you as simple as possible.</p>
       <Row style={{ height: '250px'}} >
         <Col style={{backgroundColor: 'white', marginRight: '5px'}}>
@@ -71,4 +72,13 @@ const Home = props => (
     </Container>
   </div>
 )
+
+Home.propTypes = {
+  eBrochure: PropTypes.object,
+  filters: PropTypes.object,
+  handleSearch: PropTypes.func,
+  onShowYachts: PropTypes.func,
+  onShowDestinations: PropTypes.func,
+}
+
 export default Home

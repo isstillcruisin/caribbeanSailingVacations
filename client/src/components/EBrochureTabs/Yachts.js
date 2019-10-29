@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import Row from 'react-bootstrap/Row'
 import EBrochureYacht from '../EBrochureYacht'
 import AvailableYachtSearchForm from '../AvailableYachtSearchForm'
-
+import PropTypes from 'prop-types'
 
 class Yachts extends Component {
   showYachts = (yachts) => {
@@ -31,4 +31,13 @@ class Yachts extends Component {
 
   }
 }
+
+Yachts.propTypes = {
+  yachts: PropTypes.arrayOf(PropTypes.object),
+  eBrochure: PropTypes.object,
+  filters: PropTypes.object,
+  onCharterYacht: PropTypes.func,
+  handleSearch: PropTypes.func,
+}
+
 export default Yachts

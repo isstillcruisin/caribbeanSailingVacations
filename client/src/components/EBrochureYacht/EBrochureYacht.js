@@ -3,6 +3,7 @@ import Carousel from 'react-bootstrap/Carousel'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 const BoatContainer = styled.div`
   display: grid;
@@ -50,6 +51,16 @@ class EBrochureYacht extends Component {
       </Container>
     )
   }
+}
+
+EBrochureYacht.propTypes = {
+  yacht: PropTypes.shape({
+    imgs: PropTypes.arrayOf(PropTypes.string),
+    boatName: PropTypes.string,
+    maxPassengers: PropTypes.number,
+    pricePerWeek: PropTypes.number,
+  }),
+  onCharterYacht: PropTypes.func,
 }
 
 export default EBrochureYacht
