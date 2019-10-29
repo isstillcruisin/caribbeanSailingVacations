@@ -72,29 +72,27 @@ class ImageUploader extends Component {
       return <Loader />
     } else if (this.props.showDropZone) {
       return (
-        <><Dropzone
-          onDrop={this.onImageDrop.bind(this)}
-          accept="image/*"
-          multiple={this.props.multiple}
-        >
-          {({ getRootProps, getInputProps }) => {
-            return (
-              <div {...getRootProps()} className='boat-image-dropzone'>
-                <input {...getInputProps()} />
-                {
-                  <p>
-                    {this.props.placeholder}
-                  </p>
-                }
-              </div>
-            )
-          }}
-        </Dropzone>
-
+        <>
+          <Dropzone
+            onDrop={this.onImageDrop.bind(this)}
+            accept="image/*"
+            multiple={this.props.multiple}
+          >
+            {({ getRootProps, getInputProps }) => {
+              return (
+                <div {...getRootProps()} className='boat-image-dropzone'>
+                  <input {...getInputProps()} />
+                  {
+                    <p>
+                      {this.props.placeholder}
+                    </p>
+                  }
+                </div>
+              )
+            }}
+          </Dropzone>
           <div>
-            <div>
-              {this.renderImages()}
-            </div>
+            {this.renderImages()}
           </div>
         </>
       )
@@ -102,9 +100,7 @@ class ImageUploader extends Component {
       return (
         <>
           <div>
-            <div>
-              {this.renderImages()}
-            </div>
+            {this.renderImages()}
           </div>
         </>
       )
