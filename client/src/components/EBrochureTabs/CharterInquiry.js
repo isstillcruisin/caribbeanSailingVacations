@@ -36,7 +36,7 @@ class CharterInquiry extends Component {
         this.setState({done: true})
       }
     } catch (error) {
-      console.log('error (╯°□°)╯︵ ┻━┻ ', error.message)
+      console.error('error (╯°□°)╯︵ ┻━┻ ', error.message)
     }
   };
 
