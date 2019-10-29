@@ -7,8 +7,8 @@ describe('YachtForm component', () => {
     const form = create(<YachtForm 
       boatName='test boat'
       crewBio='test bio'
-      maxPassengers='10'
-      year='1999'
+      maxPassengers={10}
+      year={1999}
       manufacture='2000 feet test manufacture'
       imgs={[]}
     />)
