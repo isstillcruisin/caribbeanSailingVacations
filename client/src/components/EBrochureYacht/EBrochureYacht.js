@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import Carousel from 'react-bootstrap/Carousel';
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import styled from "styled-components";
+import React, { Component } from 'react'
+import Carousel from 'react-bootstrap/Carousel'
+import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
+import styled from 'styled-components'
 
 const BoatContainer = styled.div`
   display: grid;
@@ -13,14 +13,14 @@ const BoatContainer = styled.div`
   width: 500px;
   background-color: ${props => props.theme.white};
   margin: 0 80px 0 80px
-`;
+`
 
 const BoatInfo = styled.div`
   position: relative;
   height: 100%;
   width: 100%;
   text-align: center;  
-`;
+`
 
 class EBrochureYacht extends Component {
   renderImages = images => {
@@ -31,8 +31,8 @@ class EBrochureYacht extends Component {
         <Carousel.Item key={`${i+1}`}>
           <img src={imgUrl} alt=""/>
         </Carousel.Item>
-      );
-    });
+      )
+    })
   }
 
   render() {
@@ -52,5 +52,5 @@ class EBrochureYacht extends Component {
   }
 }
 
-export default EBrochureYacht;
+export default EBrochureYacht
 

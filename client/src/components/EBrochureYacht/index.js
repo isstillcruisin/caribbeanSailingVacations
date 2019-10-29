@@ -1,1 +1,1 @@
-export { default } from "./EBrochureYacht";
+export { default } from './EBrochureYacht'

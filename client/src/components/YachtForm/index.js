@@ -1,1 +1,1 @@
-export { default } from "./YachtForm";
+export { default } from './YachtForm'

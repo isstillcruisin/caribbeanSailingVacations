@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react'
 
 function Alert(props) {
   if (props.alert) {
-    return (<div className='alert'>{props.alert}</div>);
+    return (<div className='alert'>{props.alert}</div>)
   } else {
-    return "";
+    return ''
   }
 }
 
-export default Alert;
+export default Alert

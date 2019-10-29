@@ -36,4 +36,4 @@ const EBrochureContactForm = props => (
   </Form>
 )
 
-export default EBrochureContactForm;
+export default EBrochureContactForm

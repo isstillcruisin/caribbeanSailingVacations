@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import API from "../../utils/API";
-import CharterInquiryForm from '../CharterInquiryForm';
-import { Redirect } from "react-router-dom";
+import React, { Component } from 'react'
+import API from '../../utils/API'
+import CharterInquiryForm from '../CharterInquiryForm'
+import { Redirect } from 'react-router-dom'
 
 class CharterInquiry extends Component {
   state = {};
@@ -12,14 +12,14 @@ class CharterInquiry extends Component {
         disableSubmit: true,
         submitText: 'Fill All Entry Fields',
         unavailableDateRanges: ranges,
-      });
-    });
+      })
+    })
   }
 
   handleSubmitInquiry = async event => {
-    event.preventDefault();
+    event.preventDefault()
     try {
-      let newCharterInquiry = await this.saveCharterInquiry();
+      let newCharterInquiry = await this.saveCharterInquiry()
       if (newCharterInquiry) {
         this.setState({
           alert: `Success! Your Inquiry has been submitted to ${this.props.eBrochure._whiteLabel._travelAgent.firstName} ${this.props.eBrochure._whiteLabel._travelAgent.lastName}`,
@@ -32,11 +32,11 @@ class CharterInquiry extends Component {
           estimatedPrice: null,
           startDate: null,
           endDate: null,
-        });
-        this.setState({done: true});
+        })
+        this.setState({done: true})
       }
     } catch (error) {
-      console.log("error (╯°□°)╯︵ ┻━┻ ", error.message);
+      console.log('error (╯°□°)╯︵ ┻━┻ ', error.message)
     }
   };
 
@@ -51,11 +51,11 @@ class CharterInquiry extends Component {
       endDate: this.state.endDate,
       estimatedPrice: this.state.estimatedPrice,
       numberOfPassengers: this.state.numberOfPassengers,
-    });
+    })
   };
 
   handleInputChange = event => {
-    const { name, value } = event.target;
+    const { name, value } = event.target
     //Special case: max number of passengers:
     if (name === 'numberOfPassengers' && value > this.props.yacht.maxPassengers) {
       this.setState({
@@ -87,7 +87,7 @@ class CharterInquiry extends Component {
   }
 
   calculateEstimatedPrice = (from, to) => {
-    var oneWeekInMsecs = 7*24*60*60*1000;
+    var oneWeekInMsecs = 7*24*60*60*1000
     if (from && to) {
       return this.props.yacht.pricePerWeek * (to.getTime() - from.getTime())/oneWeekInMsecs
     } else {
@@ -101,7 +101,7 @@ class CharterInquiry extends Component {
 
   handleDateRangeChange = ({ from, to }) => {
     if (from && to) {
-      this.applyChangesAndValidateInquiry({ startDate: from, endDate: to, estimatedPrice: this.calculateEstimatedPrice(from, to) });
+      this.applyChangesAndValidateInquiry({ startDate: from, endDate: to, estimatedPrice: this.calculateEstimatedPrice(from, to) })
     } else {
       this.setState({startDate: from})
     }
@@ -138,4 +138,4 @@ class CharterInquiry extends Component {
   }
 }
 
-export default CharterInquiry;
+export default CharterInquiry

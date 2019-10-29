@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import DayPickerInput from 'react-day-picker/DayPickerInput';
+import React, { Component } from 'react'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import DayPickerInput from 'react-day-picker/DayPickerInput'
 import {
   formatDate,
   parseDate,
-} from 'react-day-picker/moment';
+} from 'react-day-picker/moment'
 
 class AvailableYachtSearchForm extends Component {
   state = this.props.filters || {}
@@ -77,4 +77,4 @@ class AvailableYachtSearchForm extends Component {
     )
   }
 }
-export default AvailableYachtSearchForm;
+export default AvailableYachtSearchForm

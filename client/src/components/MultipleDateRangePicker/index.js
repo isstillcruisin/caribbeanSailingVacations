@@ -1,1 +1,1 @@
-export { default } from "./MultipleDateRangePicker";
+export { default } from './MultipleDateRangePicker'

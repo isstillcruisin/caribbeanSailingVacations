@@ -1,1 +1,1 @@
-export { default } from "./AddWhiteLabelForm";
+export { default } from './AddWhiteLabelForm'

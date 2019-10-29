@@ -1,5 +1,5 @@
-import React from "react";
-import { Button, Form, Card, Col } from 'react-bootstrap';
+import React from 'react'
+import { Button, Form, Card, Col } from 'react-bootstrap'
 
 const ConfigureCurrentUserForm = props => (
   <Card style={{color: 'black'}}>
@@ -23,7 +23,7 @@ const ConfigureCurrentUserForm = props => (
           <Form.Control type="email" name='email' placeholder="Email Address" value={props.currentUser.email} disabled />
         </Col>
       </Form.Row>
-       <Form.Row>
+      <Form.Row>
         <Form.Label column xs={3}>
           Phone number
         </Form.Label>
@@ -72,5 +72,5 @@ const ConfigureCurrentUserForm = props => (
   </Card>
 )
 
-export default ConfigureCurrentUserForm;
+export default ConfigureCurrentUserForm
 

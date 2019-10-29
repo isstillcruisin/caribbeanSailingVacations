@@ -1,1 +1,1 @@
-export { default } from "./Meta.js";
+export { default } from './Meta.js'

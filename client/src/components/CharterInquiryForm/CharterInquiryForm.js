@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Card from 'react-bootstrap/Card';
-import Carousel from 'react-bootstrap/Carousel';
-import DatePickerWithBlackoutDates from '../DatePickerWithBlackoutDates';
-import formatPrice from '../../utils/formatPrice';
+import React, { Component } from 'react'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+import Card from 'react-bootstrap/Card'
+import Carousel from 'react-bootstrap/Carousel'
+import DatePickerWithBlackoutDates from '../DatePickerWithBlackoutDates'
+import formatPrice from '../../utils/formatPrice'
 import Alert from '../Alert'
 
 class CharterInquiryForm extends Component {
@@ -50,8 +50,8 @@ class CharterInquiryForm extends Component {
         <Carousel.Item key={`${i+1}`}>
           <img src={imgUrl} alt="" className='d-block' />
         </Carousel.Item>
-      );
-    });
+      )
+    })
   }
 
   render() {
@@ -64,7 +64,7 @@ class CharterInquiryForm extends Component {
         </Col>
         <Col style={{flexGrow: '2'}}>
           <p>To inquire about chartering this yacht, please fill out the following form and an email will be sent to your Travel Agent,&nbsp;
-          {this.props.whiteLabel._travelAgent.firstName} {this.props.whiteLabel._travelAgent.lastName}: </p>
+            {this.props.whiteLabel._travelAgent.firstName} {this.props.whiteLabel._travelAgent.lastName}: </p>
           <Card style={{color: 'black'}}>
             <Card.Header>
               <h3 className='text-left'>Book now:</h3>
@@ -116,12 +116,12 @@ class CharterInquiryForm extends Component {
                     <i>All fields are required unless otherwise stated.</i>
                   </Col>
                 </Form.Row>
-                 <Form.Row>
+                <Form.Row>
                   <Form.Label column xs={3}>
                     <b>Price Per Week</b>
                   </Form.Label>
                   <Col xs={9}>
-                   {this.renderPricePerWeek()}
+                    {this.renderPricePerWeek()}
                   </Col>
                 </Form.Row>   
                 <Form.Row>
@@ -129,12 +129,12 @@ class CharterInquiryForm extends Component {
                     <b>Calculated Price (other fees may apply)</b>
                   </Form.Label>
                   <Col xs={9}>
-                   {this.renderEstimatedPrice()}
+                    {this.renderEstimatedPrice()}
                   </Col>
                 </Form.Row>
                 <Form.Row>
                   <Col>
-                   {this.renderSubmitButton()}
+                    {this.renderSubmitButton()}
                   </Col>
                   <Col pullright>
                     <Button onClick={this.props.handleBack}  className="btn btn-lg">Back</Button>
@@ -145,7 +145,7 @@ class CharterInquiryForm extends Component {
           </Card>
         </Col>
       </Row>
-    );
+    )
   }
 }
-export default CharterInquiryForm;
+export default CharterInquiryForm

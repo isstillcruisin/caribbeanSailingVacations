@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const Meta = () => (
   <>
@@ -12,6 +12,6 @@ const Meta = () => (
     <link rel="shortcut icon" href="/static/favicon.png" />
     <title>Caribbean Sailing Vacations</title>
   </>
-);
+)
 
-export default Meta;
+export default Meta

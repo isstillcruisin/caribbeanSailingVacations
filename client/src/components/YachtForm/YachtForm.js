@@ -1,7 +1,8 @@
-import React from "react";
+import React from 'react'
 import ImageUploader from '../ImageUploader'
 import Container from 'react-bootstrap/Container'
 import Alert from '../Alert'
+import PropTypes from 'prop-types'
 
 const YachtForm = props => (
   <Container>
@@ -73,7 +74,7 @@ const YachtForm = props => (
           onChange={props.handleInputChange}
           required
         />
-         <label htmlFor="pricePerWeek">
+        <label htmlFor="pricePerWeek">
           <strong>Price per week ($)</strong>
         </label>
         <input
@@ -128,6 +129,21 @@ const YachtForm = props => (
       )}
     </form>
   </Container>
-);
+)
 
-export default YachtForm;
+YachtForm.propTypes = {
+  cyaId: PropTypes.number,
+  alert: PropTypes.string,
+  boatName: PropTypes.string,
+  handleInputChange: PropTypes.func,
+  crewBio: PropTypes.string,
+  maxPassengers: PropTypes.number,
+  year: PropTypes.number,
+  manufacture: PropTypes.string,
+  pricePerWeek: PropTypes.number,
+  imgs: PropTypes.arrayOf(PropTypes.string),
+  handleSetUrls: PropTypes.func,
+  handleFormSubmit: PropTypes.func,
+}
+
+export default YachtForm

@@ -1,18 +1,18 @@
-import React from "react";
+import React from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
-import ls from "local-storage";
+import ls from 'local-storage'
 import { LinkContainer } from 'react-router-bootstrap'
-import { withRouter } from "react-router-dom";
-import API from "../../utils/API";
+import { withRouter } from 'react-router-dom'
+import API from '../../utils/API'
 
 
 class IncompleteHeader extends React.Component {
   state = {};
 
   refreshCurrentUser() {
-    let userToken = ls.get("user-token")
+    let userToken = ls.get('user-token')
     if (!userToken && 
       !(['/sign-in', '/sign-up', '/', '/forgot-password', '/reset-password'].includes(this.props.location.pathname))
     ) {
@@ -39,13 +39,13 @@ class IncompleteHeader extends React.Component {
   }
 
   componentDidMount() {
-    this.refreshCurrentUser();
+    this.refreshCurrentUser()
   }
 
 
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
-      this.refreshCurrentUser();
+      this.refreshCurrentUser()
     }
   }
 
@@ -122,6 +122,6 @@ class IncompleteHeader extends React.Component {
     }
   }
 }
-const Header = withRouter(IncompleteHeader);
+const Header = withRouter(IncompleteHeader)
 
-export default Header;
+export default Header

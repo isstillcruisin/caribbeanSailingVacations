@@ -1,11 +1,12 @@
-import React from "react";
-import Card from "react-bootstrap/Card";
-import Form from 'react-bootstrap/Form';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
+import React from 'react'
+import Card from 'react-bootstrap/Card'
+import Form from 'react-bootstrap/Form'
+import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button'
+import PropTypes from 'prop-types'
 
 const SignUpForm = props => (
-   <Card style={{color: 'black'}}>
+  <Card style={{color: 'black'}}>
     <Form>
       <Form.Row>
         <Form.Label column xs={3}>
@@ -47,6 +48,15 @@ const SignUpForm = props => (
       </Form.Row>
     </Form>
   </Card>
-);
+)
 
-export default SignUpForm;
+SignUpForm.propTypes = {
+  handleInputChange: PropTypes.func,
+  email: PropTypes.string,
+  password: PropTypes.string,
+  handleSignUp: PropTypes.func,
+}
+
+
+
+export default SignUpForm

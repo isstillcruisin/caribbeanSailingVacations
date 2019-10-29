@@ -1,1 +1,1 @@
-export { default } from "./CharterInquiryForm";
+export { default } from './CharterInquiryForm'

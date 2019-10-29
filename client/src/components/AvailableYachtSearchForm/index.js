@@ -1,1 +1,1 @@
-export { default } from "./AvailableYachtSearchForm";
+export { default } from './AvailableYachtSearchForm'

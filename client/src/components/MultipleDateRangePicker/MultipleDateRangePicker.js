@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import DayPicker, { DateUtils } from 'react-day-picker';
-import Alert from '../Alert';
+import React, { Component } from 'react'
+import DayPicker, { DateUtils } from 'react-day-picker'
+import Alert from '../Alert'
 
 class MultipleDateRangePicker extends Component {
   constructor(props) {
-    super(props);
-    this.handleDayClick = this.handleDayClick.bind(this);
+    super(props)
+    this.handleDayClick = this.handleDayClick.bind(this)
     //this.handleResetClick = this.handleResetClick.bind(this);
-    this.state = this.getInitialState();
+    this.state = this.getInitialState()
   }
 
   getInitialState() {
     return {
       from: undefined,
       to: undefined,
-    };
+    }
   }
 
   handleEndOfRangeClick(day) {
@@ -43,7 +43,7 @@ class MultipleDateRangePicker extends Component {
       return range.from && range.to && day &&
              range.from <= day && 
              range.to >= day
-    });
+    })
     if (foundRange) {
       //Select the found range for deletion:
       this.setState({
@@ -71,7 +71,7 @@ class MultipleDateRangePicker extends Component {
   }
 
   handleDeleteRangeClick = () => {
-    this.props.handleDeleteRange(this.state.selectedRange);
+    this.props.handleDeleteRange(this.state.selectedRange)
     this.setState({selectedRange: null, message: 'Unavailable Date Range Deleted'})
   }
 
@@ -99,7 +99,7 @@ class MultipleDateRangePicker extends Component {
           </button>
         )}
       </p>
-     <DayPicker
+      <DayPicker
         className="UnavailableDateRangePicker"
         numberOfMonths={6}
         selectedDays={[...this.props.ranges,from, { from, to }]}

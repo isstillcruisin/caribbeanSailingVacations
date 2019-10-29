@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
-import API from "../../utils/API";
+import API from '../../utils/API'
+import PropTypes from 'prop-types'
 
 class ShowEBrochureWithModal extends Component {
   defaultState = {
@@ -12,7 +13,7 @@ class ShowEBrochureWithModal extends Component {
     lastName: null,
     email: null,
     subject: 'Charter A Luxury Yacht',
-    message: "I've setup this e-brochure just for you.  Please take a look at it and then call me with any questions."
+    message: 'I\'ve setup this e-brochure just for you.  Please take a look at it and then call me with any questions.'
   }
   state = this.defaultState
 
@@ -20,14 +21,14 @@ class ShowEBrochureWithModal extends Component {
   handleShow = () => this.setState({show: true})
 
   handleInputChange = event => {
-    const { name, value } = event.target;
+    const { name, value } = event.target
     this.setState({ [name]: value})
   }
 
   handleSendBrochure = () => {
     API.sendEBrochure(this.props.eBrochure, this.state).then(res => {
-      this.setState(this.defaultState);
-    });
+      this.setState(this.defaultState)
+    })
   }
 
   render() {
@@ -41,7 +42,7 @@ class ShowEBrochureWithModal extends Component {
           <Modal.Header closeButton>
             <Modal.Title>Show E-Brochure to Prospective Client</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Send this E-Brochure: '{this.props.eBrochure.name}' to a prospective client: 
+          <Modal.Body>Send this E-Brochure: <i>{this.props.eBrochure.name}</i> to a prospective client: 
             <Form>
               <Form.Row>
                 <Form.Label column xs={3}>
@@ -92,6 +93,12 @@ class ShowEBrochureWithModal extends Component {
       </>
     )
   }
+}
+
+ShowEBrochureWithModal.propTypes = {
+  eBrochure: PropTypes.shape({
+    name: PropTypes.string
+  })
 }
 
 export default ShowEBrochureWithModal

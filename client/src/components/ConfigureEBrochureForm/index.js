@@ -1,1 +1,1 @@
-export { default } from "./ConfigureEBrochureForm";
+export { default } from './ConfigureEBrochureForm'

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const AddEBrochureForm = props => (
   <form>
@@ -27,6 +27,6 @@ const AddEBrochureForm = props => (
       </button>
     </div>
   </form>
-);
+)
 
-export default AddEBrochureForm;
+export default AddEBrochureForm

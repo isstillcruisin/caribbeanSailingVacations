@@ -1,8 +1,8 @@
-import React, {Component} from "react";
-import { Table, Button, Image } from 'react-bootstrap';
+import React, {Component} from 'react'
+import { Table, Button, Image } from 'react-bootstrap'
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import { LinkContainer } from 'react-router-bootstrap'
-import formatPrice from '../../utils/formatPrice';
+import formatPrice from '../../utils/formatPrice'
 
 class ConfigureEBrochureForm extends Component {
   render() {
@@ -44,40 +44,40 @@ class ConfigureEBrochureForm extends Component {
   renderAllYachtRows = (allYachts, eBrochure) => {
     return allYachts.map((yacht, i) => {
       return <tr key={`yacht-${i}`}>
-          <td>{yacht.boatName}</td>
-          <td>{yacht.maxPassengers}</td>
-          <td>{formatPrice(yacht.pricePerWeek)}</td>
-          <td><div className='image-thumbnails-in-table'>
-            {yacht.imgs && yacht.imgs.map((image, index) => {
-              return <Image key={index + 1} src={image} alt="" thumbnail />
-            })}</div>
-          </td>
-          <td>
-            <BootstrapSwitchButton
-              checked={ eBrochure.yachts.map(y => y._id).includes(yacht._id) }
-              onlabel='Y'
-              offlabel='N'
-              onChange={(checked) => {
-                if (checked) {
-                  this.props.handleEnableYacht(yacht)
-                } else {
-                  this.props.handleDisableYacht(yacht) 
-                }
-              }}
-            />
-          </td>
-          <td>
-            <LinkContainer
-              params={{ id: yacht._id }}
-              to={`/boat/${yacht._id}`}
-              className="boat-detail-link"
-            >
-              <Button>See Details</Button>
-            </LinkContainer>
-          </td> 
-        </tr>
-    });
+        <td>{yacht.boatName}</td>
+        <td>{yacht.maxPassengers}</td>
+        <td>{formatPrice(yacht.pricePerWeek)}</td>
+        <td><div className='image-thumbnails-in-table'>
+          {yacht.imgs && yacht.imgs.map((image, index) => {
+            return <Image key={index + 1} src={image} alt="" thumbnail />
+          })}</div>
+        </td>
+        <td>
+          <BootstrapSwitchButton
+            checked={ eBrochure.yachts.map(y => y._id).includes(yacht._id) }
+            onlabel='Y'
+            offlabel='N'
+            onChange={(checked) => {
+              if (checked) {
+                this.props.handleEnableYacht(yacht)
+              } else {
+                this.props.handleDisableYacht(yacht) 
+              }
+            }}
+          />
+        </td>
+        <td>
+          <LinkContainer
+            params={{ id: yacht._id }}
+            to={`/boat/${yacht._id}`}
+            className="boat-detail-link"
+          >
+            <Button>See Details</Button>
+          </LinkContainer>
+        </td> 
+      </tr>
+    })
   }
 }
 
-export default ConfigureEBrochureForm;
+export default ConfigureEBrochureForm

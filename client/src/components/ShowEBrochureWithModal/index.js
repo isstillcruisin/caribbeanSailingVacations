@@ -1,1 +1,1 @@
-export { default } from "./ShowEBrochureWithModal";
+export { default } from './ShowEBrochureWithModal'

@@ -13,7 +13,7 @@ const EBrochureHeader = () => (
         <Nav.Item>
           <Nav.Link eventKey="about">About</Nav.Link>
         </Nav.Item>
-         <Nav.Item>
+        <Nav.Item>
           <Nav.Link eventKey="yachts">Our Fleet</Nav.Link>
         </Nav.Item>
         <Nav.Item>
@@ -32,4 +32,4 @@ const EBrochureHeader = () => (
   </Container>
 )
 
-export default EBrochureHeader;
+export default EBrochureHeader

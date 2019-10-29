@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import { Button, Form, Col, Card } from 'react-bootstrap';
+import React, {Component} from 'react'
+import { Button, Form, Col, Card } from 'react-bootstrap'
 import ImageUploader from '../ImageUploader'
 
 
@@ -133,4 +133,4 @@ class ConfigureWhiteLabelForm extends Component {
   };
 }
 
-export default ConfigureWhiteLabelForm;
+export default ConfigureWhiteLabelForm

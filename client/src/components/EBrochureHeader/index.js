@@ -1,1 +1,1 @@
-export { default } from "./EBrochureHeader";
+export { default } from './EBrochureHeader'

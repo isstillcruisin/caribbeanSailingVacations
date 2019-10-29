@@ -1,32 +1,32 @@
-import React from "react";
-import DayPicker, { DateUtils } from 'react-day-picker';
+import React from 'react'
+import DayPicker, { DateUtils } from 'react-day-picker'
 
 class DatePickerWithBlackoutDates extends React.Component {
   constructor(props) {
-    super(props);
-    this.handleDayClick = this.handleDayClick.bind(this);
-    this.handleResetClick = this.handleResetClick.bind(this);
-    this.state = this.getInitialState();
+    super(props)
+    this.handleDayClick = this.handleDayClick.bind(this)
+    this.handleResetClick = this.handleResetClick.bind(this)
+    this.state = this.getInitialState()
   }
 
   getInitialState() {
-    return {};
+    return {}
   }
 
   handleDayClick(day) {
-    const range = DateUtils.addDayToRange(day, {from: this.props.startDate, to: this.props.endDate});
-    let blackoutDates = this.props.blackoutDates;
+    const range = DateUtils.addDayToRange(day, {from: this.props.startDate, to: this.props.endDate})
+    let blackoutDates = this.props.blackoutDates
     //Are any of the days in the range overlapping the days in the blackoutDates?
     let found = blackoutDates.find(function(blackoutDate) {
       return blackoutDate.from && blackoutDate.to && 
              range.from && range.to && 
              blackoutDate.from <= range.to && 
              blackoutDate.to >= range.from
-    });
+    })
     if (!found) {
-      this.props.handleSelectedRange(range);
+      this.props.handleSelectedRange(range)
     } else {
-      this.setState(Object.assign({}, this.state, { message: 'Unfortunately, those days include some unavailable dates'}));
+      this.setState(Object.assign({}, this.state, { message: 'Unfortunately, those days include some unavailable dates'}))
     }
   }
 
@@ -36,8 +36,8 @@ class DatePickerWithBlackoutDates extends React.Component {
   }
 
   render() {
-    const { message } = this.state;
-    const modifiers = { start: this.props.startDate, end: this.props.endDate };
+    const { message } = this.state
+    const modifiers = { start: this.props.startDate, end: this.props.endDate }
     return (
       <div className="DatePickerWithBlackoutDates">
         <i>{message}</i>
@@ -68,4 +68,4 @@ class DatePickerWithBlackoutDates extends React.Component {
   }
 }
 
-export default DatePickerWithBlackoutDates;
+export default DatePickerWithBlackoutDates

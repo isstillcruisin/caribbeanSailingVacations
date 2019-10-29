@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const AddWhiteLabelForm = props => (
   <form>
@@ -27,6 +27,6 @@ const AddWhiteLabelForm = props => (
       </button>
     </div>
   </form>
-);
+)
 
-export default AddWhiteLabelForm;
+export default AddWhiteLabelForm

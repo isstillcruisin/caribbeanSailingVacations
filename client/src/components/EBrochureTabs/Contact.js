@@ -1,5 +1,5 @@
-import React, { Component } from "react"
-import API from "../../utils/API"
+import React, { Component } from 'react'
+import API from '../../utils/API'
 import Alert from '../Alert'
 import Loader from '../Loader'
 import Row from 'react-bootstrap/Row'
@@ -34,8 +34,8 @@ class Contact extends Component {
       this.props.eBrochure,
       this.state.contact
     ).then((res) => {
-       this.setState(Object.assign({}, this.defaultState, { alert: 'Message sent to travel agent.'} ))
-    });
+      this.setState(Object.assign({}, this.defaultState, { alert: 'Message sent to travel agent.'} ))
+    })
   }
 
   showEBrochureContact = () => {

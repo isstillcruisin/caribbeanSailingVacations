@@ -1,1 +1,1 @@
-export { default } from "./EBrochureContactForm";
+export { default } from './EBrochureContactForm'
