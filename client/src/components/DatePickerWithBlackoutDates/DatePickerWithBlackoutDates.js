@@ -1,5 +1,6 @@
 import React from 'react'
 import DayPicker, { DateUtils } from 'react-day-picker'
+import PropTypes from 'prop-types'
 
 class DatePickerWithBlackoutDates extends React.Component {
   constructor(props) {
@@ -66,6 +67,18 @@ class DatePickerWithBlackoutDates extends React.Component {
       </div>
     )    
   }
+}
+
+DatePickerWithBlackoutDates.propTypes = {
+  startDate: PropTypes.instanceOf(Date),
+  endDate: PropTypes.instanceOf(Date),
+  month: PropTypes.number,
+  blackoutDates: PropTypes.arrayOf(PropTypes.shape({
+    from: PropTypes.instanceOf(Date),
+    to: PropTypes.instanceOf(Date),
+  })),
+  numberOfMonths: PropTypes.number,
+  handleSelectedRange: PropTypes.func,
 }
 
 export default DatePickerWithBlackoutDates

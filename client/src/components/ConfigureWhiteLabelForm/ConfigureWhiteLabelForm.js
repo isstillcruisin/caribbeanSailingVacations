@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { Button, Form, Col, Card } from 'react-bootstrap'
 import ImageUploader from '../ImageUploader'
-
+import PropTypes from 'prop-types'
 
 class ConfigureWhiteLabelForm extends Component {
   render() {
@@ -23,7 +23,7 @@ class ConfigureWhiteLabelForm extends Component {
             </Form.Row>
             <Form.Row>
               <Form.Group as={Col} controlId="formGridTitle">
-                <Form.Label>'About Us' Text <i>(This is the text that will show on the ABOUT section of an E-Brochure under this white label.)</i>
+                <Form.Label><b>About Us</b> Text <i>(This is the text that will show on the ABOUT section of an E-Brochure under this white label.)</i>
                 </Form.Label>
                 <Form.Control 
                   placeholder="'About Us' Text" 
@@ -131,6 +131,23 @@ class ConfigureWhiteLabelForm extends Component {
   handleSetUrls = urlArray => {
     this.props.handleInputChange({ target: { name: 'logoUrl', value: urlArray[0] }})
   };
+}
+
+ConfigureWhiteLabelForm.propTypes = {
+  whiteLabel: PropTypes.shape({
+    title: PropTypes.string,
+    aboutText: PropTypes.string,
+    companyName: PropTypes.string,
+    streetAddress: PropTypes.string,
+    city: PropTypes.string,
+    state: PropTypes.string,
+    zipCode: PropTypes.string,
+    country: PropTypes.string,
+    logoUrl: PropTypes.string,
+  }),
+  saved: PropTypes.boolean,
+  handleInputChange: PropTypes.func,
+  handleSaveWhiteLabel: PropTypes.func,
 }
 
 export default ConfigureWhiteLabelForm

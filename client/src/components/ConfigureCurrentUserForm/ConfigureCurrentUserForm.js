@@ -1,5 +1,9 @@
 import React from 'react'
-import { Button, Form, Card, Col } from 'react-bootstrap'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import Card from 'react-bootstrap/Card'
+import Col from 'react-bootstrap/Col'
+import PropTypes from 'prop-types'
 
 const ConfigureCurrentUserForm = props => (
   <Card style={{color: 'black'}}>
@@ -71,6 +75,20 @@ const ConfigureCurrentUserForm = props => (
     </Form>
   </Card>
 )
+
+ConfigureCurrentUserForm.propTypes = {
+  currentUser: PropTypes.shape({
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    email: PropTypes.string,
+    phoneNumber: PropTypes.string,
+    password: PropTypes.string,
+    confirmPassword: PropTypes.string,
+  }),
+  saved: PropTypes.boolean,
+  handleInputChange: PropTypes.func,
+  handleSave: PropTypes.func,
+}
 
 export default ConfigureCurrentUserForm
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const AddWhiteLabelForm = props => (
   <form>
@@ -28,5 +29,11 @@ const AddWhiteLabelForm = props => (
     </div>
   </form>
 )
+
+AddWhiteLabelForm.propTypes = {
+  whiteLabelName: PropTypes.string,
+  handleInputChange: PropTypes.func,
+  handleFormSubmit: PropTypes.func,
+}
 
 export default AddWhiteLabelForm

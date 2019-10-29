@@ -8,6 +8,7 @@ import Carousel from 'react-bootstrap/Carousel'
 import DatePickerWithBlackoutDates from '../DatePickerWithBlackoutDates'
 import formatPrice from '../../utils/formatPrice'
 import Alert from '../Alert'
+import PropTypes from 'prop-types'
 
 class CharterInquiryForm extends Component {
   renderEstimatedPrice=() => {
@@ -148,4 +149,34 @@ class CharterInquiryForm extends Component {
     )
   }
 }
+
+CharterInquiryForm.propTypes = {
+  month: PropTypes.number,
+  startDate: PropTypes.instanceOf(Date),
+  endDate: PropTypes.instanceOf(Date),
+  yacht: PropTypes.shape({
+    maxPassengers: PropTypes.number,
+    imgs: PropTypes.arrayOf(PropTypes.string),
+    pricePerWeek: PropTypes.number,
+  }),
+  estimatedPrice: PropTypes.number,
+  unavailableDateRanges: PropTypes.arrayOf(PropTypes.shape({
+    from: PropTypes.instanceOf(Date),
+    to: PropTypes.instanceOf(Date),
+  })),
+  whiteLabel: PropTypes.shape({
+    _travelAgent: PropTypes.shape({
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+    }),
+  }),
+  alert: PropTypes.string,
+  submitText: PropTypes.string,
+  disableSubmit: PropTypes.boolean,
+  handleBack: PropTypes.func,
+  handleInputChange: PropTypes.func,
+  handleDateRangeChange: PropTypes.func,
+  handleSubmitInquiry: PropTypes.func,
+}
+
 export default CharterInquiryForm

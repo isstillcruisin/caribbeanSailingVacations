@@ -117,7 +117,7 @@ MultipleDateRangePicker.propTypes = {
     to: PropTypes.string,
   })),
   handleAddRange: PropTypes.func,
-  handleDeleteRange: PropTypes.func
+  handleDeleteRange: PropTypes.func,
 }
 
 export default MultipleDateRangePicker

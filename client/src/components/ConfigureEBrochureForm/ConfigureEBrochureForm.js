@@ -3,6 +3,7 @@ import { Table, Button, Image } from 'react-bootstrap'
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import { LinkContainer } from 'react-router-bootstrap'
 import formatPrice from '../../utils/formatPrice'
+import PropTypes from 'prop-types'
 
 class ConfigureEBrochureForm extends Component {
   render() {
@@ -78,6 +79,15 @@ class ConfigureEBrochureForm extends Component {
       </tr>
     })
   }
+}
+
+ConfigureEBrochureForm.propTypes = {
+  eBrochure: PropTypes.shape({
+    name: PropTypes.string,
+  }),
+  allYachts: PropTypes.arrayOf(PropTypes.object),
+  handleEnableYacht: PropTypes.func,
+  handleDisableYacht: PropTypes.func,
 }
 
 export default ConfigureEBrochureForm

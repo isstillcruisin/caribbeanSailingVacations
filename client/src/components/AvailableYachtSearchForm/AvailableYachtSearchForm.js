@@ -5,10 +5,8 @@ import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import DayPickerInput from 'react-day-picker/DayPickerInput'
-import {
-  formatDate,
-  parseDate,
-} from 'react-day-picker/moment'
+import { formatDate, parseDate } from 'react-day-picker/moment'
+import PropTypes from 'prop-types'
 
 class AvailableYachtSearchForm extends Component {
   state = this.props.filters || {}
@@ -77,4 +75,10 @@ class AvailableYachtSearchForm extends Component {
     )
   }
 }
+
+AvailableYachtSearchForm.propTypes = {
+  filters: PropTypes.object,
+  onSearch: PropTypes.func,
+}
+
 export default AvailableYachtSearchForm

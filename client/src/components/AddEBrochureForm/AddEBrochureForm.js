@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const AddEBrochureForm = props => (
   <form>
@@ -28,5 +29,11 @@ const AddEBrochureForm = props => (
     </div>
   </form>
 )
+
+AddEBrochureForm.propTypes = {
+  name: PropTypes.string,
+  handleInputChange: PropTypes.func,
+  handleFormSubmit: PropTypes.func,
+}
 
 export default AddEBrochureForm
