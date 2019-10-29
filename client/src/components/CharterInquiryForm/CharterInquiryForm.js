@@ -172,7 +172,7 @@ CharterInquiryForm.propTypes = {
   }),
   alert: PropTypes.string,
   submitText: PropTypes.string,
-  disableSubmit: PropTypes.boolean,
+  disableSubmit: PropTypes.bool,
   handleBack: PropTypes.func,
   handleInputChange: PropTypes.func,
   handleDateRangeChange: PropTypes.func,

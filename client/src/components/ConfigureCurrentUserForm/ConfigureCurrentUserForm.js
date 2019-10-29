@@ -85,7 +85,7 @@ ConfigureCurrentUserForm.propTypes = {
     password: PropTypes.string,
     confirmPassword: PropTypes.string,
   }),
-  saved: PropTypes.boolean,
+  saved: PropTypes.bool,
   handleInputChange: PropTypes.func,
   handleSave: PropTypes.func,
 }

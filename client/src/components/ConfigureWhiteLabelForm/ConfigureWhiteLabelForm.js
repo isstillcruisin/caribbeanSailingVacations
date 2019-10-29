@@ -145,7 +145,7 @@ ConfigureWhiteLabelForm.propTypes = {
     country: PropTypes.string,
     logoUrl: PropTypes.string,
   }),
-  saved: PropTypes.boolean,
+  saved: PropTypes.bool,
   handleInputChange: PropTypes.func,
   handleSaveWhiteLabel: PropTypes.func,
 }
