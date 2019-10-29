@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import API from "../utils/API";
-import Loader from "../components/Loader";
-import Card from "react-bootstrap/Card"
-import { Link } from "react-router-dom";
-import BootstrapTable from 'react-bootstrap-table-next';
-import paginationFactory from 'react-bootstrap-table2-paginator';
-import Container from "react-bootstrap/Container"
+import React, { Component } from 'react'
+import API from '../utils/API'
+import Loader from '../components/Loader'
+import Card from 'react-bootstrap/Card'
+import { Link } from 'react-router-dom'
+import BootstrapTable from 'react-bootstrap-table-next'
+import paginationFactory from 'react-bootstrap-table2-paginator'
+import Container from 'react-bootstrap/Container'
 
 class MyWhiteLabels extends Component {
   state = {
@@ -16,8 +16,8 @@ class MyWhiteLabels extends Component {
     API.getMyWhiteLabels().then(res => {
       this.setState({
         whiteLabels: res.data
-      });
-    });
+      })
+    })
   }
 
   renderWhiteLabelTable() {
@@ -37,7 +37,7 @@ class MyWhiteLabels extends Component {
         dataField: 'name',
         text: 'Inquiries',
         formatter: (cell) => <Link to={`/charter-inquiries/${cell}`}>Charter Inquiries</Link>
-      }];
+      }]
       return <BootstrapTable 
         keyField='id' 
         data={ this.state.whiteLabels } 
@@ -66,4 +66,4 @@ class MyWhiteLabels extends Component {
   }
 }
 
-export default MyWhiteLabels;
+export default MyWhiteLabels

@@ -1,26 +1,26 @@
-import React, { Component } from "react";
-import YachtForm from "../components/YachtForm";
-import API from "../utils/API";
-import { Redirect } from "react-router-dom";
+import React, { Component } from 'react'
+import YachtForm from '../components/YachtForm'
+import API from '../utils/API'
+import { Redirect } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 
 class AddBoat extends Component {
   state = {
-    boatName: "",
+    boatName: '',
     imgUrls: [],
     year: 0,
     maxPassengers: 0,
-    manufacture: "",
-    crewBio: "",
-    cyaId: "",
+    manufacture: '',
+    crewBio: '',
+    cyaId: '',
   };
 
   handleFormSubmit = event => {
-    event.preventDefault();
+    event.preventDefault()
     try {
-      this.saveBoat();
+      this.saveBoat()
     } catch (err) {
-      console.log("error in save boats (╯°□°)╯︵ ┻━┻ ", err);
+      console.log('error in save boats (╯°□°)╯︵ ┻━┻ ', err)
     }
   };
 
@@ -40,28 +40,28 @@ class AddBoat extends Component {
           saved: true
         })
       )
-      .catch(err => console.log("saving boat error", err));
+      .catch(err => console.log('saving boat error', err))
   };
 
   handleInputChange = event => {
-    const { name, value } = event.target;
+    const { name, value } = event.target
     this.setState({
       [name]: value
-    });
+    })
   };
 
   handleSetUrls = urls => {
     this.setState({
       imgs: urls
-    });
+    })
   };
 
   render() {
     if (this.state.saved) {
       return (<Redirect 
         to={{ 
-          pathname: `/boats`,
-          state: { alert: `Yacht creation successful!` } 
+          pathname: '/boats',
+          state: { alert: 'Yacht creation successful!' } 
         }} 
       />)
     } else {
@@ -87,9 +87,9 @@ class AddBoat extends Component {
             />
           </Card.Body>
         </Card>
-      );
+      )
     }
   }
 }
 
-export default AddBoat;
+export default AddBoat

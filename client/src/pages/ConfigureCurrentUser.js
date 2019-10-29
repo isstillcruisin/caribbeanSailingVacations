@@ -1,5 +1,5 @@
-import React, { Component } from "react"
-import API from "../utils/API"
+import React, { Component } from 'react'
+import API from '../utils/API'
 import Container from 'react-bootstrap/Container'
 import Loader from '../components/Loader'
 import ConfigureCurrentUserForm from '../components/ConfigureCurrentUserForm'
@@ -11,7 +11,7 @@ class ConfigureCurrentUser extends Component {
   componentDidMount() {
     API.getCurrentUser().then(res => {
       this.setState({ currentUser: res.data, saved: true})
-    });
+    })
   }
 
   handleSave = async event => {
@@ -27,9 +27,9 @@ class ConfigureCurrentUser extends Component {
       })
     } else {
       API.updateUser(currentUser)
-      .then(res => {
-        this.setState({ currentUser: res.data, saved: true})
-      })
+        .then(res => {
+          this.setState({ currentUser: res.data, saved: true})
+        })
     }
   }
 
@@ -55,4 +55,4 @@ class ConfigureCurrentUser extends Component {
   }
 }
 
-export default ConfigureCurrentUser;
+export default ConfigureCurrentUser

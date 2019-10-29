@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import API from "../utils/API";
+import React, { Component } from 'react'
+import API from '../utils/API'
 import { Form, Col, Button, Container, Card} from 'react-bootstrap'
-import { Redirect } from "react-router-dom";
-import Alert from '../components/Alert';
+import { Redirect } from 'react-router-dom'
+import Alert from '../components/Alert'
 
 class ResetPassword extends Component {
   constructor() {
-    super();
+    super()
 
     this.state = {
       password: '',
@@ -18,10 +18,10 @@ class ResetPassword extends Component {
   }
 
   handleInputChange = event => {
-    const { name, value } = event.target;
+    const { name, value } = event.target
     this.setState({
       [name]: value
-    });
+    })
   };
 
   resetPassword = e => {
@@ -30,7 +30,7 @@ class ResetPassword extends Component {
       this.setState({
         showError: false,
         messageFromServer: '',
-      });
+      })
     } else if (this.state.password !== this.state.confirmPassword) {
       this.setState({
         showError: false,
@@ -42,39 +42,39 @@ class ResetPassword extends Component {
         alert: ''
       })
       API.setNewPassword(this.state.password, this.props.match.params.token)
-      .then(response => {
-        if (response.data === 'invalid token') {
-          this.setState({
-            showError: true,
-            messageFromServer: 'That password reset token has already been used or is not valid.',
-          });
-        } else {
-          this.setState({
-            showError: false,
-            messageFromServer: response.data,
-          });
-        }
-      })
-      .catch(error => {
-        console.error(error.data);
-      })
+        .then(response => {
+          if (response.data === 'invalid token') {
+            this.setState({
+              showError: true,
+              messageFromServer: 'That password reset token has already been used or is not valid.',
+            })
+          } else {
+            this.setState({
+              showError: false,
+              messageFromServer: response.data,
+            })
+          }
+        })
+        .catch(error => {
+          console.error(error.data)
+        })
     }
   }
 
   render() {
-    const { showError, messageFromServer} = this.state;
+    const { showError, messageFromServer} = this.state
     if (showError) {
       return (<Redirect 
         to={{ 
-          pathname: `/`,
+          pathname: '/',
           state: { alert: `Error resetting password: ${messageFromServer}` } 
         }} 
       />)
     } else if (messageFromServer === 'password updated') {
       return (<Redirect 
         to={{ 
-          pathname: `/sign-in`,
-          state: { alert: `Successful password reset.` } 
+          pathname: '/sign-in',
+          state: { alert: 'Successful password reset.' } 
         }} 
       />)
     } else {
@@ -119,4 +119,4 @@ class ResetPassword extends Component {
   }
 }
 
-export default ResetPassword;
+export default ResetPassword

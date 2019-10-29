@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import API from "../utils/API";
-import Loader from "../components/Loader";
-import Card from "react-bootstrap/Card"
-import Button from "react-bootstrap/Button"
-import Container from "react-bootstrap/Container"
-import Modal from "react-bootstrap/Modal"
-import Tab from "react-bootstrap/Tab"
-import Tabs from "react-bootstrap/Tabs"
-import moment from 'moment';
+import React, { Component } from 'react'
+import API from '../utils/API'
+import Loader from '../components/Loader'
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
+import Modal from 'react-bootstrap/Modal'
+import Tab from 'react-bootstrap/Tab'
+import Tabs from 'react-bootstrap/Tabs'
+import moment from 'moment'
 import { LinkContainer } from 'react-router-bootstrap'
 import formatPrice from '../utils/formatPrice'
-import BootstrapTable from 'react-bootstrap-table-next';
-import paginationFactory from 'react-bootstrap-table2-paginator';
+import BootstrapTable from 'react-bootstrap-table-next'
+import paginationFactory from 'react-bootstrap-table2-paginator'
 
 class WhiteLabelCharterInquiries extends Component {
   _isMounted = false;
@@ -20,35 +20,35 @@ class WhiteLabelCharterInquiries extends Component {
   };
 
   componentDidMount() {
-    this._isMounted = true;
-    this.loadCharterInquiries();
+    this._isMounted = true
+    this.loadCharterInquiries()
   }
 
   loadCharterInquiries() {
-    let { whiteLabelName } = this.props.match.params;
+    let { whiteLabelName } = this.props.match.params
     
     API.getWhiteLabelCharterInquiries(whiteLabelName).then(res => {
       if (this._isMounted) {
-        this.setState({charterInquiries: res.data});
+        this.setState({charterInquiries: res.data})
       }
-    });
+    })
   }
 
   handleSendOrientationPacket(event) {
-    event.target.disabled = true;
-    event.target.innerText = 'Sent Orientation';
-    API.sendOrientationPacket(event.target.dataset.id);
+    event.target.disabled = true
+    event.target.innerText = 'Sent Orientation'
+    API.sendOrientationPacket(event.target.dataset.id)
   }
 
   handleSetInquiryConfirmed = event => {
-    event.target.disabled = true;
-    this.setState({});
+    event.target.disabled = true
+    this.setState({})
     API.setCharterInquiryConfirmed(event.target.dataset.id)
       .then(this.loadCharterInquiries())
   }
 
   componentWillUnmount() {
-    this._isMounted = false;
+    this._isMounted = false
   }
 
   handleSendContract=() => this.setState(Object.assign({}, this.state, {showSendContractModal: true}))
@@ -88,8 +88,8 @@ class WhiteLabelCharterInquiries extends Component {
       dataField: '_eBrochure',
       text: 'E-Brochure',
       formatter: (eBrochure) => <LinkContainer
-         to={`/e-brochure/${eBrochure._id}`}
-         className="e-brochure-link"
+        to={`/e-brochure/${eBrochure._id}`}
+        className="e-brochure-link"
       ><Button>E-Brochure</Button></LinkContainer>
     }]
     if (confirmed) {
@@ -173,4 +173,4 @@ class WhiteLabelCharterInquiries extends Component {
   }
 }
 
-export default WhiteLabelCharterInquiries;
+export default WhiteLabelCharterInquiries

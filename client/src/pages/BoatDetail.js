@@ -1,24 +1,24 @@
-import React, { Component } from "react";
-import API from "../utils/API";
-import Loader from '../components/Loader';
-import styled from "styled-components";
-import { Carousel, Accordion, Card, Button, Container, Row, Col } from 'react-bootstrap';
+import React, { Component } from 'react'
+import API from '../utils/API'
+import Loader from '../components/Loader'
+import styled from 'styled-components'
+import { Carousel, Accordion, Card, Button, Container, Row, Col } from 'react-bootstrap'
 
 const BoatImage = styled.img`
   max-height: 30rem;
   object-fit: fill;
-`;
+`
 
 class BoatDetail extends Component {
   state = {};
 
   componentDidMount() {
-    let { id } = this.props.match.params;
+    let { id } = this.props.match.params
     API.getBoat(id).then(res => {
       this.setState({
         boat: res.data
-      });
-    });
+      })
+    })
   }
 
   renderImages = images => {
@@ -27,8 +27,8 @@ class BoatDetail extends Component {
         <Carousel.Item key={`${i}`}>
           <BoatImage src={image} alt=""></BoatImage>
         </Carousel.Item>
-      );
-    });
+      )
+    })
   };
 
   showBoat = () => {
@@ -48,7 +48,7 @@ class BoatDetail extends Component {
                 </Card.Header>
                 <Accordion.Collapse eventKey="0">
                   <Card.Body>
-                    <Carousel style={{width: "540px"}}>
+                    <Carousel style={{width: '540px'}}>
                       {this.renderImages(this.state.boat.imgs)}
                     </Carousel>  
                   </Card.Body>
@@ -98,12 +98,12 @@ class BoatDetail extends Component {
       </Container>
     ) : (
       <Loader/>
-    );
+    )
   };
 
   render() {
-    return <div>{this.showBoat()}</div>;
+    return <div>{this.showBoat()}</div>
   }
 }
 
-export default BoatDetail;
+export default BoatDetail

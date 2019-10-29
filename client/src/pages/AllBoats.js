@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import API from "../utils/API";
-import styled from "styled-components";
+import React, { Component } from 'react'
+import API from '../utils/API'
+import styled from 'styled-components'
 import { LinkContainer } from 'react-router-bootstrap'
-import Zoom from "react-reveal/Zoom";
-import Button from 'react-bootstrap/Button';
-import Loader from '../components/Loader';
-import Row from 'react-bootstrap/Row';
-import EBrochureYacht from '../components/EBrochureYacht';
+import Zoom from 'react-reveal/Zoom'
+import Button from 'react-bootstrap/Button'
+import Loader from '../components/Loader'
+import Row from 'react-bootstrap/Row'
+import EBrochureYacht from '../components/EBrochureYacht'
 
 const BoatsDisplay = styled.div`
   display: grid;
@@ -15,7 +15,7 @@ const BoatsDisplay = styled.div`
   @media (max-width: 800px) {
     grid-template: 50% 50% / 100%;
   }
-`;
+`
 
 class AllBoats extends Component {
   state = {
@@ -23,21 +23,21 @@ class AllBoats extends Component {
   };
 
   componentDidMount() {
-    this.getBoats();
+    this.getBoats()
   }
 
   componentDidUpdate() {
-    this.showBoats();
+    this.showBoats()
   }
 
   getBoats = () => {
     API.getBoats(this.props).then(response => {
       if (response) {
-        this.setState({ boats: response.data });
+        this.setState({ boats: response.data })
       } else {
-        console.log("response error (╯°□°)╯︵ ┻━┻ ", response);
+        console.log('response error (╯°□°)╯︵ ┻━┻ ', response)
       }
-    });
+    })
   }
 
   deleteLink = (boat) => {
@@ -49,8 +49,8 @@ class AllBoats extends Component {
   editLink = (boat) => {
     if (!this.props.eBrochure) {
       return <LinkContainer to={`/boat/${boat._id}/edit`}  style={{marginRight: '100px'}}>
-          <Button>Modify</Button>
-        </LinkContainer>
+        <Button>Modify</Button>
+      </LinkContainer>
     }
   }
 
@@ -86,7 +86,7 @@ class AllBoats extends Component {
         )
       })
     } else {
-      return <Loader />;
+      return <Loader />
     }
   };
 
@@ -102,4 +102,4 @@ class AllBoats extends Component {
   }
 }
 
-export default AllBoats;
+export default AllBoats

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import { Redirect } from "react-router-dom";
-import Loader from '../components/Loader';
+import { Redirect } from 'react-router-dom'
+import Loader from '../components/Loader'
 
 export default class Confirm extends Component {
   
@@ -19,11 +19,11 @@ export default class Confirm extends Component {
   // 
   // where 5c40d...a9d42 is the unique id created by Mongo
   componentDidMount = () => {
-    const { id } = this.props.match.params;
+    const { id } = this.props.match.params
 
     fetch(`/api/users/confirmation/${id}`)
       .then(res => this.setState({ confirming: false }))
-      .catch(err => console.log(err));
+      .catch(err => console.log(err))
   }
 
   // While the email address is being confirmed on the server a spinner is 
@@ -32,8 +32,8 @@ export default class Confirm extends Component {
   // <Landing > component so they can confirm another email address.
   render() {
     return this.state.confirming !== true ? (
-      <Redirect to={{ pathname: "/sign-in", 
-                      state: { alert: 'Email Confirmed.' } }} />
+      <Redirect to={{ pathname: '/sign-in', 
+        state: { alert: 'Email Confirmed.' } }} />
     ) : (
       <Loader />
     )

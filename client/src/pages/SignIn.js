@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
-import SignInForm from "../components/SignInForm";
-import API from "../utils/API";
-import ls from "local-storage";
-import Alert from "../components/Alert"
-import Container from "react-bootstrap/Container"
+import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
+import SignInForm from '../components/SignInForm'
+import API from '../utils/API'
+import ls from 'local-storage'
+import Alert from '../components/Alert'
+import Container from 'react-bootstrap/Container'
 import { Link } from 'react-router-dom'
 
 class SignIn extends Component {
   state = {
-    email: "",
-    password: "",
-    validatedUser: "",
+    email: '',
+    password: '',
+    validatedUser: '',
     admin: false
   };
 
@@ -22,35 +22,35 @@ class SignIn extends Component {
   }
 
   handleSignIn = async event => {
-    event.preventDefault();
-    event.stopPropagation();
-    const { email, password } = this.state;
-    const res = await API.userSignIn({ email, password });
+    event.preventDefault()
+    event.stopPropagation()
+    const { email, password } = this.state
+    const res = await API.userSignIn({ email, password })
     if (res.message) {
       this.setState({
         alert: 'Incorrect Username Or Password',
-        password: "",
+        password: '',
         validatedUser: null,
         admin: false
       })
     } else {
-      this.setState({ validatedUser: res, admin: res.data.adminMode });
+      this.setState({ validatedUser: res, admin: res.data.adminMode })
     }
   };
 
   handleInputChange = event => {
-    const { name, value } = event.target;
+    const { name, value } = event.target
     this.setState({
       [name]: value
-    });
+    })
   };
 
   render() {
-    if (this.state.validatedUser !== "" && ls.get("user-token")) {
+    if (this.state.validatedUser !== '' && ls.get('user-token')) {
       if (this.state.admin) {
-        return <Redirect to={{ pathname: "/all-white-labels" }} />
+        return <Redirect to={{ pathname: '/all-white-labels' }} />
       } else {
-        return <Redirect to={{ pathname: "/my-white-labels" }} />
+        return <Redirect to={{ pathname: '/my-white-labels' }} />
       }
     } else {
       return <Container>
@@ -70,4 +70,4 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn;
+export default SignIn

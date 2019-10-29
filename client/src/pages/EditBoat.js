@@ -1,16 +1,16 @@
-import React, { Component } from "react"
-import YachtForm from "../components/YachtForm"
-import API from "../utils/API"
-import Loader from "../components/Loader"
-import Tab from "react-bootstrap/Tab"
-import Tabs from "react-bootstrap/Tabs"
-import Card from "react-bootstrap/Card"
+import React, { Component } from 'react'
+import YachtForm from '../components/YachtForm'
+import API from '../utils/API'
+import Loader from '../components/Loader'
+import Tab from 'react-bootstrap/Tab'
+import Tabs from 'react-bootstrap/Tabs'
+import Card from 'react-bootstrap/Card'
 import MultipleDateRangePicker from '../components/MultipleDateRangePicker'
-import moment from 'moment';
-import BootstrapTable from 'react-bootstrap-table-next';
-import paginationFactory from 'react-bootstrap-table2-paginator';
-import Button from "react-bootstrap/Button"
-import ButtonToolbar from "react-bootstrap/ButtonToolbar"
+import moment from 'moment'
+import BootstrapTable from 'react-bootstrap-table-next'
+import paginationFactory from 'react-bootstrap-table2-paginator'
+import Button from 'react-bootstrap/Button'
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 
 class EditBoat extends Component {
   state = {
@@ -22,7 +22,7 @@ class EditBoat extends Component {
     try {
       this.saveBoat()
     } catch (err) {
-      console.log("error in save boats (╯°□°)╯︵ ┻━┻ ", err)
+      console.log('error in save boats (╯°□°)╯︵ ┻━┻ ', err)
     }
   }
 
@@ -40,13 +40,13 @@ class EditBoat extends Component {
 
   saveBoat = () => {
     API.updateBoat(this.state.boat)
-    .then(res =>
-      this.setState({
-        boat: this.state.boat,
-        alert: 'Yacht Saved'
-      })
-    )
-    .catch(err => console.log("saving boat error", err))
+      .then(res =>
+        this.setState({
+          boat: this.state.boat,
+          alert: 'Yacht Saved'
+        })
+      )
+      .catch(err => console.log('saving boat error', err))
   }
 
   handleInputChange = event => {
@@ -69,32 +69,32 @@ class EditBoat extends Component {
 
   handleDeleteRange = range => {
     API.deleteUnavailableDateRange(this.state.boat, range)
-    .then(ranges => 
-      this.setState({
-        unavailableDateRanges: ranges
-      })
-    )
-    .catch(err => console.log("deleting range error", err))
+      .then(ranges => 
+        this.setState({
+          unavailableDateRanges: ranges
+        })
+      )
+      .catch(err => console.log('deleting range error', err))
   }
 
   handleAddRange = range => {
     API.addUnavailableDateRange(this.state.boat, range)
-    .then(ranges => 
-      this.setState({
-        unavailableDateRanges: ranges
-      })
-    )
-    .catch(err => console.log("adding range error", err))
+      .then(ranges => 
+        this.setState({
+          unavailableDateRanges: ranges
+        })
+      )
+      .catch(err => console.log('adding range error', err))
   }
 
   handleRefreshAvailability = (event) => {
-    event.preventDefault();
+    event.preventDefault()
     API.refreshAvailability(this.state.boat)
-    .then(ranges => 
-      this.setState({
-        unavailableDateRanges: ranges
-      }))
-    .catch(err => console.log("error loading new CYA API calendar", err))
+      .then(ranges => 
+        this.setState({
+          unavailableDateRanges: ranges
+        }))
+      .catch(err => console.log('error loading new CYA API calendar', err))
   }
 
   render() {

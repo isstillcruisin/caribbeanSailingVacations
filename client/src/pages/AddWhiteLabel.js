@@ -1,12 +1,12 @@
-import React, { Component } from "react"
-import AddWhiteLabelForm from "../components/AddWhiteLabelForm"
-import API from "../utils/API"
-import { Redirect } from "react-router-dom"
+import React, { Component } from 'react'
+import AddWhiteLabelForm from '../components/AddWhiteLabelForm'
+import API from '../utils/API'
+import { Redirect } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 
 class AddWhiteLabel extends Component {
   state = {
-    whiteLabelName: ""
+    whiteLabelName: ''
   }
 
   handleFormSubmit = event => {
@@ -14,7 +14,7 @@ class AddWhiteLabel extends Component {
     try {
       this.saveWhiteLabel()
     } catch (err) {
-      console.log("error in save White Label (╯°□°)╯︵ ┻━┻ ", err)
+      console.log('error in save White Label (╯°□°)╯︵ ┻━┻ ', err)
     }
   }
 
@@ -27,7 +27,7 @@ class AddWhiteLabel extends Component {
           saved: true
         })
       )
-      .catch(err => console.log("saving white label error", err))
+      .catch(err => console.log('saving white label error', err))
   }
 
   handleInputChange = event => {

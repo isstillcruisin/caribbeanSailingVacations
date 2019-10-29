@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import API from "../utils/API";
+import React, { Component } from 'react'
+import API from '../utils/API'
 import { Form, Col, Button, Container} from 'react-bootstrap'
 
 class ForgotPassword extends Component {
   constructor() {
-    super();
+    super()
 
     this.state = {
       email: '',
@@ -14,10 +14,10 @@ class ForgotPassword extends Component {
   }
 
   handleInputChange = event => {
-    const { name, value } = event.target;
+    const { name, value } = event.target
     this.setState({
       [name]: value
-    });
+    })
   };
 
   sendEmail = e => {
@@ -26,30 +26,30 @@ class ForgotPassword extends Component {
       this.setState({
         showError: false,
         messageFromServer: '',
-      });
+      })
     } else {
       API.resetPasswordEmail(this.state.email)
-      .then(response => {
-        if (response.data === 'email not in db') {
-          this.setState({
-            showError: true,
-            messageFromServer: '',
-          });
-        } else if (response.data === 'recovery email sent') {
-          this.setState({
-            showError: false,
-            messageFromServer: 'recovery email sent'
-          });
-        }
-      })
-      .catch(error => {
-        console.error(error.data);
-      })
+        .then(response => {
+          if (response.data === 'email not in db') {
+            this.setState({
+              showError: true,
+              messageFromServer: '',
+            })
+          } else if (response.data === 'recovery email sent') {
+            this.setState({
+              showError: false,
+              messageFromServer: 'recovery email sent'
+            })
+          }
+        })
+        .catch(error => {
+          console.error(error.data)
+        })
     }
   }
 
   render() {
-    const { messageFromServer, showNullError, showError } = this.state;
+    const { messageFromServer, showNullError, showError } = this.state
     
     return (
       <Container>
@@ -93,4 +93,4 @@ class ForgotPassword extends Component {
 
 }
 
-export default ForgotPassword;
+export default ForgotPassword

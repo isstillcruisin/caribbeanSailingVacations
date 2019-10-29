@@ -1,41 +1,41 @@
-import React, { Component } from "react";
-import AddEBrochureForm from "../components/AddEBrochureForm";
-import API from "../utils/API";
-import { Redirect } from "react-router-dom";
-import Loader from "../components/Loader";
-import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
+import React, { Component } from 'react'
+import AddEBrochureForm from '../components/AddEBrochureForm'
+import API from '../utils/API'
+import { Redirect } from 'react-router-dom'
+import Loader from '../components/Loader'
+import Card from 'react-bootstrap/Card'
+import Container from 'react-bootstrap/Container'
 
 class AddEBrochure extends Component {
   componentDidMount() {
-    let { name } = this.props.match.params;
+    let { name } = this.props.match.params
 
     API.getWhiteLabel(name).then(res => {
       API.getCurrentUser().then(res2 => {
         if (res2 && res2.data._id !== res.data._travelAgent._id) {
-          this.setState({ unauthorized: true});
+          this.setState({ unauthorized: true})
         } else {
           API.getBoats({}).then(res3 => {
             this.setState({
               whiteLabel: res.data,
               boats: res3.data,
-            });
-          });
+            })
+          })
         }
-      });
-    });
+      })
+    })
   }
 
   state = {
-    name: "",
+    name: '',
   };
 
   handleFormSubmit = event => {
-    event.preventDefault();
+    event.preventDefault()
     try {
-      this.saveEBrochure();
+      this.saveEBrochure()
     } catch (err) {
-      console.log("error in save boats (╯°□°)╯︵ ┻━┻ ", err);
+      console.log('error in save boats (╯°□°)╯︵ ┻━┻ ', err)
     }
   };
 
@@ -47,14 +47,14 @@ class AddEBrochure extends Component {
       }
     ).then((res) => {
       this.setState(Object.assign({}, this.state, {eBrochure: res.data, saved: true}))
-    });
+    })
   };
 
   handleInputChange = event => {
-    const { name, value } = event.target;
+    const { name, value } = event.target
     this.setState({
       [name]: value
-    });
+    })
   };
 
   render() {
@@ -67,8 +67,8 @@ class AddEBrochure extends Component {
     } else if (this.state.unauthorized) {
       return (<Redirect 
         to={{ 
-          pathname: `/`,
-          state: { alert: `You are not authorized to perform this action.` } 
+          pathname: '/',
+          state: { alert: 'You are not authorized to perform this action.' } 
         }} 
       />)
     } else if (this.state.whiteLabel && this.state.boats) {
@@ -88,9 +88,9 @@ class AddEBrochure extends Component {
       </Container>
       )
     } else {
-      return <Loader />;
+      return <Loader />
     }  
   }
 }
 
-export default AddEBrochure;
+export default AddEBrochure

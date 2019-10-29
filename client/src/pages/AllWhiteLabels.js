@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import API from "../utils/API";
-import Loader from "../components/Loader";
-import Card from "react-bootstrap/Card"
+import React, { Component } from 'react'
+import API from '../utils/API'
+import Loader from '../components/Loader'
+import Card from 'react-bootstrap/Card'
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
-import { Link } from "react-router-dom";
-import BootstrapTable from 'react-bootstrap-table-next';
-import paginationFactory from 'react-bootstrap-table2-paginator';
+import { Link } from 'react-router-dom'
+import BootstrapTable from 'react-bootstrap-table-next'
+import paginationFactory from 'react-bootstrap-table2-paginator'
 
 class AllWhiteLabels extends Component {
   state = {
@@ -16,8 +16,8 @@ class AllWhiteLabels extends Component {
     API.getAllWhiteLabels().then(res => {
       this.setState({
         whiteLabels: res.data
-      });
-    });
+      })
+    })
   }
 
   renderWhiteLabelTable() {
@@ -33,19 +33,19 @@ class AllWhiteLabels extends Component {
         dataField: 'name',
         text: 'Enabled?',
         formatter: (cell, row) => <BootstrapSwitchButton
-            checked={row.isConfirmed}
-            onlabel='Y'
-            offlabel='N'
-            onChange={(checked: boolean) => {
-              row.isConfirmed = checked;
-              API.updateIsConfirmed(row, checked);
-            }}
-          />
+          checked={row.isConfirmed}
+          onlabel='Y'
+          offlabel='N'
+          onChange={(checked: boolean) => {
+            row.isConfirmed = checked
+            API.updateIsConfirmed(row, checked)
+          }}
+        />
       }, {
         dataField: 'name',
         text: 'Inquiries',
         formatter: (cell) => <Link to={`/charter-inquiries/${cell}`}>Inquiries</Link> 
-      }];
+      }]
       return <BootstrapTable 
         keyField='id' 
         data={ this.state.whiteLabels } 
@@ -72,4 +72,4 @@ class AllWhiteLabels extends Component {
   }
 }
 
-export default AllWhiteLabels;
+export default AllWhiteLabels

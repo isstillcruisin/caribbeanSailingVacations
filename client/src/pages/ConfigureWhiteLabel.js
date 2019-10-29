@@ -1,43 +1,43 @@
-import React, { Component } from "react";
-import ConfigureWhiteLabelForm from "../components/ConfigureWhiteLabelForm";
-import ShowEBrochureWithModal from "../components/ShowEBrochureWithModal";
-import API from "../utils/API";
-import { Redirect } from "react-router-dom";
+import React, { Component } from 'react'
+import ConfigureWhiteLabelForm from '../components/ConfigureWhiteLabelForm'
+import ShowEBrochureWithModal from '../components/ShowEBrochureWithModal'
+import API from '../utils/API'
+import { Redirect } from 'react-router-dom'
 import Loader from '../components/Loader'
-import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
-import Tab from "react-bootstrap/Tab"
-import Tabs from "react-bootstrap/Tabs"
+import Card from 'react-bootstrap/Card'
+import Container from 'react-bootstrap/Container'
+import Tab from 'react-bootstrap/Tab'
+import Tabs from 'react-bootstrap/Tabs'
 import { LinkContainer } from 'react-router-bootstrap'
-import { Table, Button } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap'
 
 class ConfigureWhiteLabel extends Component {
   state = {saved: true};
 
   componentDidMount() {
-    let { name } = this.props.match.params;
+    let { name } = this.props.match.params
     API.getWhiteLabel(name).then(res => {
       API.getCurrentUser().then(res2 => {
         if (res2 && res2.data._id !== res.data._travelAgent._id) {
-          this.setState({ unauthorized: true});
+          this.setState({ unauthorized: true})
         } else {
-          this.setState({ whiteLabel: res.data});
+          this.setState({ whiteLabel: res.data})
         }
-      });
-    });
+      })
+    })
   }
 
   handleFormSubmit = event => {
-    event.preventDefault();
+    event.preventDefault()
     try {
-      this.saveWhiteLabel();
+      this.saveWhiteLabel()
     } catch (err) {
-      console.log("error in save White Label (╯°□°)╯︵ ┻━┻ ", err);
+      console.log('error in save White Label (╯°□°)╯︵ ┻━┻ ', err)
     }
   };
 
   saveWhiteLabel = event => {
-    event.preventDefault();
+    event.preventDefault()
     API.saveWhiteLabel(this.state.whiteLabel)
       .then(res =>
         this.setState({
@@ -45,17 +45,17 @@ class ConfigureWhiteLabel extends Component {
           saved: true
         })
       )
-      .catch(err => console.log("saving white label error", err));
+      .catch(err => console.log('saving white label error', err))
   };
 
   handleInputChange = event => {
-    const { name, value } = event.target;
+    const { name, value } = event.target
     var newWhiteLabel = Object.assign({}, this.state.whiteLabel)
-    newWhiteLabel[name] = value;
+    newWhiteLabel[name] = value
     this.setState({
       whiteLabel: newWhiteLabel,
       saved: false
-    });
+    })
   };
 
   renderAllEBrochureRows = (whiteLabel) => {
@@ -82,15 +82,15 @@ class ConfigureWhiteLabel extends Component {
           <ShowEBrochureWithModal eBrochure={eBrochure} />
         </td>
       </tr>
-    });
+    })
   }
 
   render() {
     if (this.state.unauthorized) {
       return (<Redirect 
         to={{ 
-          pathname: `/`,
-          state: { alert: `You are not authorized to perform this action.` } 
+          pathname: '/',
+          state: { alert: 'You are not authorized to perform this action.' } 
         }} 
       />)
     } else if (this.state.whiteLabel) {
@@ -137,9 +137,9 @@ class ConfigureWhiteLabel extends Component {
         </Tabs>
       </Container>)
     } else {
-      return <Loader />;
+      return <Loader />
     }
   }
 }
 
-export default ConfigureWhiteLabel;
+export default ConfigureWhiteLabel

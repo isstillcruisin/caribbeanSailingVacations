@@ -1,15 +1,15 @@
-import React, { Component } from "react"
-import SignUpForm from "../components/SignUpForm"
-import { Redirect } from "react-router-dom"
-import API from "../utils/API"
-import _ from "lodash"
-import validateEmails from "../utils/validateEmails"
+import React, { Component } from 'react'
+import SignUpForm from '../components/SignUpForm'
+import { Redirect } from 'react-router-dom'
+import API from '../utils/API'
+import _ from 'lodash'
+import validateEmails from '../utils/validateEmails'
 import Container from 'react-bootstrap/Container'
 
 class SignUp extends Component {
   state = {
-    email: "",
-    password: "",
+    email: '',
+    password: '',
     firstName: '',
     lastName: '',
     isAdmin: false,
@@ -17,15 +17,15 @@ class SignUp extends Component {
   };
 
   handleSignUp = async event => {
-    event.preventDefault();
-    console.log("event (╯°□°)╯︵ ┻━┻ ", event.data);
+    event.preventDefault()
+    console.log('event (╯°□°)╯︵ ┻━┻ ', event.data)
     try {
-      let newUser = await this.saveUser();
+      let newUser = await this.saveUser()
       if (newUser) {
-        this.setState({done: true});
+        this.setState({done: true})
       }
     } catch (error) {
-      console.log("error (╯°□°)╯︵ ┻━┻ ", error.message);
+      console.log('error (╯°□°)╯︵ ┻━┻ ', error.message)
     }
   };
 
@@ -36,36 +36,36 @@ class SignUp extends Component {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       isAdmin: false
-    });
+    })
   };
 
   validate(value) {
-    const errors = {};
+    const errors = {}
 
-    errors.recipients = validateEmails(value.recipients || "");
+    errors.recipients = validateEmails(value.recipients || '')
 
     _.each(value, ({ name }) => {
       if (!value[name]) {
-        errors[name] = "Value is required";
+        errors[name] = 'Value is required'
       }
-    });
+    })
 
-    return errors;
+    return errors
   }
 
   handleInputChange = event => {
-    const { name, value } = event.target;
+    const { name, value } = event.target
     this.setState({
       [name]: value
-    });
+    })
   };
 
   render() {
     return this.state.done === true ? (
       <Redirect 
         to={{ 
-          pathname: "/sign-in",
-          state: { alert: "Please check your email account for an email to verify your address." } 
+          pathname: '/sign-in',
+          state: { alert: 'Please check your email account for an email to verify your address.' } 
         }} 
       />
     ) : (
@@ -78,8 +78,8 @@ class SignUp extends Component {
           password={this.state.password}
         />
       </Container>
-    );
+    )
   }
 }
 
-export default SignUp;
+export default SignUp
