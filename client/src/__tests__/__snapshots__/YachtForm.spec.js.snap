@@ -55,7 +55,7 @@ exports[`YachtForm component Matches the snapshot 1`] = `
         placeholder="4-30"
         required={true}
         type="number"
-        value="10"
+        value={10}
       />
       <label
         htmlFor="year"
@@ -71,7 +71,7 @@ exports[`YachtForm component Matches the snapshot 1`] = `
         placeholder="2009"
         required={true}
         type="number"
-        value="1999"
+        value={1999}
       />
       <label
         htmlFor="manufacture"
@@ -157,11 +157,9 @@ exports[`YachtForm component Matches the snapshot 1`] = `
         </p>
       </div>
       <div>
-        <div>
-          <div
-            className="image-thumbnails"
-          />
-        </div>
+        <div
+          className="image-thumbnails"
+        />
       </div>
     </div>
     <div

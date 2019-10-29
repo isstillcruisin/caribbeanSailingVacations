@@ -31,6 +31,53 @@ exports[`ConfigureWhiteLabelForm component Matches the snapshot 1`] = `
           >
             <label
               className="form-label"
+              htmlFor="formGridTitle"
+            >
+              White Label Title
+            </label>
+            <input
+              className="form-control"
+              id="formGridTitle"
+              name="title"
+              placeholder="White Label Title"
+            />
+          </div>
+        </div>
+        <div
+          className="form-row"
+        >
+          <div
+            className="form-group col"
+          >
+            <label
+              className="form-label"
+              htmlFor="formGridTitle"
+            >
+              <b>
+                About Us
+              </b>
+               Text 
+              <i>
+                (This is the text that will show on the ABOUT section of an E-Brochure under this white label.)
+              </i>
+            </label>
+            <textarea
+              className="form-control"
+              id="formGridTitle"
+              name="aboutText"
+              placeholder="'About Us' Text"
+              rows="3"
+            />
+          </div>
+        </div>
+        <div
+          className="form-row"
+        >
+          <div
+            className="form-group col"
+          >
+            <label
+              className="form-label"
               htmlFor="formGridCompanyName"
             >
               Company Name
@@ -167,11 +214,9 @@ exports[`ConfigureWhiteLabelForm component Matches the snapshot 1`] = `
               </p>
             </div>
             <div>
-              <div>
-                <div
-                  className="image-thumbnails"
-                />
-              </div>
+              <div
+                className="image-thumbnails"
+              />
             </div>
           </div>
         </div>
