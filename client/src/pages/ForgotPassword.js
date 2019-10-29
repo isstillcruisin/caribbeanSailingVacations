@@ -77,7 +77,7 @@ class ForgotPassword extends Component {
         {showError && (
           <div>
             <p>
-              That email address isn't recognized. Please try again or register for a new account.
+              That email address is invalid or not recognized. Please try again or register for a new account.
             </p>
           </div>
         )}
