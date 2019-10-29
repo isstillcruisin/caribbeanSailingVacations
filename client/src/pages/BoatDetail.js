@@ -2,7 +2,14 @@ import React, { Component } from 'react'
 import API from '../utils/API'
 import Loader from '../components/Loader'
 import styled from 'styled-components'
-import { Carousel, Accordion, Card, Button, Container, Row, Col } from 'react-bootstrap'
+import Carousel from 'react-bootstrap/Carousel'
+import Accordion from 'react-bootstrap/Accordion'
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import PropTypes from 'prop-types'
 
 const BoatImage = styled.img`
   max-height: 30rem;
@@ -104,6 +111,14 @@ class BoatDetail extends Component {
   render() {
     return <div>{this.showBoat()}</div>
   }
+}
+
+BoatDetail.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }),
 }
 
 export default BoatDetail
