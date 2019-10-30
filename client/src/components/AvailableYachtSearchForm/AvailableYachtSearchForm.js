@@ -32,7 +32,7 @@ class AvailableYachtSearchForm extends Component {
   }
 
   componentDidUpdate = () => {
-    if (!this.state.startDate && !this.state.endDate && !this.state.numPasssengers) {
+    if (!this.state.startDate && !this.state.endDate && !this.state.numPasssengers && this.props.filters.startDate) {
       this.setState(this.props.filters)
     }
   }
