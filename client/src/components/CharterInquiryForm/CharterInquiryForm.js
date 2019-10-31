@@ -97,7 +97,7 @@ class CharterInquiryForm extends Component {
                     Number of Passengers (max: {this.props.yacht.maxPassengers})
                   </Form.Label>
                   <Col xs={9}>
-                    <Form.Control type='number' placeholder={`Number of Passengers (max: ${this.props.yacht.maxPassengers})`} name='numberOfPassengers' onChange={this.props.handleInputChange}  />
+                    <Form.Control type='number' placeholder={`Number of Passengers (max: ${this.props.yacht.maxPassengers})`} name='numberOfPassengers' value={this.props.numberOfPassengers} onChange={this.props.handleInputChange}  />
                   </Col>
                 </Form.Row>
                 <Form.Row controlid='dates'>
@@ -177,6 +177,7 @@ CharterInquiryForm.propTypes = {
   handleInputChange: PropTypes.func,
   handleDateRangeChange: PropTypes.func,
   handleSubmitInquiry: PropTypes.func,
+  numberOfPassengers: PropTypes.number,
 }
 
 export default CharterInquiryForm

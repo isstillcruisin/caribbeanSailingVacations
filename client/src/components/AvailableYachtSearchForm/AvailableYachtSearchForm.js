@@ -18,9 +18,13 @@ class AvailableYachtSearchForm extends Component {
 
   handleInputChange = event => {
     const { name, value } = event.target
-    this.setState({
-      [name]: value,
-    })
+    if (name === 'numPassengers') {
+      this.setState({numPassengers: Number.parseInt(value)})
+    } else {
+      this.setState({
+        [name]: value,
+      })
+    }
   }
 
   handleStartDateChange = (day) => {

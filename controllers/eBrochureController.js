@@ -95,7 +95,7 @@ module.exports = {
           return new Promise(resolve => {
             db.UnavailableDateRange.find({ _yacht: { _id: yacht._id } })
               .then(dbDateRanges => {
-                if ((yacht.maxPassengers >= req.body.numPassengers) &&
+                if ((yacht.maxPassengers >= req.body.numberOfPassengers) &&
                   !(dbDateRanges.find(range => {
                     return !(
                       (startDate < range.from && endDate < range.from) ||

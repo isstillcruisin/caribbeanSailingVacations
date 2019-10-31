@@ -116,7 +116,7 @@ class CharterInquiry extends Component {
         whiteLabel={this.props.eBrochure._whiteLabel} 
         yacht={this.props.yacht} 
         estimatedPrice={this.state.estimatedPrice} 
-        numberOfPassengers={this.state.numberOfPassengers || this.props.filters.numberOfPassengers}
+        numberOfPassengers={this.state.numberOfPassengers || this.props.filters.numPassengers}
         month={this.props.filters.startDate || new Date()}
         handleInputChange={this.handleInputChange} 
         handleSubmitInquiry={this.handleSubmitInquiry} 
