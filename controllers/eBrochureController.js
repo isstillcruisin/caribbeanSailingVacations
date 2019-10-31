@@ -1,6 +1,7 @@
 const db = require('../models')
 const keys = require('../config/keys')
 const Mailer = require('../routes/services/Mailer')
+const { doesADateRangeOverlap } = require('../util/tools')
 module.exports = {
   create: function (req, res) {
     const eBrochure = {
@@ -95,13 +96,9 @@ module.exports = {
           return new Promise(resolve => {
             db.UnavailableDateRange.find({ _yacht: { _id: yacht._id } })
               .then(dbDateRanges => {
-                if ((yacht.maxPassengers >= req.body.numberOfPassengers) &&
-                  !(dbDateRanges.find(range => {
-                    return !(
-                      (startDate < range.from && endDate < range.from) ||
-                          (endDate > range.to && startDate > range.to)
-                    )
-                  }))
+                if (
+                  req.body.numPassengers <= yacht.maxPassengers
+                  && !doesADateRangeOverlap(dbDateRanges, startDate, endDate)
                 ) {
                   availableYachts.push(yacht)
                 }
