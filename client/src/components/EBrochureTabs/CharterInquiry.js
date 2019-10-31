@@ -13,7 +13,6 @@ class CharterInquiry extends Component {
         disableSubmit: true,
         submitText: 'Fill All Entry Fields' ,
         unavailableDateRanges: ranges,
-        estimatedPrice: this.calculateEstimatedPrice(this.props.filters.startDate, this.props.filters.endDate)
       })
     })
   }
@@ -31,7 +30,6 @@ class CharterInquiry extends Component {
           firstName: '',
           lastName: '',
           numberOfPassengers: null,
-          estimatedPrice: null,
           startDate: null,
           endDate: null,
         })
@@ -51,7 +49,7 @@ class CharterInquiry extends Component {
       lastName: this.state.lastName,
       startDate: this.state.startDate || this.props.filters.startDate,
       endDate: this.state.endDate || this.props.filters.endDate,
-      estimatedPrice: this.state.estimatedPrice,
+      estimatedPrice: this.calculateEstimatedPrice(this.state.startDate || this.props.filters.startDate, this.state.endDate || this.props.filters.endDate),
       numberOfPassengers: this.state.numberOfPassengers || this.prop.filters.numPassengers,
     })
   };
