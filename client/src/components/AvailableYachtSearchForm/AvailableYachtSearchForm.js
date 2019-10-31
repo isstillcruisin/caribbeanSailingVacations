@@ -55,7 +55,7 @@ class AvailableYachtSearchForm extends Component {
 
   render() {
     return (
-      <Container className='mb-2 zindex-100'>
+      <Container className='mb-3 zindex-100'>
         <Form>
           <Row>
             <Col xs={3} className='text-left'>
@@ -70,8 +70,8 @@ class AvailableYachtSearchForm extends Component {
               <div className='text-left'>Passengers</div>
               <Form.Control name='numPassengers' type='number' value={this.state.numPassengers} onChange={this.handleInputChange} />
             </Col>
-            <Col xs={3} className='mt-4'>
-              <Button onClick={this.handleSearchForAvailableYachts}>Search</Button>
+            <Col xs={3} className='mt-2'>
+              <Button className='btn-lg btn-success' onClick={this.handleSearchForAvailableYachts}>Search</Button>
             </Col>
           </Row> 
         </Form>
