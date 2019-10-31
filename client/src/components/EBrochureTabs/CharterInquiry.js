@@ -11,8 +11,9 @@ class CharterInquiry extends Component {
     API.getUnavailableDateRanges(this.props.yacht._id).then(ranges => {
       this.setState({
         disableSubmit: true,
-        submitText: 'Fill All Entry Fields',
+        submitText: 'Fill All Entry Fields' ,
         unavailableDateRanges: ranges,
+        estimatedPrice: this.calculateEstimatedPrice(this.props.filters.startDate, this.props.filters.endDate)
       })
     })
   }
@@ -48,10 +49,10 @@ class CharterInquiry extends Component {
       email: this.state.email,
       firstName: this.state.firstName,
       lastName: this.state.lastName,
-      startDate: this.state.startDate,
-      endDate: this.state.endDate,
+      startDate: this.state.startDate || this.props.filters.startDate,
+      endDate: this.state.endDate || this.props.filters.endDate,
       estimatedPrice: this.state.estimatedPrice,
-      numberOfPassengers: this.state.numberOfPassengers,
+      numberOfPassengers: this.state.numberOfPassengers || this.prop.filters.numPassengers,
     })
   };
 
@@ -71,7 +72,15 @@ class CharterInquiry extends Component {
   }
 
   applyChangesAndValidateInquiry = (changes) => {
-    let newState = Object.assign({}, this.state, changes)
+    let newState = Object.assign({}, 
+                                {
+                                  startDate: this.props.filters.startDate, 
+                                  endDate: this.props.filters.endDate, 
+                                  numberOfPassengers: this.props.filters.numPassengers
+                                }, 
+                                this.state, 
+                                changes)
+    console.log("*****", newState)
     if (newState.email && newState.firstName && newState.lastName && newState.startDate && newState.endDate && newState.numberOfPassengers) {
       this.setState(Object.assign({}, newState, {
         alert: '',
@@ -102,7 +111,7 @@ class CharterInquiry extends Component {
 
   handleDateRangeChange = ({ from, to }) => {
     if (from && to) {
-      this.applyChangesAndValidateInquiry({ startDate: from, endDate: to, estimatedPrice: this.calculateEstimatedPrice(from, to) })
+      this.applyChangesAndValidateInquiry({ startDate: from, endDate: to})
     } else {
       this.setState({startDate: from})
     }
@@ -115,7 +124,7 @@ class CharterInquiry extends Component {
       return <CharterInquiryForm
         whiteLabel={this.props.eBrochure._whiteLabel} 
         yacht={this.props.yacht} 
-        estimatedPrice={this.state.estimatedPrice} 
+        estimatedPrice={this.calculateEstimatedPrice(this.state.startDate || this.props.filters.startDate, this.state.endDate || this.props.filters.endDate)} 
         numberOfPassengers={this.state.numberOfPassengers || this.props.filters.numPassengers}
         month={this.props.filters.startDate || new Date()}
         handleInputChange={this.handleInputChange} 
