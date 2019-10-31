@@ -72,7 +72,7 @@ class EBrochure extends Component {
                       onCharterYacht={this.handleCharterYacht} 
                       filters={this.state.filters}
                       handleSearch={this.handleFilterAndShowYachts}
-                      yachts={this.state.yachts}                      
+                      yachts={this.state.yachts}                   
                     />
                   </Tab.Pane>
                   <Tab.Pane eventKey="destinations">
@@ -83,7 +83,7 @@ class EBrochure extends Component {
                   </Tab.Pane>
                   {this.state.eBrochure.yachts.map(yacht => (
                     <Tab.Pane eventKey={`charter-inquiry-${yacht._id}`} key={`charter-inquiry-${yacht._id}`}>
-                      <CharterInquiry eBrochure={this.state.eBrochure} yacht={yacht}/>
+                      <CharterInquiry eBrochure={this.state.eBrochure} yacht={yacht} filters={this.state.filters}/>
                     </Tab.Pane>
                   ))}
                 </Tab.Content>

@@ -116,8 +116,8 @@ class CharterInquiry extends Component {
         whiteLabel={this.props.eBrochure._whiteLabel} 
         yacht={this.props.yacht} 
         estimatedPrice={this.state.estimatedPrice} 
-        numberOfPassengers={this.state.numberOfPassengers}
-        month={new Date()}
+        numberOfPassengers={this.state.numberOfPassengers || this.props.filters.numberOfPassengers}
+        month={this.props.filters.startDate || new Date()}
         handleInputChange={this.handleInputChange} 
         handleSubmitInquiry={this.handleSubmitInquiry} 
         handleDateRangeChange={this.handleDateRangeChange}
@@ -128,8 +128,8 @@ class CharterInquiry extends Component {
         handleBack={this.handleBack}
         unavailableDateRanges={this.state.unavailableDateRanges}
         eBrochure={this.props.eBrochure}
-        startDate={this.state.startDate}
-        endDate={this.state.endDate}
+        startDate={this.state.startDate || this.props.filters.startDate}
+        endDate={this.state.endDate || this.props.filters.endDate}
       />
     }
   };
@@ -154,6 +154,7 @@ CharterInquiry.propTypes = {
     pricePerWeek: PropTypes.number,
     maxPassengers: PropTypes.number,
   }),
+  filters: PropTypes.object,
 }
 
 export default CharterInquiry
