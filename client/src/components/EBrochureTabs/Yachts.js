@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Row from 'react-bootstrap/Row'
+import Container from 'react-bootstrap/Container'
 import EBrochureYacht from '../EBrochureYacht'
 import AvailableYachtSearchForm from '../AvailableYachtSearchForm'
 import PropTypes from 'prop-types'
@@ -7,7 +8,9 @@ import PropTypes from 'prop-types'
 class Yachts extends Component {
   showYachts = (yachts) => {
     if (yachts.length === 0) {
-      return <h3>No Yachts Match Your Selected Dates And Number Of Passengers</h3>
+      return  <Container>
+        <p className='text-left'>No Yachts Match Your Selected Dates And Number Of Passengers</p>
+      </Container>
     } else {
       return yachts.map((yacht, i) => {
         return <div key={i} style={{display: 'flex', flexDirection: 'column', height: '500px'}}>
