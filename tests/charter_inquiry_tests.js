@@ -105,7 +105,23 @@ describe('CharterInquiries', () => {
       });
   }
 
-  const checkFakeInquiries = (unconfirmedCount, confirmedCount, done) => {
+  const anObjectIncludesEachTest = (array, testArray) => {
+    testArray.forEach(test => {
+      test.should.satisfy(testObject => {
+        return !!array.find(object => {
+          foundAll = true
+          Object.keys(testObject).forEach(key => {
+            if (object[key] !== testObject[key]) {
+              foundAll = false
+            } 
+          })
+          return foundAll
+        })
+      })
+    })
+  }
+
+  const checkFakeInquiries = (unconfirmed, confirmed, done) => {
     getToken('michaelarick+travelagent@gmail.com', 'Testing123')
       .then(token => {
         getCharterInquiries(token)
@@ -113,9 +129,11 @@ describe('CharterInquiries', () => {
             res.should.have.status(200)
             res.body.should.be.a('object')
             res.body.confirmed.should.be.a('array')
-            res.body.confirmed.should.have.lengthOf(confirmedCount)
+            res.body.confirmed.should.have.lengthOf(confirmed.length)
             res.body.unconfirmed.should.be.a('array')
-            res.body.unconfirmed.should.have.lengthOf(unconfirmedCount)
+            res.body.unconfirmed.should.have.lengthOf(unconfirmed.length)
+            anObjectIncludesEachTest(res.body.unconfirmed, unconfirmed)
+            anObjectIncludesEachTest(res.body.confirmed, confirmed)
             done()
           })
       })
@@ -124,7 +142,7 @@ describe('CharterInquiries', () => {
   describe('GET /api/charterinquiries/:whiteLabelName', () => {
     // Test to get all charter inquiries for a white label
     it('should get all charter inquiry records when logged in', (done) => {
-      checkFakeInquiries(0, 0, done)
+      checkFakeInquiries([], [], done)
     });
 
     it('should return 401 when not logged in', (done) => {
@@ -145,7 +163,16 @@ describe('CharterInquiries', () => {
             .then(dbYacht => {
               makeCreateRequest(dbEBrochure, dbYacht)
                 .then(() => {
-                  checkFakeInquiries(1, 0, done);
+                  checkFakeInquiries([{
+                    firstName: 'Fake',
+                    lastName: 'Person',
+                    email: 'foo@bizzle.co',
+                    estimatedPrice: 99999.99,
+                    numberOfPassengers: 5,
+                    confirmed: false,
+                    sentPreferencesEmail: false,
+                    sentOrientationEmail: false,
+                  }], [], done);
                 })
             })
         })
