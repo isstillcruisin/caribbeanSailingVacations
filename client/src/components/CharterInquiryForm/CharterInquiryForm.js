@@ -9,6 +9,7 @@ import DatePickerWithBlackoutDates from '../DatePickerWithBlackoutDates'
 import formatPrice from '../../utils/formatPrice'
 import Alert from '../Alert'
 import PropTypes from 'prop-types'
+import BoatDetailDisplay from '../../components/BoatDetailDisplay'
 
 class CharterInquiryForm extends Component {
   renderEstimatedPrice=() => {
@@ -59,17 +60,12 @@ class CharterInquiryForm extends Component {
     return (
       <Row className='bg-lightgreen'>
         <Col>
-          <Carousel>
-            {this.renderImages(this.props.yacht.imgs)}
-          </Carousel>
+          <BoatDetailDisplay boat={this.props.yacht} />
         </Col>
         <Col style={{flexGrow: '2'}}>
           <p>To inquire about chartering this yacht, please fill out the following form and an email will be sent to your Travel Agent,&nbsp;
             {this.props.whiteLabel._travelAgent.firstName} {this.props.whiteLabel._travelAgent.lastName}: </p>
           <Card style={{color: 'black'}}>
-            <Card.Header>
-              <h3 className='text-left'>Book now:</h3>
-            </Card.Header>
             <Card.Body>
               <Alert alert={this.props.alert} />
               <Form>
