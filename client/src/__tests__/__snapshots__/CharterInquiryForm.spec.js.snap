@@ -8,53 +8,209 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
     className="col"
   >
     <div
-      className="carousel slide"
-      onKeyDown={[Function]}
-      onMouseOut={[Function]}
-      onMouseOver={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
+      className="bg-lightgreen card"
+      style={
+        Object {
+          "width": "600px",
+        }
+      }
     >
-      <ol
-        className="carousel-indicators"
-      />
       <div
-        className="carousel-inner"
-      />
-      <a
-        className="carousel-control-prev"
-        href="#"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
+        className="card-header"
       >
-        <span
-          aria-hidden="true"
-          className="carousel-control-prev-icon"
-        />
-        <span
-          className="sr-only"
-        >
-          Previous
-        </span>
-      </a>
-      <a
-        className="carousel-control-next"
-        href="#"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
+        <h3>
+          Yacht: 
+          <i>
+            test boat
+          </i>
+        </h3>
+      </div>
+      <div
+        className="card-body"
       >
-        <span
-          aria-hidden="true"
-          className="carousel-control-next-icon"
-        />
-        <span
-          className="sr-only"
+        <div
+          className="accordion"
         >
-          Next
-        </span>
-      </a>
+          <div
+            className="card"
+          >
+            <div
+              className="card-header"
+            >
+              <button
+                className="btn btn-link"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                Images
+              </button>
+            </div>
+            <div
+              aria-expanded={null}
+              className="collapse show"
+            >
+              <div
+                className="card-body"
+              >
+                <div
+                  className="carousel slide"
+                  onKeyDown={[Function]}
+                  onMouseOut={[Function]}
+                  onMouseOver={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchStart={[Function]}
+                  style={
+                    Object {
+                      "width": "540px",
+                    }
+                  }
+                >
+                  <ol
+                    className="carousel-indicators"
+                  />
+                  <div
+                    className="carousel-inner"
+                  />
+                  <a
+                    className="carousel-control-prev"
+                    href="#"
+                    onClick={[Function]}
+                    onKeyDown={[Function]}
+                    role="button"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="carousel-control-prev-icon"
+                    />
+                    <span
+                      className="sr-only"
+                    >
+                      Previous
+                    </span>
+                  </a>
+                  <a
+                    className="carousel-control-next"
+                    href="#"
+                    onClick={[Function]}
+                    onKeyDown={[Function]}
+                    role="button"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="carousel-control-next-icon"
+                    />
+                    <span
+                      className="sr-only"
+                    >
+                      Next
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="card"
+          >
+            <div
+              className="card-header"
+            >
+              <button
+                className="btn btn-link"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                Specification
+              </button>
+            </div>
+            <div
+              aria-expanded={null}
+              className="collapse"
+            >
+              <div
+                className="card-body"
+              >
+                <div
+                  className="row"
+                >
+                  <div
+                    className="col-3"
+                  >
+                    Price Per Week
+                  </div>
+                  <div
+                    className="col"
+                  >
+                    $10,000
+                  </div>
+                </div>
+                <div
+                  className="row"
+                >
+                  <div
+                    className="col-3"
+                  >
+                    Max Passengers
+                  </div>
+                  <div
+                    className="col"
+                  />
+                </div>
+                <div
+                  className="row"
+                >
+                  <div
+                    className="col-3"
+                  >
+                    Year
+                  </div>
+                  <div
+                    className="col"
+                  />
+                </div>
+                <div
+                  className="row"
+                >
+                  <div
+                    className="col-3"
+                  >
+                    Manufacture
+                  </div>
+                  <div
+                    className="col"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="card"
+          >
+            <div
+              className="card-header"
+            >
+              <button
+                className="btn btn-link"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                Crew Biography
+              </button>
+            </div>
+            <div
+              aria-expanded={null}
+              className="collapse"
+            >
+              <div
+                className="card-body"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div
@@ -80,15 +236,6 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
         }
       }
     >
-      <div
-        className="card-header"
-      >
-        <h3
-          className="text-left"
-        >
-          Book now:
-        </h3>
-      </div>
       <div
         className="card-body"
       >
