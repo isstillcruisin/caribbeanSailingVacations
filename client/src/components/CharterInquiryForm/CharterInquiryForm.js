@@ -44,18 +44,6 @@ class CharterInquiryForm extends Component {
     }
   }
 
-  renderImages = images => {
-    return images && images.map((image, i) => {
-      const imageParts = image.split('/upload/'),
-        imgUrl = `${imageParts[0]}/upload/w_500,h_300,c_fill/${imageParts[1]}`
-      return (
-        <Carousel.Item key={`${i+1}`}>
-          <img src={imgUrl} alt="" className='d-block' />
-        </Carousel.Item>
-      )
-    })
-  }
-
   render() {
     return (
       <Row className='bg-lightgreen'>
