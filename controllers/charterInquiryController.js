@@ -91,31 +91,42 @@ module.exports = {
   },
 
   confirm: function (req, res) {
-    db.CharterInquiry.findOneAndUpdate(
-      { _id: req.params.id },
-      { confirmed: true }
-    )
+    db.CharterInquiry.findOne({ _id: req.params.id })
       .populate({
         path: '_whiteLabel',
         populate: { path: '_travelAgent' }
       })
-      .populate('_yacht')
-      .then((dbCharterInquiry) => {
-        const ta = dbCharterInquiry._whiteLabel._travelAgent
-        const subject = 'Yacht Charter Confirmed'
-        const mailer = new Mailer(
-          subject,
-          [{ email: dbCharterInquiry.email }],
-          `Dear ${dbCharterInquiry.firstName} ${dbCharterInquiry.lastName},` +
-          '<br><br>Congratulations! The dates you requested have been reserved and all parties have signed the contract!</br></br>' +
-          `<br>Yacht: ${dbCharterInquiry._yacht.boatName}</br>` +
-          `<br>Dates: ${moment(dbCharterInquiry.startDate).format('LL')} - ${moment(dbCharterInquiry.endDate).format('LL')}` +
-          `<br><br>Thanks,<br><br>${ta.firstName} ${ta.lastName}`
-        )
-        mailer
-          .send()
-          .then(() => { res.status(200).send({ }) })
-          .catch(error => console.error(error.toString()))
+      .then(dbCharterInquiry => {
+        if (req.user && req.user.id === dbCharterInquiry._whiteLabel._travelAgent._id.toString()) {
+          db.CharterInquiry.findOneAndUpdate(
+            { _id: req.params.id },
+            { confirmed: true }
+          )
+            .populate({
+              path: '_whiteLabel',
+              populate: { path: '_travelAgent' }
+            })
+            .populate('_yacht')
+            .then((dbCharterInquiry2) => {
+              const ta = dbCharterInquiry2._whiteLabel._travelAgent
+              const subject = 'Yacht Charter Confirmed'
+              const mailer = new Mailer(
+                subject,
+                [{ email: dbCharterInquiry2.email }],
+                `Dear ${dbCharterInquiry2.firstName} ${dbCharterInquiry2.lastName},` +
+                '<br><br>Congratulations! The dates you requested have been reserved and all parties have signed the contract!</br></br>' +
+                `<br>Yacht: ${dbCharterInquiry2._yacht.boatName}</br>` +
+                `<br>Dates: ${moment(dbCharterInquiry2.startDate).format('LL')} - ${moment(dbCharterInquiry2.endDate).format('LL')}` +
+                `<br><br>Thanks,<br><br>${ta.firstName} ${ta.lastName}`
+              )
+              mailer
+                .send()
+                .then(() => res.status(200).send({ }))
+                .catch(error => console.error(error.toString()))
+            })
+        } else {
+          res.status(401).json('Unauthorized')
+        }
       })
   }
 }

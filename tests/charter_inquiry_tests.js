@@ -3,6 +3,7 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const app = require('../index');
 const db = require("../models");
+const nock = require('nock');
 
 // Configure chai
 chai.use(chaiHttp);
@@ -69,6 +70,12 @@ describe('CharterInquiries', () => {
       })
   })
 
+  const mockSendgrid = () => {
+    nock('https://api.sendgrid.com')
+      .post('/v3/mail/send')
+      .reply(200, {})    
+  }
+
   const getCharterInquiries = (token) => {
     let promise = chai.request(app)
       .get('/api/charterinquiries/fakeWhiteLabel');
@@ -78,31 +85,42 @@ describe('CharterInquiries', () => {
     return promise.send()
   }
 
+  const confirmCharterInquiry = (charterInquiry, token) => {
+    let promise = chai.request(app)
+      .get(`/api/charterinquiries/confirm/${charterInquiry._id}`);
+    if (token) {
+      promise = promise.set({'Authorization': `Bearer ${token}`});
+    }
+    mockSendgrid();
+    return promise.send()
+  }
+
   const makeCreateRequest = (eBrochure, yacht) => {
-      let promise = chai.request(app)
-            .post('/api/charterinquiries')
-            .type('form');
-      return promise.send({
-        firstName: 'Fake',
-        lastName: 'Person',
-        startDate: new Date(),
-        endDate: new Date(),
-        email: 'foo@bizzle.co',
-        estimatedPrice: 99999.99,
-        numberOfPassengers: 5,
-        confirmed: false,
-        sentPreferencesEmail: false,
-        sentOrientationEmail: false,
-        eBrochure: { 
-          _id: eBrochure._id.toString(), 
-          _whiteLabel: {
-            _id: eBrochure._whiteLabel._id.toString()
-          }
-        },
-        yacht: { 
-          _id: yacht._id.toString() 
+    let promise = chai.request(app)
+          .post('/api/charterinquiries')
+          .type('form');
+    mockSendgrid();
+    return promise.send({
+      firstName: 'Fake',
+      lastName: 'Person',
+      startDate: new Date(),
+      endDate: new Date(),
+      email: 'foo@bizzle.co',
+      estimatedPrice: 99999.99,
+      numberOfPassengers: 5,
+      confirmed: false,
+      sentPreferencesEmail: false,
+      sentOrientationEmail: false,
+      eBrochure: { 
+        _id: eBrochure._id.toString(), 
+        _whiteLabel: {
+          _id: eBrochure._whiteLabel._id.toString()
         }
-      });
+      },
+      yacht: { 
+        _id: yacht._id.toString() 
+      }
+    });
   }
 
   const anObjectIncludesEachTest = (array, testArray) => {
@@ -121,28 +139,28 @@ describe('CharterInquiries', () => {
     })
   }
 
-  const checkFakeInquiries = (unconfirmed, confirmed, done) => {
-    getToken('michaelarick+travelagent@gmail.com', 'Testing123')
-      .then(token => {
-        getCharterInquiries(token)
-          .end((err, res) => {
-            res.should.have.status(200)
-            res.body.should.be.a('object')
-            res.body.confirmed.should.be.a('array')
-            res.body.confirmed.should.have.lengthOf(confirmed.length)
-            res.body.unconfirmed.should.be.a('array')
-            res.body.unconfirmed.should.have.lengthOf(unconfirmed.length)
-            anObjectIncludesEachTest(res.body.unconfirmed, unconfirmed)
-            anObjectIncludesEachTest(res.body.confirmed, confirmed)
-            done()
-          })
+  const checkFakeInquiries = (unconfirmed, confirmed, token, done) => {
+    getCharterInquiries(token)
+      .end((err, res) => {
+        res.should.have.status(200)
+        res.body.should.be.a('object')
+        res.body.confirmed.should.be.a('array')
+        res.body.confirmed.should.have.lengthOf(confirmed.length)
+        res.body.unconfirmed.should.be.a('array')
+        res.body.unconfirmed.should.have.lengthOf(unconfirmed.length)
+        anObjectIncludesEachTest(res.body.unconfirmed, unconfirmed)
+        anObjectIncludesEachTest(res.body.confirmed, confirmed)
+        done()
       })
   }
 
   describe('GET /api/charterinquiries/:whiteLabelName', () => {
     // Test to get all charter inquiries for a white label
     it('should get all charter inquiry records when logged in', (done) => {
-      checkFakeInquiries([], [], done)
+      getToken('michaelarick+travelagent@gmail.com', 'Testing123')
+        .then(token => {
+          checkFakeInquiries([], [], token, done)
+        })
     });
 
     it('should return 401 when not logged in', (done) => {
@@ -155,7 +173,7 @@ describe('CharterInquiries', () => {
   });
 
   describe('POST /api/charterinquiries', () => {
-    it('should add a charter inquiry', (done) => {
+    it('should add a charter inquiry', done => {
       db.EBrochure.findOne({ name: 'FakeEBrochure'})
         .populate('_whiteLabel')
         .then(dbEBrochure => {
@@ -163,16 +181,70 @@ describe('CharterInquiries', () => {
             .then(dbYacht => {
               makeCreateRequest(dbEBrochure, dbYacht)
                 .then(() => {
-                  checkFakeInquiries([{
-                    firstName: 'Fake',
-                    lastName: 'Person',
-                    email: 'foo@bizzle.co',
-                    estimatedPrice: 99999.99,
-                    numberOfPassengers: 5,
-                    confirmed: false,
-                    sentPreferencesEmail: false,
-                    sentOrientationEmail: false,
-                  }], [], done);
+                  getToken('michaelarick+travelagent@gmail.com', 'Testing123')
+                    .then(token => {
+                      checkFakeInquiries([{
+                        firstName: 'Fake',
+                        lastName: 'Person',
+                        email: 'foo@bizzle.co',
+                        estimatedPrice: 99999.99,
+                        numberOfPassengers: 5,
+                        confirmed: false,
+                        sentPreferencesEmail: false,
+                        sentOrientationEmail: false,
+                      }], [], token, done);
+                    })
+                })
+            })
+        })
+    })
+  })
+
+  describe('GET /api/charterinquiries/confirm/:id', () => {
+    it('should set a charter inquiry as confirmed', done => {
+      db.EBrochure.findOne({ name: 'FakeEBrochure'})
+        .populate('_whiteLabel')
+        .then(dbEBrochure => {
+          db.Boat.findOne({ boatName: 'FakeBoat' })
+            .then(dbYacht => {
+              db.CharterInquiry.findOne({ firstName: 'Fake', lastName: 'Person'})
+                .then(dbCharterInquiry => {
+                  getToken('michaelarick+travelagent@gmail.com', 'Testing123')
+                    .then(token => {
+                      confirmCharterInquiry(dbCharterInquiry, token)
+                        .then(() => {
+                          checkFakeInquiries([],
+                            [{
+                              firstName: 'Fake',
+                              lastName: 'Person',
+                              email: 'foo@bizzle.co',
+                              estimatedPrice: 99999.99,
+                              numberOfPassengers: 5,
+                              confirmed: true,
+                              sentPreferencesEmail: false,
+                              sentOrientationEmail: false,
+                            }], token, done
+                          )
+                        })
+                    })
+                })
+            })
+        })
+    })
+
+    it('should return a 401 when not logged in at all', done => {
+      db.EBrochure.findOne({ name: 'FakeEBrochure'})
+        .populate('_whiteLabel')
+        .then(dbEBrochure => {
+          db.Boat.findOne({ boatName: 'FakeBoat' })
+            .then(dbYacht => {
+              db.CharterInquiry.findOne({ firstName: 'Fake', lastName: 'Person'})
+                .then(dbCharterInquiry => {
+                  confirmCharterInquiry(dbCharterInquiry, null)
+                    .end((err, res) => {
+                      res.should.have.status(401);
+                      done();
+                    })
                 })
             })
         })
