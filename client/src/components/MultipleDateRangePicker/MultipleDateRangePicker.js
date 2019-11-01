@@ -112,7 +112,7 @@ class MultipleDateRangePicker extends Component {
 }
 
 MultipleDateRangePicker.propTypes = {
-  ranges: PropTypes.array(PropTypes.shape({
+  ranges: PropTypes.arrayOf(PropTypes.shape({
     from: PropTypes.string,
     to: PropTypes.string,
   })),
