@@ -33,7 +33,7 @@ module.exports = {
     })
       .populate('_travelAgent')
       .then((dbWhiteLabel) => {
-        if (req.user.id === dbWhiteLabel._travelAgent._id.toString() || req.user.isAdmin) {
+        if (req.user && (req.user.id === dbWhiteLabel._travelAgent._id.toString() || req.user.isAdmin)) {
           db.CharterInquiry.find({
             _whiteLabel: dbWhiteLabel._id
           })
