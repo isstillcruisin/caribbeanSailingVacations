@@ -63,30 +63,38 @@ module.exports = {
         path: '_whiteLabel',
         populate: { path: '_travelAgent' }
       })
-      .populate('_yacht')
       .then(dbCharterInquiry => {
-      // Send the orientation email
-        const ta = dbCharterInquiry._whiteLabel._travelAgent
-        const subject = 'Yacht Charter Orientation'
-        const mailer = new Mailer(
-          subject,
-          [{ email: dbCharterInquiry.email }],
-          `Dear ${dbCharterInquiry.firstName} ${dbCharterInquiry.lastName},\n\n` +
-          '<br><br>Congratulations on your scheduled Yacht Charter! \n' +
-          `<br>Please download and read the material in this orientation PDF:\n ${ORIENTATION_PDF_URL}` +
-          `<br><br>Thanks,<br><br>${ta.firstName} ${ta.lastName}` +
-          `<br><br>${ta.email}</br></br>`
-        )
-        mailer
-          .send()
-          .then(() => {
-            db.CharterInquiry.findOneAndUpdate({ _id: req.params.id }, { sentOrientationEmail: true })
-              .then(() => {
-                res.status(200).send({ })
-              })
-              .catch(error => res.status(422).json(error))
-          })
-          .catch(error => res.status(422).json(error))
+        if (req.user && req.user.id === dbCharterInquiry._whiteLabel._travelAgent._id.toString()) {
+          db.CharterInquiry.findOneAndUpdate(
+            { _id: req.params.id },
+            { sentOrientationEmail: true }
+          )
+            .populate({
+              path: '_whiteLabel',
+              populate: { path: '_travelAgent' }
+            })
+            .populate('_yacht')
+            .then((dbCharterInquiry2) => {
+              // Send the orientation email
+              const ta = dbCharterInquiry2._whiteLabel._travelAgent
+              const subject = 'Yacht Charter Orientation'
+              const mailer = new Mailer(
+                subject,
+                [{ email: dbCharterInquiry2.email }],
+                `Dear ${dbCharterInquiry2.firstName} ${dbCharterInquiry2.lastName},\n\n` +
+                '<br><br>Congratulations on your scheduled Yacht Charter! \n' +
+                `<br>Please download and read the material in this orientation PDF:\n ${ORIENTATION_PDF_URL}` +
+                `<br><br>Thanks,<br><br>${ta.firstName} ${ta.lastName}` +
+                `<br><br>${ta.email}</br></br>`
+              )
+              mailer
+                .send()
+                .then(() => res.status(200).send({ }))
+              .catch(error => console.error(error.toString()))
+            })
+        } else {
+          res.status(401).json('Unauthorized')
+        }
       })
   },
 
@@ -108,6 +116,7 @@ module.exports = {
             })
             .populate('_yacht')
             .then((dbCharterInquiry2) => {
+              //Send the "confirmed" email
               const ta = dbCharterInquiry2._whiteLabel._travelAgent
               const subject = 'Yacht Charter Confirmed'
               const mailer = new Mailer(

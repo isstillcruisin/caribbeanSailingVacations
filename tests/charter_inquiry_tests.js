@@ -95,6 +95,17 @@ describe('CharterInquiries', () => {
     return promise.send()
   }
 
+  const sendCharterInquiryOrientation = (charterInquiry, token) => {
+     let promise = chai.request(app)
+      .get(`/api/charterinquiries/orientation/${charterInquiry._id}`);
+    if (token) {
+      promise = promise.set({'Authorization': `Bearer ${token}`});
+    }
+    mockSendgrid();
+    return promise.send()
+  }
+
+
   const makeCreateRequest = (eBrochure, yacht) => {
     let promise = chai.request(app)
           .post('/api/charterinquiries')
@@ -241,6 +252,57 @@ describe('CharterInquiries', () => {
               db.CharterInquiry.findOne({ firstName: 'Fake', lastName: 'Person'})
                 .then(dbCharterInquiry => {
                   confirmCharterInquiry(dbCharterInquiry, null)
+                    .end((err, res) => {
+                      res.should.have.status(401);
+                      done();
+                    })
+                })
+            })
+        })
+    })
+  })
+
+  describe('GET /api/charterinquiries/orientation/:id', () => {
+    it('should set a charter inquiry as sentOrientationEmail', done => {
+       db.EBrochure.findOne({ name: 'FakeEBrochure'})
+        .populate('_whiteLabel')
+        .then(dbEBrochure => {
+          db.Boat.findOne({ boatName: 'FakeBoat' })
+            .then(dbYacht => {
+              db.CharterInquiry.findOne({ firstName: 'Fake', lastName: 'Person'})
+                .then(dbCharterInquiry => {
+                  getToken('michaelarick+travelagent@gmail.com', 'Testing123')
+                    .then(token => {
+                      sendCharterInquiryOrientation(dbCharterInquiry, token)
+                        .then(() => {
+                          checkFakeInquiries([],
+                            [{
+                              firstName: 'Fake',
+                              lastName: 'Person',
+                              email: 'foo@bizzle.co',
+                              estimatedPrice: 99999.99,
+                              numberOfPassengers: 5,
+                              confirmed: true,
+                              sentPreferencesEmail: false,
+                              sentOrientationEmail: true,
+                            }], token, done
+                          )
+                        })
+                    })
+                })
+            })
+        })
+    })
+
+    it('should return a 401 when not logged in at all', done => {
+      db.EBrochure.findOne({ name: 'FakeEBrochure'})
+        .populate('_whiteLabel')
+        .then(dbEBrochure => {
+          db.Boat.findOne({ boatName: 'FakeBoat' })
+            .then(dbYacht => {
+              db.CharterInquiry.findOne({ firstName: 'Fake', lastName: 'Person'})
+                .then(dbCharterInquiry => {
+                  sendCharterInquiryOrientation(dbCharterInquiry, null)
                     .end((err, res) => {
                       res.should.have.status(401);
                       done();
