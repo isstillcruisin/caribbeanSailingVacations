@@ -9,6 +9,17 @@ const testutils = require('./testutils')
 chai.use(chaiHttp)
 chai.should()
 
+const EXPECTED_INQUIRY = {
+  firstName: 'Fake',
+  lastName: 'Person',
+  email: 'foo@bizzle.co',
+  estimatedPrice: 99999.99,
+  numberOfPassengers: 5,
+  confirmed: false,
+  sentPreferencesEmail: false,
+  sentOrientationEmail: false
+}
+
 describe('CharterInquiries', () => {
   before(function (done) {
     testutils.setupUserThroughEBrochure(done)
@@ -52,27 +63,23 @@ describe('CharterInquiries', () => {
       .post('/api/charterinquiries')
       .type('form')
     testutils.mockSendgrid()
-    return promise.send({
-      firstName: 'Fake',
-      lastName: 'Person',
-      startDate: new Date(),
-      endDate: new Date(),
-      email: 'foo@bizzle.co',
-      estimatedPrice: 99999.99,
-      numberOfPassengers: 5,
-      confirmed: false,
-      sentPreferencesEmail: false,
-      sentOrientationEmail: false,
-      eBrochure: {
-        _id: eBrochure._id.toString(),
-        _whiteLabel: {
-          _id: eBrochure._whiteLabel._id.toString()
+    return promise.send(
+      Object.assign(
+        {}, 
+        EXPECTED_INQUIRY,
+        {
+          eBrochure: {
+            _id: eBrochure._id.toString(),
+            _whiteLabel: {
+              _id: eBrochure._whiteLabel._id.toString()
+            }
+          },
+          yacht: {
+            _id: yacht._id.toString()
+          }
         }
-      },
-      yacht: {
-        _id: yacht._id.toString()
-      }
-    })
+      )
+    )
   }
 
   const anObjectIncludesEachTest = (array, testArray) => {
@@ -135,16 +142,7 @@ describe('CharterInquiries', () => {
                 .then(() => {
                   testutils.getToken(testutils.FAKE_TA.email, testutils.FAKE_TA.password)
                     .then(token => {
-                      checkFakeInquiries([{
-                        firstName: 'Fake',
-                        lastName: 'Person',
-                        email: 'foo@bizzle.co',
-                        estimatedPrice: 99999.99,
-                        numberOfPassengers: 5,
-                        confirmed: false,
-                        sentPreferencesEmail: false,
-                        sentOrientationEmail: false
-                      }], [], token, done)
+                      checkFakeInquiries([EXPECTED_INQUIRY], [], token, done)
                     })
                 })
             })
@@ -165,17 +163,11 @@ describe('CharterInquiries', () => {
                     .then(token => {
                       confirmCharterInquiry(dbCharterInquiry, token)
                         .then(() => {
-                          checkFakeInquiries([],
-                            [{
-                              firstName: 'Fake',
-                              lastName: 'Person',
-                              email: 'foo@bizzle.co',
-                              estimatedPrice: 99999.99,
-                              numberOfPassengers: 5,
-                              confirmed: true,
-                              sentPreferencesEmail: false,
-                              sentOrientationEmail: false
-                            }], token, done
+                          checkFakeInquiries(
+                            [],
+                            [Object.assign({}, EXPECTED_INQUIRY, {confirmed: true})], 
+                            token, 
+                            done
                           )
                         })
                     })
@@ -216,17 +208,11 @@ describe('CharterInquiries', () => {
                     .then(token => {
                       sendCharterInquiryOrientation(dbCharterInquiry, token)
                         .then(() => {
-                          checkFakeInquiries([],
-                            [{
-                              firstName: 'Fake',
-                              lastName: 'Person',
-                              email: 'foo@bizzle.co',
-                              estimatedPrice: 99999.99,
-                              numberOfPassengers: 5,
-                              confirmed: true,
-                              sentPreferencesEmail: false,
-                              sentOrientationEmail: true
-                            }], token, done
+                          checkFakeInquiries(
+                            [],
+                            [Object.assign({}, EXPECTED_INQUIRY, {confirmed: true, sentOrientationEmail: true})], 
+                            token, 
+                            done
                           )
                         })
                     })
