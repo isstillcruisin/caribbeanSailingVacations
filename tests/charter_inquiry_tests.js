@@ -3,76 +3,20 @@ const chai = require('chai')
 const chaiHttp = require('chai-http')
 const app = require('../index')
 const db = require('../models')
-const nock = require('nock')
+const testutils = require('./testutils')
 
 // Configure chai
 chai.use(chaiHttp)
 chai.should()
-describe('CharterInquiries', () => {
-  const getToken = (email, password) => {
-    const userCredentials = {
-      email: email,
-      password: password
-    }
-    return chai.request(app)
-      .post('/api/users/signin')
-      .type('form')
-      .send(userCredentials)
-      .then(function (res) {
-        return res.body.token
-      })
-  }
 
+describe('CharterInquiries', () => {
   before(function (done) {
-    db.User.findOne({ email: 'michaelarick+travelagent@gmail.com' })
-      .then(ta => {
-        db.WhiteLabel.create({
-          name: 'fakeWhiteLabel',
-          isConfirmed: true,
-          _travelAgent: ta
-        })
-          .then(dbWhiteLabel => {
-            db.Boat.create({
-              boatName: 'FakeBoat',
-              year: 1999,
-              maxPassengers: 5,
-              manufacture: 'Anything',
-              crewBio: 'No Bio Needed',
-              pricePerWeek: 30000,
-              cyaId: 123
-            })
-              .then(dbYacht => {
-                db.EBrochure.create({
-                  name: 'FakeEBrochure',
-                  _whiteLabel: dbWhiteLabel,
-                  isConfirmed: true,
-                  yachts: [dbYacht]
-                })
-                  .then(() => done())
-              })
-          })
-      })
+    testutils.setupUserThroughEBrochure(done)
   })
 
   after(function (done) {
-    db.CharterInquiry.deleteMany({ firstName: 'Fake', lastName: 'Person' })
-      .then(() => {
-        db.EBrochure.deleteMany({ name: 'FakeEBrochure' })
-          .then(() => {
-            db.Boat.deleteMany({ boatName: 'FakeBoat' })
-              .then(() => {
-                db.WhiteLabel.deleteMany({ name: 'fakeWhiteLabel' })
-                  .then(() => done())
-              })
-          })
-      })
+    testutils.teardownEBrochureThroughUser(done)
   })
-
-  const mockSendgrid = () => {
-    nock('https://api.sendgrid.com')
-      .post('/v3/mail/send')
-      .reply(200, {})
-  }
 
   const getCharterInquiries = (token) => {
     let promise = chai.request(app)
@@ -89,7 +33,7 @@ describe('CharterInquiries', () => {
     if (token) {
       promise = promise.set({ Authorization: `Bearer ${token}` })
     }
-    mockSendgrid()
+    testutils.mockSendgrid()
     return promise.send()
   }
 
@@ -99,7 +43,7 @@ describe('CharterInquiries', () => {
     if (token) {
       promise = promise.set({ Authorization: `Bearer ${token}` })
     }
-    mockSendgrid()
+    testutils.mockSendgrid()
     return promise.send()
   }
 
@@ -107,7 +51,7 @@ describe('CharterInquiries', () => {
     const promise = chai.request(app)
       .post('/api/charterinquiries')
       .type('form')
-    mockSendgrid()
+    testutils.mockSendgrid()
     return promise.send({
       firstName: 'Fake',
       lastName: 'Person',
@@ -165,7 +109,7 @@ describe('CharterInquiries', () => {
   describe('GET /api/charterinquiries/:whiteLabelName', () => {
     // Test to get all charter inquiries for a white label
     it('should get all charter inquiry records when logged in', (done) => {
-      getToken('michaelarick+travelagent@gmail.com', 'Testing123')
+      testutils.getToken(testutils.FAKE_TA.email, testutils.FAKE_TA.password)
         .then(token => {
           checkFakeInquiries([], [], token, done)
         })
@@ -189,7 +133,7 @@ describe('CharterInquiries', () => {
             .then(dbYacht => {
               makeCreateRequest(dbEBrochure, dbYacht)
                 .then(() => {
-                  getToken('michaelarick+travelagent@gmail.com', 'Testing123')
+                  testutils.getToken(testutils.FAKE_TA.email, testutils.FAKE_TA.password)
                     .then(token => {
                       checkFakeInquiries([{
                         firstName: 'Fake',
@@ -217,7 +161,7 @@ describe('CharterInquiries', () => {
             .then(dbYacht => {
               db.CharterInquiry.findOne({ firstName: 'Fake', lastName: 'Person' })
                 .then(dbCharterInquiry => {
-                  getToken('michaelarick+travelagent@gmail.com', 'Testing123')
+                  testutils.getToken(testutils.FAKE_TA.email, testutils.FAKE_TA.password)
                     .then(token => {
                       confirmCharterInquiry(dbCharterInquiry, token)
                         .then(() => {
@@ -268,7 +212,7 @@ describe('CharterInquiries', () => {
             .then(dbYacht => {
               db.CharterInquiry.findOne({ firstName: 'Fake', lastName: 'Person' })
                 .then(dbCharterInquiry => {
-                  getToken('michaelarick+travelagent@gmail.com', 'Testing123')
+                  testutils.getToken(testutils.FAKE_TA.email, testutils.FAKE_TA.password)
                     .then(token => {
                       sendCharterInquiryOrientation(dbCharterInquiry, token)
                         .then(() => {
