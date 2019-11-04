@@ -106,6 +106,7 @@ class MultipleDateRangePicker extends Component {
         selectedDays={[...this.props.ranges,from, { from, to }]}
         modifiers={modifiers}
         onDayClick={this.handleDayClick}
+        fromMonth={new Date()}
       />
     </div>
   }

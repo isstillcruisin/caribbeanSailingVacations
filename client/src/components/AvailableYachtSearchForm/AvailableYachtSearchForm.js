@@ -50,6 +50,7 @@ class AvailableYachtSearchForm extends Component {
       name='startDate'
       value={this.state[name]}
       onDayChange={onDayChange}
+      dayPickerProps={{fromMonth: new Date()}}
     />
   )
 
