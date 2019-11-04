@@ -11,10 +11,11 @@ describe('doesADateRangeOverlap', () => {
 
   it('returns true if the startDate is between the start and end of a range', (done) => {
     const ranges = [{
-      from: moment().subtract(1, 'days').toDate(), 
+      from: moment().subtract(1, 'days').toDate(),
       to: moment().add(1, 'days').toDate()
-    }],
-    startDate = new Date()
+    }]
+
+    const startDate = new Date()
     let endDate = moment().toDate()
     expect(doesADateRangeOverlap(ranges, startDate, endDate)).to.equal(true)
     endDate = moment().add(1, 'days').toDate()
@@ -26,10 +27,11 @@ describe('doesADateRangeOverlap', () => {
 
   it('returns true if the endDate is between the start and end of a range', (done) => {
     const ranges = [{
-      from: moment().subtract(1, 'days').toDate(), 
+      from: moment().subtract(1, 'days').toDate(),
       to: moment().add(1, 'days').toDate()
-    }],
-    endDate = new Date()
+    }]
+
+    const endDate = new Date()
     let startDate = moment().toDate()
     expect(doesADateRangeOverlap(ranges, startDate, endDate)).to.equal(true)
     startDate = moment().subtract(1, 'days').toDate()
@@ -41,22 +43,26 @@ describe('doesADateRangeOverlap', () => {
 
   it('returns false if the startDate and endDate are both before the start and end of all ranges', (done) => {
     const ranges = [{
-      from: moment().subtract(1, 'days').toDate(), 
+      from: moment().subtract(1, 'days').toDate(),
       to: moment().add(1, 'days').toDate()
-    }],
-    startDate = moment().subtract(4, 'days').toDate(),
-    endDate = moment().subtract(3, 'days').toDate()
+    }]
+
+    const startDate = moment().subtract(4, 'days').toDate()
+
+    const endDate = moment().subtract(3, 'days').toDate()
     expect(doesADateRangeOverlap(ranges, startDate, endDate)).to.equal(false)
     done()
   })
 
   it('returns false if the startDate and endDate are both after the start and end of all ranges', (done) => {
     const ranges = [{
-      from: moment().subtract(1, 'days').toDate(), 
+      from: moment().subtract(1, 'days').toDate(),
       to: moment().add(1, 'days').toDate()
-    }],
-    startDate = moment().add(3, 'days').toDate(),
-    endDate = moment().add(4, 'days').toDate()
+    }]
+
+    const startDate = moment().add(3, 'days').toDate()
+
+    const endDate = moment().add(4, 'days').toDate()
     expect(doesADateRangeOverlap(ranges, startDate, endDate)).to.equal(false)
     done()
   })

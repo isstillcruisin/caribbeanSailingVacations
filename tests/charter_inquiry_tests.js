@@ -1,42 +1,40 @@
 // Import the dependencies for testing
-const chai = require('chai');
-const chaiHttp = require('chai-http');
-const app = require('../index');
-const db = require("../models");
-const nock = require('nock');
+const chai = require('chai')
+const chaiHttp = require('chai-http')
+const app = require('../index')
+const db = require('../models')
+const nock = require('nock')
 
 // Configure chai
-chai.use(chaiHttp);
-chai.should();
+chai.use(chaiHttp)
+chai.should()
 describe('CharterInquiries', () => {
-
   const getToken = (email, password) => {
     const userCredentials = {
-      email: email, 
+      email: email,
       password: password
     }
     return chai.request(app)
       .post('/api/users/signin')
       .type('form')
       .send(userCredentials)
-      .then(function(res){
-        return res.body.token;
-      });
-  } 
+      .then(function (res) {
+        return res.body.token
+      })
+  }
 
-
-  before(function(done) {
-    db.User.findOne({email: 'michaelarick+travelagent@gmail.com'})
+  before(function (done) {
+    db.User.findOne({ email: 'michaelarick+travelagent@gmail.com' })
       .then(ta => {
-        db.WhiteLabel.create({ 
-          name: 'fakeWhiteLabel', 
-          isConfirmed: true, 
-          _travelAgent: ta 
+        db.WhiteLabel.create({
+          name: 'fakeWhiteLabel',
+          isConfirmed: true,
+          _travelAgent: ta
         })
           .then(dbWhiteLabel => {
             db.Boat.create({
-              'boatName': 'FakeBoat',
-              'year': 1999,
+              boatName: 'FakeBoat',
+              year: 1999,
               maxPassengers: 5,
               manufacture: 'Anything',
               crewBio: 'No Bio Needed',
@@ -44,28 +42,28 @@ describe('CharterInquiries', () => {
               cyaId: 123
             })
               .then(dbYacht => {
-                db.EBrochure.create({ 
-                  name: 'FakeEBrochure', 
-                  _whiteLabel: dbWhiteLabel, 
-                  isConfirmed: true, 
-                  yachts: [dbYacht] 
+                db.EBrochure.create({
+                  name: 'FakeEBrochure',
+                  _whiteLabel: dbWhiteLabel,
+                  isConfirmed: true,
+                  yachts: [dbYacht]
                 })
-                  .then(() => done());
+                  .then(() => done())
               })
           })
       })
   })
 
-  after(function(done) {
+  after(function (done) {
     db.CharterInquiry.deleteMany({ firstName: 'Fake', lastName: 'Person' })
       .then(() => {
-        db.EBrochure.deleteMany({ name: 'FakeEBrochure'})
+        db.EBrochure.deleteMany({ name: 'FakeEBrochure' })
           .then(() => {
-            db.Boat.deleteMany({boatName: 'FakeBoat'})
+            db.Boat.deleteMany({ boatName: 'FakeBoat' })
               .then(() => {
-                db.WhiteLabel.deleteMany({name: 'fakeWhiteLabel'})
+                db.WhiteLabel.deleteMany({ name: 'fakeWhiteLabel' })
                   .then(() => done())
-              })        
+              })
           })
       })
   })
@@ -73,44 +71,43 @@ describe('CharterInquiries', () => {
   const mockSendgrid = () => {
     nock('https://api.sendgrid.com')
       .post('/v3/mail/send')
-      .reply(200, {})    
+      .reply(200, {})
   }
 
   const getCharterInquiries = (token) => {
     let promise = chai.request(app)
-      .get('/api/charterinquiries/fakeWhiteLabel');
+      .get('/api/charterinquiries/fakeWhiteLabel')
     if (token) {
-      promise = promise.set({'Authorization': `Bearer ${token}`});
+      promise = promise.set({ Authorization: `Bearer ${token}` })
     }
     return promise.send()
   }
 
   const confirmCharterInquiry = (charterInquiry, token) => {
     let promise = chai.request(app)
-      .get(`/api/charterinquiries/confirm/${charterInquiry._id}`);
+      .get(`/api/charterinquiries/confirm/${charterInquiry._id}`)
     if (token) {
-      promise = promise.set({'Authorization': `Bearer ${token}`});
+      promise = promise.set({ Authorization: `Bearer ${token}` })
     }
-    mockSendgrid();
+    mockSendgrid()
     return promise.send()
   }
 
   const sendCharterInquiryOrientation = (charterInquiry, token) => {
-     let promise = chai.request(app)
-      .get(`/api/charterinquiries/orientation/${charterInquiry._id}`);
+    let promise = chai.request(app)
+      .get(`/api/charterinquiries/orientation/${charterInquiry._id}`)
     if (token) {
-      promise = promise.set({'Authorization': `Bearer ${token}`});
+      promise = promise.set({ Authorization: `Bearer ${token}` })
     }
-    mockSendgrid();
+    mockSendgrid()
     return promise.send()
   }
 
-
   const makeCreateRequest = (eBrochure, yacht) => {
-    let promise = chai.request(app)
-          .post('/api/charterinquiries')
-          .type('form');
-    mockSendgrid();
+    const promise = chai.request(app)
+      .post('/api/charterinquiries')
+      .type('form')
+    mockSendgrid()
     return promise.send({
       firstName: 'Fake',
       lastName: 'Person',
@@ -122,16 +119,16 @@ describe('CharterInquiries', () => {
       confirmed: false,
       sentPreferencesEmail: false,
       sentOrientationEmail: false,
-      eBrochure: { 
-        _id: eBrochure._id.toString(), 
+      eBrochure: {
+        _id: eBrochure._id.toString(),
         _whiteLabel: {
           _id: eBrochure._whiteLabel._id.toString()
         }
       },
-      yacht: { 
-        _id: yacht._id.toString() 
+      yacht: {
+        _id: yacht._id.toString()
       }
-    });
+    })
   }
 
   const anObjectIncludesEachTest = (array, testArray) => {
@@ -142,7 +139,7 @@ describe('CharterInquiries', () => {
           Object.keys(testObject).forEach(key => {
             if (object[key] !== testObject[key]) {
               foundAll = false
-            } 
+            }
           })
           return foundAll
         })
@@ -172,20 +169,20 @@ describe('CharterInquiries', () => {
         .then(token => {
           checkFakeInquiries([], [], token, done)
         })
-    });
+    })
 
     it('should return 401 when not logged in', (done) => {
       getCharterInquiries(null)
         .end((err, res) => {
-          res.should.have.status(401);
-          done();          
-        });
-    });
-  });
+          res.should.have.status(401)
+          done()
+        })
+    })
+  })
 
   describe('POST /api/charterinquiries', () => {
     it('should add a charter inquiry', done => {
-      db.EBrochure.findOne({ name: 'FakeEBrochure'})
+      db.EBrochure.findOne({ name: 'FakeEBrochure' })
         .populate('_whiteLabel')
         .then(dbEBrochure => {
           db.Boat.findOne({ boatName: 'FakeBoat' })
@@ -202,8 +199,8 @@ describe('CharterInquiries', () => {
                         numberOfPassengers: 5,
                         confirmed: false,
                         sentPreferencesEmail: false,
-                        sentOrientationEmail: false,
-                      }], [], token, done);
+                        sentOrientationEmail: false
+                      }], [], token, done)
                     })
                 })
             })
@@ -213,12 +210,12 @@ describe('CharterInquiries', () => {
 
   describe('GET /api/charterinquiries/confirm/:id', () => {
     it('should set a charter inquiry as confirmed', done => {
-      db.EBrochure.findOne({ name: 'FakeEBrochure'})
+      db.EBrochure.findOne({ name: 'FakeEBrochure' })
         .populate('_whiteLabel')
         .then(dbEBrochure => {
           db.Boat.findOne({ boatName: 'FakeBoat' })
             .then(dbYacht => {
-              db.CharterInquiry.findOne({ firstName: 'Fake', lastName: 'Person'})
+              db.CharterInquiry.findOne({ firstName: 'Fake', lastName: 'Person' })
                 .then(dbCharterInquiry => {
                   getToken('michaelarick+travelagent@gmail.com', 'Testing123')
                     .then(token => {
@@ -233,7 +230,7 @@ describe('CharterInquiries', () => {
                               numberOfPassengers: 5,
                               confirmed: true,
                               sentPreferencesEmail: false,
-                              sentOrientationEmail: false,
+                              sentOrientationEmail: false
                             }], token, done
                           )
                         })
@@ -244,17 +241,17 @@ describe('CharterInquiries', () => {
     })
 
     it('should return a 401 when not logged in at all', done => {
-      db.EBrochure.findOne({ name: 'FakeEBrochure'})
+      db.EBrochure.findOne({ name: 'FakeEBrochure' })
         .populate('_whiteLabel')
         .then(dbEBrochure => {
           db.Boat.findOne({ boatName: 'FakeBoat' })
             .then(dbYacht => {
-              db.CharterInquiry.findOne({ firstName: 'Fake', lastName: 'Person'})
+              db.CharterInquiry.findOne({ firstName: 'Fake', lastName: 'Person' })
                 .then(dbCharterInquiry => {
                   confirmCharterInquiry(dbCharterInquiry, null)
                     .end((err, res) => {
-                      res.should.have.status(401);
-                      done();
+                      res.should.have.status(401)
+                      done()
                     })
                 })
             })
@@ -264,12 +261,12 @@ describe('CharterInquiries', () => {
 
   describe('GET /api/charterinquiries/orientation/:id', () => {
     it('should set a charter inquiry as sentOrientationEmail', done => {
-       db.EBrochure.findOne({ name: 'FakeEBrochure'})
+      db.EBrochure.findOne({ name: 'FakeEBrochure' })
         .populate('_whiteLabel')
         .then(dbEBrochure => {
           db.Boat.findOne({ boatName: 'FakeBoat' })
             .then(dbYacht => {
-              db.CharterInquiry.findOne({ firstName: 'Fake', lastName: 'Person'})
+              db.CharterInquiry.findOne({ firstName: 'Fake', lastName: 'Person' })
                 .then(dbCharterInquiry => {
                   getToken('michaelarick+travelagent@gmail.com', 'Testing123')
                     .then(token => {
@@ -284,7 +281,7 @@ describe('CharterInquiries', () => {
                               numberOfPassengers: 5,
                               confirmed: true,
                               sentPreferencesEmail: false,
-                              sentOrientationEmail: true,
+                              sentOrientationEmail: true
                             }], token, done
                           )
                         })
@@ -295,17 +292,17 @@ describe('CharterInquiries', () => {
     })
 
     it('should return a 401 when not logged in at all', done => {
-      db.EBrochure.findOne({ name: 'FakeEBrochure'})
+      db.EBrochure.findOne({ name: 'FakeEBrochure' })
         .populate('_whiteLabel')
         .then(dbEBrochure => {
           db.Boat.findOne({ boatName: 'FakeBoat' })
             .then(dbYacht => {
-              db.CharterInquiry.findOne({ firstName: 'Fake', lastName: 'Person'})
+              db.CharterInquiry.findOne({ firstName: 'Fake', lastName: 'Person' })
                 .then(dbCharterInquiry => {
                   sendCharterInquiryOrientation(dbCharterInquiry, null)
                     .end((err, res) => {
-                      res.should.have.status(401);
-                      done();
+                      res.should.have.status(401)
+                      done()
                     })
                 })
             })
