@@ -1,33 +1,34 @@
-import React, { Component, Suspense } from "react";
-import { Router, Switch, Route, Redirect } from "react-router-dom";
-import styled from "styled-components";
-import ls from "local-storage";
-import axios from "axios";
-import history from './history';
-import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
-import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
+import React, { Component, Suspense } from 'react'
+import { Router, Switch, Route, Redirect } from 'react-router-dom'
+import styled from 'styled-components'
+import ls from 'local-storage'
+import axios from 'axios'
+import history from './history'
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css'
+import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css'
+import PropTypes from 'prop-types'
 
-const Page = React.lazy(() => import("./components/Page"));
-const AddBoat = React.lazy(() => import("./pages/AddBoat"));
-const AllBoats = React.lazy(() => import("./pages/AllBoats"));
-const BoatDetail = React.lazy(() => import("./pages/BoatDetail"));
-const Home = React.lazy(() => import("./pages/Home"));
-const SignIn = React.lazy(() => import("./pages/SignIn"));
-const SignUp = React.lazy(() => import("./pages/SignUp"));
-const SignOut = React.lazy(() => import("./pages/SignOut"));
-const Confirm = React.lazy(() => import("./pages/Confirm"));
-const AddWhiteLabel = React.lazy(() => import("./pages/AddWhiteLabel"));
-const ConfigureWhiteLabel = React.lazy(() => import("./pages/ConfigureWhiteLabel"));
-const AllWhiteLabels =  React.lazy(() => import("./pages/AllWhiteLabels"));
-const WhiteLabelCharterInquiries = React.lazy(() => import("./pages/WhiteLabelCharterInquiries"));
-const AddEBrochure = React.lazy(() => import("./pages/AddEBrochure"));
-const EBrochure = React.lazy(() => import("./pages/EBrochure"));
-const ConfigureEBrochure = React.lazy(() => import("./pages/ConfigureEBrochure"));
-const EditBoat = React.lazy(() => import("./pages/EditBoat"));
-const MyWhiteLabels = React.lazy(() => import("./pages/MyWhiteLabels"));
-const ForgotPassword = React.lazy(() => import("./pages/ForgotPassword"));
-const ResetPassword = React.lazy(() => import("./pages/ResetPassword"));
-const ConfigureCurrentUser = React.lazy(() => import('./pages/ConfigureCurrentUser'));
+const Page = React.lazy(() => import('./components/Page'))
+const AddBoat = React.lazy(() => import('./pages/AddBoat'))
+const AllBoats = React.lazy(() => import('./pages/AllBoats'))
+const BoatDetail = React.lazy(() => import('./pages/BoatDetail'))
+const Home = React.lazy(() => import('./pages/Home'))
+const SignIn = React.lazy(() => import('./pages/SignIn'))
+const SignUp = React.lazy(() => import('./pages/SignUp'))
+const SignOut = React.lazy(() => import('./pages/SignOut'))
+const Confirm = React.lazy(() => import('./pages/Confirm'))
+const AddWhiteLabel = React.lazy(() => import('./pages/AddWhiteLabel'))
+const ConfigureWhiteLabel = React.lazy(() => import('./pages/ConfigureWhiteLabel'))
+const AllWhiteLabels =  React.lazy(() => import('./pages/AllWhiteLabels'))
+const WhiteLabelCharterInquiries = React.lazy(() => import('./pages/WhiteLabelCharterInquiries'))
+const AddEBrochure = React.lazy(() => import('./pages/AddEBrochure'))
+const EBrochure = React.lazy(() => import('./pages/EBrochure'))
+const ConfigureEBrochure = React.lazy(() => import('./pages/ConfigureEBrochure'))
+const EditBoat = React.lazy(() => import('./pages/EditBoat'))
+const MyWhiteLabels = React.lazy(() => import('./pages/MyWhiteLabels'))
+const ForgotPassword = React.lazy(() => import('./pages/ForgotPassword'))
+const ResetPassword = React.lazy(() => import('./pages/ResetPassword'))
+const ConfigureCurrentUser = React.lazy(() => import('./pages/ConfigureCurrentUser'))
 
 const Background = styled.div`
   position: absolute;
@@ -41,24 +42,24 @@ const Background = styled.div`
   min-width: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
-`;
+`
 
 axios.interceptors.request.use(function (config) {
-  const token = ls.get('user-token');
-  config.headers.Authorization =  token ? `Bearer ${token}` : '';
-  return config;
-});
+  const token = ls.get('user-token')
+  config.headers.Authorization =  token ? `Bearer ${token}` : ''
+  return config
+})
 
 axios.interceptors.response.use(response => {
-   return response;
+  return response
 }, error => {
   if (error.response.status === 401) {
     if (window.location.pathname !== '/sign-in') {
-      history.push('/');
+      history.push('/')
     }
   }
-  return error;
-});
+  return error
+})
 
 
 function AdminRoute({ component: Component, ...rest }) {
@@ -71,14 +72,19 @@ function AdminRoute({ component: Component, ...rest }) {
         ) : (
           <Redirect
             to={{
-              pathname: "/sign-in",
+              pathname: '/sign-in',
               state: { from: props.location }
             }}
           />
         )
       }
     />
-  );
+  )
+}
+
+AdminRoute.propTypes = {
+  location: PropTypes.any,
+  component: PropTypes.object.isRequired,
 }
 
 function AuthenticatedRoute({ component: Component, ...rest }) {
@@ -91,15 +97,21 @@ function AuthenticatedRoute({ component: Component, ...rest }) {
         ) : (
           <Redirect
             to={{
-              pathname: "/sign-in",
+              pathname: '/sign-in',
               state: { from: props.location }
             }}
           />
         )
       }
     />
-  );
+  )
 }
+
+AuthenticatedRoute.propTypes = {
+  location: PropTypes.any,
+  component: PropTypes.object.isRequired,
+}
+
 
 class App extends Component {
   render() {
@@ -146,8 +158,8 @@ class App extends Component {
           </Background>
         </Suspense>
       </Router>
-    );
+    )
   }
 }
 
-export default App;
+export default App

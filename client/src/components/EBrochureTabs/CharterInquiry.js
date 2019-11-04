@@ -70,15 +70,16 @@ class CharterInquiry extends Component {
   }
 
   applyChangesAndValidateInquiry = (changes) => {
-    let newState = Object.assign({}, 
-                                {
-                                  startDate: this.props.filters.startDate, 
-                                  endDate: this.props.filters.endDate, 
-                                  numberOfPassengers: this.props.filters.numPassengers
-                                }, 
-                                this.state, 
-                                changes)
-    console.log("*****", newState)
+    let newState = Object.assign(
+      {}, 
+      {
+        startDate: this.props.filters.startDate, 
+        endDate: this.props.filters.endDate, 
+        numberOfPassengers: this.props.filters.numPassengers
+      }, 
+      this.state, 
+      changes
+    )
     if (newState.email && newState.firstName && newState.lastName && newState.startDate && newState.endDate && newState.numberOfPassengers) {
       this.setState(Object.assign({}, newState, {
         alert: '',

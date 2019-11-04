@@ -94,7 +94,15 @@ class BoatDetailDisplay extends Component {
 }
 
 BoatDetailDisplay.propTypes = {
-  yacht: PropTypes.object
+  boat: PropTypes.shape({
+    boatName: PropTypes.string,
+    imgs: PropTypes.arrayOf(PropTypes.string),
+    pricePerWeek: PropTypes.number,
+    maxPassengers: PropTypes.number,
+    year: PropTypes.number,
+    manufacture: PropTypes.string,
+    crewBio: PropTypes.string,
+  })
 }
 
 export default BoatDetailDisplay
