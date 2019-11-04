@@ -90,7 +90,7 @@ module.exports = {
               mailer
                 .send()
                 .then(() => res.status(200).send({ }))
-              .catch(error => console.error(error.toString()))
+                .catch(error => console.error(error.toString()))
             })
         } else {
           res.status(401).json('Unauthorized')
@@ -116,7 +116,7 @@ module.exports = {
             })
             .populate('_yacht')
             .then((dbCharterInquiry2) => {
-              //Send the "confirmed" email
+              // Send the "confirmed" email
               const ta = dbCharterInquiry2._whiteLabel._travelAgent
               const subject = 'Yacht Charter Confirmed'
               const mailer = new Mailer(

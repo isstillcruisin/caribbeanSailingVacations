@@ -97,8 +97,8 @@ module.exports = {
             db.UnavailableDateRange.find({ _yacht: { _id: yacht._id } })
               .then(dbDateRanges => {
                 if (
-                  req.body.numPassengers <= yacht.maxPassengers
-                  && !doesADateRangeOverlap(dbDateRanges, startDate, endDate)
+                  req.body.numPassengers <= yacht.maxPassengers &&
+                  !doesADateRangeOverlap(dbDateRanges, startDate, endDate)
                 ) {
                   availableYachts.push(yacht)
                 }
