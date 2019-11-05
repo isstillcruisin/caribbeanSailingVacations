@@ -11,6 +11,11 @@ const FAKE_TA = {
   password: 'Testing123'
 }
 
+const FAKE_ADMIN = {
+  email: 'fakeadmin@faker.com',
+  password: 'Testing123'
+}
+
 const getToken = (email, password) => {
   const userCredentials = {
     email: email,
@@ -29,6 +34,24 @@ const mockSendgrid = () => {
   nock('https://api.sendgrid.com')
     .post('/v3/mail/send')
     .reply(200, {})
+}
+
+const setupAdminUser = done => {
+  db.User.create({ 
+    email: FAKE_ADMIN.email,
+    password: FAKE_ADMIN.password,
+    isAdmin: true,
+    isVerified: true,
+    firstName: 'Fake',
+    lastName: 'Admin',
+    phoneNumber: '(000)000-0000' 
+  })
+    .then(() => done())
+}
+
+const teardownAdminUser = done => { 
+  db.User.deleteMany({ email: FAKE_ADMIN.email })
+    .then(() => done())
 }
 
 const setupUserThroughEBrochure = done => {
