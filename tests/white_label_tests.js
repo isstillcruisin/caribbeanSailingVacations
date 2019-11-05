@@ -23,14 +23,6 @@ const EXPECTED_WHITE_LABEL = {
 }
 
 describe('WhiteLabels', () => {
-  before(function (done) {
-    testutils.setupUserThroughEBrochure(done)
-  })
-
-  after(function (done) {
-    testutils.teardownEBrochureThroughUser(done)
-  })
-
   const getCurrentUserWhiteLabels = (token) => {
     let promise = chai.request(app)
       .get('/api/whitelabels/forcurrentuser')
@@ -50,6 +42,15 @@ describe('WhiteLabels', () => {
         done()
       })
   }
+
+  beforeEach(function (done) {
+    testutils.setupUserThroughEBrochure(done)
+  })
+
+  afterEach(function (done) {
+    testutils.teardownEBrochureThroughUser(done)
+  })
+
 
   describe('GET /api/whitelabels/forcurrentuser', () => {
     it('should get all white labels for this travel agent when logged in', done => {

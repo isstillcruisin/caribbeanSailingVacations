@@ -5,6 +5,9 @@ const Mailer = require('../routes/services/Mailer')
 // Defining methods for the whiteLabelController
 module.exports = {
   create: function (req, res) {
+    if (!req.user) {
+      return res.status(401).json('Unauthorized')
+    }
     const whiteLabel = {
       _id: req.body._id,
       name: req.body.name,
