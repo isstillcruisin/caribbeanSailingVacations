@@ -69,6 +69,33 @@ describe('WhiteLabels', () => {
     })
   })
 
+  describe('POST /api/whitelabels', () => {
+    it('should create a new white label when logged in', done => {
+      testutils.getToken(testutils.FAKE_TA.email, testutils.FAKE_TA.password)
+        .then(token => {
+          let promise = chai.request(app)
+            .post('/api/whitelabels')
+            .type('form')
+            .set({ Authorization: `Bearer ${token}` })
+          promise.send({name: 'fakeWhiteLabel2'})
+            .then(() => {
+              checkCurrentUserWhiteLabels([{name: 'fakeWhiteLabel2'}, EXPECTED_WHITE_LABEL], token, done)
+            })
+        })
+    })
+
+    it('should return 401 when not logged in', done => {
+      let promise = chai.request(app)
+            .post('/api/whitelabels')
+            .type('form')
+      promise.send({name: 'fakeWhiteLabel2'})
+        .end((err, res) => {       
+          res.should.have.status(401)
+          done()
+        })
+    })
+  })
+
   describe('POST /api/whitelabels/update/:id', () => {
     it('should update the white label when logged in', done => {
       testutils.getToken(testutils.FAKE_TA.email, testutils.FAKE_TA.password)
