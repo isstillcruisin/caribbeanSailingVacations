@@ -3,12 +3,9 @@ import ls from 'local-storage' //MHATODO: MAKE SURE THIS IS NOT STORING THE TOKE
 
 export default {
   // Gets boats from the Node server API
-  getBoats: async function({eBrochure, whiteLabel}) {
+  getBoats: async function({eBrochure}) {
     try {
-      if (whiteLabel) {
-        const boats = await axios.get(`/api/whitelabels/${whiteLabel.name}/boats`)
-        return boats
-      } else if (eBrochure) {
+      if (eBrochure) {
         const boats = await axios.get(`/api/ebrochures/${eBrochure._id}/boats`)
         return boats   
       } {

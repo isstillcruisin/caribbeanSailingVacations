@@ -58,7 +58,7 @@ module.exports = {
 
   findByCurrentTravelAgent: function (req, res) {
     if (!req.user) {
-      return res.status(401)
+      return res.status(401).json('Unauthorized')
     }
     db.WhiteLabel.find({ _travelAgent: req.user._id })
       .then(dbWhiteLabels => res.json(dbWhiteLabels))
@@ -66,21 +66,18 @@ module.exports = {
   },
 
   update: function (req, res) {
-    db.WhiteLabel.findOneAndUpdate({ _id: req.params.id }, req.body)
-      .then(dbWhiteLabel => res.json(dbWhiteLabel))
-      .catch(err => res.status(422).json(err))
-  },
-
-  getBoats: function (req, res) {
     db.WhiteLabel.findOne({
-      name: req.params.name
+      _id: req.params.id
     })
-      .populate('yachts')
-      .then((dbWhiteLabel) => {
-        return res.json(dbWhiteLabel.yachts)
-      })
-      .catch((err) => {
-        return res.status(422).json(err)
+      .populate('_travelAgent')
+      .then(dbWhiteLabel => {
+        if (req.user && req.user.id === dbWhiteLabel._travelAgent._id.toString()) {
+          db.WhiteLabel.findOneAndUpdate({ _id: req.params.id }, req.body)
+            .then(dbWhiteLabel => res.json(dbWhiteLabel))
+            .catch(err => res.status(422).json(err))
+        } else {
+          return res.status(401).json('Unauthorized')
+        }
       })
   },
 

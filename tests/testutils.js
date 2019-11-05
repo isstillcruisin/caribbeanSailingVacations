@@ -45,6 +45,14 @@ const setupUserThroughEBrochure = done => {
       db.WhiteLabel.create({
         name: 'fakeWhiteLabel',
         isConfirmed: true,
+        companyName: 'fake company',
+        streetAddress: '123 fake street',
+        city: 'fake city',
+        state: 'FF',
+        country: 'USA',
+        zipCode: '00000',
+        title: 'The Best Fake White Label',
+        aboutText: 'THIS IS THE BEST FAKE WHITE LABEL EVER!',
         _travelAgent: ta
       })
         .then(dbWhiteLabel => {
@@ -87,6 +95,23 @@ const teardownEBrochureThroughUser = done => {
     })
 }
 
+const anObjectIncludesEachTest = (array, testArray) => {
+  testArray.forEach(test => {
+    test.should.satisfy(testObject => {
+      return !!array.find(object => {
+        foundAll = true
+        Object.keys(testObject).forEach(key => {
+          if (object[key] !== testObject[key]) {
+            foundAll = false
+          }
+        })
+        return foundAll
+      })
+    })
+  })
+}
+
+
 module.exports = { 
-  FAKE_TA, getToken, mockSendgrid, teardownEBrochureThroughUser, setupUserThroughEBrochure 
+  FAKE_TA, getToken, mockSendgrid, teardownEBrochureThroughUser, setupUserThroughEBrochure, anObjectIncludesEachTest
 }

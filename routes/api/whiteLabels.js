@@ -16,9 +16,6 @@ router.route('/forcurrentuser')
 router.route('/:name')
   .get(whiteLabelController.findByName)
 
-router.route('/:name/boats')
-  .get(whiteLabelController.getBoats)
-
 router.route('/:id/ebrochures/')
   .post(eBrochureController.create)
 

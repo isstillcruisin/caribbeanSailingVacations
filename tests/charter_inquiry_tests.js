@@ -82,22 +82,6 @@ describe('CharterInquiries', () => {
     )
   }
 
-  const anObjectIncludesEachTest = (array, testArray) => {
-    testArray.forEach(test => {
-      test.should.satisfy(testObject => {
-        return !!array.find(object => {
-          foundAll = true
-          Object.keys(testObject).forEach(key => {
-            if (object[key] !== testObject[key]) {
-              foundAll = false
-            }
-          })
-          return foundAll
-        })
-      })
-    })
-  }
-
   const checkFakeInquiries = (unconfirmed, confirmed, token, done) => {
     getCharterInquiries(token)
       .end((err, res) => {
@@ -107,8 +91,8 @@ describe('CharterInquiries', () => {
         res.body.confirmed.should.have.lengthOf(confirmed.length)
         res.body.unconfirmed.should.be.a('array')
         res.body.unconfirmed.should.have.lengthOf(unconfirmed.length)
-        anObjectIncludesEachTest(res.body.unconfirmed, unconfirmed)
-        anObjectIncludesEachTest(res.body.confirmed, confirmed)
+        testutils.anObjectIncludesEachTest(res.body.unconfirmed, unconfirmed)
+        testutils.anObjectIncludesEachTest(res.body.confirmed, confirmed)
         done()
       })
   }
