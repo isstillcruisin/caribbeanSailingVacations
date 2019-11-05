@@ -1,5 +1,6 @@
 // Import the dependencies for testing
 const chai = require('chai')
+const expect = chai.expect
 const chaiHttp = require('chai-http')
 const app = require('../index')
 const db = require('../models')
@@ -7,7 +8,6 @@ const testutils = require('./testutils')
 
 // Configure chai
 chai.use(chaiHttp)
-chai.should()
 
 const EXPECTED_WHITE_LABEL = {
   name: 'fakeWhiteLabel',
@@ -35,9 +35,9 @@ describe('WhiteLabels', () => {
   const checkCurrentUserWhiteLabels = (whiteLabels, token, done) => {
     getCurrentUserWhiteLabels(token)
       .end((err, res) => {
-        res.should.have.status(200)
-        res.body.should.be.a('array')
-        res.body.should.have.lengthOf(whiteLabels.length)
+        expect(res).to.have.status(200)
+        expect(res.body).to.be.a('array')
+        expect(res.body).to.have.lengthOf(whiteLabels.length)
         testutils.anObjectIncludesEachTest(res.body, whiteLabels)
         done()
       })
@@ -51,7 +51,6 @@ describe('WhiteLabels', () => {
     testutils.teardownEBrochureThroughUser(done)
   })
 
-
   describe('GET /api/whitelabels/forcurrentuser', () => {
     it('should get all white labels for this travel agent when logged in', done => {
       testutils.getToken(testutils.FAKE_TA.email, testutils.FAKE_TA.password)
@@ -63,7 +62,7 @@ describe('WhiteLabels', () => {
     it('should return 401 when not logged in', done => {
       getCurrentUserWhiteLabels(null)
         .end((err, res) => {
-          res.should.have.status(401)
+          expect(res).to.have.status(401)
           done()
         })
     })
@@ -73,24 +72,34 @@ describe('WhiteLabels', () => {
     it('should create a new white label when logged in', done => {
       testutils.getToken(testutils.FAKE_TA.email, testutils.FAKE_TA.password)
         .then(token => {
-          let promise = chai.request(app)
+          const promise = chai.request(app)
             .post('/api/whitelabels')
             .type('form')
             .set({ Authorization: `Bearer ${token}` })
-          promise.send({name: 'fakeWhiteLabel2'})
+
+          const nock = testutils.mockSendgrid({
+            from: { email: 'bookings@caribbeansailingvacations.com' },
+            subject: 'New White Label',
+            content: [{
+              type: 'text/html',
+              value: 'A Travel Agent has signed up for a White Label: <table><tr><td>White Label:</td><td>fakeWhiteLabel2<tr><td>Travel Agent Name:</td><td>Fake Agent</td></tr><tr><td>Travel Agent Email:</td><td>michaelarick+faketravelagent@gmail.com</td></tr></table>'
+            }]
+          })
+          promise.send({ name: 'fakeWhiteLabel2' })
             .then(() => {
-              checkCurrentUserWhiteLabels([{name: 'fakeWhiteLabel2'}, EXPECTED_WHITE_LABEL], token, done)
+              checkCurrentUserWhiteLabels([{ name: 'fakeWhiteLabel2' }, EXPECTED_WHITE_LABEL], token, done)
+              expect(nock.isDone()).to.be.true
             })
         })
     })
 
     it('should return 401 when not logged in', done => {
-      let promise = chai.request(app)
-            .post('/api/whitelabels')
-            .type('form')
-      promise.send({name: 'fakeWhiteLabel2'})
-        .end((err, res) => {       
-          res.should.have.status(401)
+      const promise = chai.request(app)
+        .post('/api/whitelabels')
+        .type('form')
+      promise.send({ name: 'fakeWhiteLabel2' })
+        .end((err, res) => {
+          expect(res).to.have.status(401)
           done()
         })
     })
@@ -103,15 +112,16 @@ describe('WhiteLabels', () => {
           getCurrentUserWhiteLabels(token)
             .then(res => {
               const whiteLabel = res.body[0]
-              let promise = chai.request(app)
+
+              const promise = chai.request(app)
                 .post(`/api/whitelabels/update/${whiteLabel._id}`)
                 .type('form')
                 .set({ Authorization: `Bearer ${token}` })
               promise.send({
-                companyName: 'fake company ALSO',
+                companyName: 'fake company ALSO'
               })
                 .then(res => {
-                  checkCurrentUserWhiteLabels([Object.assign({}, EXPECTED_WHITE_LABEL, {companyName: 'fake company ALSO'})], token, done)
+                  checkCurrentUserWhiteLabels([Object.assign({}, EXPECTED_WHITE_LABEL, { companyName: 'fake company ALSO' })], token, done)
                 })
             })
         })
@@ -121,16 +131,54 @@ describe('WhiteLabels', () => {
       testutils.getToken(testutils.FAKE_TA.email, testutils.FAKE_TA.password)
         .then(token => {
           getCurrentUserWhiteLabels(token)
-            .then( res => {
+            .then(res => {
               const whiteLabel = res.body[0]
-              let promise = chai.request(app)
+              const promise = chai.request(app)
                 .post(`/api/whitelabels/update/${whiteLabel._id}`)
                 .type('form')
               promise.send({
-                companyName: 'fake company ALSO',
+                companyName: 'fake company ALSO'
               })
-                .end((err, res) => {       
-                  res.should.have.status(401)
+                .end((err, res) => {
+                  expect(res).to.have.status(401)
+                  done()
+                })
+            })
+        })
+    })
+  })
+
+  describe('POST /api/whitelabels/:id/contact', () => {
+    it('should send the contact request to the travel agent who created the white label', done => {
+      testutils.getToken(testutils.FAKE_TA.email, testutils.FAKE_TA.password)
+        .then(token => {
+          getCurrentUserWhiteLabels(token)
+            .then(res => {
+              const whiteLabel = res.body[0]
+
+              const promise = chai.request(app)
+                .post(`/api/whitelabels/${whiteLabel._id}/contact`)
+                .type('form')
+
+              const nock = testutils.mockSendgrid({
+                subject: 'Contact Message: Fake Subject',
+                content: [
+                  {
+                    type: 'text/html',
+                    value: 'Dear Fake Agent,\n\n<br><br>You have received a message from Fake Visitor (fakevisitor@faker.com).\n<br>The message is:</br><pre>This is a fake message</pre>'
+                  }
+                ],
+                reply_to: { email: 'fakevisitor@faker.com', name: 'Fake Visitor' }
+              })
+              promise.send({
+                subject: 'Fake Subject',
+                email: 'fakevisitor@faker.com',
+                message: 'This is a fake message',
+                firstName: 'Fake',
+                lastName: 'Visitor'
+              })
+                .end((err, res) => {
+                  expect(res).to.have.status(200)
                   done()
                 })
             })

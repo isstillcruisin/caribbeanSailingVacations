@@ -3,6 +3,8 @@ const nock = require('nock')
 const chai = require('chai')
 const chaiHttp = require('chai-http')
 const app = require('../index')
+const _ = require('lodash')
+const expect = chai.expect
 
 chai.use(chaiHttp)
 
@@ -30,39 +32,41 @@ const getToken = (email, password) => {
     })
 }
 
-const mockSendgrid = () => {
-  nock('https://api.sendgrid.com')
-    .post('/v3/mail/send')
+const mockSendgrid = (expectedBody) => {
+  return nock('https://api.sendgrid.com')
+    .post('/v3/mail/send', body => {
+      return _.matches(expectedBody)(body)
+    })
     .reply(200, {})
 }
 
 const setupAdminUser = done => {
-  db.User.create({ 
+  db.User.create({
     email: FAKE_ADMIN.email,
     password: FAKE_ADMIN.password,
     isAdmin: true,
     isVerified: true,
     firstName: 'Fake',
     lastName: 'Admin',
-    phoneNumber: '(000)000-0000' 
+    phoneNumber: '(000)000-0000'
   })
     .then(() => done())
 }
 
-const teardownAdminUser = done => { 
+const teardownAdminUser = done => {
   db.User.deleteMany({ email: FAKE_ADMIN.email })
     .then(() => done())
 }
 
 const setupUserThroughEBrochure = done => {
-  db.User.create({ 
+  db.User.create({
     email: FAKE_TA.email,
     password: FAKE_TA.password,
     isAdmin: false,
     isVerified: true,
     firstName: 'Fake',
     lastName: 'Agent',
-    phoneNumber: '(000)000-0000' 
+    phoneNumber: '(000)000-0000'
   })
     .then(ta => {
       db.WhiteLabel.create({
@@ -108,10 +112,10 @@ const teardownEBrochureThroughUser = done => {
         .then(() => {
           db.Boat.deleteMany({ boatName: 'FakeBoat' })
             .then(() => {
-              db.WhiteLabel.deleteMany({ name: { $regex: /fakeWhiteLabel/ }})
+              db.WhiteLabel.deleteMany({ name: { $regex: /fakeWhiteLabel/ } })
                 .then(() => {
                   db.User.deleteMany({ email: FAKE_TA.email })
-                  .then(() => done())
+                    .then(() => done())
                 })
             })
         })
@@ -120,7 +124,7 @@ const teardownEBrochureThroughUser = done => {
 
 const anObjectIncludesEachTest = (array, testArray) => {
   testArray.forEach(test => {
-    test.should.satisfy(testObject => {
+    expect(test).to.satisfy(testObject => {
       return !!array.find(object => {
         foundAll = true
         Object.keys(testObject).forEach(key => {
@@ -134,7 +138,6 @@ const anObjectIncludesEachTest = (array, testArray) => {
   })
 }
 
-
-module.exports = { 
+module.exports = {
   FAKE_TA, getToken, mockSendgrid, teardownEBrochureThroughUser, setupUserThroughEBrochure, anObjectIncludesEachTest
 }
