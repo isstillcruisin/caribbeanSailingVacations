@@ -11,7 +11,7 @@
     "install": "cd client && yarn install;",
     "build": "cd client && yarn build",
     "heroku-postbuild": "npm run build",
-    "test": "./node_modules/mocha/bin/mocha -R min -t 10000 tests/",
+    "test": "./node_modules/mocha/bin/mocha -R min -t 10000 --exit tests/",
     "lint": "./node_modules/.bin/eslint controllers models middlewares routes scripts util tests"
   },
   "engines": {
