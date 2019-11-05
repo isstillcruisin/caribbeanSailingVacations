@@ -108,7 +108,7 @@ const teardownEBrochureThroughUser = done => {
         .then(() => {
           db.Boat.deleteMany({ boatName: 'FakeBoat' })
             .then(() => {
-              db.WhiteLabel.deleteMany({ name: 'fakeWhiteLabel' })
+              db.WhiteLabel.deleteMany({ name: { $regex: /fakeWhiteLabel/ }})
                 .then(() => {
                   db.User.deleteMany({ email: FAKE_TA.email })
                   .then(() => done())
