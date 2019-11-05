@@ -79,9 +79,7 @@ describe('WhiteLabels', () => {
               let promise = chai.request(app)
                 .post(`/api/whitelabels/update/${whiteLabel._id}`)
                 .type('form')
-              if (token) {
-                promise = promise.set({ Authorization: `Bearer ${token}` })
-              }
+                .set({ Authorization: `Bearer ${token}` })
               promise.send({
                 companyName: 'fake company ALSO',
               })
