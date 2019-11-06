@@ -18,7 +18,9 @@ const EXPECTED_INQUIRY = {
   numberOfPassengers: 5,
   confirmed: false,
   sentPreferencesEmail: false,
-  sentOrientationEmail: false
+  sentOrientationEmail: false,
+  startDate: new Date(2021, 0, 1).toISOString(), 
+  endDate: new Date(2021, 0, 7).toISOString(),
 }
 
 describe('CharterInquiries', () => {
@@ -137,7 +139,7 @@ describe('CharterInquiries', () => {
                   [
                     {
                       type: 'text/html',
-                      value: 'Dear Fake Agent:<br>You have received the following Yacht Charter Inquiry:<table><tr><td>Name:</td><td>Fake Person</td></tr><tr><td>Email:</td><td>foo@bizzle.co</td></tr><tr><td>Yacht:</td><td>FakeBoat</td></tr><tr><td>Number of Passengers:</td><td>5</td></tr><tr><td>Dates:</td><td>November 5, 2019 - November 5, 2019</td></tr><tr><tr>Price Per Week:</td><td>$30,000.00</td></tr><tr><tr>Estimated Price:</td><td>$99,999.99</td></tr></table>'
+                      value: 'Dear Fake Agent:<br>You have received the following Yacht Charter Inquiry:<table><tr><td>Name:</td><td>Fake Person</td></tr><tr><td>Email:</td><td>foo@bizzle.co</td></tr><tr><td>Yacht:</td><td>FakeBoat</td></tr><tr><td>Number of Passengers:</td><td>5</td></tr><tr><td>Dates:</td><td>January 1, 2021 - January 7, 2021</td></tr><tr><tr>Price Per Week:</td><td>$30,000.00</td></tr><tr><tr>Estimated Price:</td><td>$99,999.99</td></tr></table>'
                     }
                   ]
               })
@@ -170,7 +172,7 @@ describe('CharterInquiries', () => {
                         subject: 'Yacht Charter Confirmed',
                         content: [{
                           type: 'text/html',
-                          value: 'Dear Fake Person,<br><br>Congratulations! The dates you requested have been reserved and all parties have signed the contract!</br></br><br>Yacht: FakeBoat</br><br>Dates: November 5, 2019 - November 5, 2019<br><br>Thanks,<br><br>Fake Agent'
+                          value: 'Dear Fake Person,<br><br>Congratulations! The dates you requested have been reserved and all parties have signed the contract!</br></br><br>Yacht: FakeBoat</br><br>Dates: January 1, 2021 - January 7, 2021<br><br>Thanks,<br><br>Fake Agent'
                         }]
                       })
                       confirmCharterInquiry(dbCharterInquiry, token)
