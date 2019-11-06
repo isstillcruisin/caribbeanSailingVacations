@@ -139,13 +139,13 @@ const anObjectIncludesEachTest = (array, testArray) => {
 }
 
 module.exports = {
-  FAKE_TA, 
+  FAKE_TA,
   FAKE_ADMIN,
-  getToken, 
-  mockSendgrid, 
+  getToken,
+  mockSendgrid,
   setupAdminUser,
   teardownAdminUser,
-  teardownEBrochureThroughUser, 
-  setupUserThroughEBrochure, 
+  teardownEBrochureThroughUser,
+  setupUserThroughEBrochure,
   anObjectIncludesEachTest
 }

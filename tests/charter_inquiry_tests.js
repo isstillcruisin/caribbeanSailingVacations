@@ -19,8 +19,8 @@ const EXPECTED_INQUIRY = {
   confirmed: false,
   sentPreferencesEmail: false,
   sentOrientationEmail: false,
-  startDate: new Date(2021, 0, 1).toISOString(), 
-  endDate: new Date(2021, 0, 7).toISOString(),
+  startDate: new Date(2021, 0, 1).toISOString(),
+  endDate: new Date(2021, 0, 7).toISOString()
 }
 
 describe('CharterInquiries', () => {
