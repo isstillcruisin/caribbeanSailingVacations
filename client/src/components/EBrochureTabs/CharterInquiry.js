@@ -3,6 +3,8 @@ import API from '../../utils/API'
 import CharterInquiryForm from '../CharterInquiryForm'
 import { Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import moment from 'moment'
+
 
 class CharterInquiry extends Component {
   state = {};
@@ -96,9 +98,9 @@ class CharterInquiry extends Component {
   }
 
   calculateEstimatedPrice = (from, to) => {
-    var oneWeekInMsecs = 7*24*60*60*1000
+    var oneWeekInDays = 7.0
     if (from && to) {
-      return this.props.yacht.pricePerWeek * (to.getTime() - from.getTime())/oneWeekInMsecs
+      return this.props.yacht.pricePerWeek * moment(to).endOf('day').diff(moment(from).endOf('day').subtract(1, 'days'), 'days')/oneWeekInDays
     } else {
       return null
     }
