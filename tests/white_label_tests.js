@@ -5,12 +5,10 @@ const expect = chai.expect
 const chaiHttp = require('chai-http')
 const app = require('../index')
 const testutils = require('./testutils')
+const db = require('../models')
 
 // Configure chai
 chai.use(chaiHttp)
-
-// router.route('/:id/ebrochures/')
-//   .post(eBrochureController.create)
 
 const EXPECTED_WHITE_LABEL = {
   name: 'fakeWhiteLabel',
@@ -23,6 +21,10 @@ const EXPECTED_WHITE_LABEL = {
   zipCode: '00000',
   title: 'The Best Fake White Label',
   aboutText: 'THIS IS THE BEST FAKE WHITE LABEL EVER!'
+}
+
+const EXPECTED_EBROCHURE = {
+  name: 'FakeEBrochure2'
 }
 
 describe('WhiteLabels', () => {
@@ -262,6 +264,59 @@ describe('WhiteLabels', () => {
               promise.send({
                 companyName: 'fake company ALSO'
               })
+                .end((err, res) => {
+                  if (err) {
+                    done(err)
+                  } else {
+                    expect(res).to.have.status(401)
+                    done()
+                  }
+                })
+            })
+        })
+    })
+  })
+
+  describe('POST /api/whitelabels/:id/ebrochures', () => {
+    it('should create a new eBrochure with no selected yachts when logged in as the owner of the white label', done => {
+      testutils.getToken(testutils.FAKE_TA.email, testutils.FAKE_TA.password)
+        .then(token => {
+          getCurrentUserWhiteLabels(token)
+            .then(res => {
+              const whiteLabel = res.body[0]
+              const promise = chai.request(app)
+                .post(`/api/whitelabels/${whiteLabel._id}/ebrochures`)
+                .type('form')
+                .set({ Authorization: `Bearer ${token}` })
+              promise.send(EXPECTED_EBROCHURE)
+                .then(res => {
+                  const test = Object.assign(
+                    {},
+                    EXPECTED_EBROCHURE,
+                    { _whiteLabel: { _id: whiteLabel._id } }
+                  )
+                  db.EBrochure.findOne(test)
+                    .then((dbEBrochure) => {
+                      testutils.anObjectIncludesEachTest([dbEBrochure], [EXPECTED_EBROCHURE])
+                      done()
+                    }).catch((err) => {
+                      done(err)
+                    })
+                })
+            })
+        })
+    })
+
+    it('should return a 401 when not logged in', done => {
+      testutils.getToken(testutils.FAKE_TA.email, testutils.FAKE_TA.password)
+        .then(token => {
+          getCurrentUserWhiteLabels(token)
+            .then(res => {
+              const whiteLabel = res.body[0]
+              const promise = chai.request(app)
+                .post(`/api/whitelabels/${whiteLabel._id}/ebrochures`)
+                .type('form')
+              promise.send(EXPECTED_EBROCHURE)
                 .end((err, res) => {
                   if (err) {
                     done(err)

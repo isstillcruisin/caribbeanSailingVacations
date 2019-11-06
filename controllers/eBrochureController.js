@@ -11,9 +11,19 @@ module.exports = {
       _travelAgent: req.user,
       yachts: []
     }
-    db.EBrochure.create(eBrochure)
-      .then(dbEBrochure => res.json(dbEBrochure))
-      .catch(err => res.status(422).json(err))
+    db.WhiteLabel.findOne({
+      _id: req.params.id
+    })
+      .populate('_travelAgent')
+      .then(dbWhiteLabel => {
+        if (req.user && req.user.id === dbWhiteLabel._travelAgent._id.toString()) {
+          db.EBrochure.create(eBrochure)
+            .then(dbEBrochure => res.json(dbEBrochure))
+            .catch(err => res.status(422).json(err))
+        } else {
+          return res.status(401).json('Unauthorized')
+        }
+      })
   },
 
   findById: function (req, res) {
