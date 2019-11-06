@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 const db = require('../models')
-const keys = require('../config/keys')
 const constants = require('./constants')
 const Mailer = require('../routes/services/Mailer')
 const moment = require('moment')

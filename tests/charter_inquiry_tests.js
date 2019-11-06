@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 // Import the dependencies for testing
 const chai = require('chai')
 const chaiHttp = require('chai-http')
@@ -82,15 +83,19 @@ describe('CharterInquiries', () => {
   const checkFakeInquiries = (unconfirmed, confirmed, token, done) => {
     getCharterInquiries(token)
       .end((err, res) => {
-        expect(res).to.have.status(200)
-        expect(res.body).to.be.a('object')
-        expect(res.body.confirmed).to.be.a('array')
-        expect(res.body.confirmed).to.have.lengthOf(confirmed.length)
-        expect(res.body.unconfirmed).to.be.a('array')
-        expect(res.body.unconfirmed).to.have.lengthOf(unconfirmed.length)
-        testutils.anObjectIncludesEachTest(res.body.unconfirmed, unconfirmed)
-        testutils.anObjectIncludesEachTest(res.body.confirmed, confirmed)
-        done()
+        if (err) {
+          done(err)
+        } else {
+          expect(res).to.have.status(200)
+          expect(res.body).to.be.a('object')
+          expect(res.body.confirmed).to.be.a('array')
+          expect(res.body.confirmed).to.have.lengthOf(confirmed.length)
+          expect(res.body.unconfirmed).to.be.a('array')
+          expect(res.body.unconfirmed).to.have.lengthOf(unconfirmed.length)
+          testutils.anObjectIncludesEachTest(res.body.unconfirmed, unconfirmed)
+          testutils.anObjectIncludesEachTest(res.body.confirmed, confirmed)
+          done()
+        }
       })
   }
 
@@ -106,8 +111,12 @@ describe('CharterInquiries', () => {
     it('should return 401 when not logged in', (done) => {
       getCharterInquiries(null)
         .end((err, res) => {
-          expect(res).to.have.status(401)
-          done()
+          if (err) {
+            done(err)
+          } else {
+            expect(res).to.have.status(401)
+            done()
+          }
         })
     })
   })
@@ -190,8 +199,12 @@ describe('CharterInquiries', () => {
                 .then(dbCharterInquiry => {
                   confirmCharterInquiry(dbCharterInquiry, null)
                     .end((err, res) => {
-                      expect(res).to.have.status(401)
-                      done()
+                      if (err) {
+                        done(err)
+                      } else {
+                        expect(res).to.have.status(401)
+                        done()
+                      }
                     })
                 })
             })
@@ -244,8 +257,12 @@ describe('CharterInquiries', () => {
                 .then(dbCharterInquiry => {
                   sendCharterInquiryOrientation(dbCharterInquiry, null)
                     .end((err, res) => {
-                      expect(res).to.have.status(401)
-                      done()
+                      if (err) {
+                        done(err)
+                      } else {
+                        expect(res).to.have.status(401)
+                        done()
+                      }
                     })
                 })
             })

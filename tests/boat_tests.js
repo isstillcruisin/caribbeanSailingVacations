@@ -14,10 +14,14 @@ describe('Boats', () => {
       chai.request(app)
         .get('/api/boats')
         .end((err, res) => {
-          res.should.have.status(200)
-          res.body.should.be.a('array')
-          res.body.should.have.length(4)
-          done()
+          if (err) {
+            done(err)
+          } else {
+            res.should.have.status(200)
+            res.body.should.be.a('array')
+            res.body.should.have.length(4)
+            done()
+          }
         })
     })
     // Test to get single boat record
@@ -26,15 +30,19 @@ describe('Boats', () => {
       chai.request(app)
         .get(`/api/boats/${id}`)
         .end((err, res) => {
-          res.should.have.status(200)
-          res.body.should.be.a('object')
-          res.body.boatName.should.equal('Excess')
-          res.body.year.should.equal(2011)
-          res.body.maxPassengers.should.equal(8)
-          res.body.manufacture.should.equal('Wood and fiberglass')
-          res.body.crewBio.should.equal('There is no crew bio here, but I felt like it needed something.')
-          res.body.pricePerWeek.should.equal(20000)
-          done()
+          if (err) {
+            done(err)
+          } else {
+            res.should.have.status(200)
+            res.body.should.be.a('object')
+            res.body.boatName.should.equal('Excess')
+            res.body.year.should.equal(2011)
+            res.body.maxPassengers.should.equal(8)
+            res.body.manufacture.should.equal('Wood and fiberglass')
+            res.body.crewBio.should.equal('There is no crew bio here, but I felt like it needed something.')
+            res.body.pricePerWeek.should.equal(20000)
+            done()
+          }
         })
     })
 
@@ -44,8 +52,12 @@ describe('Boats', () => {
       chai.request(app)
         .get(`/api/boats/${id}`)
         .end((err, res) => {
-          res.should.have.status(404)
-          done()
+          if (err) {
+            done(err)
+          } else {
+            res.should.have.status(404)
+            done()
+          }
         })
     })
   })
@@ -92,8 +104,12 @@ describe('Boats', () => {
       it('should return a 401', (done) => {
         makeCreateRequest(null)
           .end(function (err, res) {
-            res.should.have.status(401)
-            done()
+            if (err) {
+              done(err)
+            } else {
+              res.should.have.status(401)
+              done()
+            }
           })
       })
     })
@@ -104,8 +120,12 @@ describe('Boats', () => {
           .then(token => {
             makeCreateRequest(token)
               .end(function (err, res) {
-                res.should.have.status(401)
-                done()
+                if (err) {
+                  done(err)
+                } else {
+                  res.should.have.status(401)
+                  done()
+                }
               })
           })
       })
@@ -117,15 +137,19 @@ describe('Boats', () => {
           .then((token) => {
             makeCreateRequest(token)
               .end(function (err, res) {
-                res.should.have.status(200)
-                res.body.should.be.a('object')
-                res.body.boatName.should.equal('FakeBoat')
-                res.body.year.should.equal(1999)
-                res.body.maxPassengers.should.equal(5)
-                res.body.manufacture.should.equal('Anything')
-                res.body.crewBio.should.equal('No Bio Needed')
-                res.body.pricePerWeek.should.equal(30000)
-                done()
+                if (err) {
+                  done(err)
+                } else {
+                  res.should.have.status(200)
+                  res.body.should.be.a('object')
+                  res.body.boatName.should.equal('FakeBoat')
+                  res.body.year.should.equal(1999)
+                  res.body.maxPassengers.should.equal(5)
+                  res.body.manufacture.should.equal('Anything')
+                  res.body.crewBio.should.equal('No Bio Needed')
+                  res.body.pricePerWeek.should.equal(30000)
+                  done()
+                }
               })
           })
       })

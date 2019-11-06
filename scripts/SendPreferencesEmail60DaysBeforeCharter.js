@@ -3,7 +3,6 @@ const mongoose = require('mongoose')
 const db = require('../models')
 const keys = require('../config/keys')
 const { sendPreferencesEmail } = require('../util/TransactionalMailer')
-const args = process.argv.slice(2)
 
 mongoose.Promise = global.Promise
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true })
