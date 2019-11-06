@@ -9,9 +9,6 @@ const testutils = require('./testutils')
 // Configure chai
 chai.use(chaiHttp)
 
-// router.route('/:name')
-//   .get(whiteLabelController.findByName)
-
 // router.route('/:id/ebrochures/')
 //   .post(eBrochureController.create)
 
@@ -62,18 +59,18 @@ describe('WhiteLabels', () => {
   })
 
   describe('GET /api/whitelabels/', () => {
-    before(function(done) {
+    before(function (done) {
       testutils.setupAdminUser(done)
     })
 
-    after(function(done) {
+    after(function (done) {
       testutils.teardownAdminUser(done)
     })
 
     it('should get all white labels when logged in as an administrator', done => {
       testutils.getToken(testutils.FAKE_ADMIN.email, testutils.FAKE_ADMIN.password)
         .then(token => {
-          let promise = chai.request(app)
+          const promise = chai.request(app)
             .get('/api/whitelabels/')
             .set({ Authorization: `Bearer ${token}` })
           promise.send()
@@ -91,7 +88,7 @@ describe('WhiteLabels', () => {
     })
 
     it('should return 401 when not logged in', done => {
-      let promise = chai.request(app)
+      const promise = chai.request(app)
         .get('/api/whitelabels/')
       promise.send()
         .end((err, res) => {
@@ -106,15 +103,23 @@ describe('WhiteLabels', () => {
   })
 
   describe('GET /api/whitelabels/:name', () => {
+    before(function (done) {
+      testutils.setupAdminUser(done)
+    })
+
+    after(function (done) {
+      testutils.teardownAdminUser(done)
+    })
+
     it('should get the named white label if logged in as the travel agent who owns the white label', done => {
       testutils.getToken(testutils.FAKE_TA.email, testutils.FAKE_TA.password)
         .then(token => {
-          let promise = chai.request(app)
+          const promise = chai.request(app)
             .get('/api/whitelabels/fakeWhiteLabel')
             .set({ Authorization: `Bearer ${token}` })
           promise.send()
             .end((err, res) => {
-               if (err) {
+              if (err) {
                 done(err)
               } else {
                 expect(res).to.have.status(200)
@@ -123,6 +128,40 @@ describe('WhiteLabels', () => {
                 done()
               }
             })
+        })
+    })
+
+    it('should get the named white label if logged in as an administrator', done => {
+      testutils.getToken(testutils.FAKE_ADMIN.email, testutils.FAKE_ADMIN.password)
+        .then(token => {
+          const promise = chai.request(app)
+            .get('/api/whitelabels/fakeWhiteLabel')
+            .set({ Authorization: `Bearer ${token}` })
+          promise.send()
+            .end((err, res) => {
+              if (err) {
+                done(err)
+              } else {
+                expect(res).to.have.status(200)
+                expect(res.body).to.be.a('object')
+                expect(res.body).to.include(EXPECTED_WHITE_LABEL)
+                done()
+              }
+            })
+        })
+    })
+
+    it('should return 401 when not logged in', done => {
+      const promise = chai.request(app)
+        .get('/api/whitelabels/fakeWhiteLabel')
+      promise.send()
+        .end((err, res) => {
+          if (err) {
+            done(err)
+          } else {
+            expect(res).to.have.status(401)
+            done()
+          }
         })
     })
   })

@@ -40,14 +40,18 @@ module.exports = {
       .populate('_travelAgent')
       .populate('yachts')
       .then((dbWhiteLabel) => {
-        db.EBrochure.find({
-          _whiteLabel: dbWhiteLabel._id
-        })
-          .then(dbEBrochures => {
-            dbWhiteLabel.ebrochures = dbEBrochures
-            return res.json(dbWhiteLabel)
+        if (req.user && (req.user.id === dbWhiteLabel._travelAgent._id.toString() || req.user.isAdmin)) {
+          db.EBrochure.find({
+            _whiteLabel: dbWhiteLabel._id
           })
-          .catch(err => res.status(422).json(err))
+            .then(dbEBrochures => {
+              dbWhiteLabel.ebrochures = dbEBrochures
+              return res.json(dbWhiteLabel)
+            })
+            .catch(err => res.status(422).json(err))
+        } else {
+          return res.status(401).json('Unauthorized')
+        }
       })
       .catch(err => res.status(422).json(err))
   },
