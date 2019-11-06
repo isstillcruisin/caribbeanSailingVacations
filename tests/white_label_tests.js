@@ -9,6 +9,12 @@ const testutils = require('./testutils')
 // Configure chai
 chai.use(chaiHttp)
 
+// router.route('/:name')
+//   .get(whiteLabelController.findByName)
+
+// router.route('/:id/ebrochures/')
+//   .post(eBrochureController.create)
+
 const EXPECTED_WHITE_LABEL = {
   name: 'fakeWhiteLabel',
   isConfirmed: true,
@@ -95,6 +101,28 @@ describe('WhiteLabels', () => {
             expect(res).to.have.status(401)
             done()
           }
+        })
+    })
+  })
+
+  describe('GET /api/whitelabels/:name', () => {
+    it('should get the named white label if logged in as the travel agent who owns the white label', done => {
+      testutils.getToken(testutils.FAKE_TA.email, testutils.FAKE_TA.password)
+        .then(token => {
+          let promise = chai.request(app)
+            .get('/api/whitelabels/fakeWhiteLabel')
+            .set({ Authorization: `Bearer ${token}` })
+          promise.send()
+            .end((err, res) => {
+               if (err) {
+                done(err)
+              } else {
+                expect(res).to.have.status(200)
+                expect(res.body).to.be.a('object')
+                expect(res.body).to.include(EXPECTED_WHITE_LABEL)
+                done()
+              }
+            })
         })
     })
   })
