@@ -83,6 +83,20 @@ describe('WhiteLabels', () => {
             })
         })
     })
+
+    it('should return 401 when not logged in', done => {
+      let promise = chai.request(app)
+        .get('/api/whitelabels/')
+      promise.send()
+        .end((err, res) => {
+          if (err) {
+            done(err)
+          } else {
+            expect(res).to.have.status(401)
+            done()
+          }
+        })
+    })
   })
 
   describe('GET /api/whitelabels/forcurrentuser', () => {

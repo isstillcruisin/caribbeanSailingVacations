@@ -53,6 +53,9 @@ module.exports = {
   },
 
   findAll: function (req, res) {
+    if (!(req.user && req.user.isAdmin)) {
+      return res.status(401).json('Unauthorized')
+    }
     db.WhiteLabel.find(req.query)
       .populate('_travelAgent')
       .then(dbWhiteLabels => res.json(dbWhiteLabels))
