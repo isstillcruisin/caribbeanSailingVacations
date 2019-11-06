@@ -1,9 +1,9 @@
+/* eslint-disable no-unused-expressions */
 // Import the dependencies for testing
 const chai = require('chai')
 const expect = chai.expect
 const chaiHttp = require('chai-http')
 const app = require('../index')
-const db = require('../models')
 const testutils = require('./testutils')
 
 // Configure chai
@@ -35,11 +35,15 @@ describe('WhiteLabels', () => {
   const checkCurrentUserWhiteLabels = (whiteLabels, token, done) => {
     getCurrentUserWhiteLabels(token)
       .end((err, res) => {
-        expect(res).to.have.status(200)
-        expect(res.body).to.be.a('array')
-        expect(res.body).to.have.lengthOf(whiteLabels.length)
-        testutils.anObjectIncludesEachTest(res.body, whiteLabels)
-        done()
+        if (err) {
+          done(err)
+        } else {
+          expect(res).to.have.status(200)
+          expect(res.body).to.be.a('array')
+          expect(res.body).to.have.lengthOf(whiteLabels.length)
+          testutils.anObjectIncludesEachTest(res.body, whiteLabels)
+          done()
+        }
       })
   }
 
@@ -49,6 +53,36 @@ describe('WhiteLabels', () => {
 
   afterEach(function (done) {
     testutils.teardownEBrochureThroughUser(done)
+  })
+
+  describe('GET /api/whitelabels/', () => {
+    before(function(done) {
+      testutils.setupAdminUser(done)
+    })
+
+    after(function(done) {
+      testutils.teardownAdminUser(done)
+    })
+
+    it('should get all white labels when logged in as an administrator', done => {
+      testutils.getToken(testutils.FAKE_ADMIN.email, testutils.FAKE_ADMIN.password)
+        .then(token => {
+          let promise = chai.request(app)
+            .get('/api/whitelabels/')
+            .set({ Authorization: `Bearer ${token}` })
+          promise.send()
+            .end((err, res) => {
+              if (err) {
+                done(err)
+              } else {
+                expect(res).to.have.status(200)
+                expect(res.body).to.be.a('array')
+                testutils.anObjectIncludesEachTest(res.body, [EXPECTED_WHITE_LABEL])
+                done()
+              }
+            })
+        })
+    })
   })
 
   describe('GET /api/whitelabels/forcurrentuser', () => {
@@ -62,8 +96,12 @@ describe('WhiteLabels', () => {
     it('should return 401 when not logged in', done => {
       getCurrentUserWhiteLabels(null)
         .end((err, res) => {
-          expect(res).to.have.status(401)
-          done()
+          if (err) {
+            done(err)
+          } else {
+            expect(res).to.have.status(401)
+            done()
+          }
         })
     })
   })
@@ -82,13 +120,13 @@ describe('WhiteLabels', () => {
             subject: 'New White Label',
             content: [{
               type: 'text/html',
-              value: 'A Travel Agent has signed up for a White Label: <table><tr><td>White Label:</td><td>fakeWhiteLabel2<tr><td>Travel Agent Name:</td><td>Fake Agent</td></tr><tr><td>Travel Agent Email:</td><td>michaelarick+faketravelagent@gmail.com</td></tr></table>'
+              value: 'A Travel Agent has signed up for a White Label: <table><tr><td>White Label:</td><td>fakeWhiteLabel2<tr><td>Travel Agent Name:</td><td>Fake Agent</td></tr><tr><td>Travel Agent Email:</td><td>faketravelagent@faker.com</td></tr></table>'
             }]
           })
           promise.send({ name: 'fakeWhiteLabel2' })
             .then(() => {
-              checkCurrentUserWhiteLabels([{ name: 'fakeWhiteLabel2' }, EXPECTED_WHITE_LABEL], token, done)
               expect(nock.isDone()).to.be.true
+              checkCurrentUserWhiteLabels([{ name: 'fakeWhiteLabel2' }, EXPECTED_WHITE_LABEL], token, done)
             })
         })
     })
@@ -99,8 +137,12 @@ describe('WhiteLabels', () => {
         .type('form')
       promise.send({ name: 'fakeWhiteLabel2' })
         .end((err, res) => {
-          expect(res).to.have.status(401)
-          done()
+          if (err) {
+            done(err)
+          } else {
+            expect(res).to.have.status(401)
+            done()
+          }
         })
     })
   })
@@ -140,8 +182,12 @@ describe('WhiteLabels', () => {
                 companyName: 'fake company ALSO'
               })
                 .end((err, res) => {
-                  expect(res).to.have.status(401)
-                  done()
+                  if (err) {
+                    done(err)
+                  } else {
+                    expect(res).to.have.status(401)
+                    done()
+                  }
                 })
             })
         })
@@ -178,8 +224,13 @@ describe('WhiteLabels', () => {
                 lastName: 'Visitor'
               })
                 .end((err, res) => {
-                  expect(res).to.have.status(200)
-                  done()
+                  if (err) {
+                    done(err)
+                  } else {
+                    expect(res).to.have.status(200)
+                    expect(nock.isDone()).to.be.true
+                    done()
+                  }
                 })
             })
         })

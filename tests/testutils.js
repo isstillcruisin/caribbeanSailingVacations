@@ -126,7 +126,7 @@ const anObjectIncludesEachTest = (array, testArray) => {
   testArray.forEach(test => {
     expect(test).to.satisfy(testObject => {
       return !!array.find(object => {
-        foundAll = true
+        let foundAll = true
         Object.keys(testObject).forEach(key => {
           if (object[key] !== testObject[key]) {
             foundAll = false
@@ -139,5 +139,13 @@ const anObjectIncludesEachTest = (array, testArray) => {
 }
 
 module.exports = {
-  FAKE_TA, getToken, mockSendgrid, teardownEBrochureThroughUser, setupUserThroughEBrochure, anObjectIncludesEachTest
+  FAKE_TA, 
+  FAKE_ADMIN,
+  getToken, 
+  mockSendgrid, 
+  setupAdminUser,
+  teardownAdminUser,
+  teardownEBrochureThroughUser, 
+  setupUserThroughEBrochure, 
+  anObjectIncludesEachTest
 }

@@ -145,8 +145,8 @@ describe('CharterInquiries', () => {
                 .then(() => {
                   testutils.getToken(testutils.FAKE_TA.email, testutils.FAKE_TA.password)
                     .then(token => {
-                      checkFakeInquiries([EXPECTED_INQUIRY], [], token, done)
                       expect(nock.isDone()).to.be.true
+                      checkFakeInquiries([EXPECTED_INQUIRY], [], token, done)
                     })
                 })
             })
@@ -175,13 +175,13 @@ describe('CharterInquiries', () => {
                       })
                       confirmCharterInquiry(dbCharterInquiry, token)
                         .then(() => {
+                          expect(nock.isDone()).to.be.true
                           checkFakeInquiries(
                             [],
                             [Object.assign({}, EXPECTED_INQUIRY, { confirmed: true })],
                             token,
                             done
                           )
-                          expect(nock.isDone()).to.be.true
                         })
                     })
                 })
@@ -228,18 +228,18 @@ describe('CharterInquiries', () => {
                         subject: 'Yacht Charter Orientation',
                         content: [{
                           type: 'text/html',
-                          value: 'Dear Fake Person,\n\n<br><br>Congratulations on your scheduled Yacht Charter! \n<br>Please download and read the material in this orientation PDF:\n https://charter-assistant.s3.amazonaws.com/Charter+Orientation+2019.pdf<br><br>Thanks,<br><br>Fake Agent<br><br>michaelarick+faketravelagent@gmail.com</br></br>'
+                          value: 'Dear Fake Person,\n\n<br><br>Congratulations on your scheduled Yacht Charter! \n<br>Please download and read the material in this orientation PDF:\n https://charter-assistant.s3.amazonaws.com/Charter+Orientation+2019.pdf<br><br>Thanks,<br><br>Fake Agent<br><br>faketravelagent@faker.com</br></br>'
                         }]
                       })
                       sendCharterInquiryOrientation(dbCharterInquiry, token)
                         .then(() => {
+                          expect(nock.isDone()).to.be.true
                           checkFakeInquiries(
                             [],
                             [Object.assign({}, EXPECTED_INQUIRY, { confirmed: true, sentOrientationEmail: true })],
                             token,
                             done
                           )
-                          expect(nock.isDone()).to.be.true
                         })
                     })
                 })
