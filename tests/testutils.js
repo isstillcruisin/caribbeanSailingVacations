@@ -108,7 +108,7 @@ const setupUserThroughEBrochure = done => {
 const teardownEBrochureThroughUser = done => {
   db.CharterInquiry.deleteMany({ firstName: 'Fake', lastName: 'Person' })
     .then(() => {
-      db.EBrochure.deleteMany({ name: 'FakeEBrochure' })
+      db.EBrochure.deleteMany({ name: { $regex: /FakeEBrochure/ } })
         .then(() => {
           db.Boat.deleteMany({ boatName: 'FakeBoat' })
             .then(() => {
