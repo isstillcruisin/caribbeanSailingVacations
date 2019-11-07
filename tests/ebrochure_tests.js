@@ -95,5 +95,29 @@ describe('EBrochures', () => {
             })
         })
     })
+
+    it('should return a 401 if the user is not logged in', done => {
+      testutils.getToken(testutils.FAKE_TA.email, testutils.FAKE_TA.password)
+        .then(token => {
+          db.EBrochure.findOne(testutils.EXPECTED_EBROCHURE)
+            .then(dbEBrochure => {
+              const promise = chai.request(app)
+                .post(`/api/ebrochures/update/${dbEBrochure._id}`)
+                .type('form')
+              promise.send({
+                // NOTE: This had to be JSON.stringified (also the front-end code) and parsed on the backend because of an issue with chai-http
+                yachts: JSON.stringify([])
+              })
+                .end((err, res) => {
+                  if (err) {
+                    done(err)
+                  } else {
+                    expect(res).to.have.status(401)
+                    done()
+                  }
+                })
+            })
+        })
+    })
   })
 })
