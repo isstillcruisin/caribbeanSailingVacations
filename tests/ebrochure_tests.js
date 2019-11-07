@@ -97,25 +97,58 @@ describe('EBrochures', () => {
     })
 
     it('should return a 401 if the user is not logged in', done => {
-      testutils.getToken(testutils.FAKE_TA.email, testutils.FAKE_TA.password)
-        .then(token => {
-          db.EBrochure.findOne(testutils.EXPECTED_EBROCHURE)
-            .then(dbEBrochure => {
-              const promise = chai.request(app)
-                .post(`/api/ebrochures/update/${dbEBrochure._id}`)
-                .type('form')
-              promise.send({
-                // NOTE: This had to be JSON.stringified (also the front-end code) and parsed on the backend because of an issue with chai-http
-                yachts: JSON.stringify([])
-              })
-                .end((err, res) => {
-                  if (err) {
-                    done(err)
-                  } else {
-                    expect(res).to.have.status(401)
-                    done()
-                  }
-                })
+      db.EBrochure.findOne(testutils.EXPECTED_EBROCHURE)
+        .then(dbEBrochure => {
+          const promise = chai.request(app)
+            .post(`/api/ebrochures/update/${dbEBrochure._id}`)
+            .type('form')
+          promise.send({
+            // NOTE: This had to be JSON.stringified (also the front-end code) and parsed on the backend because of an issue with chai-http
+            yachts: JSON.stringify([])
+          })
+            .end((err, res) => {
+              if (err) {
+                done(err)
+              } else {
+                expect(res).to.have.status(401)
+                done()
+              }
+            })
+        })
+    })
+  })
+
+  describe('POST /send/:id', () => {
+    it('should use sendgrid API to send a link to the E-Brochure', done => {
+      db.EBrochure.findOne(testutils.EXPECTED_EBROCHURE)
+        .then(dbEBrochure => {
+          const promise = chai.request(app)
+            .post(`/api/ebrochures/send/${dbEBrochure._id}`)
+            .type('form')
+
+          const nock = testutils.mockSendgrid({
+            from: { email: 'bookings@caribbeansailingvacations.com' },
+            subject: 'check this e-brochure out',
+            content: [{
+              type: 'text/html',
+              value: `Dear Fake Person,\n\n<br>You should really consider chartering a yacht!\n\n<br>Click here for more details: http://localhost:3000/e-brochure/${dbEBrochure._id}<br>Thanks,<br>Fake Agent<br>faketravelagent@faker.com<br>(000)000-0000`
+            }],
+            reply_to: { email: 'faketravelagent@faker.com', name: 'Fake Agent' }
+          })
+          promise.send({
+            subject: 'check this e-brochure out',
+            firstName: 'Fake',
+            lastName: 'Person',
+            email: 'fakeperson@faker.com',
+            message: 'You should really consider chartering a yacht!'
+          })
+            .end((err, res) => {
+              if (err) {
+                done(err)
+              } else {
+                expect(nock.isDone()).to.be.true
+                done()
+              }
             })
         })
     })
