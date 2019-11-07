@@ -18,6 +18,44 @@ const FAKE_ADMIN = {
   password: 'Testing123'
 }
 
+const EXPECTED_USER = {
+  email: FAKE_TA.email,
+  password: FAKE_TA.password,
+  isAdmin: false,
+  isVerified: true,
+  firstName: 'Fake',
+  lastName: 'Agent',
+  phoneNumber: '(000)000-0000'
+}
+
+const EXPECTED_WHITE_LABEL = {
+  name: 'fakeWhiteLabel',
+  isConfirmed: true,
+  companyName: 'fake company',
+  streetAddress: '123 fake street',
+  city: 'fake city',
+  state: 'FF',
+  country: 'USA',
+  zipCode: '00000',
+  title: 'The Best Fake White Label',
+  aboutText: 'THIS IS THE BEST FAKE WHITE LABEL EVER!'
+}
+
+const EXPECTED_EBROCHURE = {
+  name: 'FakeEBrochure',
+  isConfirmed: true
+}
+
+const EXPECTED_YACHT = {
+  boatName: 'FakeBoat',
+  year: 1999,
+  maxPassengers: 5,
+  manufacture: 'Anything',
+  crewBio: 'No Bio Needed',
+  pricePerWeek: 30000,
+  cyaId: 123
+}
+
 const getToken = (email, password) => {
   const userCredentials = {
     email: email,
@@ -59,46 +97,24 @@ const teardownAdminUser = done => {
 }
 
 const setupUserThroughEBrochure = done => {
-  db.User.create({
-    email: FAKE_TA.email,
-    password: FAKE_TA.password,
-    isAdmin: false,
-    isVerified: true,
-    firstName: 'Fake',
-    lastName: 'Agent',
-    phoneNumber: '(000)000-0000'
-  })
+  db.User.create(EXPECTED_USER)
     .then(ta => {
-      db.WhiteLabel.create({
-        name: 'fakeWhiteLabel',
-        isConfirmed: true,
-        companyName: 'fake company',
-        streetAddress: '123 fake street',
-        city: 'fake city',
-        state: 'FF',
-        country: 'USA',
-        zipCode: '00000',
-        title: 'The Best Fake White Label',
-        aboutText: 'THIS IS THE BEST FAKE WHITE LABEL EVER!',
-        _travelAgent: ta
-      })
+      db.WhiteLabel.create(Object.assign({},
+        EXPECTED_WHITE_LABEL,
+        {
+          _travelAgent: ta
+        }
+      ))
         .then(dbWhiteLabel => {
-          db.Boat.create({
-            boatName: 'FakeBoat',
-            year: 1999,
-            maxPassengers: 5,
-            manufacture: 'Anything',
-            crewBio: 'No Bio Needed',
-            pricePerWeek: 30000,
-            cyaId: 123
-          })
+          db.Boat.create(EXPECTED_YACHT)
             .then(dbYacht => {
-              db.EBrochure.create({
-                name: 'FakeEBrochure',
-                _whiteLabel: dbWhiteLabel,
-                isConfirmed: true,
-                yachts: [dbYacht]
-              })
+              db.EBrochure.create(Object.assign({},
+                EXPECTED_EBROCHURE,
+                {
+                  _whiteLabel: dbWhiteLabel,
+                  yachts: [dbYacht]
+                }
+              ))
                 .then(() => done())
             })
         })
@@ -147,5 +163,9 @@ module.exports = {
   teardownAdminUser,
   teardownEBrochureThroughUser,
   setupUserThroughEBrochure,
-  anObjectIncludesEachTest
+  anObjectIncludesEachTest,
+  EXPECTED_YACHT,
+  EXPECTED_EBROCHURE,
+  EXPECTED_WHITE_LABEL,
+  EXPECTED_USER
 }

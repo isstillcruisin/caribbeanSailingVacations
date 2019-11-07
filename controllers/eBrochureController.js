@@ -56,7 +56,11 @@ module.exports = {
   },
 
   update: function (req, res) {
-    db.EBrochure.findOneAndUpdate({ _id: req.params.id }, req.body)
+    const updates = Object.assign({}, req.body)
+    // NOTE: the yachts param has been JSON stringified
+    if (updates.yachts) { updates.yachts = JSON.parse(updates.yachts) }
+
+    db.EBrochure.findOneAndUpdate({ _id: req.params.id }, updates)
       .then(dbEBrochure => res.json(dbEBrochure))
       .catch(err => res.status(422).json(err))
   },
