@@ -153,4 +153,30 @@ describe('EBrochures', () => {
         })
     })
   })
+
+  describe('POST /:id/available', () => {
+    it('finds all yachts from the e-brochure that are available during the dates included and with enough capacity for the numPassengers', done => {
+      db.EBrochure.findOne(testutils.EXPECTED_EBROCHURE)
+        .then(dbEBrochure => {
+          const promise = chai.request(app)
+            .post(`/api/ebrochures/${dbEBrochure._id}/available`)
+            .type('form')
+          promise.send({
+            startDate: '12/25/2019',
+            endDate: '12/31/2019',
+            numPassengers: 1
+          })
+            .end((err, res) => {
+              if (err) {
+                done(err)
+              } else {
+                expect(res.body.yachts).to.be.a('array')
+                expect(res.body.yachts.length).to.eq(1)
+                expect(res.body.yachts[0]).to.include(testutils.EXPECTED_YACHT)
+                done()
+              }
+            })
+        })
+    })
+  })
 })
