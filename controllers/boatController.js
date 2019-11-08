@@ -57,26 +57,36 @@ module.exports = {
         fetch(`https://www.centralyachtagent.com/snapins/json-calendar.php?idin=${dbBoat.cyaId}&user=${keys.cyaUserId}`)
           .then(response => response.json())
           .then(data => {
-            const unavailableDateRanges = data.calendar.map(function (range) {
-              return {
-                _yacht: req.params.id,
-                from: new Date(range.yachtStartDate),
-                to: new Date(range.yachtEndDate),
-                description: range.yachtBookDesc,
-                type: 'CYA'
-              }
-            })
-            db.UnavailableDateRange.deleteMany({ _yacht: { _id: req.params.id }, type: 'CYA' })
-              .then((dbDeleted) => {
-                db.UnavailableDateRange.create(unavailableDateRanges)
-                  .then((dbCreated) => {
-                    db.UnavailableDateRange.find({ _yacht: { _id: req.params.id } })
-                      .then(dbRanges => res.json(dbRanges))
-                      .catch(err => res.status(422).json(err))
-                  })
-                  .catch(err => res.status(422).json(err))
+            if (data.calendar.yachtName === 'No Results') {
+              db.UnavailableDateRange.deleteMany({ _yacht: { _id: req.params.id }, type: 'CYA' })
+                .then((dbDeleted) => {
+                  db.UnavailableDateRange.find({ _yacht: { _id: req.params.id } })
+                    .then(dbRanges => {
+                      res.json(dbRanges)
+                    })
+                })
+            } else {
+              const unavailableDateRanges = data.calendar.map(range => {
+                return {
+                  _yacht: req.params.id,
+                  from: new Date(range.yachtStartDate),
+                  to: new Date(range.yachtEndDate),
+                  description: range.yachtBookDesc,
+                  type: 'CYA'
+                }
               })
-              .catch(err => res.status(422).json(err))
+              db.UnavailableDateRange.deleteMany({ _yacht: { _id: req.params.id }, type: 'CYA' })
+                .then((dbDeleted) => {
+                  db.UnavailableDateRange.create(unavailableDateRanges)
+                    .then((dbCreated) => {
+                      db.UnavailableDateRange.find({ _yacht: { _id: req.params.id } })
+                        .then(dbRanges => res.json(dbRanges))
+                        .catch(err => res.status(422).json(err))
+                    })
+                    .catch(err => res.status(422).json(err))
+                })
+                .catch(err => res.status(422).json(err))
+            }
           })
           .catch(err => res.status(422).json(err))
       })
