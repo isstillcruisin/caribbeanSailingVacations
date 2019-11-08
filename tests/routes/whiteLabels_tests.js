@@ -3,9 +3,9 @@
 const chai = require('chai')
 const expect = chai.expect
 const chaiHttp = require('chai-http')
-const app = require('../index')
-const testutils = require('./testutils')
-const db = require('../models')
+const app = require('../../index')
+const testutils = require('../testutils')
+const db = require('../../models')
 
 // Configure chai
 chai.use(chaiHttp)

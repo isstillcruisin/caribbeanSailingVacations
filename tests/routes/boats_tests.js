@@ -1,8 +1,8 @@
 // Import the dependencies for testing
 const chai = require('chai')
 const chaiHttp = require('chai-http')
-const app = require('../index')
-const db = require('../models')
+const app = require('../../index')
+const db = require('../../models')
 
 // Configure chai
 chai.use(chaiHttp)
