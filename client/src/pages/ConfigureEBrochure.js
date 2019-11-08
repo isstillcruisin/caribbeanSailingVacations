@@ -40,7 +40,7 @@ class ConfigureEBrochure extends Component {
     eBrochure.yachts = eBrochure.yachts.filter(function(y, index, arr){
       return y._id !== yacht._id
     })
-    API.updateWhiteLabel(eBrochure)
+    API.updateEBrochure(eBrochure)
     this.setState(Object.assign({}, this.state, { eBrochure }))
   }
 
