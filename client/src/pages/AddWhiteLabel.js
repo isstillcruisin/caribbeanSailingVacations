@@ -41,8 +41,8 @@ class AddWhiteLabel extends Component {
     return this.state.saved === true ? (
       <Redirect 
         to={{ 
-          pathname: `/white-label/${this.state.whiteLabelName}/edit`,
-          state: { alert: `Your white-label: ${this.state.whiteLabelName} is reserved, but needs approval.` } 
+          pathname: `/white-label/${this.state.whiteLabelName}/edit/configure`,
+          state: { alert: `Your white-label: ${this.state.whiteLabelName} is created. Configure it here:` } 
         }} 
       />
     ) : (
