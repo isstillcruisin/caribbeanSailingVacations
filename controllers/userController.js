@@ -54,7 +54,7 @@ exports.signup = function (req, res, next) {
     if (user) { return res.status(400).send({ msg: 'The email address you have entered is already associated with another account.' }) }
 
     // Create and save the user
-    user = new User({ name: req.body.name, email: req.body.email, password: req.body.password, firstName: req.body.firstName, lastName: req.body.lastName })
+    user = new User({ email: req.body.email, password: req.body.password, firstName: req.body.firstName, lastName: req.body.lastName })
     user.save(function (err) {
       if (err) { return res.status(500).send({ msg: err.message }) }
 
