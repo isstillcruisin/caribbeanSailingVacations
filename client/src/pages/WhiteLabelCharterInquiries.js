@@ -88,8 +88,8 @@ class WhiteLabelCharterInquiries extends Component {
     }, {
       dataField: '_eBrochure',
       text: 'E-Brochure',
-      formatter: (eBrochure) => <LinkContainer
-        to={`/e-brochure/${eBrochure._id}`}
+      formatter: (eBrochure, row) => <LinkContainer
+        to={`/e-brochure/${eBrochure._id}?yacht=${row._yacht._id}`}
         className="e-brochure-link"
       ><Button>E-Brochure</Button></LinkContainer>
     }]
