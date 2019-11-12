@@ -82,7 +82,7 @@ class BoatDetailDisplay extends Component {
                 </Accordion.Toggle>
               </Card.Header>
               <Accordion.Collapse eventKey="1">
-                <Card.Body>{this.props.boat.crewBio}</Card.Body>
+                <Card.Body className='multiline-text'>{this.props.boat.crewBio}</Card.Body>
               </Accordion.Collapse>
             </Card>
           </Accordion>            

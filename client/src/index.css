@@ -240,3 +240,7 @@ h3 {
 .add-yacht-buttons {
   margin-left: 80px;
 }
+
+.card-body.multiline-text {
+  white-space: pre-wrap;
+}
