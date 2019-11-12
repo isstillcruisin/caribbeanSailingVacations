@@ -8,6 +8,7 @@ import Loader from '../components/Loader'
 import Row from 'react-bootstrap/Row'
 import EBrochureYacht from '../components/EBrochureYacht'
 import PropTypes from 'prop-types'
+import Alert from '../components/Alert'
 
 const BoatsDisplay = styled.div`
   display: grid;
@@ -66,6 +67,13 @@ class AllBoats extends Component {
     } 
   }
 
+  handleUpdateAvailability = () => {
+    API.refreshAllYachtAvailability()
+      .then(response => {
+        this.setState({alert: 'Yacht Availability Updated From Central Yacht Agent'})
+      })
+  }
+
   showBoats = () => {
     if (this.state.boats) {
       return this.state.boats.map((boat, i) => {
@@ -93,9 +101,13 @@ class AllBoats extends Component {
 
   render() {
     return <div className='bg-lightgreen'>
-      <LinkContainer to='/add-boat' className='m-4'>
-        <Button>Add Yacht</Button>
-      </LinkContainer>
+      <div className='add-yacht-buttons'>
+        <Alert alert={this.state.alert}/>
+        <LinkContainer to='/add-boat' className='m-4'>
+          <Button>Add Yacht</Button>
+        </LinkContainer>
+        <Button onClick={this.handleUpdateAvailability}>Update All Yacht Availability</Button>
+      </div>
       <BoatsDisplay>
         {this.showBoats()}
       </BoatsDisplay>

@@ -6,6 +6,10 @@ router.route('/')
   .get(boatController.findAll)
   .post(boatController.create)
 
+router
+  .route('/refreshavailability')
+  .get(boatController.refreshAllAvailability)
+
 // Matches with "/api/boats/:id"
 router
   .route('/:id')
@@ -24,5 +28,6 @@ router
 
 router
   .route('/unavailable/:id/refresh')
-  .get(boatController.refreshAvailability)
+  .get(boatController.refreshOneAvailability)
+
 module.exports = router

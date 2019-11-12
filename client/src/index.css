@@ -236,3 +236,7 @@ h3 {
 .DayPickerInput-OverlayWrapper {
   z-index: 100;
 }
+
+.add-yacht-buttons {
+  margin-left: 80px;
+}

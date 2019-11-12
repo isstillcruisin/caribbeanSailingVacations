@@ -1,6 +1,7 @@
 const db = require('../models')
 const fetch = require('node-fetch')
 const keys = require('../config/keys')
+const { updateYachtAvailabilityFromData } = require('../util/tools')
 
 // Defining methods for the articleController
 module.exports = {
@@ -51,47 +52,40 @@ module.exports = {
       .then(dbRanges => res.json(dbRanges))
       .catch(err => res.status(422).json(err))
   },
-  refreshAvailability: function (req, res) {
+
+  refreshAllAvailability: function(req, res) {
+    db.Boat.find({})
+      .then(dbYachts => {
+        const requests = dbYachts.map((yacht) => {
+          return new Promise((resolve) => {
+            fetch(`https://www.centralyachtagent.com/snapins/json-calendar.php?idin=${yacht.cyaId}&user=${keys.cyaUserId}`)
+              .then(response => response.json())
+              .then(data => {
+                updateYachtAvailabilityFromData(yacht, data)
+                resolve()
+              })
+          })
+        })
+        Promise.all(requests).then(() => res.json({}))
+      })
+      .catch(err => res.status(422).json(err))
+  },
+
+  refreshOneAvailability: function (req, res) {
     db.Boat.findById({ _id: req.params.id })
       .then(dbBoat => {
         fetch(`https://www.centralyachtagent.com/snapins/json-calendar.php?idin=${dbBoat.cyaId}&user=${keys.cyaUserId}`)
           .then(response => response.json())
           .then(data => {
-            if (data.calendar.yachtName === 'No Results') {
-              db.UnavailableDateRange.deleteMany({ _yacht: { _id: req.params.id }, type: 'CYA' })
-                .then((dbDeleted) => {
-                  db.UnavailableDateRange.find({ _yacht: { _id: req.params.id } })
-                    .then(dbRanges => {
-                      res.json(dbRanges)
-                    })
-                })
-            } else {
-              const unavailableDateRanges = data.calendar.map(range => {
-                return {
-                  _yacht: req.params.id,
-                  from: new Date(range.yachtStartDate),
-                  to: new Date(range.yachtEndDate),
-                  description: range.yachtBookDesc,
-                  type: 'CYA'
-                }
-              })
-              db.UnavailableDateRange.deleteMany({ _yacht: { _id: req.params.id }, type: 'CYA' })
-                .then((dbDeleted) => {
-                  db.UnavailableDateRange.create(unavailableDateRanges)
-                    .then((dbCreated) => {
-                      db.UnavailableDateRange.find({ _yacht: { _id: req.params.id } })
-                        .then(dbRanges => res.json(dbRanges))
-                        .catch(err => res.status(422).json(err))
-                    })
-                    .catch(err => res.status(422).json(err))
-                })
-                .catch(err => res.status(422).json(err))
-            }
+            updateYachtAvailabilityFromData(dbBoat, data)
+              .then(dbRanges => res.json(dbRanges))
+              .catch(err => res.status(422).json(err))
           })
           .catch(err => res.status(422).json(err))
       })
       .catch(err => res.status(422).json(err))
   },
+
   addUnavailableDateRange: function (req, res) {
     const range = {
       _yacht: req.params.id,
