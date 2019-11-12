@@ -63,7 +63,8 @@ export default {
 
   refreshAllYachtAvailability: async function() {
     try {
-      const rangesResult = await axios.get(`/api/boats/refreshavailability`)
+      const rangesResult = await axios.get('/api/boats/refreshavailability')
+      return rangesResult.data
     } catch (error) {
       console.error('Error in get refreshAllYachtAvailability (╯°□°)╯︵ ┻━┻ ', error)
     }

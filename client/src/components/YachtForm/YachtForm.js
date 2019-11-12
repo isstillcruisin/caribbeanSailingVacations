@@ -4,9 +4,7 @@ import Container from 'react-bootstrap/Container'
 import Alert from '../Alert'
 import PropTypes from 'prop-types'
 import Form from 'react-bootstrap/Form'
-import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Card from 'react-bootstrap/Card'
 
 const YachtForm = props => (
   <Container>
@@ -43,7 +41,7 @@ const YachtForm = props => (
           />
         </Col>
       </Form.Row>
-          <Form.Row controlId="form-max-passengers">
+      <Form.Row controlId="form-max-passengers">
         <Col xs="2">
           <Form.Label>Max Passengers</Form.Label>
         </Col>

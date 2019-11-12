@@ -121,6 +121,9 @@ EBrochure.propTypes = {
       id: PropTypes.string,
     }),
   }),
+  location: PropTypes.shape({
+    search: PropTypes.string,
+  }),
 }
 
 export default EBrochure
