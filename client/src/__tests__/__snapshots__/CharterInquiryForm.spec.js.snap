@@ -205,7 +205,7 @@ exports[`CharterInquiryForm component Matches the snapshot 1`] = `
               className="collapse"
             >
               <div
-                className="card-body"
+                className="multiline-text card-body"
               />
             </div>
           </div>
