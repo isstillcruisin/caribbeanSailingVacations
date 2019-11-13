@@ -244,3 +244,36 @@ h3 {
 .card-body.multiline-text {
   white-space: pre-wrap;
 }
+
+.yacht-stacked-display {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+}
+
+.boat-container {
+  display: grid;
+  overflow: hidden;
+  position: relative;
+  transition: all 1s ease-out;
+  height: 370px;
+  width: 500px;
+  background-color: white;
+  margin: 0 80px 0 80px;
+}
+
+.boat-info {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  text-align: center;  
+}
+
+.boats-display {
+  display: grid;
+  grid-template: 50% 50% / 50% 50%;
+  background: #B6E8E3;
+  @media (max-width: 800px) {
+    grid-template: 50% 50% / 100%;
+  }
+}

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import API from '../utils/API'
-import styled from 'styled-components'
 import { LinkContainer } from 'react-router-bootstrap'
 import Zoom from 'react-reveal/Zoom'
 import Button from 'react-bootstrap/Button'
@@ -9,15 +8,6 @@ import Row from 'react-bootstrap/Row'
 import EBrochureYacht from '../components/EBrochureYacht'
 import PropTypes from 'prop-types'
 import Alert from '../components/Alert'
-
-const BoatsDisplay = styled.div`
-  display: grid;
-  grid-template: 50% 50% / 50% 50%;
-  background: ${props => props.theme.lightgreen};
-  @media (max-width: 800px) {
-    grid-template: 50% 50% / 100%;
-  }
-`
 
 class AllBoats extends Component {
   state = {
@@ -108,9 +98,9 @@ class AllBoats extends Component {
         </LinkContainer>
         <Button onClick={this.handleUpdateAvailability}>Update All Yacht Availability</Button>
       </div>
-      <BoatsDisplay>
+      <div className='boats-display'>
         {this.showBoats()}
-      </BoatsDisplay>
+      </div>
     </div>
   }
 }
