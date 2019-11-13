@@ -3,6 +3,7 @@ import AddWhiteLabelForm from '../components/AddWhiteLabelForm'
 import API from '../utils/API'
 import { Redirect } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
+import Alert from '../components/Alert'
 
 class AddWhiteLabel extends Component {
   state = {
@@ -22,11 +23,17 @@ class AddWhiteLabel extends Component {
     API.createWhiteLabel({
       name: this.state.whiteLabelName,      
     })
-      .then(res =>
-        this.setState({
-          saved: true
-        })
-      )
+      .then(res => {
+        if (res.status && res.status === 200) {
+          this.setState({
+            saved: true
+          })
+        } else {
+          this.setState({
+            alert: 'Invalid or Unavailable white-label name. White-Label names must be unique and consist only of lower-case characters, numbers, and "-" (example: "max-charter-1" is legal).'
+          })
+        }
+      })
       .catch(err => console.error('saving white label error', err))
   }
 
@@ -47,6 +54,7 @@ class AddWhiteLabel extends Component {
       />
     ) : (
       <Card style={{color: 'black'}}>
+        <Alert alert={this.state.alert}/>
         <Card.Header>
           Add New White Label
         </Card.Header>

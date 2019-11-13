@@ -1,8 +1,9 @@
 const mongoose = require('mongoose')
+const uniqueValidator = require('mongoose-unique-validator');
 const Schema = mongoose.Schema
 
 const whiteLabelSchema = new Schema({
-  name: { type: String, required: true },
+  name: { type: String, required: true, unique: true },
   _travelAgent: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'user' },
   isConfirmed: { type: Boolean, default: false },
   ebrochures: [{ type: Schema.Types.ObjectId, ref: 'EBrochure' }],
@@ -16,6 +17,8 @@ const whiteLabelSchema = new Schema({
   title: { type: String },
   aboutText: { type: String }
 })
+
+whiteLabelSchema.plugin(uniqueValidator)
 
 const WhiteLabel = mongoose.model('WhiteLabel', whiteLabelSchema)
 
