@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Carousel from 'react-bootstrap/Carousel'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 class EBrochureYacht extends Component {
