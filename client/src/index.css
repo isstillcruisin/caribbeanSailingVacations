@@ -115,6 +115,19 @@ code {
   width: 500px;
 }
 
+.e-brochure-home .carousel-item img {
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+  -webkit-transform: translate(0%,-30%);
+  -ms-transform: translate(0%,-30%);
+  transform: translate(0%,-30%);
+}
+
+.e-brochure-home .carousel-item {
+  height: 300px;
+}
+
 .UnavailableDateRangePicker .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
   background-color: #f0f8ff !important;
   color: #4a90e2;
@@ -216,7 +229,7 @@ h3 {
 
 .e-brochure-home .carousel-caption {
   border: 2px solid white;
-  bottom: 150px;
+  bottom: 110px;
 }
 
 .e-brochure-home .carousel-caption h1 {
