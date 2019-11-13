@@ -45,7 +45,9 @@ class WhiteLabelCharterInquiries extends Component {
     event.target.disabled = true
     this.setState({})
     API.setCharterInquiryConfirmed(event.target.dataset.id)
-      .then(this.loadCharterInquiries())
+      .then(() => {
+        this.loadCharterInquiries()
+      })
   }
 
   componentWillUnmount() {
