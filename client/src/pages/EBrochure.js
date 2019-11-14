@@ -8,6 +8,7 @@ import Tab from 'react-bootstrap/Tab'
 import EBrochureHeader from '../components/EBrochureHeader'
 import { About, Home, Contact, Destinations, Yachts, CharterInquiry } from '../components/EBrochureTabs'
 import PropTypes from 'prop-types'
+import qs from 'qs'
 
 class EBrochure extends Component {
   state = { key: 'home', filters: {} }
@@ -15,9 +16,13 @@ class EBrochure extends Component {
   componentDidMount() {
     let { id } = this.props.match.params
     API.getEBrochure(id).then(res => {
+      const name = qs.parse(this.props.location.search, {
+        ignoreQueryPrefix: true
+      }).yacht
       this.setState({
         eBrochure: res.data,
         yachts: res.data.yachts,
+        key: (name ? `charter-inquiry-${name}` : 'home') 
       })
     })
   }
@@ -115,6 +120,9 @@ EBrochure.propTypes = {
     params: PropTypes.shape({
       id: PropTypes.string,
     }),
+  }),
+  location: PropTypes.shape({
+    search: PropTypes.string,
   }),
 }
 

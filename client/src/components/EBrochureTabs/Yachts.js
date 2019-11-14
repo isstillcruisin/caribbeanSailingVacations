@@ -13,7 +13,7 @@ class Yachts extends Component {
       </Container>
     } else {
       return yachts.map((yacht, i) => {
-        return <div key={i} style={{display: 'flex', flexDirection: 'column', height: '500px'}}>
+        return <div className='yacht-stacked-display' key={i}>
           <EBrochureYacht yacht={yacht} onCharterYacht={() => this.props.onCharterYacht(yacht._id)} />
         </div>
       })

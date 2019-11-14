@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import API from '../utils/API'
-import styled from 'styled-components'
 import { LinkContainer } from 'react-router-bootstrap'
 import Zoom from 'react-reveal/Zoom'
 import Button from 'react-bootstrap/Button'
@@ -8,15 +7,7 @@ import Loader from '../components/Loader'
 import Row from 'react-bootstrap/Row'
 import EBrochureYacht from '../components/EBrochureYacht'
 import PropTypes from 'prop-types'
-
-const BoatsDisplay = styled.div`
-  display: grid;
-  grid-template: 50% 50% / 50% 50%;
-  background: ${props => props.theme.lightgreen};
-  @media (max-width: 800px) {
-    grid-template: 50% 50% / 100%;
-  }
-`
+import Alert from '../components/Alert'
 
 class AllBoats extends Component {
   state = {
@@ -66,6 +57,13 @@ class AllBoats extends Component {
     } 
   }
 
+  handleUpdateAvailability = () => {
+    API.refreshAllYachtAvailability()
+      .then(response => {
+        this.setState({alert: 'Yacht Availability Updated From Central Yacht Agent'})
+      })
+  }
+
   showBoats = () => {
     if (this.state.boats) {
       return this.state.boats.map((boat, i) => {
@@ -93,12 +91,16 @@ class AllBoats extends Component {
 
   render() {
     return <div className='bg-lightgreen'>
-      <LinkContainer to='/add-boat' className='m-4'>
-        <Button>Add Yacht</Button>
-      </LinkContainer>
-      <BoatsDisplay>
+      <div className='add-yacht-buttons'>
+        <Alert alert={this.state.alert}/>
+        <LinkContainer to='/add-boat' className='m-4'>
+          <Button>Add Yacht</Button>
+        </LinkContainer>
+        <Button onClick={this.handleUpdateAvailability}>Update All Yacht Availability</Button>
+      </div>
+      <div className='boats-display'>
         {this.showBoats()}
-      </BoatsDisplay>
+      </div>
     </div>
   }
 }

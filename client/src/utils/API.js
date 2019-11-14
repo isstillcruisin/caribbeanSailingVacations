@@ -60,12 +60,22 @@ export default {
       console.error('Error in get getUnavailableDateRanges (╯°□°)╯︵ ┻━┻ ', error)
     }
   },
+
+  refreshAllYachtAvailability: async function() {
+    try {
+      const rangesResult = await axios.get('/api/boats/refreshavailability')
+      return rangesResult.data
+    } catch (error) {
+      console.error('Error in get refreshAllYachtAvailability (╯°□°)╯︵ ┻━┻ ', error)
+    }
+  },
+
   refreshAvailability: async function(yacht) {
     try {
       const rangesResult = await axios.get(`/api/boats/unavailable/${yacht._id}/refresh`)
       return rangesResult.data.map(this._convertDateRangeToDates)
     } catch (error) {
-      console.error('Error in get getUnavailableDateRanges (╯°□°)╯︵ ┻━┻ ', error)
+      console.error('Error in get refreshAvailability (╯°□°)╯︵ ┻━┻ ', error)
     }
   },
   userSignIn: async function(userData) {

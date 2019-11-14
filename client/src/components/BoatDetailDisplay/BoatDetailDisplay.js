@@ -5,22 +5,16 @@ import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Carousel from 'react-bootstrap/Carousel'
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
-
-
-const BoatImage = styled.img`
-  max-height: 30rem;
-  object-fit: fill;
-`
-
 
 class BoatDetailDisplay extends Component {
   renderImages = images => {
     return images.map((image, i) => {
+      const imageParts = image.split('/upload/'),
+      imgUrl = `${imageParts[0]}/upload/c_fill,w_500,h_300/${imageParts[1]}`
       return (
-        <Carousel.Item key={`${i}`}>
-          <BoatImage src={image} alt=""></BoatImage>
+        <Carousel.Item key={`${i+1}`}>
+          <img src={imgUrl} alt=""/>
         </Carousel.Item>
       )
     })
@@ -82,7 +76,7 @@ class BoatDetailDisplay extends Component {
                 </Accordion.Toggle>
               </Card.Header>
               <Accordion.Collapse eventKey="1">
-                <Card.Body>{this.props.boat.crewBio}</Card.Body>
+                <Card.Body className='multiline-text'>{this.props.boat.crewBio}</Card.Body>
               </Accordion.Collapse>
             </Card>
           </Accordion>            

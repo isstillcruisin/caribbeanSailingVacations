@@ -107,12 +107,25 @@ code {
 }
 
 .carousel-item img {
-  height: 400px;
+  height: 300px;
   width: 500px;
 }
 
 .carousel {
   width: 500px;
+}
+
+.e-brochure-home .carousel-item img {
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+  -webkit-transform: translate(0%,-30%);
+  -ms-transform: translate(0%,-30%);
+  transform: translate(0%,-30%);
+}
+
+.e-brochure-home .carousel-item {
+  height: 300px;
 }
 
 .UnavailableDateRangePicker .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
@@ -216,7 +229,7 @@ h3 {
 
 .e-brochure-home .carousel-caption {
   border: 2px solid white;
-  bottom: 150px;
+  bottom: 110px;
 }
 
 .e-brochure-home .carousel-caption h1 {
@@ -235,4 +248,45 @@ h3 {
 
 .DayPickerInput-OverlayWrapper {
   z-index: 100;
+}
+
+.add-yacht-buttons {
+  margin-left: 80px;
+}
+
+.card-body.multiline-text {
+  white-space: pre-wrap;
+}
+
+.yacht-stacked-display {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+}
+
+.boat-container {
+  display: grid;
+  overflow: hidden;
+  position: relative;
+  transition: all 1s ease-out;
+  height: 370px;
+  width: 500px;
+  background-color: white;
+  margin: 0 80px 0 80px;
+}
+
+.boat-info {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  text-align: center;  
+}
+
+.boats-display {
+  display: grid;
+  grid-template: 50% 50% / 50% 50%;
+  background: #B6E8E3;
+  @media (max-width: 800px) {
+    grid-template: 50% 50% / 100%;
+  }
 }

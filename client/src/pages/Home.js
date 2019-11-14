@@ -26,7 +26,7 @@ const Home = () => {
         </Card.Header>
         <Card.Body>
           <div style={{width: '600px', height: '300px'}}>
-            <a href='https://caribbean-sailing-vacations.herokuapp.com/e-brochure/5d8d146b5d2c7f1564d7d17b' target='_blank'>
+            <a href='https://caribbean-sailing-vacations.herokuapp.com/e-brochure/5d8d146b5d2c7f1564d7d17b' rel="noopener noreferrer" target='_blank'>
               <img src='https://res.cloudinary.com/dui3yyhou/image/upload/c_fill,h_300,w_600/v1573256106/ExampleEBrochure.png'></img>
             </a>
           </div>

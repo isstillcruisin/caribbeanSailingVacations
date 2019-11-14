@@ -5,161 +5,240 @@ exports[`YachtForm component Matches the snapshot 1`] = `
   className="container"
 >
   
-  <form>
+  <form
+    className=""
+  >
     <div
-      className="form-group add-boat-form"
+      className="form-row"
+      controlId="form-boat-name"
     >
-      <label
-        htmlFor="boat-name"
-      >
-        <strong>
-          Boat Name
-        </strong>
-      </label>
-      <input
-        className="form-control"
-        id="boat-name"
-        name="boatName"
-        placeholder="name of the boat..."
-        required={true}
-        type="text"
-        value="test boat"
-      />
-      <label
-        htmlFor="description"
-      >
-        <strong>
-          Crew Bio
-        </strong>
-      </label>
-      <input
-        className="form-control"
-        id="crewBio"
-        name="crewBio"
-        placeholder="about the crew.."
-        required={true}
-        type="textArea"
-        value="test bio"
-      />
-      <label
-        htmlFor="maxPassengers"
-      >
-        <strong>
-          Passenger Capacity
-        </strong>
-      </label>
-      <input
-        className="form-control"
-        id="maxPassengers"
-        name="maxPassengers"
-        placeholder="4-30"
-        required={true}
-        type="number"
-        value={10}
-      />
-      <label
-        htmlFor="year"
-      >
-        <strong>
-          Year made
-        </strong>
-      </label>
-      <input
-        className="form-control"
-        id="year"
-        name="year"
-        placeholder="2009"
-        required={true}
-        type="number"
-        value={1999}
-      />
-      <label
-        htmlFor="manufacture"
-      >
-        <strong>
-          Manufacture of Boat
-        </strong>
-      </label>
-      <input
-        className="form-control"
-        id="manufacture"
-        name="manufacture"
-        placeholder="Boat size etc..."
-        required={true}
-        type="text"
-        value="2000 feet test manufacture"
-      />
-      <label
-        htmlFor="pricePerWeek"
-      >
-        <strong>
-          Price per week ($)
-        </strong>
-      </label>
-      <input
-        className="form-control"
-        id="manufacture"
-        name="pricePerWeek"
-        placeholder="price per week ($)"
-        required={true}
-        type="text"
-      />
-      <label
-        htmlFor="cyaId"
-      >
-        <strong>
-          Central Yacht Agent ID
-        </strong>
-      </label>
-      <input
-        className="form-control"
-        id="cyaId"
-        name="cyaId"
-        placeholder="Central Yacht Agent ID"
-        required={true}
-        type="number"
-      />
-      <label
-        htmlFor="image-url"
-      >
-        <strong>
-          Boat Images
-        </strong>
-      </label>
       <div
-        className="boat-image-dropzone"
-        onBlur={[Function]}
-        onClick={[Function]}
-        onDragEnter={[Function]}
-        onDragLeave={[Function]}
-        onDragOver={[Function]}
-        onDrop={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        tabIndex={0}
+        className="col-2"
+      >
+        <label
+          className="form-label"
+        >
+          Boat Name
+        </label>
+      </div>
+      <div
+        className="col"
       >
         <input
-          accept="image/*"
-          autoComplete="off"
-          multiple={true}
-          onChange={[Function]}
-          onClick={[Function]}
-          style={
-            Object {
-              "display": "none",
-            }
-          }
-          tabIndex={-1}
-          type="file"
+          className="form-control"
+          name="boatName"
+          placeholder="name of the boat..."
+          required={true}
+          type="text"
+          value="test boat"
         />
-        <p>
-          Drop a file here, or click to select a file to upload.
-        </p>
       </div>
-      <div>
-        <div
-          className="image-thumbnails"
+    </div>
+    <div
+      className="form-row"
+      controlId="form-crew-bio"
+    >
+      <div
+        className="col-2"
+      >
+        <label
+          className="form-label"
+        >
+          Crew Bio
+        </label>
+      </div>
+      <div
+        className="col"
+      >
+        <textarea
+          className="form-control"
+          name="crewBio"
+          placeholder="about the crew..."
+          required={true}
+          rows={4}
+          value="test bio"
         />
+      </div>
+    </div>
+    <div
+      className="form-row"
+      controlId="form-max-passengers"
+    >
+      <div
+        className="col-2"
+      >
+        <label
+          className="form-label"
+        >
+          Max Passengers
+        </label>
+      </div>
+      <div
+        className="col"
+      >
+        <input
+          className="form-control"
+          name="maxPassengers"
+          placeholder="maximum number of passengers on the yacht"
+          required={true}
+          type="number"
+          value={10}
+        />
+      </div>
+    </div>
+    <div
+      className="form-row"
+      controlId="form-year"
+    >
+      <div
+        className="col-2"
+      >
+        <label
+          className="form-label"
+        >
+          Year Made
+        </label>
+      </div>
+      <div
+        className="col"
+      >
+        <input
+          className="form-control"
+          name="year"
+          placeholder="year the yacht was constructed"
+          required={true}
+          type="number"
+          value={1999}
+        />
+      </div>
+    </div>
+    <div
+      className="form-row"
+      controlId="form-manufacture"
+    >
+      <div
+        className="col-2"
+      >
+        <label
+          className="form-label"
+        >
+          Manufacture of Yacht
+        </label>
+      </div>
+      <div
+        className="col"
+      >
+        <input
+          className="form-control"
+          name="manufacture"
+          placeholder="Boat size, etc..."
+          required={true}
+          type="text"
+          value="2000 feet test manufacture"
+        />
+      </div>
+    </div>
+    <div
+      className="form-row"
+      controlId="form-price-per-week"
+    >
+      <div
+        className="col-2"
+      >
+        <label
+          className="form-label"
+        >
+          Price Per Week
+        </label>
+      </div>
+      <div
+        className="col"
+      >
+        <input
+          className="form-control"
+          name="pricePerWeek"
+          placeholder="price per week ($)"
+          required={true}
+          type="number"
+        />
+      </div>
+    </div>
+    <div
+      className="form-row"
+      controlId="form-cya-id"
+    >
+      <div
+        className="col-2"
+      >
+        <label
+          className="form-label"
+        >
+          Central Yacht Agent ID
+        </label>
+      </div>
+      <div
+        className="col"
+      >
+        <input
+          className="form-control"
+          name="cyaId"
+          placeholder="Central Yacht Agent ID"
+          required={true}
+          type="text"
+        />
+      </div>
+    </div>
+    <div
+      className="form-row"
+      controlId="form-images"
+    >
+      <div
+        className="col-2"
+      >
+        <label
+          className="form-label"
+        >
+          Boat Images
+        </label>
+      </div>
+      <div
+        className="col-10"
+      >
+        <div
+          className="boat-image-dropzone"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragEnter={[Function]}
+          onDragLeave={[Function]}
+          onDragOver={[Function]}
+          onDrop={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          tabIndex={0}
+        >
+          <input
+            accept="image/*"
+            autoComplete="off"
+            multiple={true}
+            onChange={[Function]}
+            onClick={[Function]}
+            style={
+              Object {
+                "display": "none",
+              }
+            }
+            tabIndex={-1}
+            type="file"
+          />
+          <p>
+            Drop a file here, or click to select a file to upload.
+          </p>
+        </div>
+        <div>
+          <div
+            className="image-thumbnails"
+          />
+        </div>
       </div>
     </div>
     <div

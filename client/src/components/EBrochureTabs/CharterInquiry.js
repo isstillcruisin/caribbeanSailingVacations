@@ -100,7 +100,7 @@ class CharterInquiry extends Component {
   calculateEstimatedPrice = (from, to) => {
     var oneWeekInDays = 7.0
     if (from && to) {
-      return this.props.yacht.pricePerWeek * moment(to).endOf('day').diff(moment(from).endOf('day').subtract(1, 'days'), 'days')/oneWeekInDays
+      return this.props.yacht.pricePerWeek * moment(to).endOf('day').diff(moment(from).endOf('day'), 'days')/oneWeekInDays
     } else {
       return null
     }
