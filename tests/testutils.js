@@ -130,8 +130,11 @@ const teardownEBrochureThroughUser = done => {
             .then(() => {
               db.WhiteLabel.deleteMany({ name: { $regex: /fakeWhiteLabel/ } })
                 .then(() => {
-                  db.User.deleteMany({ email: FAKE_TA.email })
-                    .then(() => done())
+                  db.Token.deleteMany({ token: 'ABCDEF'}) 
+                    .then(() => {
+                      db.User.deleteMany({ email: FAKE_TA.email })
+                        .then(() => done())
+                    })
                 })
             })
         })

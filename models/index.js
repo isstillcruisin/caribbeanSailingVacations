@@ -4,5 +4,6 @@ module.exports = {
   WhiteLabel: require('./whiteLabel'),
   CharterInquiry: require('./charterInquiry'),
   EBrochure: require('./ebrochure'),
-  UnavailableDateRange: require('./unavailableDateRange')
+  UnavailableDateRange: require('./unavailableDateRange'),
+  Token: require('./token')
 }
