@@ -208,7 +208,9 @@ export default {
   },
 
   updateEBrochure: async function(eBrochure) {
-    return axios.post(`/api/ebrochures/update/${eBrochure._id}`, eBrochure)
+    //JSON.stringify the array of yachts to work around an issue found while writing tests:
+    let newEBrochure = Object.assign({}, eBrochure, { yachts: JSON.stringify(eBrochure.yachts) })
+    return axios.post(`/api/ebrochures/update/${eBrochure._id}`, newEBrochure)
   },
 
   setCharterInquiryConfirmed: async function(id) {

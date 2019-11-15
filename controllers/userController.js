@@ -54,7 +54,7 @@ exports.signup = function (req, res, next) {
     if (user) { return res.status(400).send({ msg: 'The email address you have entered is already associated with another account.' }) }
 
     // Create and save the user
-    user = new User({ name: req.body.name, email: req.body.email, password: req.body.password, firstName: req.body.firstName, lastName: req.body.lastName })
+    user = new User({ email: req.body.email, password: req.body.password, firstName: req.body.firstName, lastName: req.body.lastName })
     user.save(function (err) {
       if (err) { return res.status(500).send({ msg: err.message }) }
 
@@ -99,7 +99,7 @@ exports.confirm = function (req, res, next) {
       user.isVerified = true
       user.save(function (err) {
         if (err) { return res.status(500).send({ msg: err.message }) }
-        res.status(200).send('This Travel Agent account has been verified. Please log in.')
+        res.status(200).send({message: 'This Travel Agent account has been verified. Please log in.'})
       })
     })
   })
@@ -161,15 +161,19 @@ exports.resetPassword = function (req, res, next) {
         })
         .catch(err => res.status(422).json(err))
     })
-    .catch(error => console.error(error.toString()))
+    .catch(err => res.status(401).json(err))
 }
 
 exports.update = function (req, res, next) {
-  User.update({ _id: req.user._id }, {
-    $set: req.body
-  })
-    .then((dbUser) => {
-      res.status(200).send(dbUser)
+  if (req.user) {
+    User.update({ _id: req.user._id }, {
+      $set: req.body
     })
-    .catch(err => res.status(500).json(err))
+      .then((dbUser) => {
+        res.status(200).send(dbUser)
+      })
+      .catch(err => res.status(500).json(err))
+  } else {
+    res.status(401).json('Unauthorized')
+  }
 }

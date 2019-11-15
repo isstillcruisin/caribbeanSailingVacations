@@ -56,9 +56,24 @@ module.exports = {
   },
 
   update: function (req, res) {
-    db.EBrochure.findOneAndUpdate({ _id: req.params.id }, req.body)
-      .then(dbEBrochure => res.json(dbEBrochure))
-      .catch(err => res.status(422).json(err))
+    db.EBrochure.findOne({
+      _id: req.params.id
+    }).populate({
+      path: '_whiteLabel',
+      populate: { path: '_travelAgent' }
+    })
+      .then((dbEBrochure) => {
+        if (req.user && req.user.id === dbEBrochure._whiteLabel._travelAgent._id.toString()) {
+          const updates = Object.assign({}, req.body)
+          // NOTE: the yachts param has been JSON stringified
+          if (updates.yachts) { updates.yachts = JSON.parse(updates.yachts) }
+          db.EBrochure.findOneAndUpdate({ _id: req.params.id }, updates)
+            .then(dbEBrochure => res.json(dbEBrochure))
+            .catch(err => res.status(422).json(err))
+        } else {
+          return res.status(401).json('Unauthorized')
+        }
+      })
   },
 
   sendToRecipient: function (req, res) {

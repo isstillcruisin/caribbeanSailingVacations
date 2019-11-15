@@ -1,6 +1,6 @@
 // Import the dependencies for testing
 const expect = require('chai').expect
-const { doesADateRangeOverlap } = require('../util/tools')
+const { doesADateRangeOverlap } = require('../../util/tools')
 const moment = require('moment')
 
 describe('doesADateRangeOverlap', () => {

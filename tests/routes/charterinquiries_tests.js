@@ -2,9 +2,9 @@
 // Import the dependencies for testing
 const chai = require('chai')
 const chaiHttp = require('chai-http')
-const app = require('../index')
-const db = require('../models')
-const testutils = require('./testutils')
+const app = require('../../index')
+const db = require('../../models')
+const testutils = require('../testutils')
 const expect = chai.expect
 
 // Configure chai
