@@ -165,11 +165,15 @@ exports.resetPassword = function (req, res, next) {
 }
 
 exports.update = function (req, res, next) {
-  User.update({ _id: req.user._id }, {
-    $set: req.body
-  })
-    .then((dbUser) => {
-      res.status(200).send(dbUser)
+  if (req.user) {
+    User.update({ _id: req.user._id }, {
+      $set: req.body
     })
-    .catch(err => res.status(500).json(err))
+      .then((dbUser) => {
+        res.status(200).send(dbUser)
+      })
+      .catch(err => res.status(500).json(err))
+  } else {
+    res.status(401).json('Unauthorized')
+  }
 }

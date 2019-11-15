@@ -303,4 +303,65 @@ describe('Users', () => {
         })
     })
   })
+  describe('POST /update', () => {
+    it('updates the information about the user if the token is passed in', done => {
+      testutils.getToken(testutils.FAKE_TA.email, testutils.FAKE_TA.password)
+        .then(token => {
+          const promise = chai.request(app)
+            .post('/api/users/update')
+            .set({ Authorization: `Bearer ${token}` })
+            .type('form')
+          promise.send({
+            firstName: 'AlsoFake',
+            lastName: 'AlsoAgent',
+            phoneNumber: '(111)111-1111',
+          })
+            .end((err, res) => {
+              if (err) {
+                done(err)
+              } else {
+                expect(res).to.have.status(200)
+                const promise2 = chai.request(app)
+                  .get('/api/users/current')
+                  .set({ Authorization: `Bearer ${token}` })
+                promise2.send()
+                  .end((err, res) => {
+                    if (err) {
+                      done(err)
+                    } else {
+                      const { password, ...expected_props } = 
+                        Object.assign({}, testutils.EXPECTED_USER, {
+                          firstName: 'AlsoFake',
+                          lastName: 'AlsoAgent',
+                          phoneNumber: '(111)111-1111',
+                        })
+                      expect(res).to.have.status(200)
+                      expect(res.body).to.include(expected_props)
+                      done()
+                    }
+                  })
+              }
+            })
+        })
+    })
+
+    it('returns a 401 unauthorized if no token is passed in', done => {
+      const promise = chai.request(app)
+        .post('/api/users/update')
+        .type('form')
+      promise.send({
+        firstName: 'AlsoFake',
+        lastName: 'AlsoAgent',
+        phoneNumber: '(111)111-1111',
+      })
+        .end((err, res) => {
+          if (err) {
+            done(err)
+          } else {
+            expect(res).to.have.status(401)
+            done()
+          }
+        })
+    })    
+  })
 })    
