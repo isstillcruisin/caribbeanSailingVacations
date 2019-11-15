@@ -99,7 +99,7 @@ exports.confirm = function (req, res, next) {
       user.isVerified = true
       user.save(function (err) {
         if (err) { return res.status(500).send({ msg: err.message }) }
-        res.status(200).send('This Travel Agent account has been verified. Please log in.')
+        res.status(200).send({message: 'This Travel Agent account has been verified. Please log in.'})
       })
     })
   })

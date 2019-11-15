@@ -9,7 +9,16 @@ const testutils = require('../testutils')
 // Configure chai
 chai.use(chaiHttp)
 
-describe('EBrochures', () => {
+
+// router.route('/current').get(userController.currentUser)
+
+// router.route('/resetpasswordemail').post(userController.resetPasswordEmail)
+
+// router.route('/resetpassword').post(userController.resetPassword)
+
+// router.route('/update').post(userController.update)
+
+describe('Users', () => {
   beforeEach(function (done) {
     testutils.setupUserThroughEBrochure(done)
   })
@@ -138,4 +147,68 @@ describe('EBrochures', () => {
         })
     })
   })
+  describe('GET /confirmation/:id', () => {
+    it('sets the account to be confirmed if the passed in token is valid', done => {
+      db.User.findOneAndUpdate({email: testutils.FAKE_TA.email}, {isVerified: false})
+        .then(dbUser => {
+          db.Token.create({
+            _userId: dbUser._id,
+            token: 'ABCDEF',
+            type: 'confirm'
+          })
+            .then(() => {
+              const promise = chai.request(app)
+                .get('/api/users/confirmation/ABCDEF')
+              promise.send()
+                .end((err, res) => {
+                  if (err) {
+                    done(err)
+                  } else {
+                    expect(res).to.have.status(200)
+                    expect(res.body).to.deep.equal({message: 'This Travel Agent account has been verified. Please log in.'})
+                    done()
+                  }
+                })
+            })
+        })
+    })
+
+    it('returns a 400 if the token is not valid', done => {
+      const promise = chai.request(app)
+        .get('/api/users/confirmation/ABACABA999ABACABA')
+      promise.send()
+        .end((err, res) => {
+          if (err) {
+            done(err)
+          } else {
+            expect(res).to.have.status(400)
+            done()
+          }
+        })
+    })
+  })
+  describe('GET /current', () => {
+    it('returns the user whose token we have', done => {
+      testutils.getToken(testutils.FAKE_TA.email, testutils.FAKE_TA.password)
+        .then(token => {
+          const promise = chai.request(app)
+            .get('/api/users/current')
+            .set({ Authorization: `Bearer ${token}` })
+          promise.send()
+            .end((err, res) => {
+              if (err) {
+                done(err)
+              } else {
+                const { password, ...expected_props } = testutils.EXPECTED_USER
+                expect(res).to.have.status(200)
+                expect(res.body).to.include(expected_props)
+                done()
+              }
+            })
+        })     
+    })
+  })
+  describe('POST /resetpasswordemail', () => {})
+  describe('POST /resetpassword', () => {})
+  describe('POST /update', () => {})
 })    
