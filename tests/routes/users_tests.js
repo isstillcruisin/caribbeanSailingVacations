@@ -9,15 +9,6 @@ const testutils = require('../testutils')
 // Configure chai
 chai.use(chaiHttp)
 
-
-// router.route('/current').get(userController.currentUser)
-
-// router.route('/resetpasswordemail').post(userController.resetPasswordEmail)
-
-// router.route('/resetpassword').post(userController.resetPassword)
-
-// router.route('/update').post(userController.update)
-
 describe('Users', () => {
   beforeEach(function (done) {
     testutils.setupUserThroughEBrochure(done)
@@ -208,7 +199,108 @@ describe('Users', () => {
         })     
     })
   })
-  describe('POST /resetpasswordemail', () => {})
-  describe('POST /resetpassword', () => {})
-  describe('POST /update', () => {})
+  describe('POST /resetpasswordemail', () => {
+    it('sends an email to the user with a reset token', done => {
+      const promise = chai.request(app)
+        .post('/api/users/resetpasswordemail')
+        .type('form'),
+        nock = testutils.mockSendgrid({
+          from: { email: 'bookings@caribbeansailingvacations.com' },
+          subject: 'Password Reset',
+        })
+      promise.send({email: testutils.FAKE_TA.email})
+        .end((err, res) => {
+          if (err) {
+            done(err)
+          } else {
+            expect(res).to.have.status(200)
+            expect(nock.isDone()).to.be.true
+            done()
+          }
+        })
+    })
+  })
+  describe('POST /resetpassword', () => {
+    it('lets you reset the password via the reset token', done => {
+      db.User.findOne({email: testutils.FAKE_TA.email})
+        .then(dbUser => {
+          db.Token.create({
+            _userId: dbUser._id,
+            token: 'ABCDEF',
+            type: 'passwordreset'
+          })
+            .then(() => {
+              const promise = chai.request(app)
+                .post('/api/users/resetpassword')
+                .type('form')
+              promise.send({password: 'NewPassword', token: 'ABCDEF'}) 
+                .end((err, res) => {
+                  if (err) {
+                    done(err)
+                  } else {
+                    testutils.getToken(testutils.FAKE_TA.email, 'NewPassword')
+                      .then(token => {
+                        const promise = chai.request(app)
+                          .get('/api/users/current')
+                          .set({ Authorization: `Bearer ${token}` })
+                        promise.send()
+                          .end((err, res) => {
+                            if (err) {
+                              done(err)
+                            } else {
+                              const { password, ...expected_props } = testutils.EXPECTED_USER
+                              expect(res).to.have.status(200)
+                              expect(res.body).to.include(expected_props)
+                              done()
+                            }
+                          })
+                      })
+                  }
+                })     
+            })
+        })
+    })
+
+    it('does not lets you reset the password if the token is bad', done => {
+      db.User.findOne({email: testutils.FAKE_TA.email})
+        .then(dbUser => {
+          db.Token.create({
+            _userId: dbUser._id,
+            token: 'ABCDEF',
+            type: 'passwordreset'
+          })
+            .then(() => {
+              const promise = chai.request(app)
+                .post('/api/users/resetpassword')
+                .type('form')
+              promise.send({password: 'NewPassword', token: 'ABCDEF0'}) 
+                .end((err, res) => {
+                  if (err) {
+                    done(err)
+                  } else {
+                    expect(res).to.have.status(401)
+                    //Make sure the old password still works:
+                    testutils.getToken(testutils.FAKE_TA.email, testutils.FAKE_TA.password)
+                      .then(token => {
+                        const promise = chai.request(app)
+                          .get('/api/users/current')
+                          .set({ Authorization: `Bearer ${token}` })
+                        promise.send()
+                          .end((err, res) => {
+                            if (err) {
+                              done(err)
+                            } else {
+                              const { password, ...expected_props } = testutils.EXPECTED_USER
+                              expect(res).to.have.status(200)
+                              expect(res.body).to.include(expected_props)
+                              done()
+                            }
+                          })
+                      })
+                  }
+                }) 
+            })
+        })
+    })
+  })
 })    

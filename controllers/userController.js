@@ -161,7 +161,7 @@ exports.resetPassword = function (req, res, next) {
         })
         .catch(err => res.status(422).json(err))
     })
-    .catch(error => console.error(error.toString()))
+    .catch(err => res.status(401).json(err))
 }
 
 exports.update = function (req, res, next) {
